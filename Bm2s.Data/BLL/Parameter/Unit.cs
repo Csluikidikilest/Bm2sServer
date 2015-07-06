@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bm2s.Data.BLL.Sell;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,5 +22,7 @@ namespace Bm2s.Data.BLL.Parameter
     public List<Period> Periods { get; set; }
     public List<UnitConversion> UnitConversionChildren { get; set; }
     public List<UnitConversion> UnitConversionParents { get; set; }
+    public List<HeaderLine> HeaderLines { get; set; }
+    public List<Payment> Payments { get; set; }
   }
 }

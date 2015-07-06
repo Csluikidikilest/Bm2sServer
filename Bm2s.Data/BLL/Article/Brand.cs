@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bm2s.Data.BLL.Sell;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,5 +15,6 @@ namespace Bm2s.Data.BLL.Article
     public DateTime StartingDate { get; set; }
     public DateTime EndingDate { get; set; }
     public List<Article> Articles { get; set; }
+    public List<HeaderLine> HeaderLines { get; set; }
   }
 }

@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Bm2s.Data.BLL.Sell
 {
-  class Reconciliation
+  public class Reconciliation
   {
+    public decimal Amount { get; set; }
+    public Payment Payment { get; set; }
+    public HeaderLine HeaderLine { get; set; }
   }
 }

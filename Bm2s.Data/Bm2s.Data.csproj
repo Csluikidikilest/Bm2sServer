@@ -74,7 +74,7 @@
     <Compile Include="BLL\Parameter\Vat.cs" />
     <Compile Include="BLL\Partner\AddressLine.cs" />
     <Compile Include="BLL\Partner\AddressType.cs" />
-    <Compile Include="BLL\Partner\Adress.cs" />
+    <Compile Include="BLL\Partner\Address.cs" />
     <Compile Include="BLL\Partner\Partner.cs" />
     <Compile Include="BLL\Partner\PartnerAddress.cs" />
     <Compile Include="BLL\Partner\PartnerContact.cs" />
@@ -88,7 +88,7 @@
     <Compile Include="BLL\Sell\HeaderLine.cs" />
     <Compile Include="BLL\Sell\HeaderLineType.cs" />
     <Compile Include="BLL\Sell\HeaderOrigin.cs" />
-    <Compile Include="BLL\Sell\HeaderParterAddress.cs" />
+    <Compile Include="BLL\Sell\HeaderPartnerAddress.cs" />
     <Compile Include="BLL\Sell\HeaderStatus.cs" />
     <Compile Include="BLL\Sell\HeaderStatusStep.cs" />
     <Compile Include="BLL\Sell\Payment.cs" />

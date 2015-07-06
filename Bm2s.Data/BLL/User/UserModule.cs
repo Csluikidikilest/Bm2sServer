@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Bm2s.Data.BLL.User
 {
-  class UserModule
+  public class UserModule
   {
+    public bool Granted { get; set; }
+    public User User { get; set; }
+    public Module Module { get; set; }
+    public User Grantor { get; set; }
   }
 }

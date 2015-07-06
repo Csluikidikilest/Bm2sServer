@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Bm2s.Data.BLL.Sell
 {
-  class HeaderOrigin
+  public class HeaderOrigin
   {
+    public DateTime Date { get; set; }
+    public Header HeaderParent { get; set; }
+    public Header HeaderChild { get; set; }
   }
 }

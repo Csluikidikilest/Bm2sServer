@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Bm2s.Data.BLL.Partner
 {
-  class AddressLine
+  public class AddressLine
   {
+    public int Id { get; private set; }
+    public int Order { get; set; }
+    public string Line { get; set; }
+    public Address Address { get; set; }
   }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bm2s.Data.BLL.User;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,5 +18,6 @@ namespace Bm2s.Data.BLL.Parameter
     public string TownName { get; set; }
     public string CountryName { get; set; }
     public List<Affair> Affairs { get; set; }
+    public List<UserActivity> UserActivities { get; set; }
   }
 }

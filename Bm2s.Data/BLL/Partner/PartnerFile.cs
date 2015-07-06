@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace Bm2s.Data.BLL.Partner
 {
-  class PartnerFile
+  public class PartnerFile
   {
+    public int Id { get; private set; }
+    public string Name { get; set; }
+    public Byte[] File { get; set; }
+    public DateTime AddingDate { get; set; }
+    public Partner Partner { get; set; }
+    public User.User User { get; set; }
   }
 }

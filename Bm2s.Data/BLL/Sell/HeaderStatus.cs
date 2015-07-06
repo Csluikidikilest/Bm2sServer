@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace Bm2s.Data.BLL.Sell
 {
-  class HeaderStatus
+  public class HeaderStatus
   {
+    public int Id { get; private set; }
+    public string Name { get; set; }
+    public DateTime StartingDate { get; set; }
+    public DateTime EndingDate { get; set; }
+    public List<HeaderStatusStep> HeaderStatusStepParents { get; set; }
+    public List<HeaderStatusStep> HeaderStatusStepChildren { get; set; }
   }
 }

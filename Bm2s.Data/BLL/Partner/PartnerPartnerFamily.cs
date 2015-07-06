@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Bm2s.Data.BLL.Partner
 {
-  class PartnerPartnerFamily
+  public class PartnerPartnerFamily
   {
+    public Partner Partner { get; set; }
+    public PartnerFamily PartnerFamily { get; set; }
   }
 }

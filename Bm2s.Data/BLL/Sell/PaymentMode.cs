@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace Bm2s.Data.BLL.Sell
 {
-  class PaymentMode
+  public class PaymentMode
   {
+    public int Id { get; private set; }
+    public string Name { get; set; }
+    public DateTime StartingDate { get; set; }
+    public DateTime EndingDate { get; set; }
+    public List<Payment> Payments { get; set; }
   }
 }

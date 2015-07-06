@@ -7,12 +7,14 @@ using System.Threading.Tasks;
 
 namespace Bm2s.Data.BLL.Partner
 {
-  public class AddressType
+  public class Address
   {
     public int Id { get; private set; }
-    public string Name { get; set; }
-    public DateTime StartingDate { get; set; }
-    public DateTime EndingDate { get; set; }
+    public string TownZipCode { get; set; }
+    public string TownName { get; set; }
+    public string CountryName { get; set; }
+    public List<AddressLine> AddressLines { get; set; }
+    public List<Partner> Partners { get; set; }
     public List<PartnerAddress> PartnerAddresses { get; set; }
     public List<HeaderPartnerAddress> HeaderPartnerAddresses { get; set; }
   }

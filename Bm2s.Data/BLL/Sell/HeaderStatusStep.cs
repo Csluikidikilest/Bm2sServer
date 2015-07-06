@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Bm2s.Data.BLL.Sell
 {
-  class HeaderStatusStep
+  public class HeaderStatusStep
   {
+    public HeaderStatus HeaderStatusParent { get; set; }
+    public HeaderStatus HeaderStatusChild { get; set; }
   }
 }

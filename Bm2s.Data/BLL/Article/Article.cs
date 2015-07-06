@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Bm2s.Data.BLL.Parameter;
+using Bm2s.Data.BLL.Sell;
 
 namespace Bm2s.Data.BLL.Article
 {
@@ -29,5 +30,6 @@ namespace Bm2s.Data.BLL.Article
     public List<ArticlePartnerFamilyVat> ArticlePartnerFamilyVats { get; set; }
     public List<ArticlePartnerVat> ArticlePartnerVats { get; set; }
     public List<InventoryLine> InventoryLines { get; set; }
+    public List<HeaderLine> HeaderLines { get; set; }
   }
 }

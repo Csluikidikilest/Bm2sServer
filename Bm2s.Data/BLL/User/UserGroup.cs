@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Bm2s.Data.BLL.User
 {
-  class UserGroup
+  public class UserGroup
   {
+    public User User { get; set; }
+    public Group Group { get; set; }
   }
 }

@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Bm2s.Data.BLL.Sell
 {
-  class HeaderFreeReference
+  public class HeaderFreeReference
   {
+    public string Reference { get; set; }
+    public HeaderStatus HeaderStatus { get; set; }
   }
 }
