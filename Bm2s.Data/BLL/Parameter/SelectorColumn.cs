@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Bm2s.Data.BLL.Parameter
 {
-  class SelectorColumn
+  public class SelectorColumn
   {
+    public int Id { get; private set; }
+    public string Code { get; set; }
+    public string HeaderText { get; set; }
+    public SelectorScreen SelectorScreen { get; set; }
   }
 }

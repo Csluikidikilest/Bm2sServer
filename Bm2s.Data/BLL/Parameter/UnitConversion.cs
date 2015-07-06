@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Bm2s.Data.BLL.Parameter
 {
-  class UnitConversion
+  public class UnitConversion
   {
+    public int Multiplier { get; set; }
+    public Unit Child { get; set; }
+    public Unit Parent { get; set; }
   }
 }
