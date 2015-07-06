@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bm2s.Server", "Bm2s.Server\Bm2s.Server.csproj", "{01A1DC60-5F17-4570-BCD8-583836E6526A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bm2s.Data", "Bm2s.Data\Bm2s.Data.csproj", "{27BC539A-8E1B-4D1A-81B1-A98B39E0F3D0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{01A1DC60-5F17-4570-BCD8-583836E6526A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01A1DC60-5F17-4570-BCD8-583836E6526A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01A1DC60-5F17-4570-BCD8-583836E6526A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01A1DC60-5F17-4570-BCD8-583836E6526A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27BC539A-8E1B-4D1A-81B1-A98B39E0F3D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27BC539A-8E1B-4D1A-81B1-A98B39E0F3D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27BC539A-8E1B-4D1A-81B1-A98B39E0F3D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27BC539A-8E1B-4D1A-81B1-A98B39E0F3D0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

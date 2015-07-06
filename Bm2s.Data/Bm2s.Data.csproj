@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{27BC539A-8E1B-4D1A-81B1-A98B39E0F3D0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Bm2s.Data</RootNamespace>
+    <AssemblyName>Bm2s.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BLL\Article\Article.cs" />
+    <Compile Include="BLL\Article\ArticleFamily.cs" />
+    <Compile Include="BLL\Article\ArticleFamilyPricePartner.cs" />
+    <Compile Include="BLL\Article\ArticleFamilyPricePartnerFamily.cs" />
+    <Compile Include="BLL\Article\ArticlePriceParner.cs" />
+    <Compile Include="BLL\Article\ArticlePriceParnerFamily.cs" />
+    <Compile Include="BLL\Article\ArticleSubFamily.cs" />
+    <Compile Include="BLL\Article\ArticleSubFamilyPricePartner.cs" />
+    <Compile Include="BLL\Article\ArticleSubFamilyPricePartnerFamily.cs" />
+    <Compile Include="BLL\Article\Brand.cs" />
+    <Compile Include="BLL\Article\Nomenclature.cs" />
+    <Compile Include="BLL\Article\Price.cs" />
+    <Compile Include="BLL\Parameter\Affair.cs" />
+    <Compile Include="BLL\Parameter\AffairFile.cs" />
+    <Compile Include="BLL\Parameter\AffairHeader.cs" />
+    <Compile Include="BLL\Parameter\ArticleFamilyPartnerFamilyVat.cs" />
+    <Compile Include="BLL\Parameter\ArticleFamilyPartnerVat.cs" />
+    <Compile Include="BLL\Parameter\ArticlePartnerFamilyVat.cs" />
+    <Compile Include="BLL\Parameter\ArticlePartnerVat.cs" />
+    <Compile Include="BLL\Parameter\ArticleSubFamilyPartnerFamilyVat.cs" />
+    <Compile Include="BLL\Parameter\ArticleSubFamilyPartnerVat.cs" />
+    <Compile Include="BLL\Parameter\Country.cs" />
+    <Compile Include="BLL\Parameter\CountryCurrency.cs" />
+    <Compile Include="BLL\Parameter\InventoryHeader.cs" />
+    <Compile Include="BLL\Parameter\InventoryLine.cs" />
+    <Compile Include="BLL\Parameter\Parameter.cs" />
+    <Compile Include="BLL\Parameter\Period.cs" />
+    <Compile Include="BLL\Parameter\SelectorColumn.cs" />
+    <Compile Include="BLL\Parameter\SelectorScreen.cs" />
+    <Compile Include="BLL\Parameter\Town.cs" />
+    <Compile Include="BLL\Parameter\Unit.cs" />
+    <Compile Include="BLL\Parameter\UnitConversion.cs" />
+    <Compile Include="BLL\Parameter\Vat.cs" />
+    <Compile Include="BLL\Partner\AddressLine.cs" />
+    <Compile Include="BLL\Partner\AddressType.cs" />
+    <Compile Include="BLL\Partner\Adress.cs" />
+    <Compile Include="BLL\Partner\Partner.cs" />
+    <Compile Include="BLL\Partner\PartnerAddress.cs" />
+    <Compile Include="BLL\Partner\PartnerContact.cs" />
+    <Compile Include="BLL\Partner\PartnerFamily.cs" />
+    <Compile Include="BLL\Partner\PartnerFile.cs" />
+    <Compile Include="BLL\Partner\PartnerPartnerFamily.cs" />
+    <Compile Include="BLL\Parameter\Activity.cs" />
+    <Compile Include="BLL\Sell\Header.cs" />
+    <Compile Include="BLL\Sell\HeaderFile.cs" />
+    <Compile Include="BLL\Sell\HeaderFreeReference.cs" />
+    <Compile Include="BLL\Sell\HeaderLine.cs" />
+    <Compile Include="BLL\Sell\HeaderLineType.cs" />
+    <Compile Include="BLL\Sell\HeaderOrigin.cs" />
+    <Compile Include="BLL\Sell\HeaderParterAddress.cs" />
+    <Compile Include="BLL\Sell\HeaderStatus.cs" />
+    <Compile Include="BLL\Sell\HeaderStatusStep.cs" />
+    <Compile Include="BLL\Sell\Payment.cs" />
+    <Compile Include="BLL\Sell\PaymentMode.cs" />
+    <Compile Include="BLL\Sell\Reconciliation.cs" />
+    <Compile Include="BLL\User\Group.cs" />
+    <Compile Include="BLL\User\GroupModule.cs" />
+    <Compile Include="BLL\User\GroupSelectorScreen.cs" />
+    <Compile Include="BLL\User\Module.cs" />
+    <Compile Include="BLL\User\User.cs" />
+    <Compile Include="BLL\User\UserActivity.cs" />
+    <Compile Include="BLL\User\UserGroup.cs" />
+    <Compile Include="BLL\User\UserModule.cs" />
+    <Compile Include="BLL\User\UserSelectorScreen.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
