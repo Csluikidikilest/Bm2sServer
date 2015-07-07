@@ -17,7 +17,7 @@ namespace Bm2s.Data.BLL.Partner
     public string PhoneNumber { get; set; }
     public string FaxNumber { get; set; }
     public string WebSite { get; set; }
-    public string Siret { get; set; }
+    public string CompanyIdentifier { get; set; }
     public string Email { get; set; }
     public string Observation { get; set; }
     public decimal PriceMultiplier { get; set; }
@@ -26,7 +26,6 @@ namespace Bm2s.Data.BLL.Partner
     public bool IsCustomer { get; set; }
     public bool IsSupplier { get; set; }
     public User.User User { get; set; }
-    public Address Address { get; set; }
     public List<ArticleFamilyPricePartner> ArticleFamilyPricePartners { get; set; }
     public List<ArticlePriceParner> ArticlePriceParners { get; set; }
     public List<ArticleSubFamilyPricePartner> ArticleSubFamilyPricePartners { get; set; }

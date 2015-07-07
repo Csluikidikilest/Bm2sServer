@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Bm2s.Data.BLL.User
 {
-  public class GroupSelectorScreen
+  public class UserSelectorColumn
   {
     // Suspendu pour plus tard
   }

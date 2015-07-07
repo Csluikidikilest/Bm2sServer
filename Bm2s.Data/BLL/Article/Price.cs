@@ -9,7 +9,7 @@ namespace Bm2s.Data.BLL.Article
   public class Price
   {
     public int Id { get; private set; }
-    public decimal Amount { get; set; }
+    public decimal Price { get; set; }
     public decimal Multiplier { get; set; }
     public DateTime StartingDate { get; set; }
     public DateTime EndingDate { get; set; }
