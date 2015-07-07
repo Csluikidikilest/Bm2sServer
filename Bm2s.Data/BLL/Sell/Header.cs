@@ -14,7 +14,7 @@ namespace Bm2s.Data.BLL.Sell
     public string Reference { get; set; }
     public DateTime Date { get; set; }
     public DateTime StartingDate { get; set; }
-    public DateTime EndingDate { get; set; }
+    public DateTime? EndingDate { get; set; }
     public string Description { get; set; }
     public string DeliveryObservation { get; set; }
     public decimal FooterDiscount { get; set; }

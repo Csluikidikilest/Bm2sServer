@@ -9,7 +9,7 @@ namespace Bm2s.Data.BLL.Parameter
   public class CountryCurrency
   {
     public DateTime StartingDate { get; set; }
-    public DateTime EndingDate { get; set; }
+    public DateTime? EndingDate { get; set; }
     public Country Country { get; set; }
     public Unit Unit { get; set; }
   }

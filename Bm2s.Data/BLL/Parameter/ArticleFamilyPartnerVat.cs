@@ -8,7 +8,7 @@ using Bm2s.Data.BLL.Partner;
 
 namespace Bm2s.Data.BLL.Parameter
 {
-  class ArticleFamilyPartnerVat
+  public class ArticleFamilyPartnerVat
   {
     public decimal Rate { get; set; }
     public decimal Multiplier { get; set; }

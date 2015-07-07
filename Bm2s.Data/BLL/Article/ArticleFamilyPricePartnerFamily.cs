@@ -1,16 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Bm2s.Data.BLL.Partner;
+using ServiceStack.DataAnnotations;
 
 namespace Bm2s.Data.BLL.Article
 {
   public class ArticleFamilyPricePartnerFamily
   {
     public decimal Price { get; set; }
+
     public decimal Multiplier { get; set; }
-    public ArticleFamily ArticleFamily { get; set; }
-    public Partner.PartnerFamily PartnerFamily { get; set; }
+
+    [References(typeof(ArticleFamily))]
+    public int ArticleFamilyId { get; set; }
+
+    [References(typeof(PartnerFamily))]
+    public int PartnerFamilyId { get; set; }
   }
 }

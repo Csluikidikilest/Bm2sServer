@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ServiceStack.DataAnnotations;
 
 namespace Bm2s.Data.BLL.User
 {
   public class Module
   {
-    public int Id { get; private set; }
-    public string Code { get; set; }
+    [AutoIncrement] [PrimaryKey] public int Id { get; private set; }
+    [Required] [StringLength(50)] public string Code { get; set; }
     public string Name { get; set; }
     public string Description { get; set; }
     public List<GroupModule> GroupModules { get; set; }

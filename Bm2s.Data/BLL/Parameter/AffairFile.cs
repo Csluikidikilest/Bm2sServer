@@ -1,10 +1,11 @@
 ﻿using System;
+using ServiceStack.DataAnnotations;
 
 namespace Bm2s.Data.BLL.Parameter
 {
   public class AffairFile
   {
-    public int Id { get; private set; }
+    [AutoIncrement] [PrimaryKey] public int Id { get; private set; }
     public string Name { get; set; }
     public Byte[] File { get; set; }
     public DateTime AddingDate { get; set; }

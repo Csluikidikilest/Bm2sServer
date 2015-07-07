@@ -1,27 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Bm2s.Data.BLL.Parameter;
-using Bm2s.Data.BLL.Sell;
+using System.ComponentModel.DataAnnotations;
+using ServiceStack.DataAnnotations;
 
 namespace Bm2s.Data.BLL.Article
 {
   public class ArticleFamily
   {
-    public int Id { get; private set; }
-    public string Code { get; set; }
-    public string Designation { get; set; }
+    [AutoIncrement] [PrimaryKey] public int Id { get; private set; }
+
+    [Required] [StringLength(50)] public string Code { get; set; }
+
+    [Required] [StringLength(250)] public string Designation { get; set; }
+
     public string Description { get; set; }
+
     public DateTime StartingDate { get; set; }
-    public DateTime EndingDate { get; set; }
-    public List<Article> Articles { get; set; }
-    public List<ArticleSubFamily> ArticleSubFamilies { get; set; }
-    public List<ArticleFamilyPricePartner> ArticleFamilyPricePartners { get; set; }
-    public List<ArticleFamilyPricePartnerFamily> ArticleFamilyPricePartnerFamilies { get; set; }
-    public List<ArticleFamilyPartnerFamilyVat> ArticleFamilyPartnerFamilyVats { get; set; }
-    public List<ArticleFamilyPartnerVat> ArticleFamilyPartnerVats { get; set; }
-    public List<HeaderLine> HeaderLines { get; set; }
+
+    public DateTime? EndingDate { get; set; }
   }
 }

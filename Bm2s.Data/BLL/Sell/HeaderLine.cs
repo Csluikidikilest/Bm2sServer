@@ -5,15 +5,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ServiceStack.DataAnnotations;
 
 namespace Bm2s.Data.BLL.Sell
 {
   public class HeaderLine
   {
-    public int Id { get; private set; }
+    [AutoIncrement] [PrimaryKey] public int Id { get; private set; }
     public int LineNumber { get; set; }
-    public string Code { get; set; }
-    public string Designation { get; set; }
+    [Required] [StringLength(50)] public string Code { get; set; }
+    [StringLength(250)] public string Designation { get; set; }
     public string Description { get; set; }
     public decimal BuyPrice { get; set; }
     public decimal SellPrice { get; set; }

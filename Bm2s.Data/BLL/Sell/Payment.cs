@@ -4,12 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ServiceStack.DataAnnotations;
 
 namespace Bm2s.Data.BLL.Sell
 {
   public class Payment
   {
-    public int Id { get; private set; }
+    [AutoIncrement] [PrimaryKey] public int Id { get; private set; }
     public decimal Amount { get; set; }
     public DateTime Date { get; set; }
     public Partner.Partner Partner { get; set; }
