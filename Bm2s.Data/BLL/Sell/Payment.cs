@@ -11,7 +11,7 @@ namespace Bm2s.Data.BLL.Sell
   public class Payment
   {
     [AutoIncrement] [PrimaryKey] public int Id { get; private set; }
-    public decimal Amount { get; set; }
+    public double Amount { get; set; }
     public DateTime Date { get; set; }
     public Partner.Partner Partner { get; set; }
     public PaymentMode PaymentMode { get; set; }

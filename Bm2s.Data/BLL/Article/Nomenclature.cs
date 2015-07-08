@@ -1,12 +1,18 @@
-﻿using ServiceStack.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using ServiceStack.DataAnnotations;
 
 namespace Bm2s.Data.BLL.Article
 {
+  [Table("Nomenclature", Schema = "Article")]
   public class Nomenclature
   {
-    public int Quantity { get; set; }
+    [Default(0)]
+    public int? Quantity { get; set; }
 
-    public decimal BuyPrice { get; set; }
+    [Default(1)]
+    public double? Multiplier { get; set; }
+
+    public double BuyPrice { get; set; }
 
     [References(typeof(Article))]
     public int ArticleParentId { get; set; }

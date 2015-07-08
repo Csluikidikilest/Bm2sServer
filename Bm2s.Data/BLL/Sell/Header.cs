@@ -17,7 +17,7 @@ namespace Bm2s.Data.BLL.Sell
     public DateTime? EndingDate { get; set; }
     public string Description { get; set; }
     public string DeliveryObservation { get; set; }
-    public decimal FooterDiscount { get; set; }
+    public double FooterDiscount { get; set; }
     public bool IsSell { get; set; }
     public Activity Activity { get; set; }
     public User.User User { get; set; }

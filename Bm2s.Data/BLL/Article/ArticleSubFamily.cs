@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using ServiceStack.DataAnnotations;
 
 namespace Bm2s.Data.BLL.Article
 {
+  [Table("ArticleSubFamily", Schema = "Article")]
   public class ArticleSubFamily
   {
     [AutoIncrement]
@@ -25,5 +28,12 @@ namespace Bm2s.Data.BLL.Article
 
     [References(typeof(ArticleFamily))]
     public int ArticleFamilyId { get; set; }
+
+    [ForeignKey("ArticleFamilyId")]
+    public ArticleFamily ArticleFamily { get; set; }
+
+    [InverseProperty("ArticleSubFamily")]
+    public List<Article> Articles { get; set; }
+
   }
 }

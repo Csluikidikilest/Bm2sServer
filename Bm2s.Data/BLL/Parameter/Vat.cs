@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,7 @@ namespace Bm2s.Data.BLL.Parameter
     [Required] [StringLength(50)] public string Code { get; set; }
     public DateTime StaringDate { get; set; }
     public DateTime? EndingDate { get; set; }
-    public decimal Rate { get; set; }
+    public double Rate { get; set; }
     public string AccountingEntry { get; set; }
     public List<ArticleFamilyPartnerFamilyVat> ArticleFamilyPartnerFamilyVats { get; set; }
     public List<ArticleFamilyPartnerVat> ArticleFamilyPartnerVats { get; set; }
