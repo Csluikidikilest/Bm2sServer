@@ -17,6 +17,7 @@ namespace Bm2s.Data.BLL.Article
     [StringLength(50)]
     public string Code { get; set; }
 
+    [StringLength(400)]
     public string Name { get; set; }
 
     public DateTime StartingDate { get; set; }

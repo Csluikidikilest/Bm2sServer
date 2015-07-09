@@ -57,6 +57,9 @@ namespace Bm2s.Data.BLL.Article
     public Unit Unit { get; set; }
 
     [InverseProperty("Article")]
+    public List<ArticlePriceParnerFamily> ArticlePriceParnerFamilies { get; set; }
+
+    [InverseProperty("Article")]
     public List<Price> Prices { get; set; }
   }
 }

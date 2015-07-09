@@ -5,14 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using ServiceStack.DataAnnotations;
 
-namespace Bm2s.Data.BLL.Sell
+namespace Bm2s.Data.BLL.Trade
 {
-  public class PaymentMode
+  public class HeaderFile
   {
     [AutoIncrement] [PrimaryKey] public int Id { get; private set; }
     public string Name { get; set; }
-    public DateTime StartingDate { get; set; }
-    public DateTime? EndingDate { get; set; }
-    public List<Payment> Payments { get; set; }
+    public Byte[] File { get; set; }
+    public DateTime AddingDate { get; set; }
+    public Header Header { get; set; }
+    public User.User User { get; set; }
   }
 }

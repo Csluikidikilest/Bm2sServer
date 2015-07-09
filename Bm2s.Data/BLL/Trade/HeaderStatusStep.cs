@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bm2s.Data.BLL.Sell
+namespace Bm2s.Data.BLL.Trade
 {
   public class HeaderStatusStep
   {

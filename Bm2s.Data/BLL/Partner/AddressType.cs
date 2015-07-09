@@ -1,4 +1,4 @@
-﻿using Bm2s.Data.BLL.Sell;
+﻿using Bm2s.Data.BLL.Trade;
 using System;
 using System.Collections.Generic;
 using System.Linq;

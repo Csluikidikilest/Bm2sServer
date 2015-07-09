@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ServiceStack.DataAnnotations;
 
-namespace Bm2s.Data.BLL.Sell
+namespace Bm2s.Data.BLL.Trade
 {
   public class HeaderLineType
   {

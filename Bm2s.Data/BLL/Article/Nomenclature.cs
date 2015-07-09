@@ -14,9 +14,11 @@ namespace Bm2s.Data.BLL.Article
 
     public double BuyPrice { get; set; }
 
+    [PrimaryKey]
     [References(typeof(Article))]
     public int ArticleParentId { get; set; }
 
+    [PrimaryKey]
     [References(typeof(Article))]
     public int ArticleChildId { get; set; }
   }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using ServiceStack.DataAnnotations;
 using System.ComponentModel.DataAnnotations;
 
-namespace Bm2s.Data.BLL.Sell
+namespace Bm2s.Data.BLL.Trade
 {
   public class HeaderLine
   {

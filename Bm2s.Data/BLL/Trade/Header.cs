@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Bm2s.Data.BLL.Parameter;
 using Bm2s.Data.BLL.Partner;
 
-namespace Bm2s.Data.BLL.Sell
+namespace Bm2s.Data.BLL.Trade
 {
   public class Header
   {
@@ -21,6 +21,7 @@ namespace Bm2s.Data.BLL.Sell
     public bool IsSell { get; set; }
     public Activity Activity { get; set; }
     public User.User User { get; set; }
+    public bool IsSell { get; set; }
     public HeaderStatus HeaderStatus { get; set; }
     public List<AffairHeader> AffairHeaders { get; set; }
     public List<HeaderFile> HeaderFiles { get; set; }

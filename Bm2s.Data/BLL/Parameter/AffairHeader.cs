@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Bm2s.Data.BLL.Sell;
+using Bm2s.Data.BLL.Trade;
 
 namespace Bm2s.Data.BLL.Parameter
 {

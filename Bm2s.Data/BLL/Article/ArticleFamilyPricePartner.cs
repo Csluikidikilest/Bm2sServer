@@ -14,12 +14,14 @@ namespace Bm2s.Data.BLL.Article
     [Default(1)]
     public double? Multiplier { get; set; }
 
+    [PrimaryKey]
     [References(typeof(ArticleFamily))]
     public int ArticleFamilyId { get; set; }
 
     [ForeignKey("ArticleFamilyId")]
     public ArticleFamily ArticleFamily { get; set; }
 
+    [PrimaryKey]
     [References(typeof(Partner.Partner))]
     public int PartnerId { get; set; }
 

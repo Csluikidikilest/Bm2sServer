@@ -29,5 +29,11 @@ namespace Bm2s.Data.BLL.Article
 
     [InverseProperty("ArticleFamily")]
     public List<Article> Articles { get; set; }
+
+    [InverseProperty("ArticleFamily")]
+    public List<ArticleFamilyPricePartner> ArticleFamilyPricePartners { get; set; }
+
+    [InverseProperty("ArticleFamily")]
+    public List<ArticleSubFamily> ArticleSubFamilies { get; set; }
   }
 }

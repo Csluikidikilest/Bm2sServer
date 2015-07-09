@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Bm2s.Data.BLL.Article;
 using Bm2s.Data.BLL.Parameter;
-using Bm2s.Data.BLL.Sell;
+using Bm2s.Data.BLL.Trade;
 using ServiceStack.DataAnnotations;
 
 namespace Bm2s.Data.BLL.Partner

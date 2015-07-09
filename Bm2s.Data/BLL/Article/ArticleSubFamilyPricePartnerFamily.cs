@@ -18,6 +18,9 @@ namespace Bm2s.Data.BLL.Article
     [References(typeof(ArticleSubFamily))]
     public int ArticleSubFamilyId { get; set; }
 
+    [ForeignKey("ArticleSubFamilyId")]
+    public ArticleSubFamily ArticleSubFamily { get; set; }
+
     [References(typeof(PartnerFamily))]
     public int PartnerFamilyId { get; set; }
 
