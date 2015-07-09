@@ -15,6 +15,7 @@ namespace Bm2s.Data.BLL.Parameter
     [PrimaryKey]
     public int Id { get; private set; }
 
+    [Required]
     [StringLength(250)]
     public string CompanyName { get; set; }
 

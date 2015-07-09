@@ -10,9 +10,16 @@ namespace Bm2s.Data.BLL.Parameter
 {
   public class SelectorScreen
   {
-    [AutoIncrement] [PrimaryKey] public int Id { get; private set; }
-    [Required] [StringLength(50)] public string Code { get; set; }
+    [AutoIncrement]
+    [PrimaryKey]
+    public int Id { get; private set; }
+
+    [Required]
+    [StringLength(250)]
+    public string Code { get; set; }
+
     public string HeaderText { get; set; }
+
     public List<SelectorColumn> SelectorColumns { get; set; }
   }
 }

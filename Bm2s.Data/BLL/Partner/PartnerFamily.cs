@@ -15,9 +15,10 @@ namespace Bm2s.Data.BLL.Partner
     public int Id { get; private set; }
 
     [Required]
-    [StringLength(50)]
+    [StringLength(250)]
     public string Code { get; set; }
 
+    [Required]
     [StringLength(250)]
     public string Designation { get; set; }
 

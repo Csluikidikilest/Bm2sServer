@@ -12,10 +12,16 @@ namespace Bm2s.Data.BLL.Parameter
 {
   public class Unit
   {
-    [AutoIncrement] [PrimaryKey] public int Id { get; private set; }
+    [AutoIncrement]
+    [PrimaryKey]
+    public int Id { get; private set; }
 
-    [Required] [StringLength(50)] public string Code { get; set; }
+    [Required]
+    [StringLength(250)]
+    public string Code { get; set; }
 
+    [Required]
+    [StringLength(250)]
     public string Name { get; set; }
 
     public string Description { get; set; }

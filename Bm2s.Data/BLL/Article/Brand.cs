@@ -14,10 +14,11 @@ namespace Bm2s.Data.BLL.Article
     public int Id { get; private set; }
 
     [Required]
-    [StringLength(50)]
+    [StringLength(250)]
     public string Code { get; set; }
 
-    [StringLength(400)]
+    [Required]
+    [StringLength(250)]
     public string Name { get; set; }
 
     public DateTime StartingDate { get; set; }

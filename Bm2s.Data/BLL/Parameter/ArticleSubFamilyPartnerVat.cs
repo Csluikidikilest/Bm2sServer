@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,12 +18,29 @@ namespace Bm2s.Data.BLL.Parameter
     [Default(1)]
     public double? Multiplier { get; set; }
 
+    [Required]
+    [StringLength(50)]
     public string AccountingEntry { get; set; }
 
-    public ArticleSubFamily ArticleFamily { get; set; }
+    [PrimaryKey]
+    [References(typeof(Article.ArticleSubFamily))]
+    public int ArticleSubFamilyId { get; set; }
 
-    public Partner.Partner PartnerFamily { get; set; }
+    [ForeignKey("ArticleSubFamilyId")]
+    public Article.ArticleSubFamily ArticleSubFamily { get; set; }
 
+    [PrimaryKey]
+    [References(typeof(Partner.Partner))]
+    public int PartnerId { get; set; }
+
+    [ForeignKey("PartnerId")]
+    public Partner.Partner Partner { get; set; }
+
+    [PrimaryKey]
+    [References(typeof(Vat))]
+    public int VatId { get; set; }
+
+    [ForeignKey("VatId")]
     public Vat Vat { get; set; }
   }
 }

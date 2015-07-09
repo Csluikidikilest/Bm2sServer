@@ -14,9 +14,13 @@ namespace Bm2s.Data.BLL.Partner
 {
   public class Partner
   {
-    [AutoIncrement] [PrimaryKey] public int Id { get; private set; }
+    [AutoIncrement]
+    [PrimaryKey]
+    public int Id { get; private set; }
 
-    [Required] [StringLength(50)] public string Code { get; set; }
+    [Required]
+    [StringLength(250)]
+    public string Code { get; set; }
 
     public string CompanyName { get; set; }
 

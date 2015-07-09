@@ -15,7 +15,7 @@ namespace Bm2s.Data.BLL.Article
     public int Id { get; private set; }
 
     [Required]
-    [StringLength(50)]
+    [StringLength(250)]
     public string Code { get; set; }
 
     [Required]
@@ -61,5 +61,14 @@ namespace Bm2s.Data.BLL.Article
 
     [InverseProperty("Article")]
     public List<Price> Prices { get; set; }
+
+    [InverseProperty("Article")]
+    public List<ArticlePartnerVat> ArticlePartnerVats { get; set; }
+
+    [InverseProperty("Article")]
+    public List<ArticlePartnerFamilyVat> ArticlePartnerFamilyVats { get; set; }
+
+    [InverseProperty("InventoryHeader")]
+    public List<InventoryLine> InventoryLines { get; set; }
   }
 }

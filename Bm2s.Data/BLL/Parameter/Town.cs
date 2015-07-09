@@ -18,6 +18,7 @@ namespace Bm2s.Data.BLL.Parameter
     [StringLength(50)]
     public string ZipCode { get; set; }
 
+    [Required]
     [StringLength(250)]
     public string Name { get; set; }
 

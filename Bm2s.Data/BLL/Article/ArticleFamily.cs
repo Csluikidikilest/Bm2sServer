@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Bm2s.Data.BLL.Parameter;
 using ServiceStack.DataAnnotations;
 
 namespace Bm2s.Data.BLL.Article
@@ -14,7 +15,7 @@ namespace Bm2s.Data.BLL.Article
     public int Id { get; private set; }
 
     [Required]
-    [StringLength(50)]
+    [StringLength(250)]
     public string Code { get; set; }
 
     [Required]
@@ -35,5 +36,11 @@ namespace Bm2s.Data.BLL.Article
 
     [InverseProperty("ArticleFamily")]
     public List<ArticleSubFamily> ArticleSubFamilies { get; set; }
+
+    [InverseProperty("ArticleFamily")]
+    public List<ArticleFamilyPartnerVat> ArticleFamilyPartnerVats { get; set; }
+
+    [InverseProperty("ArticleFamily")]
+    public List<ArticleFamilyPartnerFamilyVat> ArticleFamilyPartnerFamilyVats { get; set; }
   }
 }

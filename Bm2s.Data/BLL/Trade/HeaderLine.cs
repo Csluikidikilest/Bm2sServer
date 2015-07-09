@@ -19,9 +19,10 @@ namespace Bm2s.Data.BLL.Trade
     public int LineNumber { get; set; }
 
     [Required]
-    [StringLength(50)]
+    [StringLength(250)]
     public string Code { get; set; }
 
+    [Required]
     [StringLength(250)]
     public string Designation { get; set; }
 
