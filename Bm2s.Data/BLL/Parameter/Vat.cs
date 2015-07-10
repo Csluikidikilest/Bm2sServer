@@ -25,6 +25,7 @@ namespace Bm2s.Data.BLL.Parameter
 
     public double Rate { get; set; }
 
+    [StringLength(50)]
     public string AccountingEntry { get; set; }
 
     [InverseProperty("Vat")]

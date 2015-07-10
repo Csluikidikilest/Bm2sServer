@@ -27,12 +27,6 @@ namespace Bm2s.Data.BLL.Parameter
 
     public DateTime? EndingDate { get; set; }
 
-    [References(typeof(Town))]
-    public int TownId { get; set; }
-
-    [ForeignKey("TownId")]
-    public Town Town { get; set; }
-
     [InverseProperty("Country")]
     public List<Town> Towns { get; set; }
 

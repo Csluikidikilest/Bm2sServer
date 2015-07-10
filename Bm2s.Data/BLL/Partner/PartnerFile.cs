@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ServiceStack.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Bm2s.Data.BLL.Partner
 {
@@ -24,6 +25,10 @@ namespace Bm2s.Data.BLL.Partner
 
     public Partner Partner { get; set; }
 
+    [References(typeof(User.User))]
+    public int UserId { get; set; }
+
+    [ForeignKey("UserId")]
     public User.User User { get; set; }
   }
 }

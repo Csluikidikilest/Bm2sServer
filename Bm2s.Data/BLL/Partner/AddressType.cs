@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ServiceStack.DataAnnotations;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Bm2s.Data.BLL.Partner
 {
@@ -23,8 +24,10 @@ namespace Bm2s.Data.BLL.Partner
 
     public DateTime? EndingDate { get; set; }
 
+    [InverseProperty("AddressType")]
     public List<PartnerAddress> PartnerAddresses { get; set; }
 
+    [InverseProperty("AddressType")]
     public List<HeaderPartnerAddress> HeaderPartnerAddresses { get; set; }
   }
 }

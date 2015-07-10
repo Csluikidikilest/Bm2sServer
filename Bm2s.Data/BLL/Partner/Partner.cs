@@ -22,16 +22,20 @@ namespace Bm2s.Data.BLL.Partner
     [StringLength(250)]
     public string Code { get; set; }
 
+    [StringLength(250)]
     public string CompanyName { get; set; }
 
+    [StringLength(20)]
     public string PhoneNumber { get; set; }
 
+    [StringLength(20)]
     public string FaxNumber { get; set; }
 
     public string WebSite { get; set; }
 
     public string CompanyIdentifier { get; set; }
 
+    [StringLength(255)]
     public string Email { get; set; }
 
     public string Observation { get; set; }
@@ -47,6 +51,10 @@ namespace Bm2s.Data.BLL.Partner
 
     public bool IsSupplier { get; set; }
 
+    [References(typeof(User.User))]
+    public int UserId { get; set; }
+
+    [ForeignKey("UserId")]
     public User.User User { get; set; }
 
     [InverseProperty("Partner")]
