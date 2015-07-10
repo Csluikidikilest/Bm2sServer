@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,9 @@ namespace Bm2s.Data.BLL.Trade
 {
   public class HeaderStatus
   {
-    [AutoIncrement] [PrimaryKey] public int Id { get; private set; }
+    [AutoIncrement]
+    [PrimaryKey]
+    public int Id { get; private set; }
 
     [Required]
     [StringLength(250)]
@@ -20,8 +23,10 @@ namespace Bm2s.Data.BLL.Trade
 
     public DateTime? EndingDate { get; set; }
 
+    [InverseProperty("HeaderStatusParent")]
     public List<HeaderStatusStep> HeaderStatusStepParents { get; set; }
 
+    [InverseProperty("HeaderStatusChild")]
     public List<HeaderStatusStep> HeaderStatusStepChildren { get; set; }
   }
 }
