@@ -10,6 +10,10 @@ namespace Bm2s.Data.BLL.Partner
 {
   public class PartnerPartnerFamily
   {
+    [References(typeof(Partner))]
+    public int PartnerId { get; set; }
+
+    [ForeignKey("PartnerId")]
     public Partner Partner { get; set; }
 
     [References(typeof(PartnerFamily))]

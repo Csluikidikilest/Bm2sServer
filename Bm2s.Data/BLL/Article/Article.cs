@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Bm2s.Data.BLL.Parameter;
+using Bm2s.Data.BLL.Trade;
 using ServiceStack.DataAnnotations;
 
 namespace Bm2s.Data.BLL.Article
@@ -67,6 +68,9 @@ namespace Bm2s.Data.BLL.Article
 
     [InverseProperty("Article")]
     public List<ArticlePartnerFamilyVat> ArticlePartnerFamilyVats { get; set; }
+
+    [InverseProperty("Article")]
+    public List<HeaderLine> HeaderLines { get; set; }
 
     [InverseProperty("InventoryHeader")]
     public List<InventoryLine> InventoryLines { get; set; }

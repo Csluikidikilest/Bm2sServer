@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,8 +23,16 @@ namespace Bm2s.Data.BLL.Trade
 
     public DateTime AddingDate { get; set; }
 
+    [References(typeof(Header))]
+    public int HeaderId { get; set; }
+
+    [ForeignKey("HeaderId")]
     public Header Header { get; set; }
 
+    [References(typeof(User.User))]
+    public int UserId { get; set; }
+
+    [ForeignKey("UserId")]
     public User.User User { get; set; }
   }
 }

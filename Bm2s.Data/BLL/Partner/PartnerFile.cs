@@ -23,6 +23,10 @@ namespace Bm2s.Data.BLL.Partner
 
     public DateTime AddingDate { get; set; }
 
+    [References(typeof(Partner))]
+    public int PartnerId { get; set; }
+
+    [ForeignKey("PartnerId")]
     public Partner Partner { get; set; }
 
     [References(typeof(User.User))]
