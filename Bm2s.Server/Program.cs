@@ -26,17 +26,16 @@ namespace Bm2s.Server
 
       }
 
-      if(provider == null)
+      if (provider == null)
       {
         return -1;
       }
 
-      var dbFactory = new OrmLiteConnectionFactory(ConfigurationManager.ConnectionStrings["bm2s"].ConnectionString,provider);
+      var dbFactory = new OrmLiteConnectionFactory(ConfigurationManager.ConnectionStrings["bm2s"].ConnectionString, provider);
 
       IDbConnection dbConnexion = dbFactory.OpenDbConnection();
-      IDbCommand dbCommand = dbConnexion.CreateCommand();
 
-      dbCommand.CreateTable<Bm2s.Data.BLL.Parameter.Unit>()
+      dbConnexion.CreateTable<Bm2s.Data.BLL.Parameter.Unit>();
 
       return 0;
     }

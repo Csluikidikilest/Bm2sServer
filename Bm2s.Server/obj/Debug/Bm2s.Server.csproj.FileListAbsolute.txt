@@ -28,3 +28,5 @@ F:\Projets\Csharp\Bm2s\Bm2s.Server\bin\Debug\zh-CN\Npgsql.resources.dll
 F:\Projets\Csharp\Bm2s\Bm2s.Server\obj\Debug\Bm2s.Server.csprojResolveAssemblyReference.cache
 F:\Projets\Csharp\Bm2s\Bm2s.Server\obj\Debug\Bm2s.Server.exe
 F:\Projets\Csharp\Bm2s\Bm2s.Server\obj\Debug\Bm2s.Server.pdb
+F:\Projets\Csharp\Bm2s\Bm2s.Server\bin\Debug\Bm2s.Data.dll
+F:\Projets\Csharp\Bm2s\Bm2s.Server\bin\Debug\Bm2s.Data.pdb

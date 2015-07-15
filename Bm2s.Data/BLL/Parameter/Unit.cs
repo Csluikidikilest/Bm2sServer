@@ -7,9 +7,12 @@ using System.Threading.Tasks;
 using ServiceStack.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using ServiceStack.OrmLite;
 
 namespace Bm2s.Data.BLL.Parameter
 {
+  [Schema("Parameter")]
+  [Alias("Unit")]
   public class Unit
   {
     [AutoIncrement]
