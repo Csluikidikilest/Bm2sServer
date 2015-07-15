@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -17,12 +18,20 @@ namespace Bm2s.Data.BLL.User
     [PrimaryKey]
     public int Id { get; private set; }
 
+    [Required]
+    [StringLength(250)]
     public string LastName { get; set; }
 
+    [Required]
+    [StringLength(250)]
     public string FirstName { get; set; }
 
+    [Required]
+    [StringLength(250)]
     public string Login { get; set; }
 
+    [Required]
+    [StringLength(250)]
     public string Password { get; set; }
 
     public bool IsAdministrator { get; set; }

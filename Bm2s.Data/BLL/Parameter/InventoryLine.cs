@@ -12,8 +12,6 @@ namespace Bm2s.Data.BLL.Parameter
   {
     public int Quantity { get; set;}
 
-    public int InventoryHeaderId { get; set; }
-
     [References(typeof(InventoryHeader))]
     public int InventoryHeaderId { get; set; }
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,8 +23,10 @@ namespace Bm2s.Data.BLL.User
     [StringLength(250)]
     public string Name { get; set; }
 
+    [InverseProperty("Group")]
     public List<GroupModule> GroupModules { get; set; }
 
+    [InverseProperty("Group")]
     public List<UserGroup> UserGroups { get; set; }
   }
 }
