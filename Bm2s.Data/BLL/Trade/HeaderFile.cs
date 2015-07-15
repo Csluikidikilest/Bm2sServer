@@ -26,13 +26,7 @@ namespace Bm2s.Data.BLL.Trade
     [References(typeof(Header))]
     public int HeaderId { get; set; }
 
-    [ForeignKey("HeaderId")]
-    public Header Header { get; set; }
-
     [References(typeof(User.User))]
     public int UserId { get; set; }
-
-    [ForeignKey("UserId")]
-    public User.User User { get; set; }
   }
 }

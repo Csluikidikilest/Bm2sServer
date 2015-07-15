@@ -26,14 +26,5 @@ namespace Bm2s.Data.BLL.Partner
 
     [StringLength(250)]
     public string CountryName { get; set; }
-
-    [InverseProperty("Address")]
-    public List<AddressLine> AddressLines { get; set; }
-
-    [InverseProperty("Address")]
-    public List<PartnerAddress> PartnerAddresses { get; set; }
-
-    [InverseProperty("Address")]
-    public List<HeaderPartnerAddress> HeaderPartnerAddresses { get; set; }
   }
 }

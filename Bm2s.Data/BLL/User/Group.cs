@@ -22,11 +22,5 @@ namespace Bm2s.Data.BLL.User
     [Required]
     [StringLength(250)]
     public string Name { get; set; }
-
-    [InverseProperty("Group")]
-    public List<GroupModule> GroupModules { get; set; }
-
-    [InverseProperty("Group")]
-    public List<UserGroup> UserGroups { get; set; }
   }
 }

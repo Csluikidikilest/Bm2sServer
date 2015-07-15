@@ -41,35 +41,5 @@ namespace Bm2s.Data.BLL.User
     public DateTime StartingDate { get; set; }
 
     public DateTime? EndingDate { get; set; }
-
-    [InverseProperty("User")]
-    public List<Affair> Affairs { get; set; }
-
-    [InverseProperty("User")]
-    public List<AffairFile> AffairFiles { get; set; }
-
-    [InverseProperty("User")]
-    public List<Partner.Partner> Partners { get; set; }
-
-    [InverseProperty("User")]
-    public List<PartnerFile> PartnerFiles { get; set; }
-
-    [InverseProperty("User")]
-    public List<HeaderFile> HeaderFiles { get; set; }
-
-    [InverseProperty("User")]
-    public List<GroupModule> GroupModuleGrantors { get; set; }
-
-    [InverseProperty("User")]
-    public List<UserActivity> UserActivities { get; set; }
-
-    [InverseProperty("User")]
-    public List<UserGroup> UserGroups { get; set; }
-
-    [InverseProperty("Grantor")]
-    public List<UserModule> UserModuleGrantors { get; set; }
-
-    [InverseProperty("User")]
-    public List<UserModule> UserModuleGranteds { get; set; }
   }
 }

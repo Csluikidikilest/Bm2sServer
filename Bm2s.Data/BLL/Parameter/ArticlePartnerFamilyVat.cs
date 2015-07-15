@@ -12,6 +12,10 @@ namespace Bm2s.Data.BLL.Parameter
 {
   public class ArticlePartnerFamilyVat
   {
+    [AutoIncrement]
+    [PrimaryKey]
+    public int Id { get; private set; }
+
     [Default(0)]
     public double Rate { get; set; }
 
@@ -22,25 +26,13 @@ namespace Bm2s.Data.BLL.Parameter
     [StringLength(50)]
     public string AccountingEntry { get; set; }
 
-    [PrimaryKey]
     [References(typeof(Article.Article))]
     public int ArticleId { get; set; }
 
-    [ForeignKey("ArticleId")]
-    public Article.Article Article { get; set; }
-
-    [PrimaryKey]
     [References(typeof(PartnerFamily))]
     public int PartnerFamilyId { get; set; }
 
-    [ForeignKey("PartnerFamilyId")]
-    public PartnerFamily PartnerFamily { get; set; }
-
-    [PrimaryKey]
     [References(typeof(Vat))]
     public int VatId { get; set; }
-
-    [ForeignKey("VatId")]
-    public Vat Vat { get; set; }
   }
 }

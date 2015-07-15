@@ -19,8 +19,5 @@ namespace Bm2s.Data.BLL.Article
 
     [References(typeof(Article))]
     public int ArticleId { get; set; }
-
-    [ForeignKey("ArticleId")]
-    public Article Article { get; set; }
   }
 }

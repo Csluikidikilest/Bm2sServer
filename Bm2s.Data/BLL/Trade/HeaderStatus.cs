@@ -22,11 +22,5 @@ namespace Bm2s.Data.BLL.Trade
     public DateTime StartingDate { get; set; }
 
     public DateTime? EndingDate { get; set; }
-
-    [InverseProperty("HeaderStatusParent")]
-    public List<HeaderStatusStep> HeaderStatusStepParents { get; set; }
-
-    [InverseProperty("HeaderStatusChild")]
-    public List<HeaderStatusStep> HeaderStatusStepChildren { get; set; }
   }
 }

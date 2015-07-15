@@ -26,11 +26,5 @@ namespace Bm2s.Data.BLL.Parameter
     public DateTime StartingDate { get; set; }
 
     public DateTime? EndingDate { get; set; }
-
-    [InverseProperty("Country")]
-    public List<Town> Towns { get; set; }
-
-    [InverseProperty("Country")]
-    public List<CountryCurrency> CountryCurrencies { get; set; }
   }
 }

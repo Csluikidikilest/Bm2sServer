@@ -10,16 +10,14 @@ namespace Bm2s.Data.BLL.User
 {
   public class UserGroup
   {
+    [AutoIncrement]
+    [PrimaryKey]
+    public int Id { get; private set; }
+
     [References(typeof(User))]
     public int UserId { get; set; }
 
-    [ForeignKey("UserId")]
-    public User User { get; set; }
-
     [References(typeof(Group))]
     public int GroupId { get; set; }
-
-    [ForeignKey("GroupId")]
-    public Group Group { get; set; }
   }
 }

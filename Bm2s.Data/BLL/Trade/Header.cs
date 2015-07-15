@@ -38,37 +38,10 @@ namespace Bm2s.Data.BLL.Trade
     [References(typeof(Activity))]
     public int ActivityId { get; set; }
 
-    [ForeignKey("ActivityId")]
-    public Activity Activity { get; set; }
-
     [References(typeof(User.User))]
     public int UserId { get; set; }
 
-    [ForeignKey("UserId")]
-    public User.User User { get; set; }
-
     [References(typeof(HeaderStatus))]
     public int HeaderStatusId { get; set; }
-
-    [ForeignKey("HeaderStatusId")]
-    public HeaderStatus HeaderStatus { get; set; }
-
-    [InverseProperty("Header")]
-    public List<AffairHeader> AffairHeaders { get; set; }
-
-    [InverseProperty("Header")]
-    public List<HeaderFile> HeaderFiles { get; set; }
-
-    [InverseProperty("Header")]
-    public List<HeaderLine> HeaderLines { get; set; }
-
-    [InverseProperty("HeaderParent")]
-    public List<HeaderOrigin> HeaderOriginParents { get; set; }
-
-    [InverseProperty("HeaderChild")]
-    public List<HeaderOrigin> HeaderOriginChildren { get; set; }
-
-    [InverseProperty("Header")]
-    public List<HeaderPartnerAddress> HeaderPartnerAddresses { get; set; }
   }
 }

@@ -27,23 +27,5 @@ namespace Bm2s.Data.BLL.Article
     public DateTime StartingDate { get; set; }
 
     public DateTime? EndingDate { get; set; }
-
-    [InverseProperty("ArticleFamily")]
-    public List<Article> Articles { get; set; }
-
-    [InverseProperty("ArticleFamily")]
-    public List<ArticleFamilyPricePartner> ArticleFamilyPricePartners { get; set; }
-
-    [InverseProperty("ArticleFamily")]
-    public List<ArticleSubFamily> ArticleSubFamilies { get; set; }
-
-    [InverseProperty("ArticleFamily")]
-    public List<ArticleFamilyPartnerVat> ArticleFamilyPartnerVats { get; set; }
-
-    [InverseProperty("ArticleFamily")]
-    public List<ArticleFamilyPartnerFamilyVat> ArticleFamilyPartnerFamilyVats { get; set; }
-
-    [InverseProperty("ArticleFamily")]
-    public List<HeaderLine> HeaderLines { get; set; }
   }
 }

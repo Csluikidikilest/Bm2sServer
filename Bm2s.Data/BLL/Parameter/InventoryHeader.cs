@@ -17,8 +17,5 @@ namespace Bm2s.Data.BLL.Parameter
     public DateTime Date { get; set; }
 
     public int Type { get; set; }
-
-    [InverseProperty("InventoryHeader")]
-    public List<InventoryLine> InventoryLines { get; set; }
   }
 }

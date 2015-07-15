@@ -22,22 +22,10 @@ namespace Bm2s.Data.BLL.Trade
     [References(typeof(Partner.Partner))]
     public int PartnerId { get; set; }
 
-    [ForeignKey("PartnerId")]
-    public Partner.Partner Partner { get; set; }
-
     [References(typeof(PaymentMode))]
     public int PaymentModeId { get; set; }
 
-    [ForeignKey("PaymentModeId")]
-    public PaymentMode PaymentMode { get; set; }
-
     [References(typeof(Unit))]
     public int UnitId { get; set; }
-
-    [ForeignKey("UnitId")]
-    public Unit Unit { get; set; }
-
-    [InverseProperty("Payment")]
-    public List<Reconciliation> Reconciliations { get; set; }
   }
 }

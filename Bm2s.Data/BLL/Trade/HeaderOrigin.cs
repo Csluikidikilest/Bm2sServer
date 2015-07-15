@@ -10,20 +10,16 @@ namespace Bm2s.Data.BLL.Trade
 {
   public class HeaderOrigin
   {
+    [AutoIncrement]
+    [PrimaryKey]
+    public int Id { get; private set; }
+
     public DateTime Date { get; set; }
 
-    [PrimaryKey]
     [References(typeof(Header))]
     public int HeaderParentId { get; set; }
 
-    [ForeignKey("HeaderParentId")]
-    public Header HeaderParent { get; set; }
-
-    [PrimaryKey]
     [References(typeof(Header))]
     public int HeaderChildId { get; set; }
-
-    [ForeignKey("HeaderChildId")]
-    public Header HeaderChild { get; set; }
   }
 }

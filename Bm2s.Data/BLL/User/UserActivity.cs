@@ -11,18 +11,16 @@ namespace Bm2s.Data.BLL.User
 {
   public class UserActivity
   {
+    [AutoIncrement]
+    [PrimaryKey]
+    public int Id { get; private set; }
+
     public bool IsDefault { get; set; }
 
     [References(typeof(Activity))]
     public int ActivityId { get; set; }
 
-    [ForeignKey("ActivityId")]
-    public Activity Activity { get; set; }
-
     [References(typeof(User))]
     public int UserId { get; set; }
-
-    [ForeignKey("UserId")]
-    public User User { get; set; }
   }
 }

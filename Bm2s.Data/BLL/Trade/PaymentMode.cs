@@ -22,8 +22,5 @@ namespace Bm2s.Data.BLL.Trade
     public DateTime StartingDate { get; set; }
 
     public DateTime? EndingDate { get; set; }
-
-    [InverseProperty("PaymentMode")]
-    public List<Payment> Payments { get; set; }
   }
 }

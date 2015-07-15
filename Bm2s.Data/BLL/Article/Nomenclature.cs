@@ -5,6 +5,10 @@ namespace Bm2s.Data.BLL.Article
 {
   public class Nomenclature
   {
+    [AutoIncrement]
+    [PrimaryKey]
+    public int Id { get; set; }
+
     [Default(0)]
     public int? Quantity { get; set; }
 
@@ -13,11 +17,9 @@ namespace Bm2s.Data.BLL.Article
 
     public double BuyPrice { get; set; }
 
-    [PrimaryKey]
     [References(typeof(Article))]
     public int ArticleParentId { get; set; }
 
-    [PrimaryKey]
     [References(typeof(Article))]
     public int ArticleChildId { get; set; }
   }

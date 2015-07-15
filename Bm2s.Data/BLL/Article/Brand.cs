@@ -24,11 +24,5 @@ namespace Bm2s.Data.BLL.Article
     public DateTime StartingDate { get; set; }
 
     public DateTime? EndingDate { get; set; }
-
-    [InverseProperty("Brand")]
-    public List<Article> Articles { get; set; }
-
-    [InverseProperty("Brand")]
-    public List<HeaderLine> HeaderLines { get; set; }
   }
 }

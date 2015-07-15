@@ -50,46 +50,22 @@ namespace Bm2s.Data.BLL.Trade
     [References(typeof(Article.Article))]
     public int ArticleId { get; set; }
 
-    [ForeignKey("ArticleId")]
-    public Article.Article Article { get; set; }
-
     [References(typeof(ArticleFamily))]
     public int ArticleFamilyId { get; set; }
-
-    [ForeignKey("ArticleFamilyId")]
-    public ArticleFamily ArticleFamily { get; set; }
 
     [References(typeof(ArticleSubFamily))]
     public int ArticleSubFamilyId { get; set; }
 
-    [ForeignKey("ArticleSubFamilyId")]
-    public ArticleSubFamily ArticleSubFamily { get; set; }
-
     [References(typeof(Brand))]
     public int BrandId { get; set; }
-
-    [ForeignKey("BrandId")]
-    public Brand Brand { get; set; }
 
     [References(typeof(HeaderLineType))]
     public int HeaderLineTypeId { get; set; }
 
-    [ForeignKey("HeaderLineTypeId")]
-    public HeaderLineType HeaderLineType { get; set; }
-
     [References(typeof(Header))]
     public int HeaderId { get; set; }
 
-    [ForeignKey("HeaderId")]
-    public Header Header { get; set; }
-
     [References(typeof(Unit))]
     public int UnitId { get; set; }
-
-    [ForeignKey("UnitId")]
-    public Unit Unit { get; set; }
-
-    [InverseProperty("HeaderLine")]
-    public List<Reconciliation> Reconciliations { get; set; }
   }
 }

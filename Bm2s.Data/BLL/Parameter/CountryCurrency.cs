@@ -10,22 +10,18 @@ namespace Bm2s.Data.BLL.Parameter
 {
   public class CountryCurrency
   {
+    [AutoIncrement]
+    [PrimaryKey]
+    public int Id { get; set; }
+
     public DateTime StartingDate { get; set; }
 
     public DateTime? EndingDate { get; set; }
 
-    [PrimaryKey]
     [References(typeof(Country))]
     public int CountryId { get; set; }
 
-    [ForeignKey("CountryId")]
-    public Country Country { get; set; }
-
-    [PrimaryKey]
     [References(typeof(Unit))]
     public int UnitId { get; set; }
-
-    [ForeignKey("UnitId")]
-    public Unit Unit { get; set; }
   }
 }

@@ -27,23 +27,5 @@ namespace Bm2s.Data.BLL.Parameter
 
     [StringLength(50)]
     public string AccountingEntry { get; set; }
-
-    [InverseProperty("Vat")]
-    public List<ArticleFamilyPartnerFamilyVat> ArticleFamilyPartnerFamilyVats { get; set; }
-
-    [InverseProperty("Vat")]
-    public List<ArticleFamilyPartnerVat> ArticleFamilyPartnerVats { get; set; }
-
-    [InverseProperty("Vat")]
-    public List<ArticlePartnerFamilyVat> ArticlePartnerFamilyVats { get; set; }
-
-    [InverseProperty("Vat")]
-    public List<ArticlePartnerVat> ArticlePartnerVats { get; set; }
-
-    [InverseProperty("Vat")]
-    public List<ArticleSubFamilyPartnerFamilyVat> ArticleSubFamilyPartnerFamilyVats { get; set; }
-
-    [InverseProperty("Vat")]
-    public List<ArticleSubFamilyPartnerVat> ArticleSubFamilyPartnerVats { get; set; }
   }
 }

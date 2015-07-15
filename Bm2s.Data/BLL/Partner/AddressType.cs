@@ -23,11 +23,5 @@ namespace Bm2s.Data.BLL.Partner
     public DateTime StartingDate { get; set; }
 
     public DateTime? EndingDate { get; set; }
-
-    [InverseProperty("AddressType")]
-    public List<PartnerAddress> PartnerAddresses { get; set; }
-
-    [InverseProperty("AddressType")]
-    public List<HeaderPartnerAddress> HeaderPartnerAddresses { get; set; }
   }
 }

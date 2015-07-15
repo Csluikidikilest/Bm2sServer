@@ -6,6 +6,10 @@ namespace Bm2s.Data.BLL.Article
 {
   public class ArticleSubFamilyPricePartnerFamily
   {
+    [AutoIncrement]
+    [PrimaryKey]
+    public int Id { get; private set; }
+
     [Default(0)]
     public double? Price { get; set; }
 
@@ -17,13 +21,7 @@ namespace Bm2s.Data.BLL.Article
     [References(typeof(ArticleSubFamily))]
     public int ArticleSubFamilyId { get; set; }
 
-    [ForeignKey("ArticleSubFamilyId")]
-    public ArticleSubFamily ArticleSubFamily { get; set; }
-
     [References(typeof(PartnerFamily))]
     public int PartnerFamilyId { get; set; }
-
-    [ForeignKey("PartnerFamilyId")]
-    public PartnerFamily PartnerFamily { get; set; }
   }
 }

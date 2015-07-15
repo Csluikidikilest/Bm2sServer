@@ -11,18 +11,14 @@ namespace Bm2s.Data.BLL.Parameter
 {
   public class AffairHeader
   {
+    [AutoIncrement]
     [PrimaryKey]
+    public int Id { get; private set; }
+
     [References(typeof(Affair))]
     public int AffairId { get; set; }
 
-    [ForeignKey("AffairId")]
-    public Affair Affair { get; set; }
-
-    [PrimaryKey]
     [References(typeof(Header))]
     public int HeaderId { get; set; }
-
-    [ForeignKey("HeaderId")]
-    public Header Header { get; set; }
   }
 }

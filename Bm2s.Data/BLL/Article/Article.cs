@@ -35,43 +35,13 @@ namespace Bm2s.Data.BLL.Article
     [References(typeof(ArticleFamily))]
     public int ArticleFamilyId { get; set; }
 
-    [ForeignKey("ArticleFamilyId")]
-    public ArticleFamily ArticleFamily { get; set; }
-
     [References(typeof(ArticleSubFamily))]
     public int ArticleSubFamilyId { get; set; }
-
-    [ForeignKey("ArticleSubFamilyId")]
-    public ArticleSubFamily ArticleSubFamily { get; set; }
 
     [References(typeof(Brand))]
     public int BrandId { get; set; }
 
-    [ForeignKey("BrandId")]
-    public Brand Brand { get; set; }
-
     [References(typeof(Unit))]
     public int UnitId { get; set; }
-
-    [ForeignKey("UnitId")]
-    public Unit Unit { get; set; }
-
-    [InverseProperty("Article")]
-    public List<ArticlePriceParnerFamily> ArticlePriceParnerFamilies { get; set; }
-
-    [InverseProperty("Article")]
-    public List<Price> Prices { get; set; }
-
-    [InverseProperty("Article")]
-    public List<ArticlePartnerVat> ArticlePartnerVats { get; set; }
-
-    [InverseProperty("Article")]
-    public List<ArticlePartnerFamilyVat> ArticlePartnerFamilyVats { get; set; }
-
-    [InverseProperty("Article")]
-    public List<HeaderLine> HeaderLines { get; set; }
-
-    [InverseProperty("InventoryHeader")]
-    public List<InventoryLine> InventoryLines { get; set; }
   }
 }

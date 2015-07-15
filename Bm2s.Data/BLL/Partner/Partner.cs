@@ -53,44 +53,5 @@ namespace Bm2s.Data.BLL.Partner
 
     [References(typeof(User.User))]
     public int UserId { get; set; }
-
-    [ForeignKey("UserId")]
-    public User.User User { get; set; }
-
-    [InverseProperty("Partner")]
-    public List<ArticleFamilyPricePartner> ArticleFamilyPricePartners { get; set; }
-
-    [InverseProperty("Partner")]
-    public List<ArticlePriceParner> ArticlePriceParners { get; set; }
-
-    [InverseProperty("Partner")]
-    public List<ArticleSubFamilyPricePartner> ArticleSubFamilyPricePartners { get; set; }
-
-    [InverseProperty("Partner")]
-    public List<ArticleFamilyPartnerVat> ArticleFamilyPartnerVats { get; set; }
-
-    [InverseProperty("Partner")]
-    public List<ArticlePartnerVat> ArticlePartnerVats { get; set; }
-
-    [InverseProperty("Partner")]
-    public List<ArticleSubFamilyPartnerVat> ArticleSubFamilyPartnerVats { get; set; }
-
-    [InverseProperty("Partner")]
-    public List<PartnerAddress> PartnerAddresses { get; set; }
-
-    [InverseProperty("Partner")]
-    public List<PartnerContact> PartnerContacts { get; set; }
-
-    [InverseProperty("Partner")]
-    public List<PartnerFile> PartnerFiles { get; set; }
-
-    [InverseProperty("Partner")]
-    public List<PartnerPartnerFamily> PartnerPartnerFamilies { get; set; }
-
-    [InverseProperty("Partner")]
-    public List<HeaderPartnerAddress> HeaderPartnerAddresses { get; set; }
-
-    [InverseProperty("Partner")]
-    public List<Payment> Payments { get; set; }
   }
 }

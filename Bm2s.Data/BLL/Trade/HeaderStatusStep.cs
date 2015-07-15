@@ -10,18 +10,14 @@ namespace Bm2s.Data.BLL.Trade
 {
   public class HeaderStatusStep
   {
+    [AutoIncrement]
     [PrimaryKey]
+    public int Id { get; private set; }
+
     [References(typeof(HeaderStatus))]
     public int HeaderStatusParentId { get; set; }
 
-    [ForeignKey("HeaderStatusParentId")]
-    public HeaderStatus HeaderStatusParent { get; set; }
-
-    [PrimaryKey]
     [References(typeof(HeaderStatus))]
     public int HeaderStatusChildId { get; set; }
-
-    [ForeignKey("HeaderStatusChildId")]
-    public HeaderStatus HeaderStatusChild { get; set; }
   }
 }

@@ -28,8 +28,5 @@ namespace Bm2s.Data.BLL.Parameter
 
     [References(typeof(Country))]
     public int CountryId { get; set; }
-
-    [ForeignKey("CountryId")]
-    public Country Country { get; set; }
   }
 }

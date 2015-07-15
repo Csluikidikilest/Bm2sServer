@@ -34,26 +34,5 @@ namespace Bm2s.Data.BLL.Parameter
     public DateTime StartingDate { get; set; }
 
     public DateTime? EndingDate { get; set; }
-
-    [InverseProperty("Unit")]
-    public List<Article.Article> Articles { get; set; }
-
-    [InverseProperty("Unit")]
-    public List<CountryCurrency> CountryCurrencies { get; set; }
-
-    [InverseProperty("Unit")]
-    public List<Period> Periods { get; set; }
-
-    [InverseProperty("Child")]
-    public List<UnitConversion> UnitConversionChildren { get; set; }
-
-    [InverseProperty("Parent")]
-    public List<UnitConversion> UnitConversionParents { get; set; }
-
-    [InverseProperty("Unit")]
-    public List<HeaderLine> HeaderLines { get; set; }
-
-    [InverseProperty("Unit")]
-    public List<Payment> Payments { get; set; }
   }
 }

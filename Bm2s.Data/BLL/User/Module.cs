@@ -24,8 +24,5 @@ namespace Bm2s.Data.BLL.User
     public string Name { get; set; }
 
     public string Description { get; set; }
-
-    [InverseProperty("Module")]
-    public List<GroupModule> GroupModules { get; set; }
   }
 }

@@ -28,19 +28,7 @@ namespace Bm2s.Data.BLL.Parameter
     [References(typeof(Activity))]
     public int ActivityId { get; set; }
 
-    [ForeignKey("ActivityId")]
-    public Activity Activity { get; set; }
-
     [References(typeof(User.User))]
     public int UserId { get; set; }
-
-    [ForeignKey("UserId")]
-    public User.User User { get; set; }
-
-    [InverseProperty("Affair")]
-    public List<AffairFile> AffairFiles { get; set; }
-
-    [InverseProperty("Affair")]
-    public List<AffairHeader> AffairHeaders { get; set; }
   }
 }

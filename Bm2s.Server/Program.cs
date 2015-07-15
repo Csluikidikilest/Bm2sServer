@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Bm2s.Data.BLL.Article;
+using Bm2s.Data.BLL.Parameter;
+using Bm2s.Data.BLL.Partner;
+using Bm2s.Data.BLL.Trade;
+using Bm2s.Data.BLL.User;
+using ServiceStack.OrmLite;
+using System;
 using System.Configuration;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ServiceStack.OrmLite;
 
 namespace Bm2s.Server
 {
@@ -33,11 +34,87 @@ namespace Bm2s.Server
 
       var dbFactory = new OrmLiteConnectionFactory(ConfigurationManager.ConnectionStrings["bm2s"].ConnectionString, provider);
 
-      IDbConnection dbConnexion = dbFactory.OpenDbConnection();
+      IDbConnection dbConnection = dbFactory.OpenDbConnection();
 
-      dbConnexion.CreateTable<Bm2s.Data.BLL.Parameter.Unit>();
+      Console.Write("Check database schema : ");
+      if (CheckDatabaseSchema(dbConnection))
+      {
+        Console.WriteLine("[OK]");
+      }
+      else
+      {
+        return -1;
+      }
 
       return 0;
+    }
+
+    public static bool CheckDatabaseSchema(IDbConnection dbConnection)
+    {
+      dbConnection.CreateTableIfNotExists<ArticleFamily>();
+      dbConnection.CreateTableIfNotExists<ArticleSubFamily>();
+      dbConnection.CreateTableIfNotExists<Brand>();
+      dbConnection.CreateTableIfNotExists<Unit>();
+      dbConnection.CreateTableIfNotExists<Article>();
+      dbConnection.CreateTableIfNotExists<User>();
+      dbConnection.CreateTableIfNotExists<Partner>();
+      dbConnection.CreateTableIfNotExists<ArticleFamilyPricePartner>();
+      dbConnection.CreateTableIfNotExists<PartnerFamily>();
+      dbConnection.CreateTableIfNotExists<ArticleFamilyPricePartnerFamily>();
+      dbConnection.CreateTableIfNotExists<ArticlePriceParner>();
+      dbConnection.CreateTableIfNotExists<ArticlePriceParnerFamily>();
+      dbConnection.CreateTableIfNotExists<ArticleSubFamilyPricePartner>();
+      dbConnection.CreateTableIfNotExists<ArticleSubFamilyPricePartnerFamily>();
+      dbConnection.CreateTableIfNotExists<Nomenclature>();
+      dbConnection.CreateTableIfNotExists<Price>();
+      dbConnection.CreateTableIfNotExists<Activity>();
+      dbConnection.CreateTableIfNotExists<Affair>();
+      dbConnection.CreateTableIfNotExists<AffairFile>();
+      dbConnection.CreateTableIfNotExists<HeaderStatus>();
+      dbConnection.CreateTableIfNotExists<Header>();
+      dbConnection.CreateTableIfNotExists<AffairHeader>();
+      dbConnection.CreateTableIfNotExists<Vat>();
+      dbConnection.CreateTableIfNotExists<ArticleFamilyPartnerFamilyVat>();
+      dbConnection.CreateTableIfNotExists<ArticleFamilyPartnerVat>();
+      dbConnection.CreateTableIfNotExists<ArticlePartnerFamilyVat>();
+      dbConnection.CreateTableIfNotExists<ArticlePartnerVat>();
+      dbConnection.CreateTableIfNotExists<ArticleSubFamilyPartnerFamilyVat>();
+      dbConnection.CreateTableIfNotExists<ArticleSubFamilyPartnerVat>();
+      dbConnection.CreateTableIfNotExists<Country>();
+      dbConnection.CreateTableIfNotExists<CountryCurrency>();
+      dbConnection.CreateTableIfNotExists<InventoryHeader>();
+      dbConnection.CreateTableIfNotExists<InventoryLine>();
+      dbConnection.CreateTableIfNotExists<Parameter>();
+      dbConnection.CreateTableIfNotExists<Period>();
+      dbConnection.CreateTableIfNotExists<SelectorScreen>();
+      dbConnection.CreateTableIfNotExists<SelectorColumn>();
+      dbConnection.CreateTableIfNotExists<Town>();
+      dbConnection.CreateTableIfNotExists<UnitConversion>();
+      dbConnection.CreateTableIfNotExists<Address>();
+      dbConnection.CreateTableIfNotExists<AddressLine>();
+      dbConnection.CreateTableIfNotExists<AddressType>();
+      dbConnection.CreateTableIfNotExists<PartnerAddress>();
+      dbConnection.CreateTableIfNotExists<PartnerContact>();
+      dbConnection.CreateTableIfNotExists<PartnerFile>();
+      dbConnection.CreateTableIfNotExists<PartnerPartnerFamily>();
+      dbConnection.CreateTableIfNotExists<HeaderFile>();
+      dbConnection.CreateTableIfNotExists<HeaderFreeReference>();
+      dbConnection.CreateTableIfNotExists<HeaderLineType>();
+      dbConnection.CreateTableIfNotExists<HeaderLine>();
+      dbConnection.CreateTableIfNotExists<HeaderOrigin>();
+      dbConnection.CreateTableIfNotExists<HeaderPartnerAddress>();
+      dbConnection.CreateTableIfNotExists<HeaderStatusStep>();
+      dbConnection.CreateTableIfNotExists<PaymentMode>();
+      dbConnection.CreateTableIfNotExists<Payment>();
+      dbConnection.CreateTableIfNotExists<Reconciliation>();
+      dbConnection.CreateTableIfNotExists<Group>();
+      dbConnection.CreateTableIfNotExists<Module>();
+      dbConnection.CreateTableIfNotExists<GroupModule>();
+      dbConnection.CreateTableIfNotExists<UserActivity>();
+      dbConnection.CreateTableIfNotExists<UserGroup>();
+      dbConnection.CreateTableIfNotExists<UserModule>();
+
+      return true;
     }
   }
 }

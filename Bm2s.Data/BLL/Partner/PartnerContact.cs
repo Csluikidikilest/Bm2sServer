@@ -45,8 +45,5 @@ namespace Bm2s.Data.BLL.Partner
 
     [References(typeof(Partner))]
     public int PartnerId { get; set; }
-
-    [ForeignKey("PartnerId")]
-    public Partner Partner { get; set; }
   }
 }

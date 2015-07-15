@@ -22,13 +22,7 @@ namespace Bm2s.Data.BLL.Parameter
     [References(typeof(Affair))]
     public int AffairId { get; set; }
 
-    [ForeignKey("AffairId")]
-    public Affair Affair { get; set; }
-
     [References(typeof(User.User))]
     public int UserId { get; set; }
-
-    [ForeignKey("UserId")]
-    public User.User User { get; set; }
   }
 }

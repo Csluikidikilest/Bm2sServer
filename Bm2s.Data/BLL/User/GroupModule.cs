@@ -10,24 +10,19 @@ namespace Bm2s.Data.BLL.User
 {
   public class GroupModule
   {
+    [AutoIncrement]
+    [PrimaryKey]
+    public int Id { get; private set; }
+
     public bool Granted { get; set; }
 
     [References(typeof(Group))]
     public int GroupId { get; set; }
 
-    [ForeignKey("GroupId")]
-    public Group Group { get; set; }
-
     [References(typeof(Module))]
     public int ModuleId { get; set; }
 
-    [ForeignKey("ModuleId")]
-    public Module Module { get; set; }
-
     [References(typeof(User))]
     public int GrantorId { get; set; }
-
-    [ForeignKey("GrantorId")]
-    public User Grantor { get; set; }
   }
 }

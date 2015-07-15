@@ -33,9 +33,5 @@ namespace Bm2s.Data.BLL.Parameter
 
     [StringLength(250)]
     public string CountryName { get; set; }
-
-    public List<Affair> Affairs { get; set; }
-
-    public List<UserActivity> UserActivities { get; set; }
   }
 }

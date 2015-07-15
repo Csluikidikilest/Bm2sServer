@@ -31,8 +31,5 @@ namespace Bm2s.Data.BLL.Parameter
 
     [References(typeof(Unit))]
     public int UnitId { get; set; }
-
-    [ForeignKey("UnitId")]
-    public Unit Unit { get; set; }
   }
 }

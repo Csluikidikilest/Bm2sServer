@@ -10,20 +10,16 @@ namespace Bm2s.Data.BLL.Trade
 {
   public class Reconciliation
   {
+    [AutoIncrement]
+    [PrimaryKey]
+    public int Id { get; private set; }
+
     public double Amount { get; set; }
 
-    [PrimaryKey]
     [References(typeof(Payment))]
     public int PaymentId { get; set; }
 
-    [ForeignKey("PaymentId")]
-    public Payment Payment { get; set; }
-
-    [PrimaryKey]
     [References(typeof(HeaderLine))]
     public int HeaderLineId { get; set; }
-
-    [ForeignKey("HeaderLineId")]
-    public HeaderLine HeaderLine { get; set; }
   }
 }

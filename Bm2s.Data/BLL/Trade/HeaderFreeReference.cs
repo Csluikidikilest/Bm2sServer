@@ -11,14 +11,15 @@ namespace Bm2s.Data.BLL.Trade
 {
   public class HeaderFreeReference
   {
+    [AutoIncrement]
+    [PrimaryKey]
+    public int Id { get; private set; }
+
     [Required]
     [StringLength(50)]
     public string Reference { get; set; }
 
     [References(typeof(HeaderStatus))]
     public int HeaderStatusId { get; set; }
-
-    [ForeignKey("HeaderStatusId")]
-    public HeaderStatus HeaderStatus { get; set; }
   }
 }

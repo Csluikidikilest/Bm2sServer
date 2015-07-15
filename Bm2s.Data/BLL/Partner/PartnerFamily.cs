@@ -27,26 +27,5 @@ namespace Bm2s.Data.BLL.Partner
     public DateTime StartingDate { get; set; }
 
     public DateTime? EndingDate { get; set; }
-
-    [InverseProperty("PartnerFamily")]
-    public List<ArticleFamilyPricePartnerFamily> ArticleFamilyPricePartnerFamilies { get; set; }
-
-    [InverseProperty("PartnerFamily")]
-    public List<ArticlePriceParnerFamily> ArticlePriceParnerFamilys { get; set; }
-
-    [InverseProperty("PartnerFamily")]
-    public List<ArticleSubFamilyPricePartnerFamily> ArticleSubFamilyPricePartnerFamilies { get; set; }
-
-    [InverseProperty("PartnerFamily")]
-    public List<ArticleFamilyPartnerFamilyVat> ArticleFamilyPartnerFamilyVats { get; set; }
-
-    [InverseProperty("PartnerFamily")]
-    public List<ArticlePartnerFamilyVat> ArticlePartnerFamilyVats { get; set; }
-
-    [InverseProperty("PartnerFamily")]
-    public List<ArticleSubFamilyPartnerFamilyVat> ArticleSubFamilyPartnerFamilyVats { get; set; }
-
-    [InverseProperty("PartnerFamily")]
-    public List<PartnerPartnerFamily> PartnerPartnerFamilies { get; set; }
   }
 }
