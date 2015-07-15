@@ -3,7 +3,6 @@ using ServiceStack.DataAnnotations;
 
 namespace Bm2s.Data.BLL.Article
 {
-  [Table("ArticlePriceParner", Schema = "Article")]
   public class ArticlePriceParner
   {
     [Default(0)]

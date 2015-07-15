@@ -7,7 +7,6 @@ using ServiceStack.DataAnnotations;
 
 namespace Bm2s.Data.BLL.Article
 {
-  [Table("Brand", Schema = "Article")]
   public class Brand
   {
     [AutoIncrement]

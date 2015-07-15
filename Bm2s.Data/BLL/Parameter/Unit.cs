@@ -11,8 +11,6 @@ using ServiceStack.OrmLite;
 
 namespace Bm2s.Data.BLL.Parameter
 {
-  [Schema("Parameter")]
-  [Alias("Unit")]
   public class Unit
   {
     [AutoIncrement]

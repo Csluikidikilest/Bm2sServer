@@ -4,7 +4,6 @@ using ServiceStack.DataAnnotations;
 
 namespace Bm2s.Data.BLL.Article
 {
-  [Table("ArticleFamilyPricePartnerFamily", Schema = "Article")]
   public class ArticleFamilyPricePartnerFamily
   {
     [Default(0)]

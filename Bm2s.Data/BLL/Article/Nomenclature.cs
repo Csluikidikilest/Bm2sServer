@@ -3,7 +3,6 @@ using ServiceStack.DataAnnotations;
 
 namespace Bm2s.Data.BLL.Article
 {
-  [Table("Nomenclature", Schema = "Article")]
   public class Nomenclature
   {
     [Default(0)]
