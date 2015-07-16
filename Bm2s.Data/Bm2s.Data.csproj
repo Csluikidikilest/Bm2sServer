@@ -74,7 +74,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppHost.cs" />
+    <Compile Include="Utils\AppHost.cs" />
     <Compile Include="BLL\Article\Article.cs" />
     <Compile Include="BLL\Article\ArticleFamily.cs" />
     <Compile Include="BLL\Article\ArticleFamilyPricePartner.cs" />

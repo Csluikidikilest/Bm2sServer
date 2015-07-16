@@ -20,11 +20,14 @@ namespace Bm2s.Server
       try
       {
         Datas.Instance.CheckDatabaseSchema();
+        string url = string.Format("http://{0}:{1}/", ConfigurationManager.AppSettings["ListeningIp"], ConfigurationManager.AppSettings["ListeningPort"]);
         Console.WriteLine("[OK]");
 
         AppHost host = new AppHost();
         host.Init();
-        host.Start("http://127.0.0.1:8090/");
+        host.Start(url);
+
+        Console.WriteLine("Listening on " + url);
 
         while (!Command(Console.ReadLine()))
         {
@@ -58,7 +61,6 @@ namespace Bm2s.Server
           Console.WriteLine("h or help       : this help");
           Console.WriteLine("q or quit       : quit server");
           Console.WriteLine("c or clear      : clear console");
-          Console.WriteLine("v XX or verb XX : set the verbose level to XX value");
           Console.WriteLine("---------------------------------------------------");
           Console.WriteLine();
           break;
