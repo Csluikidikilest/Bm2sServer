@@ -30,5 +30,8 @@ namespace Bm2s.Data.BLL.Article
 
     [References(typeof(ArticleFamily))]
     public int ArticleFamilyId { get; set; }
+
+    [Ignore]
+    public ArticleFamily ArticleFamily { get; set; }
   }
 }

@@ -79,11 +79,31 @@ namespace Bm2s.Data.Utils
       {
         if (this._dbConnection == null)
         {
-          var dbFactory = new OrmLiteConnectionFactory(ConfigurationManager.ConnectionStrings["bm2s"].ConnectionString, this.DbProvider);
-          this._dbConnection = dbFactory.OpenDbConnection();
+          this._dbConnection = this.DbConnectionFactory.OpenDbConnection();
         }
 
         return this._dbConnection;
+      }
+    }
+
+    /// <summary>
+    /// Database connection factory
+    /// </summary>
+    private IDbConnectionFactory _dbConnectionFactory;
+
+    /// <summary>
+    /// Gets the database connection factory
+    /// </summary>
+    public IDbConnectionFactory DbConnectionFactory
+    {
+      get
+      {
+        if (this._dbConnectionFactory == null)
+        {
+          this._dbConnectionFactory = new OrmLiteConnectionFactory(ConfigurationManager.ConnectionStrings["bm2s"].ConnectionString, this.DbProvider);
+        }
+
+        return this._dbConnectionFactory;
       }
     }
 

@@ -74,6 +74,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppHost.cs" />
     <Compile Include="BLL\Article\Article.cs" />
     <Compile Include="BLL\Article\ArticleFamily.cs" />
     <Compile Include="BLL\Article\ArticleFamilyPricePartner.cs" />
@@ -139,8 +140,9 @@
     <Compile Include="BLL\User\UserModule.cs" />
     <Compile Include="BLL\User\UserSelectorColumn.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\Article\ArticleSubFamily\ArticleSubFamilies.cs" />
-    <Compile Include="Services\Article\ArticleSubFamily\ArticleSubFamily.cs" />
+    <Compile Include="Services\Article\ArticleSubFamily\ArticleSubFamiliesRequest.cs" />
+    <Compile Include="Services\Article\ArticleSubFamily\ArticleSubFamilyResponse.cs" />
+    <Compile Include="Services\Article\ArticleSubFamily\ArticleSubFamilyService.cs" />
     <Compile Include="Services\Article\Article\Articles.cs" />
     <Compile Include="Utils\Datas.cs">
       <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
