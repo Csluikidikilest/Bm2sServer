@@ -1,30 +1,32 @@
 ﻿using Bm2s.Data.BLL.Partner;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ServiceStack.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Bm2s.Data.BLL.Trade
 {
-  public class HeaderPartnerAddress
+  public class HeaderPartnerAddress : Table
   {
-    [AutoIncrement]
-    [PrimaryKey]
-    public int Id { get; private set; }
-
     [References(typeof(Header))]
     public int HeaderId { get; set; }
+
+    [Ignore]
+    public Header Header { get; set; }
 
     [References(typeof(Address))]
     public int AddressId { get; set; }
 
+    [Ignore]
+    public Address Address { get; set; }
+
     [References(typeof(AddressType))]
     public int AddressTypeId { get; set; }
 
+    [Ignore]
+    public AddressType AddressType { get; set; }
+
     [References(typeof(Partner.Partner))]
     public int PartnerId { get; set; }
+
+    [Ignore]
+    public Partner.Partner Partner { get; set; }
   }
 }

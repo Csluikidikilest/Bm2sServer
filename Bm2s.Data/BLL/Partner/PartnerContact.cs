@@ -1,20 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ServiceStack.DataAnnotations;
+﻿using ServiceStack.DataAnnotations;
+using System;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Bm2s.Data.BLL.Partner
 {
-  public class PartnerContact
+  public class PartnerContact : Table
   {
-    [AutoIncrement]
-    [PrimaryKey]
-    public int Id { get; private set; }
-
     [Required]
     [StringLength(200)]
     public string LastName { get; set; }
@@ -45,5 +36,8 @@ namespace Bm2s.Data.BLL.Partner
 
     [References(typeof(Partner))]
     public int PartnerId { get; set; }
+
+    [Ignore]
+    public Partner Partner { get; set; }
   }
 }

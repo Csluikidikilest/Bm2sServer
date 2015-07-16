@@ -1,22 +1,11 @@
-﻿using Bm2s.Data.BLL.Trade;
+﻿using ServiceStack.DataAnnotations;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ServiceStack.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using ServiceStack.OrmLite;
 
 namespace Bm2s.Data.BLL.Parameter
 {
-  public class Unit
+  public class Unit : Table
   {
-    [AutoIncrement]
-    [PrimaryKey]
-    public int Id { get; private set; }
-
     [Required]
     [StringLength(250)]
     public string Code { get; set; }

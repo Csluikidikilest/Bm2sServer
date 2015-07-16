@@ -1,14 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using ServiceStack.DataAnnotations;
+﻿using ServiceStack.DataAnnotations;
 
 namespace Bm2s.Data.BLL.Article
 {
-  public class ArticlePriceParner
+  public class ArticlePriceParner : Table
   {
-    [AutoIncrement]
-    [PrimaryKey]
-    public int Id { get; set; }
-
     [Default(0)]
     public double? Price { get; set; }
 
@@ -20,7 +15,13 @@ namespace Bm2s.Data.BLL.Article
     [References(typeof(Article))]
     public int ArticleId { get; set; }
 
+    [Ignore]
+    public Article Article { get; set; }
+
     [References(typeof(Partner.Partner))]
     public int PartnerId { get; set; }
+
+    [Ignore]
+    public Partner.Partner Partner { get; set; }
   }
 }

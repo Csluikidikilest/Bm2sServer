@@ -156,6 +156,8 @@ namespace Bm2s.Data.Utils
         this.DbConnection.CreateTableIfNotExists<InventoryLine>();
         this.DbConnection.CreateTableIfNotExists<Parameter>();
         this.DbConnection.CreateTableIfNotExists<Period>();
+        this.DbConnection.CreateTableIfNotExists<Subscription>();
+        this.DbConnection.CreateTableIfNotExists<SubscriptionPartner>();
         this.DbConnection.CreateTableIfNotExists<SelectorScreen>();
         this.DbConnection.CreateTableIfNotExists<SelectorColumn>();
         this.DbConnection.CreateTableIfNotExists<Town>();

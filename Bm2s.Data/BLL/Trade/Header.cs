@@ -1,22 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Bm2s.Data.BLL.Parameter;
-using Bm2s.Data.BLL.Partner;
+﻿using Bm2s.Data.BLL.Parameter;
 using ServiceStack.DataAnnotations;
+using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Bm2s.Data.BLL.Trade
 {
-  public class Header
+  public class Header : Table
   {
-    [AutoIncrement]
-    [PrimaryKey]
-    public int Id { get; private set; }
-
     [Required]
     [StringLength(50)]
     public string Reference { get; set; }
@@ -38,10 +28,19 @@ namespace Bm2s.Data.BLL.Trade
     [References(typeof(Activity))]
     public int ActivityId { get; set; }
 
+    [Ignore]
+    public Activity Activity { get; set; }
+
     [References(typeof(User.User))]
     public int UserId { get; set; }
 
+    [Ignore]
+    public User.User User { get; set; }
+
     [References(typeof(HeaderStatus))]
     public int HeaderStatusId { get; set; }
+
+    [Ignore]
+    public HeaderStatus HeaderStatus { get; set; }
   }
 }

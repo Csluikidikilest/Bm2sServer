@@ -1,20 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ServiceStack.DataAnnotations;
+﻿using ServiceStack.DataAnnotations;
+using System;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Bm2s.Data.BLL.Parameter
 {
-  public class Town
+  public class Town : Table
   {
-    [AutoIncrement]
-    [PrimaryKey]
-    public int Id { get; private set; }
-
     [StringLength(50)]
     public string ZipCode { get; set; }
 
@@ -28,5 +19,8 @@ namespace Bm2s.Data.BLL.Parameter
 
     [References(typeof(Country))]
     public int CountryId { get; set; }
+
+    [Ignore]
+    public Country Country { get; set; }
   }
 }

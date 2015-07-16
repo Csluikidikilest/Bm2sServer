@@ -1,16 +1,11 @@
-﻿using System;
+﻿using ServiceStack.DataAnnotations;
+using System;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using ServiceStack.DataAnnotations;
 
 namespace Bm2s.Data.BLL.Parameter
 {
-  public class AffairFile
+  public class AffairFile : Table
   {
-    [AutoIncrement]
-    [PrimaryKey]
-    public int Id { get; private set; }
-
     [Required]
     [StringLength(250)]
     public string Name { get; set; }
@@ -22,7 +17,13 @@ namespace Bm2s.Data.BLL.Parameter
     [References(typeof(Affair))]
     public int AffairId { get; set; }
 
+    [Ignore]
+    public Affair Affair { get; set; }
+
     [References(typeof(User.User))]
     public int UserId { get; set; }
+
+    [Ignore]
+    public User.User User { get; set; }
   }
 }

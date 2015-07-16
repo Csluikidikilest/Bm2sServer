@@ -1,21 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Bm2s.Data.BLL.Article;
+﻿using Bm2s.Data.BLL.Article;
 using ServiceStack.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 
 namespace Bm2s.Data.BLL.Parameter
 {
-  public class ArticleSubFamilyPartnerVat
+  public class ArticleSubFamilyPartnerVat : Table
   {
-    [AutoIncrement]
-    [PrimaryKey]
-    public int Id { get; private set; }
-
     [Default(0)]
     public double Rate { get; set; }
 
@@ -26,11 +16,17 @@ namespace Bm2s.Data.BLL.Parameter
     [StringLength(50)]
     public string AccountingEntry { get; set; }
 
-    [References(typeof(Article.ArticleSubFamily))]
+    [References(typeof(ArticleSubFamily))]
     public int ArticleSubFamilyId { get; set; }
+
+    [Ignore]
+    public ArticleSubFamily ArticleSubFamily { get; set; }
 
     [References(typeof(Partner.Partner))]
     public int PartnerId { get; set; }
+
+    [Ignore]
+    public Partner.Partner Partner { get; set; }
 
     [References(typeof(Vat))]
     public int VatId { get; set; }

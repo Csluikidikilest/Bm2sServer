@@ -1,21 +1,10 @@
-﻿using Bm2s.Data.BLL.Trade;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ServiceStack.DataAnnotations;
+﻿using ServiceStack.DataAnnotations;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Bm2s.Data.BLL.Partner
 {
-  public class Address
+  public class Address : Table
   {
-    [AutoIncrement]
-    [PrimaryKey]
-    public int Id { get; private set; }
-
     [Required]
     [StringLength(50)]
     public string TownZipCode { get; set; }

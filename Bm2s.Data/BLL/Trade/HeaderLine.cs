@@ -1,22 +1,12 @@
 ﻿using Bm2s.Data.BLL.Article;
 using Bm2s.Data.BLL.Parameter;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ServiceStack.DataAnnotations;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Bm2s.Data.BLL.Trade
 {
-  public class HeaderLine
+  public class HeaderLine : Table
   {
-    [AutoIncrement]
-    [PrimaryKey]
-    public int Id { get; private set; }
-
     public int LineNumber { get; set; }
 
     [Required]
@@ -50,22 +40,43 @@ namespace Bm2s.Data.BLL.Trade
     [References(typeof(Article.Article))]
     public int ArticleId { get; set; }
 
+    [Ignore]
+    public Article.Article Article { get; set; }
+
     [References(typeof(ArticleFamily))]
     public int ArticleFamilyId { get; set; }
+
+    [Ignore]
+    public ArticleFamily ArticleFamily { get; set; }
 
     [References(typeof(ArticleSubFamily))]
     public int ArticleSubFamilyId { get; set; }
 
+    [Ignore]
+    public ArticleSubFamily ArticleSubFamily { get; set; }
+
     [References(typeof(Brand))]
     public int BrandId { get; set; }
+
+    [Ignore]
+    public Brand Brand { get; set; }
 
     [References(typeof(HeaderLineType))]
     public int HeaderLineTypeId { get; set; }
 
+    [Ignore]
+    public HeaderLineType HeaderLineType { get; set; }
+
     [References(typeof(Header))]
     public int HeaderId { get; set; }
 
+    [Ignore]
+    public Header Header { get; set; }
+
     [References(typeof(Unit))]
     public int UnitId { get; set; }
+
+    [Ignore]
+    public Unit Unit { get; set; }
   }
 }

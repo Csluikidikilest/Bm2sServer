@@ -1,20 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using ServiceStack.DataAnnotations;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ServiceStack.DataAnnotations;
 
 namespace Bm2s.Data.BLL.Partner
 {
-  public class AddressLine
+  public class AddressLine : Table
   {
-    [AutoIncrement]
-    [PrimaryKey]
-    public int Id { get; private set; }
-
     public int Order { get; set; }
 
     [Required]
@@ -22,5 +12,8 @@ namespace Bm2s.Data.BLL.Partner
 
     [References(typeof(Address))]
     public int AddressId { get; set; }
+
+    [Ignore]
+    public Address Address { get; set; }
   }
 }

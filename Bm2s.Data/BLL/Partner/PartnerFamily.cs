@@ -1,19 +1,11 @@
-﻿using System.Collections.Generic;
-using Bm2s.Data.BLL.Article;
-using Bm2s.Data.BLL.Parameter;
+﻿using ServiceStack.DataAnnotations;
 using System;
-using ServiceStack.DataAnnotations;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Bm2s.Data.BLL.Partner
 {
-  public class PartnerFamily
+  public class PartnerFamily : Table
   {
-    [AutoIncrement]
-    [PrimaryKey]
-    public int Id { get; private set; }
-
     [Required]
     [StringLength(250)]
     public string Code { get; set; }

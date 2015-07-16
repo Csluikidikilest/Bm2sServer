@@ -87,6 +87,8 @@
     <Compile Include="BLL\Article\Brand.cs" />
     <Compile Include="BLL\Article\Nomenclature.cs" />
     <Compile Include="BLL\Article\Price.cs" />
+    <Compile Include="BLL\Article\Subscription.cs" />
+    <Compile Include="BLL\Article\SubscriptionPartner.cs" />
     <Compile Include="BLL\Parameter\Affair.cs" />
     <Compile Include="BLL\Parameter\AffairFile.cs" />
     <Compile Include="BLL\Parameter\AffairHeader.cs" />
@@ -118,6 +120,7 @@
     <Compile Include="BLL\Partner\PartnerFile.cs" />
     <Compile Include="BLL\Partner\PartnerPartnerFamily.cs" />
     <Compile Include="BLL\Parameter\Activity.cs" />
+    <Compile Include="BLL\Table.cs" />
     <Compile Include="BLL\Trade\Header.cs" />
     <Compile Include="BLL\Trade\HeaderFile.cs" />
     <Compile Include="BLL\Trade\HeaderFreeReference.cs" />

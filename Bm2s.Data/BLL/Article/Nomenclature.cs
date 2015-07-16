@@ -3,12 +3,8 @@ using ServiceStack.DataAnnotations;
 
 namespace Bm2s.Data.BLL.Article
 {
-  public class Nomenclature
+  public class Nomenclature : Table
   {
-    [AutoIncrement]
-    [PrimaryKey]
-    public int Id { get; set; }
-
     [Default(0)]
     public int? Quantity { get; set; }
 
@@ -20,7 +16,13 @@ namespace Bm2s.Data.BLL.Article
     [References(typeof(Article))]
     public int ArticleParentId { get; set; }
 
+    [Ignore]
+    public Article ArticleParent { get; set; }
+
     [References(typeof(Article))]
     public int ArticleChildId { get; set; }
+
+    [Ignore]
+    public Article ArticleChild { get; set; }
   }
 }

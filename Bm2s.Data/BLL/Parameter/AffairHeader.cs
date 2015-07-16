@@ -1,24 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Bm2s.Data.BLL.Trade;
+﻿using Bm2s.Data.BLL.Trade;
 using ServiceStack.DataAnnotations;
 
 namespace Bm2s.Data.BLL.Parameter
 {
-  public class AffairHeader
+  public class AffairHeader : Table
   {
-    [AutoIncrement]
-    [PrimaryKey]
-    public int Id { get; private set; }
-
     [References(typeof(Affair))]
     public int AffairId { get; set; }
 
+    [Ignore]
+    public Affair Affair { get; set; }
+
     [References(typeof(Header))]
     public int HeaderId { get; set; }
+
+    [Ignore]
+    public Header Header { get; set; }
   }
 }

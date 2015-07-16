@@ -1,20 +1,10 @@
-﻿using Bm2s.Data.BLL.User;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ServiceStack.DataAnnotations;
+﻿using ServiceStack.DataAnnotations;
 using System.ComponentModel.DataAnnotations;
 
 namespace Bm2s.Data.BLL.Parameter
 {
-  public class Activity
+  public class Activity : Table
   {
-    [AutoIncrement]
-    [PrimaryKey]
-    public int Id { get; private set; }
-
     [Required]
     [StringLength(250)]
     public string CompanyName { get; set; }

@@ -1,25 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ServiceStack.DataAnnotations;
+﻿using ServiceStack.DataAnnotations;
+using System;
 
 namespace Bm2s.Data.BLL.Trade
 {
-  public class HeaderOrigin
+  public class HeaderOrigin : Table
   {
-    [AutoIncrement]
-    [PrimaryKey]
-    public int Id { get; private set; }
-
     public DateTime Date { get; set; }
 
     [References(typeof(Header))]
     public int HeaderParentId { get; set; }
 
+    [Ignore]
+    public Header HeaderParent { get; set; }
+
     [References(typeof(Header))]
     public int HeaderChildId { get; set; }
+
+    [Ignore]
+    public Header HeaderChild { get; set; }
   }
 }

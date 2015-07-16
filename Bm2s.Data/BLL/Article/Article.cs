@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using Bm2s.Data.BLL.Parameter;
-using Bm2s.Data.BLL.Trade;
+﻿using Bm2s.Data.BLL.Parameter;
 using ServiceStack.DataAnnotations;
+using ServiceStack.OrmLite;
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.Data;
+using System.Linq;
 
 namespace Bm2s.Data.BLL.Article
 {
-  public class Article
+  public class Article : Table
   {
-    [AutoIncrement]
-    [PrimaryKey]
-    public int Id { get; private set; }
-
     [Required]
     [StringLength(250)]
     public string Code { get; set; }
@@ -35,13 +31,25 @@ namespace Bm2s.Data.BLL.Article
     [References(typeof(ArticleFamily))]
     public int ArticleFamilyId { get; set; }
 
+    [Ignore]
+    public ArticleFamily ArticleFamily { get; set; }
+
     [References(typeof(ArticleSubFamily))]
     public int ArticleSubFamilyId { get; set; }
+
+    [Ignore]
+    public ArticleSubFamily ArticleSubFamily { get; set; }
 
     [References(typeof(Brand))]
     public int BrandId { get; set; }
 
+    [Ignore]
+    public Brand Brand { get; set; }
+
     [References(typeof(Unit))]
     public int UnitId { get; set; }
+
+    [Ignore]
+    public Unit Unit { get; set; }
   }
 }
