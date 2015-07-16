@@ -1,7 +1,7 @@
 ﻿using ServiceStack.ServiceHost;
 using System.Collections.Generic;
 
-namespace Bm2s.Data.Services.Article
+namespace Bm2s.Data.Services.Article.Article
 {
   [Route("/bm2s/articles")]
   [Route("/bm2s/articles/{Ids}")]

@@ -65,6 +65,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -138,14 +139,29 @@
     <Compile Include="BLL\User\UserModule.cs" />
     <Compile Include="BLL\User\UserSelectorColumn.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\Article\Articles.cs" />
-    <Compile Include="Services\Article\ArticleSubFamilies.cs" />
+    <Compile Include="Services\Article\ArticleSubFamily\ArticleSubFamilies.cs" />
+    <Compile Include="Services\Article\ArticleSubFamily\ArticleSubFamily.cs" />
+    <Compile Include="Services\Article\Article\Articles.cs" />
+    <Compile Include="Utils\Datas.cs">
+      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Services\Article\ArticleFamilyPricePartnerFamily\" />
+    <Folder Include="Services\Article\ArticleFamilyPricePartner\" />
+    <Folder Include="Services\Article\ArticleFamily\" />
+    <Folder Include="Services\Article\ArticlePriceParnerFamily\" />
+    <Folder Include="Services\Article\ArticlePriceParner\" />
+    <Folder Include="Services\Article\ArticleSubFamilyPricePartnerFamily\" />
+    <Folder Include="Services\Article\ArticleSubFamilyPricePartner\" />
+    <Folder Include="Services\Article\Brand\" />
+    <Folder Include="Services\Article\Nomenclature\" />
+    <Folder Include="Services\Article\Price\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
