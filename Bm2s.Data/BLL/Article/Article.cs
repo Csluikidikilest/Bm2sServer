@@ -51,5 +51,10 @@ namespace Bm2s.Data.BLL.Article
 
     [Ignore]
     public Unit Unit { get; set; }
+
+    public override void LazyLoad(IDbConnection dbConnection)
+    {
+      base.LazyLoad(dbConnection);
+    }
   }
 }

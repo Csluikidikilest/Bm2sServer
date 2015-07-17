@@ -74,6 +74,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\Tables.cs" />
     <Compile Include="Utils\AppHost.cs" />
     <Compile Include="BLL\Article\Article.cs" />
     <Compile Include="BLL\Article\ArticleFamily.cs" />
@@ -150,6 +151,7 @@
     <Compile Include="Utils\Datas.cs">
       <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
     </Compile>
+    <Compile Include="Utils\DataStorage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

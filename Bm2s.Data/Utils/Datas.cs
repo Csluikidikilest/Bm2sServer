@@ -108,10 +108,16 @@ namespace Bm2s.Data.Utils
     }
 
     /// <summary>
+    /// Storage of the datas
+    /// </summary>
+    public DataStorage DataStorage { get; private set; }
+
+    /// <summary>
     /// Constructor for the singleton
     /// </summary>
     private Datas()
     {
+      this.DataStorage = new DataStorage(ConfigurationManager.AppSettings["RamStorage"] == "1", this.DbConnection);
     }
 
     /// <summary>

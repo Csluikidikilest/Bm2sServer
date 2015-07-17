@@ -14,5 +14,15 @@ namespace Bm2s.Data.BLL
     [AutoIncrement]
     [PrimaryKey]
     public int Id { get; protected set; }
+
+    public virtual void Delete(IDbConnection dbConnection) { }
+
+    public virtual void Insert(IDbConnection dbConnection) { }
+
+    public virtual void LazyLoad(IDbConnection dbConnection) { }
+
+    public virtual void Save(IDbConnection dbConnection) { }
+
+    public virtual void Update(IDbConnection dbConnection) { }
   }
 }
