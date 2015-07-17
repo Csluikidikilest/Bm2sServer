@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using ServiceStack.ServiceInterface;
 using ServiceStack.OrmLite;
+using Bm2s.Data.Utils;
+using Bm2s.Data.BLL;
 
 namespace Bm2s.Data.Services.Article.ArticleSubFamily
 {
@@ -16,11 +18,11 @@ namespace Bm2s.Data.Services.Article.ArticleSubFamily
 
       if(!request.ArticleSubFamiliesIds.Any()) 
       {
-        response.ArticleSubFamilies = this.Db.Select<BLL.Article.ArticleSubFamily>();
+        response.ArticleSubFamilies = Datas.Instance.DataStorage.ArticleSubFamilies;
       }
       else
       {
-        response.ArticleSubFamilies = this.Db.Where<BLL.Article.ArticleSubFamily>(item => request.ArticleSubFamiliesIds.Contains(item.Id));
+        response.ArticleSubFamilies = (Tables<BLL.Article.ArticleSubFamily>)Datas.Instance.DataStorage.ArticleSubFamilies.Where(item => request.ArticleSubFamiliesIds.Contains(item.Id));
       }
 
       return response;

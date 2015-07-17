@@ -117,6 +117,7 @@ namespace Bm2s.Data.Utils
     /// </summary>
     private Datas()
     {
+      this.CheckDatabaseSchema();
       this.DataStorage = new DataStorage(ConfigurationManager.AppSettings["RamStorage"] == "1", this.DbConnection);
     }
 

@@ -157,13 +157,13 @@ namespace Bm2s.Data.Utils
 
       this.Groups = new Tables<Group>(this._ramStorage, this._dbConnection);
       this.GroupModules = new Tables<GroupModule>(this._ramStorage, this._dbConnection);
-      this.GroupSelectorColumns = new Tables<GroupSelectorColumn>(this._ramStorage, this._dbConnection);
+      //this.GroupSelectorColumns = new Tables<GroupSelectorColumn>(this._ramStorage, this._dbConnection);
       this.Modules = new Tables<Module>(this._ramStorage, this._dbConnection);
       this.Users = new Tables<User>(this._ramStorage, this._dbConnection);
       this.UserActivities = new Tables<UserActivity>(this._ramStorage, this._dbConnection);
       this.UserGroups = new Tables<UserGroup>(this._ramStorage, this._dbConnection);
       this.UserModules = new Tables<UserModule>(this._ramStorage, this._dbConnection);
-      this.UserSelectorColumns = new Tables<UserSelectorColumn>(this._ramStorage, this._dbConnection);
+      //this.UserSelectorColumns = new Tables<UserSelectorColumn>(this._ramStorage, this._dbConnection);
     }
   }
 }
