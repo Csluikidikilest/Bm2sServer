@@ -46,7 +46,7 @@ namespace Bm2s.Data.BLL
         this._innerList.Insert(index, item);
       }
 
-      item.Save(this._dbConnection);
+      item.Save<T>(this._dbConnection);
     }
 
     public void RemoveAt(int index)
@@ -74,7 +74,7 @@ namespace Bm2s.Data.BLL
           this._innerList[index] = value;
         }
 
-        value.Save(this._dbConnection);
+        value.Save<T>(this._dbConnection);
       }
     }
 
@@ -85,7 +85,7 @@ namespace Bm2s.Data.BLL
         this._innerList.Add(item);
       }
 
-      item.Save(this._dbConnection);
+      item.Save<T>(this._dbConnection);
     }
 
     public void Clear()
@@ -141,7 +141,7 @@ namespace Bm2s.Data.BLL
       }
       try
       {
-        item.Delete(this._dbConnection);
+        item.Delete<T>(this._dbConnection);
         return true;
       }
       catch

@@ -6,6 +6,10 @@ namespace Bm2s.Data.BLL.Article
 {
   public class Price : Table
   {
+    [AutoIncrement]
+    [PrimaryKey]
+    public override int Id { get; protected set; }
+
     [Default(0)]
     public double BasePrice { get; set; }
 

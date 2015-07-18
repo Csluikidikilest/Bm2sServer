@@ -6,6 +6,10 @@ namespace Bm2s.Data.BLL.Parameter
 {
   public class Town : Table
   {
+    [AutoIncrement]
+    [PrimaryKey]
+    public override int Id { get; protected set; }
+
     [StringLength(50)]
     public string ZipCode { get; set; }
 

@@ -4,6 +4,10 @@ namespace Bm2s.Data.BLL.Trade
 {
   public class HeaderStatusStep : Table
   {
+    [AutoIncrement]
+    [PrimaryKey]
+    public override int Id { get; protected set; }
+
     [References(typeof(HeaderStatus))]
     public int HeaderStatusParentId { get; set; }
 

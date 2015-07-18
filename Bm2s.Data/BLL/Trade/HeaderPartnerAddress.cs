@@ -5,6 +5,10 @@ namespace Bm2s.Data.BLL.Trade
 {
   public class HeaderPartnerAddress : Table
   {
+    [AutoIncrement]
+    [PrimaryKey]
+    public override int Id { get; protected set; }
+
     [References(typeof(Header))]
     public int HeaderId { get; set; }
 

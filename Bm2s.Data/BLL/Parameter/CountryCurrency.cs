@@ -5,6 +5,10 @@ namespace Bm2s.Data.BLL.Parameter
 {
   public class CountryCurrency : Table
   {
+    [AutoIncrement]
+    [PrimaryKey]
+    public override int Id { get; protected set; }
+
     public DateTime StartingDate { get; set; }
 
     public DateTime? EndingDate { get; set; }

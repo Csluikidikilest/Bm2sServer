@@ -10,6 +10,10 @@ namespace Bm2s.Data.BLL.Trade
 {
   public class Reconciliation : Table
   {
+    [AutoIncrement]
+    [PrimaryKey]
+    public override int Id { get; protected set; }
+
     public double Amount { get; set; }
 
     [References(typeof(Payment))]

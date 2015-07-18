@@ -5,6 +5,10 @@ namespace Bm2s.Data.BLL.Parameter
 {
   public class Affair : Table
   {
+    [AutoIncrement]
+    [PrimaryKey]
+    public override int Id { get; protected set; }
+
     [Required]
     [StringLength(250)]
     public string Code { get; set; }

@@ -4,6 +4,10 @@ namespace Bm2s.Data.BLL.Article
 {
   public class ArticlePriceParner : Table
   {
+    [AutoIncrement]
+    [PrimaryKey]
+    public override int Id { get; protected set; }
+
     [Default(0)]
     public double? Price { get; set; }
 

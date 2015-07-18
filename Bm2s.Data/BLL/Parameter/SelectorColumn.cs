@@ -5,6 +5,10 @@ namespace Bm2s.Data.BLL.Parameter
 {
   public class SelectorColumn : Table
   {
+    [AutoIncrement]
+    [PrimaryKey]
+    public override int Id { get; protected set; }
+
     [Required]
     [StringLength(250)]
     public string Code { get; set; }

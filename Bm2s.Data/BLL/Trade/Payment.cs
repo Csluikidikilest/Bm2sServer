@@ -6,6 +6,10 @@ namespace Bm2s.Data.BLL.Trade
 {
   public class Payment : Table
   {
+    [AutoIncrement]
+    [PrimaryKey]
+    public override int Id { get; protected set; }
+
     public double Amount { get; set; }
 
     public DateTime Date { get; set; }

@@ -7,6 +7,10 @@ namespace Bm2s.Data.BLL.Trade
 {
   public class HeaderLine : Table
   {
+    [AutoIncrement]
+    [PrimaryKey]
+    public override int Id { get; protected set; }
+
     public int LineNumber { get; set; }
 
     [Required]

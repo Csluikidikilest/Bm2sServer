@@ -1,14 +1,13 @@
 ﻿using ServiceStack.DataAnnotations;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Bm2s.Data.BLL.Article
 {
   public class SubscriptionPartner : Table
   {
+    [AutoIncrement]
+    [PrimaryKey]
+    public override int Id { get; protected set; }
+
     [References(typeof(Subscription))]
     public int SubscriptionId { get; set; }
 

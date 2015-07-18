@@ -4,6 +4,10 @@ namespace Bm2s.Data.BLL.Parameter
 {
   public class InventoryLine : Table
   {
+    [AutoIncrement]
+    [PrimaryKey]
+    public override int Id { get; protected set; }
+
     public int Quantity { get; set; }
 
     [References(typeof(InventoryHeader))]

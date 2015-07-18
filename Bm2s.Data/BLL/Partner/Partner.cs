@@ -6,6 +6,10 @@ namespace Bm2s.Data.BLL.Partner
 {
   public class Partner : Table
   {
+    [AutoIncrement]
+    [PrimaryKey]
+    public override int Id { get; protected set; }
+
     [Required]
     [StringLength(250)]
     public string Code { get; set; }

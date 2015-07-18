@@ -5,6 +5,10 @@ namespace Bm2s.Data.BLL.Partner
 {
   public class Address : Table
   {
+    [AutoIncrement]
+    [PrimaryKey]
+    public override int Id { get; protected set; }
+
     [Required]
     [StringLength(50)]
     public string TownZipCode { get; set; }

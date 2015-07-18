@@ -5,6 +5,10 @@ namespace Bm2s.Data.BLL.Partner
 {
   public class AddressLine : Table
   {
+    [AutoIncrement]
+    [PrimaryKey]
+    public override int Id { get; protected set; }
+
     public int Order { get; set; }
 
     [Required]

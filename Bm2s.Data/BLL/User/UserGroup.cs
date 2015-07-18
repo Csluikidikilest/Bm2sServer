@@ -4,6 +4,10 @@ namespace Bm2s.Data.BLL.User
 {
   public class UserGroup : Table
   {
+    [AutoIncrement]
+    [PrimaryKey]
+    public override int Id { get; protected set; }
+
     [References(typeof(User))]
     public int UserId { get; set; }
 

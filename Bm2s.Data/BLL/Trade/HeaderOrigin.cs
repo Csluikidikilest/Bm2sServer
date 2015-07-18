@@ -5,6 +5,10 @@ namespace Bm2s.Data.BLL.Trade
 {
   public class HeaderOrigin : Table
   {
+    [AutoIncrement]
+    [PrimaryKey]
+    public override int Id { get; protected set; }
+
     public DateTime Date { get; set; }
 
     [References(typeof(Header))]

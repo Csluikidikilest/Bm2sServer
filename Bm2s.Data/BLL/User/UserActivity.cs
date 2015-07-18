@@ -5,6 +5,10 @@ namespace Bm2s.Data.BLL.User
 {
   public class UserActivity : Table
   {
+    [AutoIncrement]
+    [PrimaryKey]
+    public override int Id { get; protected set; }
+
     public bool IsDefault { get; set; }
 
     [References(typeof(Activity))]

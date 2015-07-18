@@ -5,6 +5,10 @@ namespace Bm2s.Data.BLL.Parameter
 {
   public class AffairHeader : Table
   {
+    [AutoIncrement]
+    [PrimaryKey]
+    public override int Id { get; protected set; }
+
     [References(typeof(Affair))]
     public int AffairId { get; set; }
 

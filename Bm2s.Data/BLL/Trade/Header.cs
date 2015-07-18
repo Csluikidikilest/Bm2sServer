@@ -7,6 +7,10 @@ namespace Bm2s.Data.BLL.Trade
 {
   public class Header : Table
   {
+    [AutoIncrement]
+    [PrimaryKey]
+    public override int Id { get; protected set; }
+
     [Required]
     [StringLength(50)]
     public string Reference { get; set; }

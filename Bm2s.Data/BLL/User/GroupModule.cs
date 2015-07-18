@@ -4,6 +4,10 @@ namespace Bm2s.Data.BLL.User
 {
   public class GroupModule : Table
   {
+    [AutoIncrement]
+    [PrimaryKey]
+    public override int Id { get; protected set; }
+
     public bool Granted { get; set; }
 
     [References(typeof(Group))]

@@ -5,6 +5,10 @@ namespace Bm2s.Data.BLL.Article
 {
   public class Nomenclature : Table
   {
+    [AutoIncrement]
+    [PrimaryKey]
+    public override int Id { get; protected set; }
+
     [Default(0)]
     public int? Quantity { get; set; }
 

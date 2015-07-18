@@ -1,15 +1,17 @@
 ﻿using Bm2s.Data.BLL.Parameter;
 using ServiceStack.DataAnnotations;
-using ServiceStack.OrmLite;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Data;
-using System.Linq;
 
 namespace Bm2s.Data.BLL.Article
 {
   public class Article : Table
   {
+    [AutoIncrement]
+    [PrimaryKey]
+    public override int Id { get; protected set; }
+
     [Required]
     [StringLength(250)]
     public string Code { get; set; }

@@ -4,6 +4,10 @@ namespace Bm2s.Data.BLL.Partner
 {
   public class PartnerPartnerFamily : Table
   {
+    [AutoIncrement]
+    [PrimaryKey]
+    public override int Id { get; protected set; }
+
     [References(typeof(Partner))]
     public int PartnerId { get; set; }
 

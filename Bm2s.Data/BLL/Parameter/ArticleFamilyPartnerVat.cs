@@ -6,6 +6,10 @@ namespace Bm2s.Data.BLL.Parameter
 {
   public class ArticleFamilyPartnerVat : Table
   {
+    [AutoIncrement]
+    [PrimaryKey]
+    public override int Id { get; protected set; }
+
     [Default(0)]
     public double Rate { get; set; }
 

@@ -5,6 +5,10 @@ namespace Bm2s.Data.BLL.Parameter
 {
   public class InventoryHeader : Table
   {
+    [AutoIncrement]
+    [PrimaryKey]
+    public override int Id { get; protected set; }
+
     public DateTime Date { get; set; }
 
     public int Type { get; set; }

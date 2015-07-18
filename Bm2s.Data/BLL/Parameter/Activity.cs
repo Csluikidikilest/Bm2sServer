@@ -5,6 +5,10 @@ namespace Bm2s.Data.BLL.Parameter
 {
   public class Activity : Table
   {
+    [AutoIncrement]
+    [PrimaryKey]
+    public override int Id { get; protected set; }
+
     [Required]
     [StringLength(250)]
     public string CompanyName { get; set; }
