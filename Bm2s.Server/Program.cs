@@ -54,6 +54,9 @@ namespace Bm2s.Server
           Console.Clear();
           Command("h");
           break;
+        case "test" :
+          Datas.Instance.CreateDatasForTest();
+          break;
         case "h":
         case "help":
           Console.WriteLine();

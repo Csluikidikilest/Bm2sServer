@@ -16,7 +16,7 @@ namespace Bm2s.Data.Services.Article.ArticleSubFamily
     {
       ArticleSubFamilyResponse response = new ArticleSubFamilyResponse();
 
-      if(!request.ArticleSubFamiliesIds.Any()) 
+      if (!request.ArticleSubFamiliesIds.Any())
       {
         response.ArticleSubFamilies = Datas.Instance.DataStorage.ArticleSubFamilies;
       }
@@ -30,6 +30,14 @@ namespace Bm2s.Data.Services.Article.ArticleSubFamily
 
     public object Post(ArticleSubFamiliesRequest request)
     {
+      if (request.SubFamily.Id > 0)
+      {
+        Datas.Instance.DataStorage.ArticleSubFamilies[request.SubFamily.Id] = request.SubFamily;
+      }
+      else
+      {
+        Datas.Instance.DataStorage.ArticleSubFamilies.Add(request.SubFamily);
+      }
       return request.SubFamily;
     }
   }

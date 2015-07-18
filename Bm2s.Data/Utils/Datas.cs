@@ -198,5 +198,29 @@ namespace Bm2s.Data.Utils
         throw;
       }
     }
+
+    public void CreateDatasForTest()
+    {
+      ArticleFamily arfa1 = new ArticleFamily() { Code = "ARFA1", Description = "Family 1", Designation = "Family 1", StartingDate = DateTime.Now };
+      Datas.Instance.DataStorage.ArticleFamilies.Add(arfa1);
+
+      ArticleFamily arfa2 = new ArticleFamily() { Code = "ARFA2", Description = "Family 2", Designation = "Family 2", StartingDate = DateTime.Now };
+      Datas.Instance.DataStorage.ArticleFamilies.Add(arfa2);
+
+      ArticleSubFamily arsf11 = new ArticleSubFamily() { ArticleFamilyId = arfa1.Id, Code = "ARSF11", Description = "Subfamily 11", Designation = "Subfamily 11", StartingDate = DateTime.Now };
+      Datas.Instance.DataStorage.ArticleSubFamilies.Add(arsf11);
+
+      ArticleSubFamily arsf12 = new ArticleSubFamily() { ArticleFamilyId = arfa1.Id, Code = "ARSF12", Description = "Subfamily 12", Designation = "Subfamily 12", StartingDate = DateTime.Now };
+      Datas.Instance.DataStorage.ArticleSubFamilies.Add(arsf12);
+
+      ArticleSubFamily arsf21 = new ArticleSubFamily() { ArticleFamilyId = arfa2.Id, Code = "ARSF21", Description = "Subfamily 21", Designation = "Subfamily 21", StartingDate = DateTime.Now };
+      Datas.Instance.DataStorage.ArticleSubFamilies.Add(arsf21);
+
+      ArticleSubFamily arsf22 = new ArticleSubFamily() { ArticleFamilyId = arfa2.Id, Code = "ARSF22", Description = "Subfamily 22", Designation = "Subfamily 22", StartingDate = DateTime.Now };
+      Datas.Instance.DataStorage.ArticleSubFamilies.Add(arsf22);
+
+      ArticleSubFamily arsf23 = new ArticleSubFamily() { ArticleFamilyId = arfa2.Id, Code = "ARSF23", Description = "Subfamily 23", Designation = "Subfamily 23", StartingDate = DateTime.Now };
+      Datas.Instance.DataStorage.ArticleSubFamilies.Add(arsf23);
+    }
   }
 }
