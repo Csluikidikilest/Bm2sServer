@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Bm2s.Data.Services.Article.ArticleSubFamily
 {
-  [Route("/bm2s/articlesubfamilies")]
-  [Route("/bm2s/articlesubfamilies/{ArticleSubFamiliesIds}")]
+  [Route("/bm2s/articlesubfamilies", Verbs = "GET, POST")]
+  [Route("/bm2s/articlesubfamilies/{ArticleSubFamiliesIds}", Verbs = "GET")]
   public class ArticleSubFamiliesRequest : IReturn<ArticleSubFamilyResponse>
   {
     public ArticleSubFamiliesRequest()
@@ -18,6 +18,6 @@ namespace Bm2s.Data.Services.Article.ArticleSubFamily
 
     public List<int> ArticleSubFamiliesIds { get; set; }
 
-    public BLL.Article.ArticleSubFamily SubFamily { get; set; }
+    public BLL.Article.ArticleSubFamily ArticleSubFamily { get; set; }
   }
 }

@@ -1,10 +1,9 @@
-﻿using System;
+﻿using ServiceStack.OrmLite;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ServiceStack.OrmLite;
 
 namespace Bm2s.Data.BLL
 {
@@ -58,14 +57,23 @@ namespace Bm2s.Data.BLL
     {
       get
       {
+        T result = null;
+
         if (this._ramStorage)
         {
-          return this._innerList[index];
+          result = this._innerList[index];
         }
         else
         {
-          return this._dbConnection.Where<T>(x => x.Id == index).FirstOrDefault();
+          result = this._dbConnection.Where<T>(x => x.Id == index).FirstOrDefault();
         }
+
+        if (result != null && !result.LazyLoaded)
+        {
+          result.LazyLoad();
+        }
+
+        return result;
       }
       set
       {

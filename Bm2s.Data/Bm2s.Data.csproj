@@ -75,6 +75,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\Tables.cs" />
+    <Compile Include="Services\Article\ArticleFamily\ArticleFamiliesRequest.cs" />
+    <Compile Include="Services\Article\ArticleFamily\ArticleFamilyResponse.cs" />
+    <Compile Include="Services\Article\ArticleFamily\ArticleFamilyService.cs" />
     <Compile Include="Utils\AppHost.cs" />
     <Compile Include="BLL\Article\Article.cs" />
     <Compile Include="BLL\Article\ArticleFamily.cs" />
@@ -160,7 +163,6 @@
   <ItemGroup>
     <Folder Include="Services\Article\ArticleFamilyPricePartnerFamily\" />
     <Folder Include="Services\Article\ArticleFamilyPricePartner\" />
-    <Folder Include="Services\Article\ArticleFamily\" />
     <Folder Include="Services\Article\ArticlePriceParnerFamily\" />
     <Folder Include="Services\Article\ArticlePriceParner\" />
     <Folder Include="Services\Article\ArticleSubFamilyPricePartnerFamily\" />
