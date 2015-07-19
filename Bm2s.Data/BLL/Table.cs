@@ -10,15 +10,25 @@ namespace Bm2s.Data.BLL
 {
   public class Table
   {
-    public virtual int Id { get; protected set; }
+    public virtual int Id { get; set; }
 
-    public static T Load<T>(IDbConnection dbConnection, int id) where T : Table
+    [Ignore]
+    public bool LazyLoaded { get; set; }
+
+    public static T Load<T>(IDbConnection dbConnection, int id, bool lazyLoad) where T : Table
     {
       OrmLiteConfig.DialectProvider = dbConnection.GetDialectProvider();
       SqlExpressionVisitor<T> ev = OrmLiteConfig.DialectProvider.ExpressionVisitor<T>();
       ev.And(f => f.Id == id);
 
-      return dbConnection.Select<T>(ev).FirstOrDefault();
+      T result = dbConnection.Select<T>(ev).FirstOrDefault();
+
+      if(result != null && lazyLoad)
+      {
+        result.LazyLoad();
+      }
+
+      return result;
     }
 
     public static List<T> LoadAll<T>(IDbConnection dbConnection) where T : Table
@@ -40,7 +50,10 @@ namespace Bm2s.Data.BLL
       this.Id = id;
     }
 
-    public virtual void LazyLoad(IDbConnection dbConnection) { }
+    public virtual void LazyLoad()
+    {
+      this.LazyLoaded = true;
+    }
 
     public virtual void Save<T>(IDbConnection dbConnection) where T : Table
     {

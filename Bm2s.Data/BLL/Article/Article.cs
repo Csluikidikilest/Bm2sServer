@@ -10,7 +10,7 @@ namespace Bm2s.Data.BLL.Article
   {
     [AutoIncrement]
     [PrimaryKey]
-    public override int Id { get; protected set; }
+    public override int Id { get; set; }
 
     [Required]
     [StringLength(250)]
@@ -53,10 +53,5 @@ namespace Bm2s.Data.BLL.Article
 
     [Ignore]
     public Unit Unit { get; set; }
-
-    public override void LazyLoad(IDbConnection dbConnection)
-    {
-      base.LazyLoad(dbConnection);
-    }
   }
 }

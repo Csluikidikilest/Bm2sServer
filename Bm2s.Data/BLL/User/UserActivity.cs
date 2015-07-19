@@ -7,7 +7,7 @@ namespace Bm2s.Data.BLL.User
   {
     [AutoIncrement]
     [PrimaryKey]
-    public override int Id { get; protected set; }
+    public override int Id { get; set; }
 
     public bool IsDefault { get; set; }
 

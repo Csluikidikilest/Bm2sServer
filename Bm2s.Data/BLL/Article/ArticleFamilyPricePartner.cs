@@ -6,7 +6,7 @@ namespace Bm2s.Data.BLL.Article
   {
     [AutoIncrement]
     [PrimaryKey]
-    public override int Id { get; protected set; }
+    public override int Id { get; set; }
 
     [Default(0)]
     public double? Price { get; set; }

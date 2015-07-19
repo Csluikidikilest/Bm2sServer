@@ -8,7 +8,7 @@ namespace Bm2s.Data.BLL.Partner
   {
     [AutoIncrement]
     [PrimaryKey]
-    public override int Id { get; protected set; }
+    public override int Id { get; set; }
 
     [Required]
     [StringLength(200)]

@@ -12,7 +12,7 @@ namespace Bm2s.Data.BLL.Trade
   {
     [AutoIncrement]
     [PrimaryKey]
-    public override int Id { get; protected set; }
+    public override int Id { get; set; }
 
     public double Amount { get; set; }
 

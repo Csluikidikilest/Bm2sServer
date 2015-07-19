@@ -6,7 +6,7 @@ namespace Bm2s.Data.BLL.Partner
   {
     [AutoIncrement]
     [PrimaryKey]
-    public override int Id { get; protected set; }
+    public override int Id { get; set; }
 
     [References(typeof(Partner))]
     public int PartnerId { get; set; }

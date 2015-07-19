@@ -6,7 +6,7 @@ namespace Bm2s.Data.BLL.Parameter
   {
     [AutoIncrement]
     [PrimaryKey]
-    public override int Id { get; protected set; }
+    public override int Id { get; set; }
 
     public int Quantity { get; set; }
 
