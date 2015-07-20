@@ -9,7 +9,7 @@ namespace Bm2s.Data.Utils
   public class AppHost : AppHostHttpListenerBase
   {
     public AppHost()
-      : base("Bm2s HttpListener", typeof(ArticleSubFamilyService).Assembly)
+      : base("Bm2s HttpListener", typeof(ArticleSubFamiliesService).Assembly)
     {
     }
 

@@ -3,14 +3,17 @@ using System.Collections.Generic;
 
 namespace Bm2s.Data.Services.Article.Article
 {
-  [Route("/bm2s/articles")]
-  [Route("/bm2s/articles/{Ids}")]
-  public class Articles : IReturn<List<BLL.Article.Article>>
+  [Route("/bm2s/articles", Verbs = "GET, POST")]
+  [Route("/bm2s/articles/{Ids}", Verbs = "GET")]
+  public class Articles : IReturn<ArticlesResponse>
   {
-    public long[] Ids { get; set; }
-    public Articles(params long[] ids)
+    public Articles()
     {
-      this.Ids = ids;
+      this.Ids = new List<int>();
     }
+
+    public List<int> Ids { get; set; }
+
+    public BLL.Article.Article Article { get; set; }
   }
 }

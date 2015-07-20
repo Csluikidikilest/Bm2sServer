@@ -199,6 +199,9 @@ namespace Bm2s.Data.Utils
       }
     }
 
+    /// <summary>
+    /// Create some datas for some tests
+    /// </summary>
     public void CreateDatasForTest()
     {
       ArticleFamily arfa1 = new ArticleFamily() { Code = "ARFA1", Description = "Family 1", Designation = "Family 1", StartingDate = DateTime.Now };
@@ -221,6 +224,8 @@ namespace Bm2s.Data.Utils
 
       ArticleSubFamily arsf23 = new ArticleSubFamily() { ArticleFamilyId = arfa2.Id, Code = "ARSF23", Description = "Subfamily 23", Designation = "Subfamily 23", StartingDate = DateTime.Now };
       Datas.Instance.DataStorage.ArticleSubFamilies.Add(arsf23);
+
+      Article arti11 = new Article() { ArticleFamilyId = arfa1.Id, ArticleSubFamilyId = arsf11.Id, Code = "ARTI11", Description = "Article 1", Designation = "Article 1" };
     }
   }
 }

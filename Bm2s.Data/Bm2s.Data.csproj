@@ -75,9 +75,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\Tables.cs" />
-    <Compile Include="Services\Article\ArticleFamily\ArticleFamiliesRequest.cs" />
-    <Compile Include="Services\Article\ArticleFamily\ArticleFamilyResponse.cs" />
-    <Compile Include="Services\Article\ArticleFamily\ArticleFamilyService.cs" />
+    <Compile Include="Services\Article\ArticleFamily\ArticleFamilies.cs" />
+    <Compile Include="Services\Article\ArticleFamily\ArticleFamiliesResponse.cs" />
+    <Compile Include="Services\Article\ArticleFamily\ArticleFamiliesService.cs" />
+    <Compile Include="Services\Article\Article\ArticlesResponse.cs" />
+    <Compile Include="Services\Article\Article\ArticlesService.cs" />
+    <Compile Include="Services\Article\Article\Articles.cs" />
+    <Compile Include="Services\Article\Brand\BrandsResponse.cs" />
+    <Compile Include="Services\Article\Brand\Brands.cs" />
+    <Compile Include="Services\Article\Brand\BrandsService.cs" />
+    <Compile Include="Services\Article\Nomenclature\Nomenclatures.cs" />
+    <Compile Include="Services\Article\Nomenclature\NomenclaturesResponse.cs" />
+    <Compile Include="Services\Article\Nomenclature\NomenclaturesService.cs" />
+    <Compile Include="Services\Article\PriceDetermination\PriceDetermination.cs" />
+    <Compile Include="Services\Article\PriceDetermination\PriceDeterminationResponse.cs" />
+    <Compile Include="Services\Article\PriceDetermination\PriceDeterminationService.cs" />
+    <Compile Include="Services\Article\Price\Prices.cs" />
+    <Compile Include="Services\Article\Price\PricesResponse.cs" />
+    <Compile Include="Services\Article\Price\PricesService.cs" />
     <Compile Include="Utils\AppHost.cs" />
     <Compile Include="BLL\Article\Article.cs" />
     <Compile Include="BLL\Article\ArticleFamily.cs" />
@@ -147,10 +162,9 @@
     <Compile Include="BLL\User\UserModule.cs" />
     <Compile Include="BLL\User\UserSelectorColumn.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\Article\ArticleSubFamily\ArticleSubFamiliesRequest.cs" />
-    <Compile Include="Services\Article\ArticleSubFamily\ArticleSubFamilyResponse.cs" />
-    <Compile Include="Services\Article\ArticleSubFamily\ArticleSubFamilyService.cs" />
-    <Compile Include="Services\Article\Article\Articles.cs" />
+    <Compile Include="Services\Article\ArticleSubFamily\ArticleSubFamilies.cs" />
+    <Compile Include="Services\Article\ArticleSubFamily\ArticleSubFamiliesResponse.cs" />
+    <Compile Include="Services\Article\ArticleSubFamily\ArticleSubFamiliesService.cs" />
     <Compile Include="Utils\Datas.cs">
       <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
     </Compile>
@@ -160,17 +174,7 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Services\Article\ArticleFamilyPricePartnerFamily\" />
-    <Folder Include="Services\Article\ArticleFamilyPricePartner\" />
-    <Folder Include="Services\Article\ArticlePriceParnerFamily\" />
-    <Folder Include="Services\Article\ArticlePriceParner\" />
-    <Folder Include="Services\Article\ArticleSubFamilyPricePartnerFamily\" />
-    <Folder Include="Services\Article\ArticleSubFamilyPricePartner\" />
-    <Folder Include="Services\Article\Brand\" />
-    <Folder Include="Services\Article\Nomenclature\" />
-    <Folder Include="Services\Article\Price\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
