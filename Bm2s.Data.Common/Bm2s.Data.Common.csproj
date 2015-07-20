@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{794DBDC4-A28E-488E-90BC-79526943B5DB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Bm2s.Data.Common</RootNamespace>
+    <AssemblyName>Bm2s.Data.Common</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Npgsql">
+      <HintPath>..\packages\Npgsql.2.2.5\lib\net45\Npgsql.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack">
+      <HintPath>..\packages\ServiceStack.3.9.71\lib\net35\ServiceStack.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Common">
+      <HintPath>..\packages\ServiceStack.Common.3.9.71\lib\net35\ServiceStack.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Interfaces">
+      <HintPath>..\packages\ServiceStack.Common.3.9.71\lib\net35\ServiceStack.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.OrmLite">
+      <HintPath>..\packages\ServiceStack.OrmLite.PostgreSQL.3.9.71\lib\net35\ServiceStack.OrmLite.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.OrmLite.PostgreSQL">
+      <HintPath>..\packages\ServiceStack.OrmLite.PostgreSQL.3.9.71\lib\net35\ServiceStack.OrmLite.PostgreSQL.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.OrmLite.SqlServer">
+      <HintPath>..\packages\ServiceStack.OrmLite.SqlServer.3.9.71\lib\net35\ServiceStack.OrmLite.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.ServiceInterface">
+      <HintPath>..\packages\ServiceStack.3.9.71\lib\net35\ServiceStack.ServiceInterface.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Text">
+      <HintPath>..\packages\ServiceStack.Text.3.9.71\lib\net35\ServiceStack.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BLL\Article\Article.cs" />
+    <Compile Include="BLL\Article\ArticleFamily.cs" />
+    <Compile Include="BLL\Article\ArticleFamilyPricePartner.cs" />
+    <Compile Include="BLL\Article\ArticleFamilyPricePartnerFamily.cs" />
+    <Compile Include="BLL\Article\ArticlePriceParner.cs" />
+    <Compile Include="BLL\Article\ArticlePriceParnerFamily.cs" />
+    <Compile Include="BLL\Article\ArticleSubFamily.cs" />
+    <Compile Include="BLL\Article\ArticleSubFamilyPricePartner.cs" />
+    <Compile Include="BLL\Article\ArticleSubFamilyPricePartnerFamily.cs" />
+    <Compile Include="BLL\Article\Brand.cs" />
+    <Compile Include="BLL\Article\Nomenclature.cs" />
+    <Compile Include="BLL\Article\Price.cs" />
+    <Compile Include="BLL\Article\Subscription.cs" />
+    <Compile Include="BLL\Article\SubscriptionPartner.cs" />
+    <Compile Include="BLL\Parameter\Activity.cs" />
+    <Compile Include="BLL\Parameter\Affair.cs" />
+    <Compile Include="BLL\Parameter\AffairFile.cs" />
+    <Compile Include="BLL\Parameter\AffairHeader.cs" />
+    <Compile Include="BLL\Parameter\ArticleFamilyPartnerFamilyVat.cs" />
+    <Compile Include="BLL\Parameter\ArticleFamilyPartnerVat.cs" />
+    <Compile Include="BLL\Parameter\ArticlePartnerFamilyVat.cs" />
+    <Compile Include="BLL\Parameter\ArticlePartnerVat.cs" />
+    <Compile Include="BLL\Parameter\ArticleSubFamilyPartnerFamilyVat.cs" />
+    <Compile Include="BLL\Parameter\ArticleSubFamilyPartnerVat.cs" />
+    <Compile Include="BLL\Parameter\Country.cs" />
+    <Compile Include="BLL\Parameter\CountryCurrency.cs" />
+    <Compile Include="BLL\Parameter\InventoryHeader.cs" />
+    <Compile Include="BLL\Parameter\InventoryLine.cs" />
+    <Compile Include="BLL\Parameter\Parameter.cs" />
+    <Compile Include="BLL\Parameter\Period.cs" />
+    <Compile Include="BLL\Parameter\SelectorColumn.cs" />
+    <Compile Include="BLL\Parameter\SelectorScreen.cs" />
+    <Compile Include="BLL\Parameter\Town.cs" />
+    <Compile Include="BLL\Parameter\Unit.cs" />
+    <Compile Include="BLL\Parameter\UnitConversion.cs" />
+    <Compile Include="BLL\Parameter\Vat.cs" />
+    <Compile Include="BLL\Partner\Address.cs" />
+    <Compile Include="BLL\Partner\AddressLine.cs" />
+    <Compile Include="BLL\Partner\AddressType.cs" />
+    <Compile Include="BLL\Partner\Partner.cs" />
+    <Compile Include="BLL\Partner\PartnerAddress.cs" />
+    <Compile Include="BLL\Partner\PartnerContact.cs" />
+    <Compile Include="BLL\Partner\PartnerFamily.cs" />
+    <Compile Include="BLL\Partner\PartnerFile.cs" />
+    <Compile Include="BLL\Partner\PartnerPartnerFamily.cs" />
+    <Compile Include="BLL\Table.cs" />
+    <Compile Include="BLL\Tables.cs" />
+    <Compile Include="BLL\Trade\Header.cs" />
+    <Compile Include="BLL\Trade\HeaderFile.cs" />
+    <Compile Include="BLL\Trade\HeaderFreeReference.cs" />
+    <Compile Include="BLL\Trade\HeaderLine.cs" />
+    <Compile Include="BLL\Trade\HeaderLineType.cs" />
+    <Compile Include="BLL\Trade\HeaderOrigin.cs" />
+    <Compile Include="BLL\Trade\HeaderPartnerAddress.cs" />
+    <Compile Include="BLL\Trade\HeaderStatus.cs" />
+    <Compile Include="BLL\Trade\HeaderStatusStep.cs" />
+    <Compile Include="BLL\Trade\Payment.cs" />
+    <Compile Include="BLL\Trade\PaymentMode.cs" />
+    <Compile Include="BLL\Trade\Reconciliation.cs" />
+    <Compile Include="BLL\User\Group.cs" />
+    <Compile Include="BLL\User\GroupModule.cs" />
+    <Compile Include="BLL\User\GroupSelectorColumn.cs" />
+    <Compile Include="BLL\User\Module.cs" />
+    <Compile Include="BLL\User\User.cs" />
+    <Compile Include="BLL\User\UserActivity.cs" />
+    <Compile Include="BLL\User\UserGroup.cs" />
+    <Compile Include="BLL\User\UserModule.cs" />
+    <Compile Include="BLL\User\UserSelectorColumn.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Article\ArticleFamily\ArticleFamilies.cs" />
+    <Compile Include="Services\Article\ArticleFamily\ArticleFamiliesResponse.cs" />
+    <Compile Include="Services\Article\ArticleFamily\ArticleFamiliesService.cs" />
+    <Compile Include="Services\Article\ArticleSubFamily\ArticleSubFamilies.cs" />
+    <Compile Include="Services\Article\ArticleSubFamily\ArticleSubFamiliesResponse.cs" />
+    <Compile Include="Services\Article\ArticleSubFamily\ArticleSubFamiliesService.cs" />
+    <Compile Include="Services\Article\Article\Articles.cs" />
+    <Compile Include="Services\Article\Article\ArticlesResponse.cs" />
+    <Compile Include="Services\Article\Article\ArticlesService.cs" />
+    <Compile Include="Services\Article\Brand\Brands.cs" />
+    <Compile Include="Services\Article\Brand\BrandsResponse.cs" />
+    <Compile Include="Services\Article\Brand\BrandsService.cs" />
+    <Compile Include="Services\Article\Nomenclature\Nomenclatures.cs" />
+    <Compile Include="Services\Article\Nomenclature\NomenclaturesResponse.cs" />
+    <Compile Include="Services\Article\Nomenclature\NomenclaturesService.cs" />
+    <Compile Include="Services\Article\PriceDetermination\PriceDetermination.cs" />
+    <Compile Include="Services\Article\PriceDetermination\PriceDeterminationResponse.cs" />
+    <Compile Include="Services\Article\PriceDetermination\PriceDeterminationService.cs" />
+    <Compile Include="Services\Article\Price\Prices.cs" />
+    <Compile Include="Services\Article\Price\PricesResponse.cs" />
+    <Compile Include="Services\Article\Price\PricesService.cs" />
+    <Compile Include="Utils\AppHost.cs" />
+    <Compile Include="Utils\Datas.cs" />
+    <Compile Include="Utils\DataStorage.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

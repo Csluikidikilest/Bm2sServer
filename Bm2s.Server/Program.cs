@@ -1,14 +1,14 @@
-﻿using Bm2s.Data.BLL.Article;
-using Bm2s.Data.BLL.Parameter;
-using Bm2s.Data.BLL.Partner;
-using Bm2s.Data.BLL.Trade;
-using Bm2s.Data.BLL.User;
-using Bm2s.Data.Utils;
+﻿using Bm2s.Data.Common.BLL.Article;
+using Bm2s.Data.Common.BLL.Parameter;
+using Bm2s.Data.Common.BLL.Partner;
+using Bm2s.Data.Common.BLL.Trade;
+using Bm2s.Data.Common.BLL.User;
+using Bm2s.Data.Common.Utils;
 using ServiceStack.OrmLite;
 using System;
 using System.Configuration;
 using System.Data;
-using Bm2s.Data;
+using Bm2s.Data.Common;
 
 namespace Bm2s.Server
 {

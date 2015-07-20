@@ -32,7 +32,6 @@ F:\Projets\Csharp\Bm2s\Bm2s.Server\bin\Debug\Bm2s.Data.dll
 F:\Projets\Csharp\Bm2s\Bm2s.Server\bin\Debug\Bm2s.Data.pdb
 D:\Dev\Sources\Csharp\bm2s\Bm2s.Server\bin\Debug\Bm2s.Server.exe
 D:\Dev\Sources\Csharp\bm2s\Bm2s.Server\bin\Debug\Bm2s.Server.pdb
-D:\Dev\Sources\Csharp\bm2s\Bm2s.Server\bin\Debug\Bm2s.Data.dll
 D:\Dev\Sources\Csharp\bm2s\Bm2s.Server\bin\Debug\Mono.Security.dll
 D:\Dev\Sources\Csharp\bm2s\Bm2s.Server\bin\Debug\Npgsql.dll
 D:\Dev\Sources\Csharp\bm2s\Bm2s.Server\bin\Debug\ServiceStack.Common.dll
@@ -41,15 +40,12 @@ D:\Dev\Sources\Csharp\bm2s\Bm2s.Server\bin\Debug\ServiceStack.Interfaces.dll
 D:\Dev\Sources\Csharp\bm2s\Bm2s.Server\bin\Debug\ServiceStack.OrmLite.dll
 D:\Dev\Sources\Csharp\bm2s\Bm2s.Server\bin\Debug\ServiceStack.OrmLite.PostgreSQL.dll
 D:\Dev\Sources\Csharp\bm2s\Bm2s.Server\bin\Debug\ServiceStack.OrmLite.SqlServer.dll
-D:\Dev\Sources\Csharp\bm2s\Bm2s.Server\bin\Debug\ServiceStack.Redis.dll
 D:\Dev\Sources\Csharp\bm2s\Bm2s.Server\bin\Debug\ServiceStack.ServiceInterface.dll
 D:\Dev\Sources\Csharp\bm2s\Bm2s.Server\bin\Debug\ServiceStack.Text.dll
-D:\Dev\Sources\Csharp\bm2s\Bm2s.Server\bin\Debug\Bm2s.Data.pdb
 D:\Dev\Sources\Csharp\bm2s\Bm2s.Server\bin\Debug\Npgsql.xml
 D:\Dev\Sources\Csharp\bm2s\Bm2s.Server\bin\Debug\ServiceStack.xml
 D:\Dev\Sources\Csharp\bm2s\Bm2s.Server\bin\Debug\ServiceStack.Common.xml
 D:\Dev\Sources\Csharp\bm2s\Bm2s.Server\bin\Debug\ServiceStack.Interfaces.xml
-D:\Dev\Sources\Csharp\bm2s\Bm2s.Server\bin\Debug\ServiceStack.Redis.xml
 D:\Dev\Sources\Csharp\bm2s\Bm2s.Server\bin\Debug\ServiceStack.Text.xml
 D:\Dev\Sources\Csharp\bm2s\Bm2s.Server\bin\Debug\de\Npgsql.resources.dll
 D:\Dev\Sources\Csharp\bm2s\Bm2s.Server\bin\Debug\es\Npgsql.resources.dll
@@ -91,3 +87,5 @@ D:\Dev\Projets\Bm2s\Bm2s.Server\bin\Debug\zh-CN\Npgsql.resources.dll
 D:\Dev\Projets\Bm2s\Bm2s.Server\obj\Debug\Bm2s.Server.csprojResolveAssemblyReference.cache
 D:\Dev\Projets\Bm2s\Bm2s.Server\obj\Debug\Bm2s.Server.exe
 D:\Dev\Projets\Bm2s\Bm2s.Server\obj\Debug\Bm2s.Server.pdb
+D:\Dev\Sources\Csharp\bm2s\Bm2s.Server\bin\Debug\Bm2s.Data.Common.dll
+D:\Dev\Sources\Csharp\bm2s\Bm2s.Server\bin\Debug\Bm2s.Data.Common.pdb
