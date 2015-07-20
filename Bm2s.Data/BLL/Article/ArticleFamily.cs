@@ -27,6 +27,10 @@ namespace Bm2s.Data.BLL.Article
 
     public DateTime? EndingDate { get; set; }
 
+    [Required]
+    [StringLength(50)]
+    public string AccountingEntry { get; set; }
+
     [Ignore]
     public List<ArticleSubFamily> ArticleSubFamilies { get; set; }
 
