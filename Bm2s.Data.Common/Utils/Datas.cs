@@ -138,8 +138,8 @@ namespace Bm2s.Data.Common.Utils
         this.DbConnection.CreateTableIfNotExists<ArticleFamilyPricePartner>();
         this.DbConnection.CreateTableIfNotExists<PartnerFamily>();
         this.DbConnection.CreateTableIfNotExists<ArticleFamilyPricePartnerFamily>();
-        this.DbConnection.CreateTableIfNotExists<ArticlePriceParner>();
-        this.DbConnection.CreateTableIfNotExists<ArticlePriceParnerFamily>();
+        this.DbConnection.CreateTableIfNotExists<ArticlePricePartner>();
+        this.DbConnection.CreateTableIfNotExists<ArticlePricePartnerFamily>();
         this.DbConnection.CreateTableIfNotExists<ArticleSubFamilyPricePartner>();
         this.DbConnection.CreateTableIfNotExists<ArticleSubFamilyPricePartnerFamily>();
         this.DbConnection.CreateTableIfNotExists<Nomenclature>();

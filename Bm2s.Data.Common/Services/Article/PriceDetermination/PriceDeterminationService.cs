@@ -43,10 +43,10 @@ namespace Bm2s.Data.Common.Services.Article.PriceDetermination
       response.articleSubFamilyPricePartners = Datas.Instance.DataStorage.ArticleSubFamilyPricePartners.FirstOrDefault(item => item.ArticleSubFamilyId == articleSubFamilyId && item.PartnerId == request.PartnerId && item.StartingDate >= request.Date && (!item.EndingDate.HasValue || request.Date < item.EndingDate.Value));
 
       // Finding the prices of the current article for the partner  families
-      response.articlePriceParnerFamilies.AddRange(Datas.Instance.DataStorage.ArticlePriceParnerFamilies.Where(item => item.ArticleId == request.ArticleId && partnerFamilyId.Contains(item.PartnerFamilyId) && item.StartingDate >= request.Date && (!item.EndingDate.HasValue || request.Date < item.EndingDate.Value)));
+      response.articlePriceParnerFamilies.AddRange(Datas.Instance.DataStorage.ArticlePricePartnerFamilies.Where(item => item.ArticleId == request.ArticleId && partnerFamilyId.Contains(item.PartnerFamilyId) && item.StartingDate >= request.Date && (!item.EndingDate.HasValue || request.Date < item.EndingDate.Value)));
 
       // Finding the prices of the current article for the partner
-      response.articlePriceParners = Datas.Instance.DataStorage.ArticlePriceParners.FirstOrDefault(item => item.ArticleId == request.ArticleId && item.PartnerId == request.PartnerId && item.StartingDate >= request.Date && (!item.EndingDate.HasValue || request.Date < item.EndingDate.Value));
+      response.articlePriceParners = Datas.Instance.DataStorage.ArticlePricePartners.FirstOrDefault(item => item.ArticleId == request.ArticleId && item.PartnerId == request.PartnerId && item.StartingDate >= request.Date && (!item.EndingDate.HasValue || request.Date < item.EndingDate.Value));
 
       return response;
     }

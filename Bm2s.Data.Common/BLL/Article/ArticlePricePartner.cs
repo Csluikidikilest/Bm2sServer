@@ -1,10 +1,9 @@
-﻿using Bm2s.Data.Common.BLL.Partner;
-using ServiceStack.DataAnnotations;
+﻿using ServiceStack.DataAnnotations;
 using System;
 
 namespace Bm2s.Data.Common.BLL.Article
 {
-  public class ArticlePriceParnerFamily : Table
+  public class ArticlePricePartner : Table
   {
     [AutoIncrement]
     [PrimaryKey]
@@ -12,6 +11,8 @@ namespace Bm2s.Data.Common.BLL.Article
 
     [Default(0)]
     public double? Price { get; set; }
+
+    public bool AddPrice { get; set; }
 
     [Default(1)]
     public double? Multiplier { get; set; }
@@ -26,10 +27,10 @@ namespace Bm2s.Data.Common.BLL.Article
     [Ignore]
     public Article Article { get; set; }
 
-    [References(typeof(PartnerFamily))]
-    public int PartnerFamilyId { get; set; }
+    [References(typeof(Partner.Partner))]
+    public int PartnerId { get; set; }
 
     [Ignore]
-    public PartnerFamily PartnerFamily { get; set; }
+    public Partner.Partner Partner { get; set; }
   }
 }

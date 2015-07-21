@@ -22,8 +22,8 @@ namespace Bm2s.Data.Common.Utils
     public Tables<ArticleFamily> ArticleFamilies { get; set; }
     public Tables<ArticleFamilyPricePartner> ArticleFamilyPricePartners { get; set; }
     public Tables<ArticleFamilyPricePartnerFamily> ArticleFamilyPricePartnerFamilies { get; set; }
-    public Tables<ArticlePriceParner> ArticlePriceParners { get; set; }
-    public Tables<ArticlePriceParnerFamily> ArticlePriceParnerFamilies { get; set; }
+    public Tables<ArticlePricePartner> ArticlePricePartners { get; set; }
+    public Tables<ArticlePricePartnerFamily> ArticlePricePartnerFamilies { get; set; }
     public Tables<ArticleSubFamily> ArticleSubFamilies { get; set; }
     public Tables<ArticleSubFamilyPricePartner> ArticleSubFamilyPricePartners { get; set; }
     public Tables<ArticleSubFamilyPricePartnerFamily> ArticleSubFamilyPricePartnerFamilies { get; set; }
@@ -98,8 +98,8 @@ namespace Bm2s.Data.Common.Utils
       this.ArticleFamilies = new Tables<ArticleFamily>(this._ramStorage, this._dbConnection);
       this.ArticleFamilyPricePartners = new Tables<ArticleFamilyPricePartner>(this._ramStorage, this._dbConnection);
       this.ArticleFamilyPricePartnerFamilies = new Tables<ArticleFamilyPricePartnerFamily>(this._ramStorage, this._dbConnection);
-      this.ArticlePriceParners = new Tables<ArticlePriceParner>(this._ramStorage, this._dbConnection);
-      this.ArticlePriceParnerFamilies = new Tables<ArticlePriceParnerFamily>(this._ramStorage, this._dbConnection);
+      this.ArticlePricePartners = new Tables<ArticlePricePartner>(this._ramStorage, this._dbConnection);
+      this.ArticlePricePartnerFamilies = new Tables<ArticlePricePartnerFamily>(this._ramStorage, this._dbConnection);
       this.ArticleSubFamilies = new Tables<ArticleSubFamily>(this._ramStorage, this._dbConnection);
       this.ArticleSubFamilyPricePartners = new Tables<ArticleSubFamilyPricePartner>(this._ramStorage, this._dbConnection);
       this.ArticleSubFamilyPricePartnerFamilies = new Tables<ArticleSubFamilyPricePartnerFamily>(this._ramStorage, this._dbConnection);

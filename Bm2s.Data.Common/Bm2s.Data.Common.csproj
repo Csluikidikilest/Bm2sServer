@@ -72,8 +72,8 @@
     <Compile Include="BLL\Article\ArticleFamily.cs" />
     <Compile Include="BLL\Article\ArticleFamilyPricePartner.cs" />
     <Compile Include="BLL\Article\ArticleFamilyPricePartnerFamily.cs" />
-    <Compile Include="BLL\Article\ArticlePriceParner.cs" />
-    <Compile Include="BLL\Article\ArticlePriceParnerFamily.cs" />
+    <Compile Include="BLL\Article\ArticlePricePartner.cs" />
+    <Compile Include="BLL\Article\ArticlePricePartnerFamily.cs" />
     <Compile Include="BLL\Article\ArticleSubFamily.cs" />
     <Compile Include="BLL\Article\ArticleSubFamilyPricePartner.cs" />
     <Compile Include="BLL\Article\ArticleSubFamilyPricePartnerFamily.cs" />
@@ -137,9 +137,27 @@
     <Compile Include="BLL\User\UserModule.cs" />
     <Compile Include="BLL\User\UserSelectorColumn.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Article\ArticleFamilyPricePartnerFamily\ArticleFamilyPricePartnerFamilies.cs" />
+    <Compile Include="Services\Article\ArticleFamilyPricePartnerFamily\ArticleFamilyPricePartnerFamiliesResponse.cs" />
+    <Compile Include="Services\Article\ArticleFamilyPricePartnerFamily\ArticleFamilyPricePartnerFamiliesService.cs" />
+    <Compile Include="Services\Article\ArticleFamilyPricePartner\ArticleFamilyPricePartners.cs" />
+    <Compile Include="Services\Article\ArticleFamilyPricePartner\ArticleFamilyPricePartnersResponse.cs" />
+    <Compile Include="Services\Article\ArticleFamilyPricePartner\ArticleFamilyPricePartnersService.cs" />
     <Compile Include="Services\Article\ArticleFamily\ArticleFamilies.cs" />
     <Compile Include="Services\Article\ArticleFamily\ArticleFamiliesResponse.cs" />
     <Compile Include="Services\Article\ArticleFamily\ArticleFamiliesService.cs" />
+    <Compile Include="Services\Article\ArticlePricePartnerFamily\ArticlePricePartnerFamilies.cs" />
+    <Compile Include="Services\Article\ArticlePricePartnerFamily\ArticlePricePartnerFamiliesResponse.cs" />
+    <Compile Include="Services\Article\ArticlePricePartnerFamily\ArticlePricePartnerFamiliesService.cs" />
+    <Compile Include="Services\Article\ArticlePricePartner\ArticlePricePartners.cs" />
+    <Compile Include="Services\Article\ArticlePricePartner\ArticlePricePartnersResponse.cs" />
+    <Compile Include="Services\Article\ArticlePricePartner\ArticlePricePartnersService.cs" />
+    <Compile Include="Services\Article\ArticleSubFamilyPricePartnerFamily\ArticleSubFamilyPricePartnerFamilies.cs" />
+    <Compile Include="Services\Article\ArticleSubFamilyPricePartnerFamily\ArticleSubFamilyPricePartnerFamiliesResponse.cs" />
+    <Compile Include="Services\Article\ArticleSubFamilyPricePartnerFamily\ArticleSubFamilyPricePartnerFamiliesService.cs" />
+    <Compile Include="Services\Article\ArticleSubFamilyPricePartner\ArticleSubFamilyPricePartners.cs" />
+    <Compile Include="Services\Article\ArticleSubFamilyPricePartner\ArticleSubFamilyPricePartnersResponse.cs" />
+    <Compile Include="Services\Article\ArticleSubFamilyPricePartner\ArticleSubFamilyPricePartnersService.cs" />
     <Compile Include="Services\Article\ArticleSubFamily\ArticleSubFamilies.cs" />
     <Compile Include="Services\Article\ArticleSubFamily\ArticleSubFamiliesResponse.cs" />
     <Compile Include="Services\Article\ArticleSubFamily\ArticleSubFamiliesService.cs" />
@@ -161,6 +179,12 @@
     <Compile Include="Utils\AppHost.cs" />
     <Compile Include="Utils\Datas.cs" />
     <Compile Include="Utils\DataStorage.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Services\Parameter\Activity\" />
+    <Folder Include="Services\Parameter\AffairFile\" />
+    <Folder Include="Services\Parameter\Affair\" />
+    <Folder Include="Services\Parameter\Parameter\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

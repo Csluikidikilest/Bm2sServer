@@ -10,7 +10,7 @@ namespace Bm2s.Data.Common.Services.Article.PriceDetermination
     {
       this.articleFamilyPricePartnerFamilies = new List<BLL.Article.ArticleFamilyPricePartnerFamily>();
       this.articleSubFamilyPricePartnerFamilies = new List<BLL.Article.ArticleSubFamilyPricePartnerFamily>();
-      this.articlePriceParnerFamilies = new List<BLL.Article.ArticlePriceParnerFamily>();
+      this.articlePriceParnerFamilies = new List<BLL.Article.ArticlePricePartnerFamily>();
     }
 
     public BLL.Article.Price Price { get; set; }
@@ -23,9 +23,9 @@ namespace Bm2s.Data.Common.Services.Article.PriceDetermination
 
     public BLL.Article.ArticleSubFamilyPricePartner articleSubFamilyPricePartners { get; set; }
 
-    public List<BLL.Article.ArticlePriceParnerFamily> articlePriceParnerFamilies { get; set; }
+    public List<BLL.Article.ArticlePricePartnerFamily> articlePriceParnerFamilies { get; set; }
 
-    public BLL.Article.ArticlePriceParner articlePriceParners { get; set; }
+    public BLL.Article.ArticlePricePartner articlePriceParners { get; set; }
 
     public double TotalPrice
     {
@@ -81,7 +81,7 @@ namespace Bm2s.Data.Common.Services.Article.PriceDetermination
           }
 
           // Each price modifier of this article for the partner families
-          foreach (BLL.Article.ArticlePriceParnerFamily item in articlePriceParnerFamilies)
+          foreach (BLL.Article.ArticlePricePartnerFamily item in articlePriceParnerFamilies)
           {
             if (item.Multiplier.HasValue)
             {

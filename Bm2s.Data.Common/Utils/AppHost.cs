@@ -1,4 +1,4 @@
-﻿using Bm2s.Data.Common.Services.Article.ArticleSubFamily;
+﻿using Bm2s.Data.Common.Services.Article.Article;
 using Funq;
 using ServiceStack.OrmLite;
 using ServiceStack.Text;
@@ -9,7 +9,7 @@ namespace Bm2s.Data.Common.Utils
   public class AppHost : AppHostHttpListenerBase
   {
     public AppHost()
-      : base("Bm2s HttpListener", typeof(ArticleSubFamiliesService).Assembly)
+      : base("Bm2s HttpListener", typeof(Articles).Assembly)
     {
     }
 
