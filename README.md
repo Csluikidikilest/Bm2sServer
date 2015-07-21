@@ -1,3 +1,3 @@
 #Bm2s
 ##Introduction
-Bm2s (Buisness Management Services System) is a complete database system
+Bm2s (Business Management Services System) is a complete database system
