@@ -1,8 +1,10 @@
-﻿using Bm2s.Data.Common.BLL.Parameter;
-using ServiceStack.DataAnnotations;
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.Data;
+using System.Linq;
+using Bm2s.Data.Common.BLL.Parameter;
+using Bm2s.Data.Common.Utils;
+using ServiceStack.DataAnnotations;
 
 namespace Bm2s.Data.Common.BLL.Article
 {
@@ -51,5 +53,14 @@ namespace Bm2s.Data.Common.BLL.Article
 
     [Ignore]
     public Unit Unit { get; set; }
+
+    public override void LazyLoad()
+    {
+      base.LazyLoad();
+      this.ArticleFamily = Datas.Instance.DataStorage.ArticleFamilies.FirstOrDefault<ArticleFamily>(item => item.Id == this.ArticleFamilyId);
+      this.ArticleSubFamily = Datas.Instance.DataStorage.ArticleSubFamilies.FirstOrDefault<ArticleSubFamily>(item => item.Id == this.ArticleSubFamilyId);
+      this.Brand = Datas.Instance.DataStorage.Brands.FirstOrDefault<Brand>(item => item.Id == this.BrandId);
+      this.Unit = Datas.Instance.DataStorage.Units.FirstOrDefault<Unit>(item => item.Id == this.UnitId);
+    }
   }
 }

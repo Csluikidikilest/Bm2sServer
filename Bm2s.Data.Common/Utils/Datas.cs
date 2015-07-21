@@ -55,6 +55,9 @@ namespace Bm2s.Data.Common.Utils
             case "postgresql":
               this._dbProvider = PostgreSqlDialect.Provider;
               break;
+            case "mssqlserver":
+              this._dbProvider = SqlServerDialect.Provider;
+              break;
             default:
               this._dbProvider = null;
               break;

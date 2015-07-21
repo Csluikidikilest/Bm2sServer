@@ -3,6 +3,7 @@ using ServiceStack.DataAnnotations;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace Bm2s.Data.Common.BLL.Article
 {
@@ -10,7 +11,7 @@ namespace Bm2s.Data.Common.BLL.Article
   {
     [AutoIncrement]
     [PrimaryKey]
-    public override int Id { get; set; }  
+    public override int Id { get; set; }
 
     [Required]
     [StringLength(250)]
@@ -38,7 +39,7 @@ namespace Bm2s.Data.Common.BLL.Article
     public override void LazyLoad()
     {
       base.LazyLoad();
-      this.ArticleFamily = Datas.Instance.DataStorage.ArticleFamilies.FirstOrDefault(arfa => arfa.Id == this.ArticleFamilyId);
+      this.ArticleFamily = Datas.Instance.DataStorage.ArticleFamilies.FirstOrDefault<ArticleFamily>(arfa => arfa.Id == this.ArticleFamilyId);
     }
   }
 }

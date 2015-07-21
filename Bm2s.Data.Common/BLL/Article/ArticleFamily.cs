@@ -30,13 +30,9 @@ namespace Bm2s.Data.Common.BLL.Article
     [StringLength(50)]
     public string AccountingEntry { get; set; }
 
-    [Ignore]
-    public List<ArticleSubFamily> ArticleSubFamilies { get; set; }
-
     public override void LazyLoad()
     {
       base.LazyLoad();
-      this.ArticleSubFamilies = Datas.Instance.DataStorage.ArticleSubFamilies.Where(arsf => arsf.ArticleFamilyId == this.Id).ToList();
     }
   }
 }

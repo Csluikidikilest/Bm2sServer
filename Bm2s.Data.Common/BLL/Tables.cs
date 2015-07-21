@@ -50,7 +50,18 @@ namespace Bm2s.Data.Common.BLL
 
     public void RemoveAt(int index)
     {
-      throw new NotImplementedException();
+      T item = null;
+      if (this._ramStorage)
+      {
+        item = this._innerList[index];
+        this._innerList.RemoveAt(index);
+      }
+      else
+      {
+        item = this._dbConnection.FirstOrDefault<T>(x => x.Id == index);
+      }
+
+      item.Delete<T>(this._dbConnection);
     }
 
     public T this[int index]
@@ -65,7 +76,7 @@ namespace Bm2s.Data.Common.BLL
         }
         else
         {
-          result = this._dbConnection.Where<T>(x => x.Id == index).FirstOrDefault();
+          result = this._dbConnection.FirstOrDefault<T>(x => x.Id == index);
         }
 
         if (result != null && !result.LazyLoaded)
@@ -118,7 +129,18 @@ namespace Bm2s.Data.Common.BLL
 
     public void CopyTo(T[] array, int arrayIndex)
     {
-      throw new NotImplementedException();
+      int i = 0;
+      List<T> items = this._innerList.Skip(arrayIndex).ToList();
+      foreach(T item in items)
+      {
+        if (!item.LazyLoaded)
+        {
+          item.LazyLoad();
+        }
+
+        array[i] = item;
+        i++;
+      }
     }
 
     public int Count
@@ -173,6 +195,11 @@ namespace Bm2s.Data.Common.BLL
     System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
     {
       return this.GetEnumerator();
+    }
+
+    internal Article.ArticleFamily FirstOrDefault(Func<Article.ArticleFamily, bool> func)
+    {
+      throw new NotImplementedException();
     }
   }
 }

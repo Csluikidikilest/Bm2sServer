@@ -11,7 +11,7 @@ namespace Bm2s.Data.Common.Services.Article.PriceDetermination
     {
       PriceDeterminationResponse response = new PriceDeterminationResponse();
 
-      BLL.Article.Article article = Datas.Instance.DataStorage.Articles.FirstOrDefault(item => item.Id == request.ArticleId);
+      BLL.Article.Article article = Datas.Instance.DataStorage.Articles.FirstOrDefault<BLL.Article.Article>(item => item.Id == request.ArticleId);
 
       int articleFamilyId = 0;
       int articleSubFamilyId = 0;

@@ -24,7 +24,7 @@ namespace Bm2s.Data.Common.BLL
 
       T result = dbConnection.Select<T>(ev).FirstOrDefault();
 
-      if(result != null && lazyLoad)
+      if(result != null && lazyLoad && !result.LazyLoaded)
       {
         result.LazyLoad();
       }
