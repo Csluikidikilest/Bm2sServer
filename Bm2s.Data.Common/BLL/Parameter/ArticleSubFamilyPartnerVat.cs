@@ -1,6 +1,8 @@
 ﻿using Bm2s.Data.Common.BLL.Article;
+using Bm2s.Data.Common.Utils;
 using ServiceStack.DataAnnotations;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace Bm2s.Data.Common.BLL.Parameter
 {
@@ -33,5 +35,16 @@ namespace Bm2s.Data.Common.BLL.Parameter
 
     [References(typeof(Vat))]
     public int VatId { get; set; }
+
+    [Ignore]
+    public Vat Vat { get; set; }
+
+    public override void LazyLoad()
+    {
+      base.LazyLoad();
+      this.ArticleSubFamily = Datas.Instance.DataStorage.ArticleSubFamilies.FirstOrDefault<ArticleSubFamily>(item => item.Id == this.ArticleSubFamilyId);
+      this.Partner = Datas.Instance.DataStorage.Partners.FirstOrDefault<Partner.Partner>(item => item.Id == this.PartnerId);
+      this.Vat = Datas.Instance.DataStorage.Vats.FirstOrDefault<Vat>(item => item.Id == this.VatId);
+    }
   }
 }

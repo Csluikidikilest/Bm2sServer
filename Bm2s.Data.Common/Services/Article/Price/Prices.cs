@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 namespace Bm2s.Data.Common.Services.Article.Price
 {
-  [Route("/bm2s/prices", Verbs = "POST")]
-  [Route("/bm2s/prices/{ArtiId}/{PartId}", Verbs = "GET")]
+  [Route("/bm2s/prices", Verbs = "GET, POST")]
+  [Route("/bm2s/prices/{Ids}", Verbs = "GET")]
   public class Prices : IReturn<PricesResponse>
   {
     public Prices()

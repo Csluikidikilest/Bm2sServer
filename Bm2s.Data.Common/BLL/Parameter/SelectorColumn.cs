@@ -1,5 +1,7 @@
-﻿using ServiceStack.DataAnnotations;
+﻿using System.Linq;
+using ServiceStack.DataAnnotations;
 using System.ComponentModel.DataAnnotations;
+using Bm2s.Data.Common.Utils;
 
 namespace Bm2s.Data.Common.BLL.Parameter
 {
@@ -20,5 +22,11 @@ namespace Bm2s.Data.Common.BLL.Parameter
 
     [Ignore]
     public SelectorScreen SelectorScreen { get; set; }
+
+    public override void LazyLoad()
+    {
+      base.LazyLoad();
+      this.SelectorScreen = Datas.Instance.DataStorage.SelectorScreens.FirstOrDefault<SelectorScreen>(item => item.Id == this.SelectorScreenId);
+    }
   }
 }

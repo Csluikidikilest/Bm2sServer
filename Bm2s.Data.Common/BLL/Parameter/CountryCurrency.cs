@@ -1,5 +1,7 @@
-﻿using ServiceStack.DataAnnotations;
+﻿using Bm2s.Data.Common.Utils;
+using ServiceStack.DataAnnotations;
 using System;
+using System.Linq;
 
 namespace Bm2s.Data.Common.BLL.Parameter
 {
@@ -24,5 +26,12 @@ namespace Bm2s.Data.Common.BLL.Parameter
 
     [Ignore]
     public Unit Unit { get; set; }
+
+    public override void LazyLoad()
+    {
+      base.LazyLoad();
+      this.Country = Datas.Instance.DataStorage.Countries.FirstOrDefault<Country>(item => item.Id == this.CountryId);
+      this.Unit = Datas.Instance.DataStorage.Units.FirstOrDefault<Unit>(item => item.Id == this.UnitId);
+    }
   }
 }

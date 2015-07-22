@@ -176,15 +176,37 @@
     <Compile Include="Services\Article\Price\Prices.cs" />
     <Compile Include="Services\Article\Price\PricesResponse.cs" />
     <Compile Include="Services\Article\Price\PricesService.cs" />
+    <Compile Include="Services\Parameter\Activity\Activities.cs" />
+    <Compile Include="Services\Parameter\Activity\ActivitiesResponse.cs" />
+    <Compile Include="Services\Parameter\Activity\ActivitiesService.cs" />
+    <Compile Include="Services\Parameter\Affair\Affairs.cs" />
+    <Compile Include="Services\Parameter\Affair\AffairsResponse.cs" />
+    <Compile Include="Services\Parameter\Affair\AffairsService.cs" />
     <Compile Include="Utils\AppHost.cs" />
     <Compile Include="Utils\Datas.cs" />
     <Compile Include="Utils\DataStorage.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Services\Parameter\Activity\" />
     <Folder Include="Services\Parameter\AffairFile\" />
-    <Folder Include="Services\Parameter\Affair\" />
+    <Folder Include="Services\Parameter\AffairHeader\" />
+    <Folder Include="Services\Parameter\ArticleFamilyPartnerFamilyVat\" />
+    <Folder Include="Services\Parameter\ArticleFamilyPartnerVat\" />
+    <Folder Include="Services\Parameter\ArticlePartnerFamilyVat\" />
+    <Folder Include="Services\Parameter\ArticlePartnerVat\" />
+    <Folder Include="Services\Parameter\ArticleSubFamilyPartnerFamilyVat\" />
+    <Folder Include="Services\Parameter\ArticleSubFamilyPartnerVat\" />
+    <Folder Include="Services\Parameter\CountryCurrency\" />
+    <Folder Include="Services\Parameter\Country\" />
+    <Folder Include="Services\Parameter\InventoryHeader\" />
+    <Folder Include="Services\Parameter\InventoryLine\" />
     <Folder Include="Services\Parameter\Parameter\" />
+    <Folder Include="Services\Parameter\Period\" />
+    <Folder Include="Services\Parameter\SelectorColumn\" />
+    <Folder Include="Services\Parameter\SelectorScreen\" />
+    <Folder Include="Services\Parameter\Town\" />
+    <Folder Include="Services\Parameter\UnitConversion\" />
+    <Folder Include="Services\Parameter\Unit\" />
+    <Folder Include="Services\Parameter\Vat\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

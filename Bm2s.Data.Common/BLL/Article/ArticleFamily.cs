@@ -29,10 +29,5 @@ namespace Bm2s.Data.Common.BLL.Article
 
     [StringLength(50)]
     public string AccountingEntry { get; set; }
-
-    public override void LazyLoad()
-    {
-      base.LazyLoad();
-    }
   }
 }

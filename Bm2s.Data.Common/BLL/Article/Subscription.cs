@@ -1,8 +1,9 @@
 ﻿using Bm2s.Data.Common.BLL.Parameter;
+using Bm2s.Data.Common.Utils;
 using ServiceStack.DataAnnotations;
 using System;
 using System.ComponentModel.DataAnnotations;
-
+using System.Linq;
 namespace Bm2s.Data.Common.BLL.Article
 {
   public class Subscription : Table
@@ -34,5 +35,12 @@ namespace Bm2s.Data.Common.BLL.Article
 
     [Ignore]
     public Period Period { get; set; }
+
+    public override void LazyLoad()
+    {
+      base.LazyLoad();
+      this.Article = Datas.Instance.DataStorage.Articles.FirstOrDefault<Article>(item => item.Id == this.ArticleId);
+      this.Period = Datas.Instance.DataStorage.Periods.FirstOrDefault<Period>(item => item.Id == this.PeriodId);
+    }
   }
 }

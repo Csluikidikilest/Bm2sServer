@@ -1,5 +1,7 @@
-﻿using ServiceStack.DataAnnotations;
+﻿using Bm2s.Data.Common.Utils;
+using ServiceStack.DataAnnotations;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace Bm2s.Data.Common.BLL.Parameter
 {
@@ -30,5 +32,12 @@ namespace Bm2s.Data.Common.BLL.Parameter
 
     [Ignore]
     public User.User User { get; set; }
+
+    public override void LazyLoad()
+    {
+      base.LazyLoad();
+      this.Activity = Datas.Instance.DataStorage.Activities.FirstOrDefault<Activity>(item => item.Id == this.ActivityId);
+      this.User = Datas.Instance.DataStorage.Users.FirstOrDefault<User.User>(item => item.Id == this.UserId);
+    }
   }
 }

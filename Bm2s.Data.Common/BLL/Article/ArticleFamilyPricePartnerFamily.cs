@@ -1,6 +1,8 @@
 ﻿using Bm2s.Data.Common.BLL.Partner;
+using Bm2s.Data.Common.Utils;
 using ServiceStack.DataAnnotations;
 using System;
+using System.Linq;
 
 namespace Bm2s.Data.Common.BLL.Article
 {
@@ -31,5 +33,12 @@ namespace Bm2s.Data.Common.BLL.Article
 
     [Ignore]
     public PartnerFamily PartnerFamily { get; set; }
+
+    public override void LazyLoad()
+    {
+      base.LazyLoad();
+      this.ArticleFamily = Datas.Instance.DataStorage.ArticleFamilies.FirstOrDefault<ArticleFamily>(item => item.Id == this.ArticleFamilyId);
+      this.PartnerFamily = Datas.Instance.DataStorage.PartnerFamilies.FirstOrDefault<PartnerFamily>(item => item.Id == this.PartnerFamilyId);
+    }
   }
 }

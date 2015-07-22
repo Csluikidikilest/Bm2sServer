@@ -1,10 +1,9 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.Data;
-using System.Linq;
-using Bm2s.Data.Common.BLL.Parameter;
+﻿using Bm2s.Data.Common.BLL.Parameter;
 using Bm2s.Data.Common.Utils;
 using ServiceStack.DataAnnotations;
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace Bm2s.Data.Common.BLL.Article
 {

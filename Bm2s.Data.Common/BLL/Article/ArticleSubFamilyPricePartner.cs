@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using ServiceStack.DataAnnotations;
 using System;
+using System.Linq;
+using Bm2s.Data.Common.Utils;
 
 namespace Bm2s.Data.Common.BLL.Article
 {
@@ -33,5 +35,12 @@ namespace Bm2s.Data.Common.BLL.Article
 
     [Ignore]
     public Partner.Partner Partner { get; set; }
+
+    public override void LazyLoad()
+    {
+      base.LazyLoad();
+      this.ArticleSubFamily = Datas.Instance.DataStorage.ArticleSubFamilies.FirstOrDefault<ArticleSubFamily>(item => item.Id == this.ArticleSubFamilyId);
+      this.Partner = Datas.Instance.DataStorage.Partners.FirstOrDefault<Partner.Partner>(item => item.Id == this.PartnerId);
+    }
   }
 }
