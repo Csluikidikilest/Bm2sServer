@@ -1,4 +1,6 @@
 ﻿using ServiceStack.DataAnnotations;
+using System.Linq;
+using Bm2s.Data.Common.Utils;
 
 namespace Bm2s.Data.Common.BLL.User
 {
@@ -19,5 +21,12 @@ namespace Bm2s.Data.Common.BLL.User
 
     [Ignore]
     public Group Group { get; set; }
+
+    public override void LazyLoad()
+    {
+      base.LazyLoad();
+      this.User = Datas.Instance.DataStorage.Users.FirstOrDefault<User>(item => item.Id == this.UserId);
+      this.Group = Datas.Instance.DataStorage.Groups.FirstOrDefault<Group>(item => item.Id == this.GroupId);
+    }
   }
 }

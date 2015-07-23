@@ -2,6 +2,8 @@
 using Bm2s.Data.Common.BLL.Parameter;
 using ServiceStack.DataAnnotations;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using Bm2s.Data.Common.Utils;
 
 namespace Bm2s.Data.Common.BLL.Trade
 {
@@ -82,5 +84,17 @@ namespace Bm2s.Data.Common.BLL.Trade
 
     [Ignore]
     public Unit Unit { get; set; }
+
+    public override void LazyLoad()
+    {
+      base.LazyLoad();
+      this.Article = Datas.Instance.DataStorage.Articles.FirstOrDefault<Article.Article>(item => item.Id == this.ArticleId);
+      this.ArticleFamily = Datas.Instance.DataStorage.ArticleFamilies.FirstOrDefault<ArticleFamily>(item => item.Id == this.ArticleFamilyId);
+      this.ArticleSubFamily = Datas.Instance.DataStorage.ArticleSubFamilies.FirstOrDefault<ArticleSubFamily>(item => item.Id == this.ArticleSubFamilyId);
+      this.Brand = Datas.Instance.DataStorage.Brands.FirstOrDefault<Brand>(item => item.Id == this.BrandId);
+      this.HeaderLineType = Datas.Instance.DataStorage.HeaderLineTypes.FirstOrDefault<HeaderLineType>(item => item.Id == this.HeaderLineTypeId);
+      this.Header = Datas.Instance.DataStorage.Headers.FirstOrDefault<Header>(item => item.Id == this.HeaderId);
+      this.Unit = Datas.Instance.DataStorage.Units.FirstOrDefault<Unit>(item => item.Id == this.UnitId);
+    }
   }
 }

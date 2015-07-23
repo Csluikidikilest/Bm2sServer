@@ -131,7 +131,7 @@ namespace Bm2s.Data.Common.BLL
     {
       int i = 0;
       List<T> items = this._innerList.Skip(arrayIndex).ToList();
-      foreach(T item in items)
+      foreach (T item in items)
       {
         if (!item.LazyLoaded)
         {
@@ -161,6 +161,14 @@ namespace Bm2s.Data.Common.BLL
     public bool IsReadOnly
     {
       get { return false; }
+    }
+
+    public void LazyLoad()
+    {
+      foreach (T item in this._innerList)
+      {
+        item.LazyLoad();
+      }
     }
 
     public bool Remove(T item)

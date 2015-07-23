@@ -1,4 +1,6 @@
 ﻿using ServiceStack.DataAnnotations;
+using System.Linq;
+using Bm2s.Data.Common.Utils;
 
 namespace Bm2s.Data.Common.BLL.Partner
 {
@@ -19,5 +21,11 @@ namespace Bm2s.Data.Common.BLL.Partner
 
     [Ignore]
     public PartnerFamily PartnerFamily { get; set; }
+
+    public override void LazyLoad()
+    {
+      base.LazyLoad();
+      this.PartnerFamily = Datas.Instance.DataStorage.PartnerFamilies.FirstOrDefault<PartnerFamily>(item => item.Id == this.PartnerFamilyId);
+    }
   }
 }

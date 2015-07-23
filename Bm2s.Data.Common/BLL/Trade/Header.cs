@@ -1,7 +1,9 @@
 ﻿using Bm2s.Data.Common.BLL.Parameter;
 using ServiceStack.DataAnnotations;
 using System;
+using System.Linq;
 using System.ComponentModel.DataAnnotations;
+using Bm2s.Data.Common.Utils;
 
 namespace Bm2s.Data.Common.BLL.Trade
 {
@@ -46,5 +48,13 @@ namespace Bm2s.Data.Common.BLL.Trade
 
     [Ignore]
     public HeaderStatus HeaderStatus { get; set; }
+
+    public override void LazyLoad()
+    {
+      base.LazyLoad();
+      this.Activity = Datas.Instance.DataStorage.Activities.FirstOrDefault<Activity>(item => item.Id == this.ActivityId);
+      this.User = Datas.Instance.DataStorage.Users.FirstOrDefault<User.User>(item => item.Id == this.UserId);
+      this.HeaderStatus = Datas.Instance.DataStorage.HeaderStatuses.FirstOrDefault<HeaderStatus>(item => item.Id == this.HeaderStatusId);
+    }
   }
 }

@@ -1,6 +1,8 @@
 ﻿using Bm2s.Data.Common.BLL.Parameter;
 using ServiceStack.DataAnnotations;
 using System;
+using System.Linq;
+using Bm2s.Data.Common.Utils;
 
 namespace Bm2s.Data.Common.BLL.Trade
 {
@@ -31,5 +33,13 @@ namespace Bm2s.Data.Common.BLL.Trade
 
     [Ignore]
     public Unit Unit { get; set; }
+
+    public override void LazyLoad()
+    {
+      base.LazyLoad();
+      this.Partner = Datas.Instance.DataStorage.Partners.FirstOrDefault<Partner.Partner>(item => item.Id == this.PartnerId);
+      this.PaymentMode = Datas.Instance.DataStorage.PaymentModes.FirstOrDefault<PaymentMode>(item => item.Id == this.PaymentModeId);
+      this.Unit = Datas.Instance.DataStorage.Units.FirstOrDefault<Unit>(item => item.Id == this.UnitId);
+    }
   }
 }

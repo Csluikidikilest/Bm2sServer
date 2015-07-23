@@ -1,4 +1,6 @@
 ﻿using ServiceStack.DataAnnotations;
+using System.Linq;
+using Bm2s.Data.Common.Utils;
 
 namespace Bm2s.Data.Common.BLL.User
 {
@@ -27,5 +29,13 @@ namespace Bm2s.Data.Common.BLL.User
 
     [Ignore]
     public User Grantor { get; set; }
+
+    public override void LazyLoad()
+    {
+      base.LazyLoad();
+      this.User = Datas.Instance.DataStorage.Users.FirstOrDefault<User>(item => item.Id == this.UserId);
+      this.Module = Datas.Instance.DataStorage.Modules.FirstOrDefault<Module>(item => item.Id == this.ModuleId);
+      this.Grantor = Datas.Instance.DataStorage.Users.FirstOrDefault<User>(item => item.Id == this.GrantorId);
+    }
   }
 }

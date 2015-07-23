@@ -1,5 +1,7 @@
 ﻿using ServiceStack.DataAnnotations;
 using System;
+using System.Linq;
+using Bm2s.Data.Common.Utils;
 
 namespace Bm2s.Data.Common.BLL.Trade
 {
@@ -22,5 +24,12 @@ namespace Bm2s.Data.Common.BLL.Trade
 
     [Ignore]
     public Header HeaderChild { get; set; }
+
+    public override void LazyLoad()
+    {
+      base.LazyLoad();
+      this.HeaderChild = Datas.Instance.DataStorage.Headers.FirstOrDefault<Header>(item => item.Id == this.HeaderChildId);
+      this.HeaderParent = Datas.Instance.DataStorage.Headers.FirstOrDefault<Header>(item => item.Id == this.HeaderParentId);
+    }
   }
 }

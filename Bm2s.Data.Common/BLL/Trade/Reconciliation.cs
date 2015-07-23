@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Bm2s.Data.Common.Utils;
 using ServiceStack.DataAnnotations;
 
 namespace Bm2s.Data.Common.BLL.Trade
@@ -27,5 +28,12 @@ namespace Bm2s.Data.Common.BLL.Trade
 
     [Ignore]
     public HeaderLine HeaderLine { get; set; }
+
+    public override void LazyLoad()
+    {
+      base.LazyLoad();
+      this.Payment = Datas.Instance.DataStorage.Payments.FirstOrDefault<Payment>(item => item.Id == this.PaymentId);
+      this.HeaderLine = Datas.Instance.DataStorage.HeaderLines.FirstOrDefault<HeaderLine>(item => item.Id == this.HeaderLineId);
+    }
   }
 }
