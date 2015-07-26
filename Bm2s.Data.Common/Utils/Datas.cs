@@ -7,9 +7,6 @@ using ServiceStack.OrmLite;
 using System;
 using System.Configuration;
 using System.Data;
-using System.IO;
-using System.Security.Cryptography;
-using System.Text;
 
 namespace Bm2s.Data.Common.Utils
 {
@@ -22,11 +19,6 @@ namespace Bm2s.Data.Common.Utils
     /// Instance of the singleton
     /// </summary>
     private static Datas __instance;
-
-    /// <summary>
-    /// Key for encode/decode
-    /// </summary>
-    private const string Key = "bm2stoolchain";
 
     /// <summary>
     /// Gets the singleton
@@ -250,51 +242,6 @@ namespace Bm2s.Data.Common.Utils
 
       Price pric1 = new Price() { ArticleId = arti11.Id, BasePrice = 13.0, StartingDate = DateTime.Now };
       Datas.Instance.DataStorage.Prices.Add(pric1);
-    }
-
-    /// <summary>
-    /// Decode a string
-    /// </summary>
-    /// <param name="s">The string to decode</param>
-    /// <returns>The string decoded</returns>
-    public static string Decode(string s)
-    {
-      if (string.IsNullOrEmpty(s))
-      {
-        return null;
-      }
-
-      byte[] bytes = Convert.FromBase64String(s);
-      MemoryStream mem = new MemoryStream();
-      DESCryptoServiceProvider des = new DESCryptoServiceProvider();
-      des.IV = Encoding.ASCII.GetBytes(Key);
-      des.Key = des.IV;
-      CryptoStream crypto = new CryptoStream(mem, des.CreateDecryptor(), CryptoStreamMode.Write);
-      crypto.Write(bytes, 0, bytes.Length);
-      crypto.Close();
-      string decode = Encoding.ASCII.GetString(mem.ToArray());
-      mem.Close();
-      return decode;
-    }
-
-    /// <summary>
-    /// Encode a string
-    /// </summary>
-    /// <param name="s">The string to encode</param>
-    /// <returns>The string encoded</returns>
-    public static string Encode(string s)
-    {
-      byte[] bytes = Encoding.ASCII.GetBytes(s);
-      MemoryStream mem = new MemoryStream();
-      DESCryptoServiceProvider des = new DESCryptoServiceProvider();
-      des.IV = Encoding.ASCII.GetBytes(Key);
-      des.Key = des.IV;
-      CryptoStream crypto = new CryptoStream(mem, des.CreateEncryptor(), CryptoStreamMode.Write);
-      crypto.Write(bytes, 0, bytes.Length);
-      crypto.Close();
-      string encode = Convert.ToBase64String(mem.ToArray());
-      mem.Close();
-      return encode;
     }
   }
 }

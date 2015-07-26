@@ -1,7 +1,6 @@
 D:\Dev\Projets\Bm2s\Bm2s.Server\bin\Debug\Bm2s.Server.exe.config
 D:\Dev\Projets\Bm2s\Bm2s.Server\bin\Debug\Bm2s.Server.exe
 D:\Dev\Projets\Bm2s\Bm2s.Server\bin\Debug\Bm2s.Server.pdb
-D:\Dev\Projets\Bm2s\Bm2s.Server\bin\Debug\Bm2s.Data.dll
 D:\Dev\Projets\Bm2s\Bm2s.Server\bin\Debug\Mono.Security.dll
 D:\Dev\Projets\Bm2s\Bm2s.Server\bin\Debug\Npgsql.dll
 D:\Dev\Projets\Bm2s\Bm2s.Server\bin\Debug\ServiceStack.Common.dll
@@ -10,15 +9,12 @@ D:\Dev\Projets\Bm2s\Bm2s.Server\bin\Debug\ServiceStack.Interfaces.dll
 D:\Dev\Projets\Bm2s\Bm2s.Server\bin\Debug\ServiceStack.OrmLite.dll
 D:\Dev\Projets\Bm2s\Bm2s.Server\bin\Debug\ServiceStack.OrmLite.PostgreSQL.dll
 D:\Dev\Projets\Bm2s\Bm2s.Server\bin\Debug\ServiceStack.OrmLite.SqlServer.dll
-D:\Dev\Projets\Bm2s\Bm2s.Server\bin\Debug\ServiceStack.Redis.dll
 D:\Dev\Projets\Bm2s\Bm2s.Server\bin\Debug\ServiceStack.ServiceInterface.dll
 D:\Dev\Projets\Bm2s\Bm2s.Server\bin\Debug\ServiceStack.Text.dll
-D:\Dev\Projets\Bm2s\Bm2s.Server\bin\Debug\Bm2s.Data.pdb
 D:\Dev\Projets\Bm2s\Bm2s.Server\bin\Debug\Npgsql.xml
 D:\Dev\Projets\Bm2s\Bm2s.Server\bin\Debug\ServiceStack.xml
 D:\Dev\Projets\Bm2s\Bm2s.Server\bin\Debug\ServiceStack.Common.xml
 D:\Dev\Projets\Bm2s\Bm2s.Server\bin\Debug\ServiceStack.Interfaces.xml
-D:\Dev\Projets\Bm2s\Bm2s.Server\bin\Debug\ServiceStack.Redis.xml
 D:\Dev\Projets\Bm2s\Bm2s.Server\bin\Debug\ServiceStack.Text.xml
 D:\Dev\Projets\Bm2s\Bm2s.Server\bin\Debug\de\Npgsql.resources.dll
 D:\Dev\Projets\Bm2s\Bm2s.Server\bin\Debug\es\Npgsql.resources.dll
@@ -58,3 +54,5 @@ F:\Projets\Csharp\Bm2s\Bm2s.Server\bin\Debug\zh-CN\Npgsql.resources.dll
 F:\Projets\Csharp\Bm2s\Bm2s.Server\obj\Debug\Bm2s.Server.csprojResolveAssemblyReference.cache
 F:\Projets\Csharp\Bm2s\Bm2s.Server\obj\Debug\Bm2s.Server.exe
 F:\Projets\Csharp\Bm2s\Bm2s.Server\obj\Debug\Bm2s.Server.pdb
+D:\Dev\Projets\Bm2s\Bm2s.Server\bin\Debug\Bm2s.Data.Common.dll
+D:\Dev\Projets\Bm2s\Bm2s.Server\bin\Debug\Bm2s.Data.Common.pdb

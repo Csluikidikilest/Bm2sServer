@@ -185,6 +185,7 @@
     <Compile Include="Utils\AppHost.cs" />
     <Compile Include="Utils\Datas.cs" />
     <Compile Include="Utils\DataStorage.cs" />
+    <Compile Include="Utils\KeyValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\Parameter\AffairFile\" />
