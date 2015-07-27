@@ -12,12 +12,14 @@ namespace Bm2s.Server
       try
       {
         Datas.Instance.CheckDatabaseSchema();
-        string url = string.Format("http://{0}:{1}/", ConfigurationManager.AppSettings["ListeningIp"], ConfigurationManager.AppSettings["ListeningPort"]);
         Console.WriteLine("[OK]");
 
+        Console.Write("Starting Web Services : ");
+        string url = string.Format("http://{0}:{1}/", ConfigurationManager.AppSettings["ListeningIp"], ConfigurationManager.AppSettings["ListeningPort"]);
         AppHost host = new AppHost();
         host.Init();
         host.Start(url);
+        Console.WriteLine("[OK]");
 
         Console.WriteLine("Listening on " + url);
 
