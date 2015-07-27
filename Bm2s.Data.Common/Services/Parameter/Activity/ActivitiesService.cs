@@ -1,10 +1,6 @@
-﻿using Bm2s.Data.Common.Utils;
+﻿using System.Linq;
+using Bm2s.Data.Common.Utils;
 using ServiceStack.ServiceInterface;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Bm2s.Data.Common.Services.Parameter.Activity
 {

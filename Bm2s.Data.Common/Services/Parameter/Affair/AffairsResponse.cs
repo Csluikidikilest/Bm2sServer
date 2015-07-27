@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Bm2s.Data.Common.Services.Parameter.Affair
 {
-  class AffairsResponse
+  public class AffairsResponse
   {
+    public AffairsResponse()
+    {
+      this.Affairs = new List<BLL.Parameter.Affair>();
+    }
+
+    public List<BLL.Parameter.Affair> Affairs { get; set; }
   }
 }
