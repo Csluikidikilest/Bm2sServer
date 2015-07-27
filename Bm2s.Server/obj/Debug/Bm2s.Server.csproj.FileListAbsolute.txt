@@ -56,3 +56,4 @@ F:\Projets\Csharp\Bm2s\Bm2s.Server\obj\Debug\Bm2s.Server.exe
 F:\Projets\Csharp\Bm2s\Bm2s.Server\obj\Debug\Bm2s.Server.pdb
 D:\Dev\Projets\Bm2s\Bm2s.Server\bin\Debug\Bm2s.Data.Common.dll
 D:\Dev\Projets\Bm2s\Bm2s.Server\bin\Debug\Bm2s.Data.Common.pdb
+D:\Dev\Sources\Csharp\bm2s\Bm2s.Server\bin\Debug\Bm2s.Server.exe.config
