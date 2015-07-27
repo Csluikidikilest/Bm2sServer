@@ -4,7 +4,7 @@ using ServiceStack.OrmLite;
 using ServiceStack.Text;
 using ServiceStack.WebHost.Endpoints;
 
-namespace Bm2s.Data.Common.Utils
+namespace Bm2s.Server
 {
   public class AppHost : AppHostHttpListenerBase
   {
@@ -19,7 +19,7 @@ namespace Bm2s.Data.Common.Utils
       JsConfig.EmitCamelCaseNames = true;
       JsConfig.DateHandler = JsonDateHandler.DCJSCompatible;
 
-      container.Register<IDbConnectionFactory>(Utils.Datas.Instance.DbConnectionFactory);
+      container.Register<IDbConnectionFactory>(Bm2s.Data.Common.Utils.Datas.Instance.DbConnectionFactory);
     }
   }
 }

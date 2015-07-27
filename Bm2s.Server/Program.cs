@@ -1,14 +1,6 @@
-﻿using Bm2s.Data.Common.BLL.Article;
-using Bm2s.Data.Common.BLL.Parameter;
-using Bm2s.Data.Common.BLL.Partner;
-using Bm2s.Data.Common.BLL.Trade;
-using Bm2s.Data.Common.BLL.User;
-using Bm2s.Data.Common.Utils;
-using ServiceStack.OrmLite;
+﻿using Bm2s.Data.Common.Utils;
 using System;
 using System.Configuration;
-using System.Data;
-using Bm2s.Data.Common;
 
 namespace Bm2s.Server
 {
@@ -75,6 +67,5 @@ namespace Bm2s.Server
 
       return result;
     }
-
   }
 }

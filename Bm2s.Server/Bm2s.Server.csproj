@@ -72,6 +72,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppHost.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -85,6 +86,14 @@
     <ProjectReference Include="..\Bm2s.Data.Common\Bm2s.Data.Common.csproj">
       <Project>{794dbdc4-a28e-488e-90bc-79526943b5db}</Project>
       <Name>Bm2s.Data.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bm2s.Data.POS\Bm2s.Data.POS.csproj">
+      <Project>{1e8e6d58-0645-4097-b808-ea9b42692ad6}</Project>
+      <Name>Bm2s.Data.POS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bm2s.Data.Project\Bm2s.Data.Project.csproj">
+      <Project>{3cbd160b-ee2b-4c0d-a429-b1cfd581bae2}</Project>
+      <Name>Bm2s.Data.Project</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

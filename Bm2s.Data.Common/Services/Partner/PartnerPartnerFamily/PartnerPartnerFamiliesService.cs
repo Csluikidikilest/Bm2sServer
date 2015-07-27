@@ -1,0 +1,38 @@
+﻿using System.Linq;
+using Bm2s.Data.Common.Utils;
+using ServiceStack.ServiceInterface;
+
+namespace Bm2s.Data.Common.Services.Partner.PartnerPartnerFamily
+{
+  class PartnerPartnerFamiliesService : Service
+  {
+    public object Get(PartnerPartnerFamilies request)
+    {
+      PartnerPartnerFamiliesResponse response = new PartnerPartnerFamiliesResponse();
+
+      if (!request.Ids.Any())
+      {
+        response.PartnerPartnerFamilies.AddRange(Datas.Instance.DataStorage.PartnerPartnerFamilies);
+      }
+      else
+      {
+        response.PartnerPartnerFamilies.AddRange(Datas.Instance.DataStorage.PartnerPartnerFamilies.Where(item => request.Ids.Contains(item.Id)));
+      }
+
+      return response;
+    }
+
+    public object Post(PartnerPartnerFamilies request)
+    {
+      if (request.PartnerPartnerFamily.Id > 0)
+      {
+        Datas.Instance.DataStorage.PartnerPartnerFamilies[request.PartnerPartnerFamily.Id] = request.PartnerPartnerFamily;
+      }
+      else
+      {
+        Datas.Instance.DataStorage.PartnerPartnerFamilies.Add(request.PartnerPartnerFamily);
+      }
+      return request.PartnerPartnerFamily;
+    }
+  }
+}
