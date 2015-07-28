@@ -47,8 +47,17 @@
     <Reference Include="ServiceStack.Interfaces">
       <HintPath>..\packages\ServiceStack.Common.3.9.71\lib\net35\ServiceStack.Interfaces.dll</HintPath>
     </Reference>
-    <Reference Include="ServiceStack.OrmLite">
-      <HintPath>..\packages\ServiceStack.OrmLite.PostgreSQL.3.9.71\lib\net35\ServiceStack.OrmLite.dll</HintPath>
+    <Reference Include="ServiceStack.OrmLite, Version=3.9.71.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.OrmLite.MySql.3.9.71\lib\net35\ServiceStack.OrmLite.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ServiceStack.OrmLite.MySql, Version=3.9.71.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.OrmLite.MySql.3.9.71\lib\net35\ServiceStack.OrmLite.MySql.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ServiceStack.OrmLite.Oracle, Version=3.9.71.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.OrmLite.Oracle.3.9.71\lib\net35\ServiceStack.OrmLite.Oracle.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="ServiceStack.OrmLite.PostgreSQL">
       <HintPath>..\packages\ServiceStack.OrmLite.PostgreSQL.3.9.71\lib\net35\ServiceStack.OrmLite.PostgreSQL.dll</HintPath>

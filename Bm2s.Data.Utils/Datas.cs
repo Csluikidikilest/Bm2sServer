@@ -26,6 +26,12 @@ namespace Bm2s.Data.Utils
         {
           switch (ConfigurationManager.AppSettings["DbProvider"].ToLower())
           {
+            case "oracle":
+              this._dbProvider = OracleDialect.Provider;
+              break;
+            case "mysql" :
+              this._dbProvider = MySqlDialect.Provider;
+              break;
             case "postgresql":
               this._dbProvider = PostgreSqlDialect.Provider;
               break;
