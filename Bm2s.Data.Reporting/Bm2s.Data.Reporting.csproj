@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{01A1DC60-5F17-4570-BCD8-583836E6526A}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{1B11C219-E96B-4F6F-881D-6193EA2D519F}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Bm2s.Server</RootNamespace>
-    <AssemblyName>Bm2s.Server</AssemblyName>
+    <RootNamespace>Bm2s.Data.Reporting</RootNamespace>
+    <AssemblyName>Bm2s.Data.Reporting</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -32,9 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Mono.Security">
-      <HintPath>..\packages\Npgsql.2.2.5\lib\net45\Mono.Security.dll</HintPath>
-    </Reference>
     <Reference Include="Npgsql">
       <HintPath>..\packages\Npgsql.2.2.5\lib\net45\Npgsql.dll</HintPath>
     </Reference>
@@ -48,7 +43,7 @@
       <HintPath>..\packages\ServiceStack.Common.3.9.71\lib\net35\ServiceStack.Interfaces.dll</HintPath>
     </Reference>
     <Reference Include="ServiceStack.OrmLite">
-      <HintPath>..\packages\ServiceStack.OrmLite.PostgreSQL.3.9.71\lib\net35\ServiceStack.OrmLite.dll</HintPath>
+      <HintPath>..\packages\ServiceStack.OrmLite.SqlServer.3.9.71\lib\net35\ServiceStack.OrmLite.dll</HintPath>
     </Reference>
     <Reference Include="ServiceStack.OrmLite.PostgreSQL">
       <HintPath>..\packages\ServiceStack.OrmLite.PostgreSQL.3.9.71\lib\net35\ServiceStack.OrmLite.PostgreSQL.dll</HintPath>
@@ -63,7 +58,6 @@
       <HintPath>..\packages\ServiceStack.Text.3.9.71\lib\net35\ServiceStack.Text.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -72,33 +66,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppHost.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Bm2s.Data.Common\Bm2s.Data.Common.csproj">
-      <Project>{794dbdc4-a28e-488e-90bc-79526943b5db}</Project>
-      <Name>Bm2s.Data.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Bm2s.Data.POS\Bm2s.Data.POS.csproj">
-      <Project>{1e8e6d58-0645-4097-b808-ea9b42692ad6}</Project>
-      <Name>Bm2s.Data.POS</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Bm2s.Data.Project\Bm2s.Data.Project.csproj">
-      <Project>{3cbd160b-ee2b-4c0d-a429-b1cfd581bae2}</Project>
-      <Name>Bm2s.Data.Project</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Bm2s.Data.Reporting\Bm2s.Data.Reporting.csproj">
-      <Project>{1b11c219-e96b-4f6f-881d-6193ea2d519f}</Project>
-      <Name>Bm2s.Data.Reporting</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Bm2s.Data.Utils\Bm2s.Data.Utils.csproj">
       <Project>{41248fd4-c3bf-4462-9a23-8795d30c7214}</Project>
       <Name>Bm2s.Data.Utils</Name>

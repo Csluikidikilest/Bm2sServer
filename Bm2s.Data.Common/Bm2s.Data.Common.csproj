@@ -329,6 +329,12 @@
     <Folder Include="Services\User\GroupSelectorColumn\" />
     <Folder Include="Services\User\UserSelectorColumn\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Bm2s.Data.Utils\Bm2s.Data.Utils.csproj">
+      <Project>{41248fd4-c3bf-4462-9a23-8795d30c7214}</Project>
+      <Name>Bm2s.Data.Utils</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

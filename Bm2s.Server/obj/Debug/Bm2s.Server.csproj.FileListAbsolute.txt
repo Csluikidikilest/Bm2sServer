@@ -89,3 +89,7 @@ D:\Dev\Sources\Csharp\Bm2s\Bm2s.Server\bin\Debug\Bm2s.Data.POS.dll
 D:\Dev\Sources\Csharp\Bm2s\Bm2s.Server\bin\Debug\Bm2s.Data.Project.dll
 D:\Dev\Sources\Csharp\Bm2s\Bm2s.Server\bin\Debug\Bm2s.Data.POS.pdb
 D:\Dev\Sources\Csharp\Bm2s\Bm2s.Server\bin\Debug\Bm2s.Data.Project.pdb
+D:\Dev\Sources\Csharp\bm2s\Bm2s.Server\bin\Debug\Bm2s.Data.Reporting.dll
+D:\Dev\Sources\Csharp\bm2s\Bm2s.Server\bin\Debug\Bm2s.Data.Utils.dll
+D:\Dev\Sources\Csharp\bm2s\Bm2s.Server\bin\Debug\Bm2s.Data.Reporting.pdb
+D:\Dev\Sources\Csharp\bm2s\Bm2s.Server\bin\Debug\Bm2s.Data.Utils.pdb
