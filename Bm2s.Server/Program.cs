@@ -1,6 +1,10 @@
-﻿using Bm2s.Data.Common.Utils;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using ServiceStack.ServiceInterface;
 
 namespace Bm2s.Server
 {
@@ -11,12 +15,18 @@ namespace Bm2s.Server
       Console.Write("Check database schema : ");
       try
       {
-        Datas.Instance.CheckDatabaseSchema();
         Console.WriteLine("[OK]");
+
+        Console.WriteLine("Loading plugins :");
+
+        List<Assembly> assemblies = new List<Assembly>();
+        assemblies.Add(LoadPlugin("Bm2s.Data.Common.dll"));
+        assemblies.Add(LoadPlugin("Bm2s.Data.POS.dll"));
+        Console.WriteLine("Loading plugins : [OK]");
 
         Console.Write("Starting Web Services : ");
         string url = string.Format("http://{0}:{1}/", ConfigurationManager.AppSettings["ListeningIp"], ConfigurationManager.AppSettings["ListeningPort"]);
-        AppHost host = new AppHost();
+        AppHost host = new AppHost(assemblies.ToArray());
         host.Init();
         host.Start(url);
         Console.WriteLine("[OK]");
@@ -48,9 +58,6 @@ namespace Bm2s.Server
           Console.Clear();
           Command("h");
           break;
-        case "test" :
-          Datas.Instance.CreateDatasForTest();
-          break;
         case "h":
         case "help":
           Console.WriteLine();
@@ -68,6 +75,26 @@ namespace Bm2s.Server
       }
 
       return result;
+    }
+
+    public static Assembly LoadPlugin(string assemblyName)
+    {
+      string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "/plugins/" + assemblyName;
+      Assembly assembly = Assembly.LoadFile(path);
+      Type type;
+
+      type = assembly.GetTypes().FirstOrDefault(t => t.Name == "Datas");
+      if (type != null)
+      {
+        var datas = type.GetProperty("Instance").GetValue(null);
+        if (datas == null)
+        {
+          throw new Exception("bad plugins");
+        }
+        type.InvokeMember("CheckDatabaseSchema", BindingFlags.InvokeMethod, null, datas, new object[] { });
+      }
+
+      return assembly;
     }
   }
 }
