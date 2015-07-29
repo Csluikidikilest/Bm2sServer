@@ -77,12 +77,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\PointOfSale\Button.cs" />
+    <Compile Include="BLL\PointOfSale\Screen.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\PointOfSale\Screen\Screens.cs" />
+    <Compile Include="Services\PointOfSale\Screen\ScreensResponse.cs" />
+    <Compile Include="Services\PointOfSale\Screen\ScreensService.cs" />
+    <Compile Include="Utils\AppHost.cs" />
+    <Compile Include="Utils\Datas.cs" />
+    <Compile Include="Utils\DataStorage.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="BLL\" />
-    <Folder Include="Services\" />
-    <Folder Include="Utils\" />
+    <Folder Include="Services\PointOfSale\Button\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bm2s.Data.Utils\Bm2s.Data.Utils.csproj">

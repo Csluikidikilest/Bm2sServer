@@ -1,7 +1,8 @@
-﻿using Bm2s.Data.Common.BLL.Parameter;
-using ServiceStack.DataAnnotations;
-using System.Linq;
+﻿using System.Linq;
+using Bm2s.Data.Common.BLL.Parameter;
 using Bm2s.Data.Common.Utils;
+using Bm2s.Data.Utils.BLL;
+using ServiceStack.DataAnnotations;
 
 namespace Bm2s.Data.Common.BLL.User
 {

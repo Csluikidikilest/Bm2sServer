@@ -1,5 +1,6 @@
-﻿using ServiceStack.DataAnnotations;
-using System;
+﻿using System;
+using Bm2s.Data.Utils.BLL;
+using ServiceStack.DataAnnotations;
 
 namespace Bm2s.Data.Common.BLL.Parameter
 {

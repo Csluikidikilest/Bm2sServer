@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using Bm2s.Data.Common.Utils;
+using Bm2s.Data.Utils.BLL;
 using ServiceStack.DataAnnotations;
 
 namespace Bm2s.Data.Common.BLL.Trade

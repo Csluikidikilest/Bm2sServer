@@ -1,23 +1,15 @@
-﻿using Bm2s.Data.Common.BLL;
+﻿using System.Data;
 using Bm2s.Data.Common.BLL.Article;
 using Bm2s.Data.Common.BLL.Parameter;
 using Bm2s.Data.Common.BLL.Partner;
 using Bm2s.Data.Common.BLL.Trade;
 using Bm2s.Data.Common.BLL.User;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Bm2s.Data.Utils.BLL;
 
 namespace Bm2s.Data.Common.Utils
 {
-  public class DataStorage
+  public class DataStorage : Bm2s.Data.Utils.DataStorage
   {
-    private IDbConnection _dbConnection;
-    private bool _ramStorage;
-
     public Tables<Article> Articles { get; set; }
     public Tables<ArticleFamily> ArticleFamilies { get; set; }
     public Tables<ArticleFamilyPricePartner> ArticleFamilyPricePartners { get; set; }
@@ -49,8 +41,6 @@ namespace Bm2s.Data.Common.Utils
     public Tables<InventoryLine> InventoryLines { get; set; }
     public Tables<Parameter> Parameters { get; set; }
     public Tables<Period> Periods { get; set; }
-    public Tables<SelectorColumn> SelectorColumns { get; set; }
-    public Tables<SelectorScreen> SelectorScreens { get; set; }
     public Tables<Town> Towns { get; set; }
     public Tables<Unit> Units { get; set; }
     public Tables<UnitConversion> UnitConversions { get; set; }
@@ -81,19 +71,15 @@ namespace Bm2s.Data.Common.Utils
 
     public Tables<Group> Groups { get; set; }
     public Tables<GroupModule> GroupModules { get; set; }
-    public Tables<GroupSelectorColumn> GroupSelectorColumns { get; set; }
     public Tables<Module> Modules { get; set; }
     public Tables<User> Users { get; set; }
     public Tables<UserActivity> UserActivities { get; set; }
     public Tables<UserGroup> UserGroups { get; set; }
     public Tables<UserModule> UserModules { get; set; }
-    public Tables<UserSelectorColumn> UserSelectorColumns { get; set; }
 
     public DataStorage(bool ramStorage, IDbConnection dbConnection)
+      : base(ramStorage, dbConnection)
     {
-      this._dbConnection = dbConnection;
-      this._ramStorage = ramStorage;
-
       this.Articles = new Tables<Article>(this._ramStorage, this._dbConnection);
       this.ArticleFamilies = new Tables<ArticleFamily>(this._ramStorage, this._dbConnection);
       this.ArticleFamilyPricePartners = new Tables<ArticleFamilyPricePartner>(this._ramStorage, this._dbConnection);
@@ -125,8 +111,6 @@ namespace Bm2s.Data.Common.Utils
       this.InventoryLines = new Tables<InventoryLine>(this._ramStorage, this._dbConnection);
       this.Parameters = new Tables<Parameter>(this._ramStorage, this._dbConnection);
       this.Periods = new Tables<Period>(this._ramStorage, this._dbConnection);
-      this.SelectorColumns = new Tables<SelectorColumn>(this._ramStorage, this._dbConnection);
-      this.SelectorScreens = new Tables<SelectorScreen>(this._ramStorage, this._dbConnection);
       this.Towns = new Tables<Town>(this._ramStorage, this._dbConnection);
       this.Units = new Tables<Unit>(this._ramStorage, this._dbConnection);
       this.UnitConversions = new Tables<UnitConversion>(this._ramStorage, this._dbConnection);
@@ -157,17 +141,17 @@ namespace Bm2s.Data.Common.Utils
 
       this.Groups = new Tables<Group>(this._ramStorage, this._dbConnection);
       this.GroupModules = new Tables<GroupModule>(this._ramStorage, this._dbConnection);
-      //this.GroupSelectorColumns = new Tables<GroupSelectorColumn>(this._ramStorage, this._dbConnection);
       this.Modules = new Tables<Module>(this._ramStorage, this._dbConnection);
       this.Users = new Tables<User>(this._ramStorage, this._dbConnection);
       this.UserActivities = new Tables<UserActivity>(this._ramStorage, this._dbConnection);
       this.UserGroups = new Tables<UserGroup>(this._ramStorage, this._dbConnection);
       this.UserModules = new Tables<UserModule>(this._ramStorage, this._dbConnection);
-      //this.UserSelectorColumns = new Tables<UserSelectorColumn>(this._ramStorage, this._dbConnection);
     }
 
-    public void LazyLoad()
+    public override void LazyLoad()
     {
+      base.LazyLoad();
+
       this.Articles.LazyLoad();
       this.ArticleFamilies.LazyLoad();
       this.ArticleFamilyPricePartners.LazyLoad();
@@ -199,8 +183,6 @@ namespace Bm2s.Data.Common.Utils
       this.InventoryLines.LazyLoad();
       this.Parameters.LazyLoad();
       this.Periods.LazyLoad();
-      this.SelectorColumns.LazyLoad();
-      this.SelectorScreens.LazyLoad();
       this.Towns.LazyLoad();
       this.Units.LazyLoad();
       this.UnitConversions.LazyLoad();
@@ -231,13 +213,11 @@ namespace Bm2s.Data.Common.Utils
 
       this.Groups.LazyLoad();
       this.GroupModules.LazyLoad();
-      this.GroupSelectorColumns.LazyLoad();
       this.Modules.LazyLoad();
       this.Users.LazyLoad();
       this.UserActivities.LazyLoad();
       this.UserGroups.LazyLoad();
       this.UserModules.LazyLoad();
-      this.UserSelectorColumns.LazyLoad();
     }
   }
 }

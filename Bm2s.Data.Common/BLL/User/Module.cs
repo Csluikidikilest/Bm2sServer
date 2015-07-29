@@ -1,5 +1,6 @@
-﻿using ServiceStack.DataAnnotations;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using Bm2s.Data.Utils.BLL;
+using ServiceStack.DataAnnotations;
 
 namespace Bm2s.Data.Common.BLL.User
 {

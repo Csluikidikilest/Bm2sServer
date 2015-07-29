@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using ServiceStack.OrmLite;
 using ServiceStack.DataAnnotations;
 
-namespace Bm2s.Data.Common.BLL
+namespace Bm2s.Data.Utils.BLL
 {
   public class Table
   {
@@ -24,7 +24,7 @@ namespace Bm2s.Data.Common.BLL
 
       T result = dbConnection.Select<T>(ev).FirstOrDefault();
 
-      if(result != null && lazyLoad && !result.LazyLoaded)
+      if (result != null && lazyLoad && !result.LazyLoaded)
       {
         result.LazyLoad();
       }

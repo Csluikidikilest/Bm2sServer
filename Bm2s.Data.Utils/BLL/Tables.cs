@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 
-namespace Bm2s.Data.Common.BLL
+namespace Bm2s.Data.Utils.BLL
 {
   public class Tables<T> : IList<T> where T : Table
   {
@@ -203,11 +203,6 @@ namespace Bm2s.Data.Common.BLL
     System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
     {
       return this.GetEnumerator();
-    }
-
-    internal Article.ArticleFamily FirstOrDefault(Func<Article.ArticleFamily, bool> func)
-    {
-      throw new NotImplementedException();
     }
   }
 }

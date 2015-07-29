@@ -1,12 +1,11 @@
-﻿using Bm2s.Data.Common.BLL.Article;
+﻿using System;
+using System.Configuration;
+using Bm2s.Data.Common.BLL.Article;
 using Bm2s.Data.Common.BLL.Parameter;
 using Bm2s.Data.Common.BLL.Partner;
 using Bm2s.Data.Common.BLL.Trade;
 using Bm2s.Data.Common.BLL.User;
 using ServiceStack.OrmLite;
-using System;
-using System.Configuration;
-using System.Data;
 
 namespace Bm2s.Data.Common.Utils
 {
@@ -55,6 +54,8 @@ namespace Bm2s.Data.Common.Utils
     /// </summary>
     public override void CheckDatabaseSchema()
     {
+      base.CheckDatabaseSchema();
+
       try
       {
         this.DbConnection.CreateTableIfNotExists<ArticleFamily>();
@@ -94,8 +95,6 @@ namespace Bm2s.Data.Common.Utils
         this.DbConnection.CreateTableIfNotExists<Period>();
         this.DbConnection.CreateTableIfNotExists<Subscription>();
         this.DbConnection.CreateTableIfNotExists<SubscriptionPartner>();
-        this.DbConnection.CreateTableIfNotExists<SelectorScreen>();
-        this.DbConnection.CreateTableIfNotExists<SelectorColumn>();
         this.DbConnection.CreateTableIfNotExists<Town>();
         this.DbConnection.CreateTableIfNotExists<UnitConversion>();
         this.DbConnection.CreateTableIfNotExists<Address>();

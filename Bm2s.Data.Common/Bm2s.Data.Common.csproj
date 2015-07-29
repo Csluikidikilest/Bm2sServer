@@ -107,8 +107,6 @@
     <Compile Include="BLL\Parameter\InventoryLine.cs" />
     <Compile Include="BLL\Parameter\Parameter.cs" />
     <Compile Include="BLL\Parameter\Period.cs" />
-    <Compile Include="BLL\Parameter\SelectorColumn.cs" />
-    <Compile Include="BLL\Parameter\SelectorScreen.cs" />
     <Compile Include="BLL\Parameter\Town.cs" />
     <Compile Include="BLL\Parameter\Unit.cs" />
     <Compile Include="BLL\Parameter\UnitConversion.cs" />
@@ -122,8 +120,6 @@
     <Compile Include="BLL\Partner\PartnerFamily.cs" />
     <Compile Include="BLL\Partner\PartnerFile.cs" />
     <Compile Include="BLL\Partner\PartnerPartnerFamily.cs" />
-    <Compile Include="BLL\Table.cs" />
-    <Compile Include="BLL\Tables.cs" />
     <Compile Include="BLL\Trade\Header.cs" />
     <Compile Include="BLL\Trade\HeaderFile.cs" />
     <Compile Include="BLL\Trade\HeaderFreeReference.cs" />
@@ -138,13 +134,11 @@
     <Compile Include="BLL\Trade\Reconciliation.cs" />
     <Compile Include="BLL\User\Group.cs" />
     <Compile Include="BLL\User\GroupModule.cs" />
-    <Compile Include="BLL\User\GroupSelectorColumn.cs" />
     <Compile Include="BLL\User\Module.cs" />
     <Compile Include="BLL\User\User.cs" />
     <Compile Include="BLL\User\UserActivity.cs" />
     <Compile Include="BLL\User\UserGroup.cs" />
     <Compile Include="BLL\User\UserModule.cs" />
-    <Compile Include="BLL\User\UserSelectorColumn.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Article\ArticleFamilyPricePartnerFamily\ArticleFamilyPricePartnerFamilies.cs" />
     <Compile Include="Services\Article\ArticleFamilyPricePartnerFamily\ArticleFamilyPricePartnerFamiliesResponse.cs" />
@@ -332,12 +326,7 @@
     <Compile Include="Utils\Datas.cs" />
     <Compile Include="Utils\DataStorage.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Services\Parameter\SelectorColumn\" />
-    <Folder Include="Services\Parameter\SelectorScreen\" />
-    <Folder Include="Services\User\GroupSelectorColumn\" />
-    <Folder Include="Services\User\UserSelectorColumn\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Bm2s.Data.Utils\Bm2s.Data.Utils.csproj">
       <Project>{41248fd4-c3bf-4462-9a23-8795d30c7214}</Project>
