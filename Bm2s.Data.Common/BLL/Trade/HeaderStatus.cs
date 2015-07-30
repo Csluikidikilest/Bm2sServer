@@ -18,5 +18,7 @@ namespace Bm2s.Data.Common.BLL.Trade
     public DateTime StartingDate { get; set; }
 
     public DateTime? EndingDate { get; set; }
+
+    public bool InterveneInStock { get; set; }
   }
 }
