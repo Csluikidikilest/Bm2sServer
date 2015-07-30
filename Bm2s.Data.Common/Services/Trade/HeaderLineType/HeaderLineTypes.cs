@@ -5,7 +5,7 @@ namespace Bm2s.Data.Common.Services.Trade.HeaderLineType
 {
   [Route("/bm2s/headerlinetypes", Verbs = "GET, POST")]
   [Route("/bm2s/headerlinetypes/{Ids}", Verbs = "GET")]
-  public class HeaderLineTypes
+  public class HeaderLineTypes : IReturn<HeaderLineTypesResponse>
   {
     public HeaderLineTypes()
     {

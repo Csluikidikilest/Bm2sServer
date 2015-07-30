@@ -5,7 +5,7 @@ namespace Bm2s.Data.Common.Services.Partner.PartnerContact
 {
   [Route("/bm2s/partnercontacts", Verbs = "GET, POST")]
   [Route("/bm2s/partnercontacts/{Ids}", Verbs = "GET")]
-  public class PartnerContacts
+  public class PartnerContacts : IReturn<PartnerContactsResponse>
   {
     public PartnerContacts()
     {

@@ -5,7 +5,7 @@ namespace Bm2s.Data.Common.Services.Parameter.CountryCurrency
 {
   [Route("/bm2s/countrycurrency", Verbs = "GET, POST")]
   [Route("/bm2s/countrycurrency/{Ids}", Verbs = "GET")]
-  public class CountryCurrencies
+  public class CountryCurrencies : IReturn<CountryCurrenciesResponse>
   {
     public CountryCurrencies()
     {

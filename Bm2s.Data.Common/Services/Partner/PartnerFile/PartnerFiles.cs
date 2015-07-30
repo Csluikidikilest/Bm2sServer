@@ -5,7 +5,7 @@ namespace Bm2s.Data.Common.Services.Partner.PartnerFil
 {
   [Route("/bm2s/partnerfiles", Verbs = "GET, POST")]
   [Route("/bm2s/partnerfiles/{Ids}", Verbs = "GET")]
-  public class PartnerFiles
+  public class PartnerFiles : IReturn<PartnerFilesResponse>
   {
     public PartnerFiles()
     {

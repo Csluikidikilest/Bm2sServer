@@ -5,7 +5,7 @@ namespace Bm2s.Data.Common.Services.Trade.HeaderStatusStep
 {
   [Route("/bm2s/headerstatussteps", Verbs = "GET, POST")]
   [Route("/bm2s/headerstatussteps/{Ids}", Verbs = "GET")]
-  public class HeaderStatusSteps
+  public class HeaderStatusSteps : IReturn<HeaderStatusStepsResponse>
   {
     public HeaderStatusSteps()
     {

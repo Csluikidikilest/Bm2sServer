@@ -5,7 +5,7 @@ namespace Bm2s.Data.Common.Services.Parameter.InventoryHeader
 {
   [Route("/bm2s/inventoryheaders", Verbs = "GET, POST")]
   [Route("/bm2s/inventoryheaders/{Ids}", Verbs = "GET")]
-  public class InventoryHeaders
+  public class InventoryHeaders : IReturn<InventoryHeadersResponse>
   {
     public InventoryHeaders()
     {

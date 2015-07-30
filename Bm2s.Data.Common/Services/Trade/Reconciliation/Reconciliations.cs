@@ -5,7 +5,7 @@ namespace Bm2s.Data.Common.Services.Trade.Reconciliation
 {
   [Route("/bm2s/reconciliations", Verbs = "GET, POST")]
   [Route("/bm2s/reconciliations/{Ids}", Verbs = "GET")]
-  public class Reconciliations
+  public class Reconciliations : IReturn<ReconciliationsResponse>
   {
     public Reconciliations()
     {

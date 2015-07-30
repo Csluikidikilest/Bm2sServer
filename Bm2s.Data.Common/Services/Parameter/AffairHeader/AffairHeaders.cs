@@ -5,7 +5,7 @@ namespace Bm2s.Data.Common.Services.Parameter.AffairHeader
 {
   [Route("/bm2s/affairheaders", Verbs = "GET, POST")]
   [Route("/bm2s/affairheaders/{Ids}", Verbs = "GET")]
-  public class AffairHeaders
+  public class AffairHeaders : IReturn<AffairHeadersResponse>
   {
     public AffairHeaders()
     {

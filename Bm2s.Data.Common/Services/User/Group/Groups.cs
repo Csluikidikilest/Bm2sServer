@@ -5,7 +5,7 @@ namespace Bm2s.Data.Common.Services.User.Group
 {
   [Route("/bm2s/groups", Verbs = "GET, POST")]
   [Route("/bm2s/groups/{Ids}", Verbs = "GET")]
-  public class Groups
+  public class Groups : IReturn<GroupsResponse>
   {
     public Groups()
     {

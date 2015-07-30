@@ -19,20 +19,25 @@ namespace Bm2s.Server
 
     static string Url { get; set; }
 
+    static FileSystemWatcher Watcher { get; set; }
+
+    [PermissionSet(SecurityAction.Demand, Name = "FullTrust")]
     static int Main(string[] args)
     {
       PluginsPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + Path.DirectorySeparatorChar + "plugins" + Path.DirectorySeparatorChar;
       Url = string.Format("http://{0}:{1}/", ConfigurationManager.AppSettings["ListeningIp"], ConfigurationManager.AppSettings["ListeningPort"]);
       try
       {
-
         Console.Write("Loading file watcher : ");
-        FileSystemWatcher watcher = new FileSystemWatcher();
-        watcher.Path = PluginsPath;
-        watcher.NotifyFilter = NotifyFilters.LastWrite;
-        watcher.Filter = "*.dll";
-        watcher.Changed += new FileSystemEventHandler(OnChanged);
-        watcher.EnableRaisingEvents = true;
+        Watcher = new FileSystemWatcher();
+        Watcher.Path = PluginsPath;
+        Watcher.NotifyFilter = NotifyFilters.Attributes | NotifyFilters.CreationTime | NotifyFilters.FileName | NotifyFilters.LastAccess | NotifyFilters.LastWrite | NotifyFilters.Size | NotifyFilters.Security;
+        Watcher.Filter = "*.dll";
+        Watcher.Changed += new FileSystemEventHandler(OnChanged);
+        Watcher.Created += new FileSystemEventHandler(OnChanged);
+        Watcher.Deleted += new FileSystemEventHandler(OnChanged);
+        Watcher.Renamed += new RenamedEventHandler(OnRenamed);
+        Watcher.EnableRaisingEvents = true;
         Console.WriteLine("[OK]");
 
         LoadPlugins(false);

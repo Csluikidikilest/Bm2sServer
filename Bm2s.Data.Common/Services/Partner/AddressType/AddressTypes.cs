@@ -5,7 +5,7 @@ namespace Bm2s.Data.Common.Services.Partner.AddressType
 {
   [Route("/bm2s/addresstypes", Verbs = "GET, POST")]
   [Route("/bm2s/addresstypes/{Ids}", Verbs = "GET")]
-  public class AddressTypes
+  public class AddressTypes : IReturn<AddressTypesResponse>
   {
     public AddressTypes()
     {

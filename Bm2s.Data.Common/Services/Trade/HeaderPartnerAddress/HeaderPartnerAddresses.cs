@@ -5,7 +5,7 @@ namespace Bm2s.Data.Common.Services.Trade.HeaderPartnerAddress
 {
   [Route("/bm2s/headerpartneraddresses", Verbs = "GET, POST")]
   [Route("/bm2s/headerpartneraddresses/{Ids}", Verbs = "GET")]
-  public class HeaderPartnerAddresses
+  public class HeaderPartnerAddresses : IReturn<HeaderPartnerAddressesResponse>
   {
     public HeaderPartnerAddresses()
     {

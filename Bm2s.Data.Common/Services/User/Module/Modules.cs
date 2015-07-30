@@ -5,7 +5,7 @@ namespace Bm2s.Data.Common.Services.User.Module
 {
   [Route("/bm2s/modules", Verbs = "GET, POST")]
   [Route("/bm2s/modules/{Ids}", Verbs = "GET")]
-  public class Modules
+  public class Modules : IReturn<ModulesResponse>
   {
     public Modules()
     {

@@ -5,7 +5,7 @@ namespace Bm2s.Data.Common.Services.Parameter.AffairFile
 {
   [Route("/bm2s/affairfiles", Verbs = "GET, POST")]
   [Route("/bm2s/affairfiles/{Ids}", Verbs = "GET")]
-  public class AffairFiles
+  public class AffairFiles : IReturn<AffairFilesResponse>
   {
     public AffairFiles()
     {

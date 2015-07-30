@@ -5,7 +5,7 @@ namespace Bm2s.Data.Common.Services.Parameter.ArticlePartnerFamilyVat
 {
   [Route("/bm2s/articlepartnerfamilyvats", Verbs = "GET, POST")]
   [Route("/bm2s/articlepartnerfamilyvats/{Ids}", Verbs = "GET")]
-  public class ArticlePartnerFamilyVats
+  public class ArticlePartnerFamilyVats : IReturn<ArticlePartnerFamilyVatsResponse>
   {
     public ArticlePartnerFamilyVats()
     {

@@ -5,7 +5,7 @@ namespace Bm2s.Data.Common.Services.Parameter.Unit
 {
   [Route("/bm2s/units", Verbs = "GET, POST")]
   [Route("/bm2s/units/{Ids}", Verbs = "GET")]
-  public class Units
+  public class Units : IReturn<UnitsResponse>
   {
     public Units()
     {

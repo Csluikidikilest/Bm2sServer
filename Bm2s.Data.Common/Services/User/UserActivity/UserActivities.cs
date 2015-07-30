@@ -5,7 +5,7 @@ namespace Bm2s.Data.Common.Services.User.UserActivity
 {
   [Route("/bm2s/useractivities", Verbs = "GET, POST")]
   [Route("/bm2s/useractivities/{Ids}", Verbs = "GET")]
-  public class UserActivities
+  public class UserActivities : IReturn<UserActivitiesResponse>
   {
     public UserActivities()
     {

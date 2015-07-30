@@ -5,7 +5,7 @@ namespace Bm2s.Data.Common.Services.Parameter.Period
 {
   [Route("/bm2s/periods", Verbs = "GET, POST")]
   [Route("/bm2s/periods/{Ids}", Verbs = "GET")]
-  public class Periods
+  public class Periods : IReturn<PeriodsResponse>
   {
     public Periods()
     {

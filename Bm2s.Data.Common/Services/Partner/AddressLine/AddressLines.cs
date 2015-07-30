@@ -5,7 +5,7 @@ namespace Bm2s.Data.Common.Services.Partner.AddressLine
 {
   [Route("/bm2s/addresslines", Verbs = "GET, POST")]
   [Route("/bm2s/addresslines/{Ids}", Verbs = "GET")]
-  public class AddressLines
+  public class AddressLines : IReturn<AddressLinesResponse>
   {
     public AddressLines()
     {
