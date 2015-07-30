@@ -4,34 +4,40 @@ using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Security.Permissions;
 using ServiceStack.ServiceInterface;
 
 namespace Bm2s.Server
 {
   class Program
   {
+    static List<Assembly> Assemblies { get; set; }
+
+    static AppHost Host { get; set; }
+
+    static string PluginsPath { get; set; }
+
+    static string Url { get; set; }
+
     static int Main(string[] args)
     {
-      Console.Write("Check database schema : ");
+      PluginsPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + Path.DirectorySeparatorChar + "plugins" + Path.DirectorySeparatorChar;
+      Url = string.Format("http://{0}:{1}/", ConfigurationManager.AppSettings["ListeningIp"], ConfigurationManager.AppSettings["ListeningPort"]);
       try
       {
+
+        Console.Write("Loading file watcher : ");
+        FileSystemWatcher watcher = new FileSystemWatcher();
+        watcher.Path = PluginsPath;
+        watcher.NotifyFilter = NotifyFilters.LastWrite;
+        watcher.Filter = "*.dll";
+        watcher.Changed += new FileSystemEventHandler(OnChanged);
+        watcher.EnableRaisingEvents = true;
         Console.WriteLine("[OK]");
 
-        Console.WriteLine("Loading plugins :");
+        LoadPlugins(false);
 
-        List<Assembly> assemblies = new List<Assembly>();
-        assemblies.Add(LoadPlugin("Bm2s.Data.Common.dll"));
-        assemblies.Add(LoadPlugin("Bm2s.Data.POS.dll"));
-        Console.WriteLine("Loading plugins : [OK]");
-
-        Console.Write("Starting Web Services : ");
-        string url = string.Format("http://{0}:{1}/", ConfigurationManager.AppSettings["ListeningIp"], ConfigurationManager.AppSettings["ListeningPort"]);
-        AppHost host = new AppHost(assemblies.ToArray());
-        host.Init();
-        host.Start(url);
-        Console.WriteLine("[OK]");
-
-        Console.WriteLine("Listening on " + url);
+        Console.WriteLine("Listening on " + Url);
 
         while (!Command(Console.ReadLine()))
         {
@@ -48,7 +54,7 @@ namespace Bm2s.Server
       return 0;
     }
 
-    public static bool Command(string command)
+    private static bool Command(string command)
     {
       bool result = false;
       switch (command.Trim())
@@ -77,9 +83,39 @@ namespace Bm2s.Server
       return result;
     }
 
-    public static Assembly LoadPlugin(string assemblyName)
+    private static void LoadPlugins(bool restart)
     {
-      string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "/plugins/" + assemblyName;
+      Assemblies = new List<Assembly>();
+      foreach (string path in Directory.GetFiles(PluginsPath).Where(name => name.ToLower().EndsWith(".dll")))
+      {
+        Assemblies.Add(LoadPlugin(path));
+      }
+
+      if (restart)
+      {
+        Console.Write("Restarting Web Services : ");
+      }
+      else
+      {
+        Console.Write("Starting Web Services : ");
+      }
+
+      if (restart)
+      {
+        Host.Stop();
+        Host.Dispose();
+      }
+
+      Host = new AppHost(Assemblies.ToArray());
+      Host.Init();
+      Host.Start(Url);
+      Console.WriteLine("[OK]");
+    }
+
+    private static Assembly LoadPlugin(string path)
+    {
+      Console.Write("Loading " + Path.GetFileNameWithoutExtension(path) + " plugin : ");
+      string assemblyName = Path.GetFileName(path);
       Assembly assembly = Assembly.LoadFile(path);
       Type type;
 
@@ -94,7 +130,18 @@ namespace Bm2s.Server
         type.InvokeMember("CheckDatabaseSchema", BindingFlags.InvokeMethod, null, datas, new object[] { });
       }
 
+      Console.WriteLine("[OK]");
       return assembly;
+    }
+
+    private static void OnChanged(object source, FileSystemEventArgs e)
+    {
+      LoadPlugins(true);
+    }
+
+    private static void OnRenamed(object source, RenamedEventArgs e)
+    {
+      LoadPlugins(true);
     }
   }
 }
