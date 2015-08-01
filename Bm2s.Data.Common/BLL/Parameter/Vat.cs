@@ -15,7 +15,7 @@ namespace Bm2s.Data.Common.BLL.Parameter
     [StringLength(250)]
     public string Code { get; set; }
 
-    public DateTime StaringDate { get; set; }
+    public DateTime StartingDate { get; set; }
 
     public DateTime? EndingDate { get; set; }
 
