@@ -16,7 +16,10 @@ namespace Bm2s.Data.Common.Services.Article.ArticlePricePartnerFamily
 
       if (!request.Ids.Any())
       {
-        response.ArticlePricePartnerFamilies.AddRange(Datas.Instance.DataStorage.ArticlePricePartnerFamilies);
+        response.ArticlePricePartnerFamilies.AddRange(Datas.Instance.DataStorage.ArticlePricePartnerFamilies.Where(item =>
+          (request.PartnerFamilyId == 0 || item.PartnerFamilyId == request.PartnerFamilyId) &&
+          (request.ArticleId == 0 || item.ArticleId == request.ArticleId)
+          ));
       }
       else
       {

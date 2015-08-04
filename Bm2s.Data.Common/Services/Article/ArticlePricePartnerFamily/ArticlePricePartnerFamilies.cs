@@ -16,7 +16,11 @@ namespace Bm2s.Data.Common.Services.Article.ArticlePricePartnerFamily
       this.Ids = new List<int>();
     }
 
+    public int ArticleId { get; set; }
+
     public List<int> Ids { get; set; }
+
+    public int PartnerFamilyId { get; set; }
 
     public BLL.Article.ArticlePricePartnerFamily ArticlePricePartnerFamily { get; set; }
   }

@@ -1,5 +1,6 @@
 ﻿using ServiceStack.ServiceHost;
 using System.Collections.Generic;
+using System;
 
 namespace Bm2s.Data.Common.Services.Article.Article
 {
@@ -11,6 +12,18 @@ namespace Bm2s.Data.Common.Services.Article.Article
     {
       this.Ids = new List<int>();
     }
+
+    public int ArticleFamilyId { get; set; }
+
+    public int ArticleSubFamilyId { get; set; }
+
+    public int BrandId { get; set; }
+
+    public string Code { get; set; }
+
+    public DateTime? Date { get; set; }
+
+    public string Designation { get; set; }
 
     public List<int> Ids { get; set; }
 

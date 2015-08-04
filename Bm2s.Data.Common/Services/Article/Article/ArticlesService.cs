@@ -12,11 +12,18 @@ namespace Bm2s.Data.Common.Services.Article.Article
 
       if (!request.Ids.Any())
       {
-        response.Articles.AddRange(Datas.Instance.DataStorage.Articles);
+        response.Articles.AddRange(Datas.Instance.DataStorage.Articles.Where(item =>
+          (string.IsNullOrWhiteSpace(request.Code) || item.Code.Contains(request.Code)) &&
+          (string.IsNullOrWhiteSpace(request.Designation) || item.Designation.Contains(request.Designation)) &&
+          (request.ArticleFamilyId == 0 || item.ArticleFamilyId == request.ArticleFamilyId) &&
+          (request.ArticleSubFamilyId == 0 || item.ArticleSubFamilyId == request.ArticleSubFamilyId) &&
+          (request.BrandId == 0 || item.BrandId == request.BrandId) &&
+          (!request.Date.HasValue || (request.Date >= item.StartingDate && (!item.EndingDate.HasValue || request.Date < item.EndingDate.Value)))
+          ));
       }
       else
       {
-        response.Articles.AddRange(Datas.Instance.DataStorage.Articles.Where(arti => request.Ids.Contains(arti.Id)));
+        response.Articles.AddRange(Datas.Instance.DataStorage.Articles.Where(item => request.Ids.Contains(item.Id)));
       }
 
       return response;
