@@ -12,7 +12,12 @@ public  class AffairFilesService : Service
 
       if (!request.Ids.Any())
       {
-        response.AffairFiles.AddRange(Datas.Instance.DataStorage.AffairFiles);
+        response.AffairFiles.AddRange(Datas.Instance.DataStorage.AffairFiles.Where(item =>
+          (request.AffairId == 0 || item.AffairId == request.AffairId) &&
+          (string.IsNullOrWhiteSpace(request.Name) || item.Name.Contains(request.Name)) &&
+          (request.UserId == 0 || item.UserId == request.UserId) &&
+          (!request.AddingDate.HasValue || request.AddingDate >= item.AddingDate)
+          ));
       }
       else
       {

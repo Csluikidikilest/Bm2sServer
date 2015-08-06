@@ -12,7 +12,10 @@ namespace Bm2s.Data.Common.Services.Parameter.AffairHeader
 
       if (!request.Ids.Any())
       {
-        response.AffairHeaders.AddRange(Datas.Instance.DataStorage.AffairHeaders);
+        response.AffairHeaders.AddRange(Datas.Instance.DataStorage.AffairHeaders.Where(item =>
+          (request.AffairId == 0 || item.AffairId == request.AffairId) &&
+          (request.HeaderId == 0 || item.HeaderId == request.HeaderId)
+          ));
       }
       else
       {

@@ -12,7 +12,10 @@ namespace Bm2s.Data.Common.Services.Parameter.UnitConversion
 
       if (!request.Ids.Any())
       {
-        response.UnitConversions.AddRange(Datas.Instance.DataStorage.UnitConversions);
+        response.UnitConversions.AddRange(Datas.Instance.DataStorage.UnitConversions.Where(item =>
+          (request.ChildId == 0 || item.ChildId == request.ChildId) &&
+          (request.ParentId == 0 || item.ParentId == request.ParentId)
+          ));
       }
       else
       {

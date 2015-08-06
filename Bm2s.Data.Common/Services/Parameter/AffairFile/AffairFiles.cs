@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ServiceStack.ServiceHost;
 
 namespace Bm2s.Data.Common.Services.Parameter.AffairFile
@@ -12,7 +13,15 @@ namespace Bm2s.Data.Common.Services.Parameter.AffairFile
       this.Ids = new List<int>();
     }
 
+    public DateTime? AddingDate { get; set; }
+
+    public int AffairId { get; set; }
+
     public List<int> Ids { get; set; }
+
+    public string Name { get; set; }
+
+    public int UserId { get; set; }
 
     public BLL.Parameter.AffairFile AffairFile { get; set; }
   }

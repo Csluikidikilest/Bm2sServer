@@ -12,6 +12,8 @@ namespace Bm2s.Data.Common.Services.Parameter.Parameter
       this.Ids = new List<int>();
     }
 
+    public string Code { get; set; }
+
     public List<int> Ids { get; set; }
 
     public BLL.Parameter.Parameter Parameter { get; set; }

@@ -12,7 +12,11 @@ namespace Bm2s.Data.Common.Services.Parameter.UnitConversion
       this.Ids = new List<int>();
     }
 
+    public int ChildId { get; set; }
+
     public List<int> Ids { get; set; }
+
+    public int ParentId { get; set; }
 
     public BLL.Parameter.UnitConversion UnitConversion { get; set; }
   }

@@ -12,7 +12,11 @@ namespace Bm2s.Data.Common.Services.Parameter.Country
 
       if (!request.Ids.Any())
       {
-        response.Countries.AddRange(Datas.Instance.DataStorage.Countries);
+        response.Countries.AddRange(Datas.Instance.DataStorage.Countries.Where(item =>
+          (string.IsNullOrWhiteSpace(request.Code) || item.Code.Contains(request.Code)) &&
+          (string.IsNullOrWhiteSpace(request.Name) || item.Name.Contains(request.Name)) &&
+          (!request.Date.HasValue || (request.Date >= item.StartingDate && (!item.EndingDate.HasValue || request.Date < item.EndingDate.Value)))
+          ));
       }
       else
       {

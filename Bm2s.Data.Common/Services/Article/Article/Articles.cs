@@ -1,6 +1,6 @@
-﻿using ServiceStack.ServiceHost;
+﻿using System;
 using System.Collections.Generic;
-using System;
+using ServiceStack.ServiceHost;
 
 namespace Bm2s.Data.Common.Services.Article.Article
 {

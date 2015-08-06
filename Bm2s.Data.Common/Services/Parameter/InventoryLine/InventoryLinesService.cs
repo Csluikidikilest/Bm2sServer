@@ -12,7 +12,10 @@ namespace Bm2s.Data.Common.Services.Parameter.InventoryLine
 
       if (!request.Ids.Any())
       {
-        response.InventoryLines.AddRange(Datas.Instance.DataStorage.InventoryLines);
+        response.InventoryLines.AddRange(Datas.Instance.DataStorage.InventoryLines.Where(item =>
+          (request.ArticleId == 0 || item.ArticleId == request.ArticleId) &&
+          (request.InventoryHeaderId == 0 || item.InventoryHeaderId == request.InventoryHeaderId)
+          ));
       }
       else
       {

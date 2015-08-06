@@ -12,7 +12,11 @@ namespace Bm2s.Data.Common.Services.Parameter.InventoryLine
       this.Ids = new List<int>();
     }
 
+    public int ArticleId { get; set; }
+
     public List<int> Ids { get; set; }
+
+    public int InventoryHeaderId { get; set; }
 
     public BLL.Parameter.InventoryLine InventoryLine { get; set; }
   }

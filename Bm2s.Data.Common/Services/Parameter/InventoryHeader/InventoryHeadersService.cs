@@ -12,7 +12,10 @@ namespace Bm2s.Data.Common.Services.Parameter.InventoryHeader
 
       if (!request.Ids.Any())
       {
-        response.InventoryHeaders.AddRange(Datas.Instance.DataStorage.InventoryHeaders);
+        response.InventoryHeaders.AddRange(Datas.Instance.DataStorage.InventoryHeaders.Where(item =>
+          (request.Type == 0 || item.Type == request.Type) &&
+          (!request.Date.HasValue || request.Date >= item.Date)
+          ));
       }
       else
       {

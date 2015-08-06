@@ -12,6 +12,10 @@ namespace Bm2s.Data.Common.Services.Parameter.AffairHeader
       this.Ids = new List<int>();
     }
 
+    public int AffairId { get; set; }
+
+    public int HeaderId { get; set; }
+    
     public List<int> Ids { get; set; }
 
     public BLL.Parameter.AffairHeader AffairHeader { get; set; }

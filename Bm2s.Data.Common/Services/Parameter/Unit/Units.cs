@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ServiceStack.ServiceHost;
 
 namespace Bm2s.Data.Common.Services.Parameter.Unit
@@ -11,8 +12,17 @@ namespace Bm2s.Data.Common.Services.Parameter.Unit
     {
       this.Ids = new List<int>();
     }
+    public string Code { get; set; }
+
+    public DateTime? Date { get; set; }
 
     public List<int> Ids { get; set; }
+
+    public bool IsCurrency { get; set; }
+
+    public bool IsPeriod { get; set; }
+
+    public string Name { get; set; }
 
     public BLL.Parameter.Unit Unit { get; set; }
   }

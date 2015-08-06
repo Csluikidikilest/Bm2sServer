@@ -12,7 +12,13 @@ namespace Bm2s.Data.Common.Services.Parameter.ArticleSubFamilyPartnerVat
       this.Ids = new List<int>();
     }
 
+    public int ArticleSubFamilyId { get; set; }
+
     public List<int> Ids { get; set; }
+
+    public int PartnerId { get; set; }
+
+    public int VatId { get; set; }
 
     public BLL.Parameter.ArticleSubFamilyPartnerVat ArticleSubFamilyPartnerVat { get; set; }
   }

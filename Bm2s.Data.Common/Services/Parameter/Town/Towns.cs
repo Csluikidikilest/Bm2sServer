@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ServiceStack.ServiceHost;
 
 namespace Bm2s.Data.Common.Services.Parameter.Town
@@ -12,7 +13,15 @@ namespace Bm2s.Data.Common.Services.Parameter.Town
       this.Ids = new List<int>();
     }
 
+    public int CountryId { get; set; }
+
+    public DateTime? Date { get; set; }
+
     public List<int> Ids { get; set; }
+
+    public string Name { get; set; }
+
+    public string ZipCode { get; set; }
 
     public BLL.Parameter.Town Town { get; set; }
   }

@@ -12,7 +12,12 @@ namespace Bm2s.Data.Common.Services.Parameter.Town
 
       if (!request.Ids.Any())
       {
-        response.Towns.AddRange(Datas.Instance.DataStorage.Towns);
+        response.Towns.AddRange(Datas.Instance.DataStorage.Towns.Where(item =>
+          (request.CountryId == 0 || item.CountryId == request.CountryId) &&
+          (string.IsNullOrWhiteSpace(request.Name) || item.Name.Contains(request.Name)) &&
+          (string.IsNullOrWhiteSpace(request.ZipCode) || item.ZipCode.Contains(request.ZipCode)) &&
+          (!request.Date.HasValue || (request.Date >= item.StartingDate && (!item.EndingDate.HasValue || request.Date < item.EndingDate.Value)))
+          ));
       }
       else
       {

@@ -12,7 +12,9 @@ namespace Bm2s.Data.Common.Services.Parameter.Parameter
 
       if (!request.Ids.Any())
       {
-        response.Parameters.AddRange(Datas.Instance.DataStorage.Parameters);
+        response.Parameters.AddRange(Datas.Instance.DataStorage.Parameters.Where(item =>
+          (string.IsNullOrWhiteSpace(request.Code) || item.Code.Contains(request.Code))
+          ));
       }
       else
       {

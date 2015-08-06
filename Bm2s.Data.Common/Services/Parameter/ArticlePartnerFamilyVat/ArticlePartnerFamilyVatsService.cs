@@ -12,7 +12,11 @@ namespace Bm2s.Data.Common.Services.Parameter.ArticlePartnerFamilyVat
 
       if (!request.Ids.Any())
       {
-        response.ArticlePartnerFamilyVats.AddRange(Datas.Instance.DataStorage.ArticlePartnerFamilyVats);
+        response.ArticlePartnerFamilyVats.AddRange(Datas.Instance.DataStorage.ArticlePartnerFamilyVats.Where(item =>
+          (request.ArticleId == 0 || item.ArticleId == request.ArticleId) &&
+          (request.PartnerFamilyId == 0 || item.PartnerFamilyId == request.PartnerFamilyId) &&
+          (request.VatId == 0 || item.VatId == request.VatId)
+          ));
       }
       else
       {

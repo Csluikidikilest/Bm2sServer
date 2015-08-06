@@ -12,7 +12,11 @@ namespace Bm2s.Data.Common.Services.Parameter.CountryCurrency
 
       if (!request.Ids.Any())
       {
-        response.CountryCurrencies.AddRange(Datas.Instance.DataStorage.CountryCurrencies);
+        response.CountryCurrencies.AddRange(Datas.Instance.DataStorage.CountryCurrencies.Where(item =>
+          (request.CountryId == 0 || item.CountryId == request.CountryId) &&
+          (request.UnitId == 0 || item.UnitId == request.UnitId) &&
+          (!request.Date.HasValue || (request.Date >= item.StartingDate && (!item.EndingDate.HasValue || request.Date < item.EndingDate.Value)))
+          ));
       }
       else
       {
