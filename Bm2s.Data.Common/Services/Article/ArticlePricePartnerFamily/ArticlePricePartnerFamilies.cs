@@ -18,6 +18,8 @@ namespace Bm2s.Data.Common.Services.Article.ArticlePricePartnerFamily
 
     public int ArticleId { get; set; }
 
+    public DateTime? Date { get; set; }
+
     public List<int> Ids { get; set; }
 
     public int PartnerFamilyId { get; set; }

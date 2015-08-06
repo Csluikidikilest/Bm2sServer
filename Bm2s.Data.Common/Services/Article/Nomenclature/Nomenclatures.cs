@@ -12,6 +12,12 @@ namespace Bm2s.Data.Common.Services.Article.Nomenclature
       this.Ids = new List<int>();
     }
 
+    public int ArticleId { get; set; }
+
+    public string Code { get; set; }
+
+    public string Designation { get; set; }
+
     public List<int> Ids { get; set; }
 
     public BLL.Article.Nomenclature Nomenclature { get; set; }

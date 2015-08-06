@@ -12,7 +12,15 @@ namespace Bm2s.Data.Common.Services.Parameter.Affair
       this.Ids = new List<int>();
     }
 
+    public int ActivityId { get; set; }
+
+    public string Code { get; set; }
+
     public List<int> Ids { get; set; }
+
+    public string Name { get; set; }
+
+    public int UserId { get; set; }
 
     public BLL.Parameter.Affair Affair { get; set; }
   }

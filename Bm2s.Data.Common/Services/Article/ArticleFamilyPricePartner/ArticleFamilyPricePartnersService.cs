@@ -18,7 +18,8 @@ namespace Bm2s.Data.Common.Services.Article.ArticleFamilyPricePartner
       {
         response.ArticleFamilyPricePartners.AddRange(Datas.Instance.DataStorage.ArticleFamilyPricePartners.Where(item =>
           (request.PartnerId == 0 || item.PartnerId == request.PartnerId) &&
-          (request.ArticleFamilyId == 0 || item.ArticleFamilyId == request.ArticleFamilyId)
+          (request.ArticleFamilyId == 0 || item.ArticleFamilyId == request.ArticleFamilyId) &&
+          (!request.Date.HasValue || (request.Date >= item.StartingDate && (!item.EndingDate.HasValue || request.Date < item.EndingDate.Value)))
           ));
       }
       else

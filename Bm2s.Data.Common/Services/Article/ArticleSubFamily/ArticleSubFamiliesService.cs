@@ -12,7 +12,13 @@ namespace Bm2s.Data.Common.Services.Article.ArticleSubFamily
 
       if (!request.Ids.Any())
       {
-        response.ArticleSubFamilies.AddRange(Datas.Instance.DataStorage.ArticleSubFamilies);
+        response.ArticleSubFamilies.AddRange(Datas.Instance.DataStorage.ArticleSubFamilies.Where(item =>
+          (string.IsNullOrWhiteSpace(request.AccountingEntry) || item.AccountingEntry.Contains(request.AccountingEntry)) &&
+          (string.IsNullOrWhiteSpace(request.Code) || item.Code.Contains(request.Code)) &&
+          (string.IsNullOrWhiteSpace(request.Designation) || item.Designation.Contains(request.Designation)) &&
+          (request.ArticleFamilyId == 0 || item.ArticleFamilyId == request.ArticleFamilyId) &&
+          (!request.Date.HasValue || (request.Date >= item.StartingDate && (!item.EndingDate.HasValue || request.Date < item.EndingDate.Value)))
+          ));
       }
       else
       {

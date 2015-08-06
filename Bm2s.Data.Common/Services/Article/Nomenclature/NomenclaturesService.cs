@@ -12,7 +12,11 @@ namespace Bm2s.Data.Common.Services.Article.Nomenclature
 
       if (!request.Ids.Any())
       {
-        response.Nomenclatures.AddRange(Datas.Instance.DataStorage.Nomenclatures);
+        response.Nomenclatures.AddRange(Datas.Instance.DataStorage.Nomenclatures.Where(item =>
+          (request.ArticleId == 0 || item.ArticleChildId == request.ArticleId || item.ArticleParentId == request.ArticleId) &&
+          (string.IsNullOrWhiteSpace(request.Code) || item.ArticleChild.Code.Contains(request.Code) || item.ArticleParent.Code.Contains(request.Code)) &&
+          (string.IsNullOrWhiteSpace(request.Designation) || item.ArticleChild.Designation.Contains(request.Designation) || item.ArticleParent.Designation.Contains(request.Designation))
+          ));
       }
       else
       {

@@ -16,7 +16,11 @@ namespace Bm2s.Data.Common.Services.Article.ArticleSubFamilyPricePartnerFamily
 
       if (!request.Ids.Any())
       {
-        response.ArticleSubFamilyPricePartnerFamilies.AddRange(Datas.Instance.DataStorage.ArticleSubFamilyPricePartnerFamilies);
+        response.ArticleSubFamilyPricePartnerFamilies.AddRange(Datas.Instance.DataStorage.ArticleSubFamilyPricePartnerFamilies.Where(item =>
+          (request.PartnerFamilyId == 0 || item.PartnerFamilyId == request.PartnerFamilyId) &&
+          (request.ArticleSubFamilyId == 0 || item.ArticleSubFamilyId == request.ArticleSubFamilyId) &&
+          (!request.Date.HasValue || (request.Date >= item.StartingDate && (!item.EndingDate.HasValue || request.Date < item.EndingDate.Value)))
+          ));
       }
       else
       {

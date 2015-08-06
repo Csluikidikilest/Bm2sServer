@@ -12,6 +12,8 @@ namespace Bm2s.Data.Common.Services.Parameter.Activity
       this.Ids = new List<int>();
     }
 
+    public string CompanyName { get; set; }
+
     public List<int> Ids { get; set; }
 
     public BLL.Parameter.Activity Activity { get; set; }

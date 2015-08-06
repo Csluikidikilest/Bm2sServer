@@ -13,7 +13,10 @@ namespace Bm2s.Data.Common.Services.Article.Price
 
       if (!request.Ids.Any())
       {
-        response.Prices.AddRange(Datas.Instance.DataStorage.Prices);
+        response.Prices.AddRange(Datas.Instance.DataStorage.Prices.Where(item =>
+          (request.ArticleId == 0 || item.ArticleId == request.ArticleId) &&
+          (!request.Date.HasValue || (request.Date >= item.StartingDate && (!item.EndingDate.HasValue || request.Date < item.EndingDate.Value)))
+          ));
       }
       else
       {

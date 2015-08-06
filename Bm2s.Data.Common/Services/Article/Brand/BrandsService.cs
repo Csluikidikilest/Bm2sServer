@@ -12,7 +12,11 @@ namespace Bm2s.Data.Common.Services.Article.Brand
 
       if (!request.Ids.Any())
       {
-        response.Brands.AddRange(Datas.Instance.DataStorage.Brands);
+        response.Brands.AddRange(Datas.Instance.DataStorage.Brands.Where(item =>
+          (string.IsNullOrWhiteSpace(request.Code) || item.Code.Contains(request.Code)) &&
+          (string.IsNullOrWhiteSpace(request.Name) || item.Name.Contains(request.Name)) &&
+          (!request.Date.HasValue || (request.Date >= item.StartingDate && (!item.EndingDate.HasValue || request.Date < item.EndingDate.Value)))
+          ));
       }
       else
       {

@@ -1,5 +1,6 @@
-﻿using ServiceStack.ServiceHost;
+﻿using System;
 using System.Collections.Generic;
+using ServiceStack.ServiceHost;
 
 namespace Bm2s.Data.Common.Services.Article.Brand
 {
@@ -11,8 +12,13 @@ namespace Bm2s.Data.Common.Services.Article.Brand
     {
       this.Ids = new List<int>();
     }
+    public string Code { get; set; }
+
+    public DateTime? Date { get; set; }
 
     public List<int> Ids { get; set; }
+
+    public string Name { get; set; }
 
     public BLL.Article.Brand Brand { get; set; }
   }

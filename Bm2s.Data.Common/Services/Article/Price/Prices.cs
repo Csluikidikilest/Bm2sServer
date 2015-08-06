@@ -1,5 +1,6 @@
-﻿using ServiceStack.ServiceHost;
+﻿using System;
 using System.Collections.Generic;
+using ServiceStack.ServiceHost;
 
 namespace Bm2s.Data.Common.Services.Article.Price
 {
@@ -11,6 +12,10 @@ namespace Bm2s.Data.Common.Services.Article.Price
     {
       this.Ids = new List<int>();
     }
+
+    public int ArticleId { get; set; }
+
+    public DateTime? Date { get; set; }
 
     public List<int> Ids { get; set; }
 

@@ -12,7 +12,9 @@ namespace Bm2s.Data.Common.Services.Parameter.Activity
 
       if (!request.Ids.Any())
       {
-        response.Activities.AddRange(Datas.Instance.DataStorage.Activities);
+        response.Activities.AddRange(Datas.Instance.DataStorage.Activities.Where(item =>
+          (string.IsNullOrWhiteSpace(request.CompanyName) || item.CompanyName.Contains(request.CompanyName))
+          ));
       }
       else
       {
