@@ -12,7 +12,10 @@ namespace Bm2s.Data.Common.Services.Partner.AddressType
 
       if (!request.Ids.Any())
       {
-        response.AddressTypes.AddRange(Datas.Instance.DataStorage.AddressTypes);
+        response.AddressTypes.AddRange(Datas.Instance.DataStorage.AddressTypes.Where(item =>
+          (string.IsNullOrWhiteSpace(request.Code) || item.Code.Contains(request.Code)) &&
+          (string.IsNullOrWhiteSpace(request.Name) || item.Name.Contains(request.Name))
+          ));
       }
       else
       {

@@ -13,6 +13,10 @@ namespace Bm2s.Data.Common.BLL.Partner
 
     [Required]
     [StringLength(250)]
+    public string Code { get; set; }
+
+    [Required]
+    [StringLength(250)]
     public string Name { get; set; }
 
     public DateTime StartingDate { get; set; }

@@ -12,7 +12,9 @@ namespace Bm2s.Data.Common.Services.Partner.AddressLine
 
       if (!request.Ids.Any())
       {
-        response.AddressLines.AddRange(Datas.Instance.DataStorage.AddressLines);
+        response.AddressLines.AddRange(Datas.Instance.DataStorage.AddressLines.Where(item =>
+          (request.AddressId == 0 || item.AddressId == request.AddressId)
+          ));
       }
       else
       {

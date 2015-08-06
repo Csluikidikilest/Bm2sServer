@@ -12,6 +12,8 @@ namespace Bm2s.Data.Common.Services.Partner.AddressLine
       this.Ids = new List<int>();
     }
 
+    public int AddressId { get; set; }
+
     public List<int> Ids { get; set; }
 
     public BLL.Partner.AddressLine AddressLine { get; set; }

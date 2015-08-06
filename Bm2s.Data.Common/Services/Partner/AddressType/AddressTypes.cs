@@ -11,8 +11,11 @@ namespace Bm2s.Data.Common.Services.Partner.AddressType
     {
       this.Ids = new List<int>();
     }
+    public string Code { get; set; }
 
     public List<int> Ids { get; set; }
+
+    public string Name { get; set; }
 
     public BLL.Partner.AddressType AddressType { get; set; }
   }
