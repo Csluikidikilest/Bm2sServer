@@ -12,7 +12,10 @@ namespace Bm2s.Data.Common.Services.User.UserActivity
 
       if (!request.Ids.Any())
       {
-        response.UserActivities.AddRange(Datas.Instance.DataStorage.UserActivities);
+        response.UserActivities.AddRange(Datas.Instance.DataStorage.UserActivities.Where(item =>
+          (request.ActivityId == 0 || item.ActivityId == request.ActivityId) &&
+          (request.UserId == 0 || item.UserId == request.UserId)
+          ));
       }
       else
       {

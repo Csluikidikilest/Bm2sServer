@@ -14,8 +14,8 @@ namespace Bm2s.Data.Common.Services.Parameter.Town
       {
         response.Towns.AddRange(Datas.Instance.DataStorage.Towns.Where(item =>
           (request.CountryId == 0 || item.CountryId == request.CountryId) &&
-          (string.IsNullOrWhiteSpace(request.Name) || item.Name.Contains(request.Name)) &&
-          (string.IsNullOrWhiteSpace(request.ZipCode) || item.ZipCode.Contains(request.ZipCode)) &&
+          (string.IsNullOrWhiteSpace(request.Name) || item.Name.ToLower().Contains(request.Name.ToLower())) &&
+          (string.IsNullOrWhiteSpace(request.ZipCode) || item.ZipCode.ToLower().Contains(request.ZipCode.ToLower())) &&
           (!request.Date.HasValue || (request.Date >= item.StartingDate && (!item.EndingDate.HasValue || request.Date < item.EndingDate.Value)))
           ));
       }

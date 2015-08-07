@@ -12,7 +12,12 @@ namespace Bm2s.Data.Common.Services.Trade.HeaderFile
 
       if (!request.Ids.Any())
       {
-        response.HeaderFiles.AddRange(Datas.Instance.DataStorage.HeaderFiles);
+        response.HeaderFiles.AddRange(Datas.Instance.DataStorage.HeaderFiles.Where(item =>
+          (request.HeaderId == 0 || item.HeaderId == request.HeaderId) &&
+          (string.IsNullOrWhiteSpace(request.Name) || item.Name.ToLower().Contains(request.Name.ToLower())) &&
+          (request.UserId == 0 || item.UserId == request.UserId) &&
+          (!request.AddingDate.HasValue || request.AddingDate >= item.AddingDate)
+          ));
       }
       else
       {

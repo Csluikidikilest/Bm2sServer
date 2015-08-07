@@ -12,7 +12,11 @@ namespace Bm2s.Data.Common.Services.User.GroupModule
 
       if (!request.Ids.Any())
       {
-        response.GroupModules.AddRange(Datas.Instance.DataStorage.GroupModules);
+        response.GroupModules.AddRange(Datas.Instance.DataStorage.GroupModules.Where(item =>
+          (request.GrantorId == 0 || item.GrantorId == request.GrantorId) &&
+          (request.GroupId == 0 || item.GroupId == request.GroupId) &&
+          (request.ModuleId == 0 || item.ModuleId == request.ModuleId)
+          ));
       }
       else
       {

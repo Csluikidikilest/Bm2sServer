@@ -12,7 +12,12 @@ namespace Bm2s.Data.Common.Services.Partner.PartnerFil
 
       if (!request.Ids.Any())
       {
-        response.PartnerFiles.AddRange(Datas.Instance.DataStorage.PartnerFiles);
+        response.PartnerFiles.AddRange(Datas.Instance.DataStorage.PartnerFiles.Where(item =>
+          (request.PartnerId == 0 || item.PartnerId == request.PartnerId) &&
+          (string.IsNullOrWhiteSpace(request.Name) || item.Name.ToLower().Contains(request.Name.ToLower())) &&
+          (request.UserId == 0 || item.UserId == request.UserId) &&
+          (!request.AddingDate.HasValue || request.AddingDate >= item.AddingDate)
+          ));
       }
       else
       {

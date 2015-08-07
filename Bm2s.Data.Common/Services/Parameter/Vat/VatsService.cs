@@ -13,7 +13,7 @@ namespace Bm2s.Data.Common.Services.Parameter.Vat
       if (!request.Ids.Any())
       {
         response.Vats.AddRange(Datas.Instance.DataStorage.Vats.Where(item =>
-          (string.IsNullOrWhiteSpace(request.Code) || item.Code.Contains(request.Code)) &&
+          (string.IsNullOrWhiteSpace(request.Code) || item.Code.ToLower().Contains(request.Code.ToLower())) &&
           (!request.Date.HasValue || (request.Date >= item.StartingDate && (!item.EndingDate.HasValue || request.Date < item.EndingDate.Value)))
           ));
       }

@@ -13,9 +13,9 @@ namespace Bm2s.Data.Common.Services.Article.ArticleFamily
       if (!request.Ids.Any())
       {
         response.ArticleFamilies.AddRange(Datas.Instance.DataStorage.ArticleFamilies.Where(item =>
-          (string.IsNullOrWhiteSpace(request.AccountingEntry) || item.AccountingEntry.Contains(request.AccountingEntry)) &&
-          (string.IsNullOrWhiteSpace(request.Code) || item.Code.Contains(request.Code)) &&
-          (string.IsNullOrWhiteSpace(request.Designation) || item.Designation.Contains(request.Designation)) &&
+          (string.IsNullOrWhiteSpace(request.AccountingEntry) || item.AccountingEntry.ToLower().Contains(request.AccountingEntry.ToLower())) &&
+          (string.IsNullOrWhiteSpace(request.Code) || item.Code.ToLower().Contains(request.Code.ToLower())) &&
+          (string.IsNullOrWhiteSpace(request.Designation) || item.Designation.ToLower().Contains(request.Designation.ToLower())) &&
           (!request.Date.HasValue || (request.Date >= item.StartingDate && (!item.EndingDate.HasValue || request.Date < item.EndingDate.Value)))
           ));
       }

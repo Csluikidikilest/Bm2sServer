@@ -13,8 +13,8 @@ namespace Bm2s.Data.Common.Services.Article.Article
       if (!request.Ids.Any())
       {
         response.Articles.AddRange(Datas.Instance.DataStorage.Articles.Where(item =>
-          (string.IsNullOrWhiteSpace(request.Code) || item.Code.Contains(request.Code)) &&
-          (string.IsNullOrWhiteSpace(request.Designation) || item.Designation.Contains(request.Designation)) &&
+          (string.IsNullOrWhiteSpace(request.Code) || item.Code.ToLower().Contains(request.Code.ToLower())) &&
+          (string.IsNullOrWhiteSpace(request.Designation) || item.Designation.ToLower().Contains(request.Designation.ToLower())) &&
           (request.ArticleFamilyId == 0 || item.ArticleFamilyId == request.ArticleFamilyId) &&
           (request.ArticleSubFamilyId == 0 || item.ArticleSubFamilyId == request.ArticleSubFamilyId) &&
           (request.BrandId == 0 || item.BrandId == request.BrandId) &&

@@ -12,7 +12,11 @@ namespace Bm2s.Data.Common.Services.User.UserModule
 
       if (!request.Ids.Any())
       {
-        response.UserModules.AddRange(Datas.Instance.DataStorage.UserModules);
+        response.UserModules.AddRange(Datas.Instance.DataStorage.UserModules.Where(item =>
+          (request.GrantorId == 0 || item.GrantorId == request.GrantorId) &&
+          (request.ModuleId == 0 || item.ModuleId == request.ModuleId) &&
+          (request.UserId == 0 || item.UserId == request.UserId)
+          ));
       }
       else
       {

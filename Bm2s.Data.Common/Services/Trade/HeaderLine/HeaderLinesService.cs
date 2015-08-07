@@ -12,7 +12,18 @@ namespace Bm2s.Data.Common.Services.Trade.HeaderLine
 
       if (!request.Ids.Any())
       {
-        response.HeaderLines.AddRange(Datas.Instance.DataStorage.HeaderLines);
+        response.HeaderLines.AddRange(Datas.Instance.DataStorage.HeaderLines.Where(item =>
+          (request.ArticleId == 0 || item.ArticleId == request.ArticleId) &&
+          (request.ArticleFamilyId == 0 || item.ArticleFamilyId == request.ArticleFamilyId) &&
+          (request.ArticleSubFamilyId == 0 || item.ArticleSubFamilyId == request.ArticleSubFamilyId) &&
+          (request.BrandId == 0 || item.BrandId == request.BrandId) &&
+          (string.IsNullOrWhiteSpace(request.Code) || item.Code.ToLower().Contains(request.Code.ToLower())) &&
+          (string.IsNullOrWhiteSpace(request.Designation) || item.Designation.ToLower().Contains(request.Designation.ToLower())) &&
+          (request.HeaderId== 0 || item.HeaderId == request.HeaderId) &&
+          (request.HeaderLineTypeId== 0 || item.HeaderLineTypeId== request.HeaderLineTypeId) &&
+          (request.LineNumber== 0 || item.LineNumber== request.LineNumber) &&
+          (request.UnitId == 0 || item.UnitId == request.UnitId)
+          ));
       }
       else
       {

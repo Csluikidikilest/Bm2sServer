@@ -12,7 +12,12 @@ namespace Bm2s.Data.Common.Services.Trade.Payment
 
       if (!request.Ids.Any())
       {
-        response.Payments.AddRange(Datas.Instance.DataStorage.Payments);
+        response.Payments.AddRange(Datas.Instance.DataStorage.Payments.Where(item =>
+          (!request.Date.HasValue || item.Date >= request.Date) &&
+          (request.PartnerId == 0 || item.PartnerId == request.PartnerId) &&
+          (request.PaymentModeId == 0 || item.PaymentModeId == request.PaymentModeId) &&
+          (request.UnitId == 0 || item.UnitId == request.UnitId)
+          ));
       }
       else
       {

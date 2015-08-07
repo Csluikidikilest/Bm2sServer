@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ServiceStack.ServiceHost;
 
 namespace Bm2s.Data.Common.Services.Partner.PartnerContact
@@ -12,7 +13,25 @@ namespace Bm2s.Data.Common.Services.Partner.PartnerContact
       this.Ids = new List<int>();
     }
 
+    public DateTime? Date { get; set; }
+
+    public string Email { get; set; }
+
+    public string FaxNumber { get; set; }
+
+    public string FirstName { get; set; }
+
+    public string Function { get; set; }
+
     public List<int> Ids { get; set; }
+
+    public string LastName { get; set; }
+
+    public string MobilePhoneNumber { get; set; }
+
+    public int PartnerId { get; set; }
+
+    public string PhoneNumber { get; set; }
 
     public BLL.Partner.PartnerContact PartnerContact { get; set; }
   }

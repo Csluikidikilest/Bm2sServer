@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ServiceStack.ServiceHost;
 
 namespace Bm2s.Data.Common.Services.Trade.Header
@@ -12,7 +13,21 @@ namespace Bm2s.Data.Common.Services.Trade.Header
       this.Ids = new List<int>();
     }
 
+    public int ActivityId { get; set; }
+
+    public DateTime? Date { get; set; }
+
+    public string Description { get; set; }
+
+    public int HeaderStatusId { get; set; }
+
     public List<int> Ids { get; set; }
+
+    public bool IsSell { get; set; }
+
+    public string Reference { get; set; }
+
+    public int UserId { get; set; }
 
     public BLL.Trade.Header Header { get; set; }
   }

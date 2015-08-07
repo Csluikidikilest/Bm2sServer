@@ -12,7 +12,12 @@ namespace Bm2s.Data.Common.Services.Trade.HeaderPartnerAddress
 
       if (!request.Ids.Any())
       {
-        response.HeaderPartnerAddresses.AddRange(Datas.Instance.DataStorage.HeaderPartnerAddresses);
+        response.HeaderPartnerAddresses.AddRange(Datas.Instance.DataStorage.HeaderPartnerAddresses.Where(item =>
+          (request.AddressId == 0 || item.AddressId == request.AddressId) &&
+          (request.AddressTypeId == 0 || item.AddressTypeId == request.AddressTypeId) &&
+          (request.HeaderId == 0 || item.HeaderId == request.HeaderId) &&
+          (request.PartnerId == 0 || item.PartnerId == request.PartnerId)
+          ));
       }
       else
       {

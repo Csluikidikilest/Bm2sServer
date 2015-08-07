@@ -12,6 +12,8 @@ namespace Bm2s.Data.Common.Services.Trade.HeaderFreeReference
       this.Ids = new List<int>();
     }
 
+    public int HeaderStatusId { get; set; }
+
     public List<int> Ids { get; set; }
 
     public BLL.Trade.HeaderFreeReference HeaderFreeReference { get; set; }

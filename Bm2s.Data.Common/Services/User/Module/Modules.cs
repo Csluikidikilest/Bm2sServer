@@ -12,7 +12,11 @@ namespace Bm2s.Data.Common.Services.User.Module
       this.Ids = new List<int>();
     }
 
+    public string Code { get; set; }
+
     public List<int> Ids { get; set; }
+
+    public string Name { get; set; }
 
     public BLL.User.Module Module { get; set; }
   }

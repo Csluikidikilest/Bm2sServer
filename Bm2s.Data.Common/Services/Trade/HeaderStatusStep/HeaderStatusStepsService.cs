@@ -12,7 +12,10 @@ namespace Bm2s.Data.Common.Services.Trade.HeaderStatusStep
 
       if (!request.Ids.Any())
       {
-        response.HeaderStatusSteps.AddRange(Datas.Instance.DataStorage.HeaderStatusSteps);
+        response.HeaderStatusSteps.AddRange(Datas.Instance.DataStorage.HeaderStatusSteps.Where(item=>
+          (request.HeaderStatusChildId == 0 || item.HeaderStatusChildId == request.HeaderStatusChildId) &&
+          (request.HeaderStatusParentId == 0 || item.HeaderStatusParentId == request.HeaderStatusParentId)
+          ));
       }
       else
       {

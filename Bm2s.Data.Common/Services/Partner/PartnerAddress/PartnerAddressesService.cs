@@ -12,7 +12,11 @@ namespace Bm2s.Data.Common.Services.Partner.PartnerAddress
 
       if (!request.Ids.Any())
       {
-        response.PartnerAddresses.AddRange(Datas.Instance.DataStorage.PartnerAddresses);
+        response.PartnerAddresses.AddRange(Datas.Instance.DataStorage.PartnerAddresses.Where(item =>
+          (request.AddressId == 0 || item.AddressId == request.AddressId) &&
+          (request.AddressTypeId == 0 || item.AddressTypeId == request.AddressTypeId) &&
+          (request.PartnerId == 0 || item.PartnerId == request.PartnerId)
+          ));
       }
       else
       {

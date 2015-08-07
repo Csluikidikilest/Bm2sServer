@@ -12,7 +12,9 @@ namespace Bm2s.Data.Common.Services.Trade.HeaderFreeReference
 
       if (!request.Ids.Any())
       {
-        response.HeaderFreeReferences.AddRange(Datas.Instance.DataStorage.HeaderFreeReferences);
+        response.HeaderFreeReferences.AddRange(Datas.Instance.DataStorage.HeaderFreeReferences.Where(item =>
+          (request.HeaderStatusId == 0 || item.HeaderStatusId == request.HeaderStatusId)
+          ));
       }
       else
       {

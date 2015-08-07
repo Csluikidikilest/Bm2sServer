@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ServiceStack.ServiceHost;
 
 namespace Bm2s.Data.Common.Services.User.User
@@ -12,7 +13,19 @@ namespace Bm2s.Data.Common.Services.User.User
       this.Ids = new List<int>();
     }
 
+    public DateTime? Date { get; set; }
+
+    public string FirstName { get; set; }
+
+    public string LastName { get; set; }
+
+    public string Login { get; set; }
+
     public List<int> Ids { get; set; }
+
+    public bool IsAdministrator { get; set; }
+
+    public bool IsAnonymous { get; set; }
 
     public BLL.User.User User { get; set; }
   }

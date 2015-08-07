@@ -12,6 +12,10 @@ namespace Bm2s.Data.Common.Services.Trade.HeaderStatusStep
       this.Ids = new List<int>();
     }
 
+    public int HeaderStatusChildId { get; set; }
+
+    public int HeaderStatusParentId { get; set; }
+
     public List<int> Ids { get; set; }
 
     public BLL.Trade.HeaderStatusStep HeaderStatusStep { get; set; }

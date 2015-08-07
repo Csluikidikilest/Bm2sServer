@@ -12,7 +12,11 @@ namespace Bm2s.Data.Common.Services.Trade.HeaderOrigin
 
       if (!request.Ids.Any())
       {
-        response.HeaderOrigins.AddRange(Datas.Instance.DataStorage.HeaderOrigins);
+        response.HeaderOrigins.AddRange(Datas.Instance.DataStorage.HeaderOrigins.Where(item =>
+          (request.HeaderChildId == 0 || item.HeaderChildId == request.HeaderChildId) &&
+          (request.HeaderParentId == 0 || item.HeaderParentId == request.HeaderParentId) &&
+          (!request.Date.HasValue || request.Date >= item.Date)
+          ));
       }
       else
       {

@@ -12,7 +12,10 @@ namespace Bm2s.Data.Common.Services.User.Module
 
       if (!request.Ids.Any())
       {
-        response.Modules.AddRange(Datas.Instance.DataStorage.Modules);
+        response.Modules.AddRange(Datas.Instance.DataStorage.Modules.Where(item =>
+          (string.IsNullOrWhiteSpace(request.Code) || item.Code.ToLower().Contains(request.Code.ToLower())) &&
+          (string.IsNullOrWhiteSpace(request.Name) || item.Name.ToLower().Contains(request.Name.ToLower()))
+          ));
       }
       else
       {

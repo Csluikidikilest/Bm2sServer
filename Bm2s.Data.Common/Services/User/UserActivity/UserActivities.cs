@@ -12,7 +12,11 @@ namespace Bm2s.Data.Common.Services.User.UserActivity
       this.Ids = new List<int>();
     }
 
+    public int ActivityId { get; set; }
+
     public List<int> Ids { get; set; }
+
+    public int UserId { get; set; }
 
     public BLL.User.UserActivity UserActivity { get; set; }
   }

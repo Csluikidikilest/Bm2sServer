@@ -12,7 +12,17 @@ namespace Bm2s.Data.Common.Services.Partner.PartnerContact
 
       if (!request.Ids.Any())
       {
-        response.PartnerContacts.AddRange(Datas.Instance.DataStorage.PartnerContacts);
+        response.PartnerContacts.AddRange(Datas.Instance.DataStorage.PartnerContacts.Where(item =>
+          (string.IsNullOrWhiteSpace(request.Email) || item.Email.ToLower().Contains(request.Email.ToLower())) &&
+          (string.IsNullOrWhiteSpace(request.FaxNumber) || item.FaxNumber.ToLower().Contains(request.FaxNumber.ToLower())) &&
+          (string.IsNullOrWhiteSpace(request.FirstName) || item.FirstName.ToLower().Contains(request.FirstName.ToLower())) &&
+          (string.IsNullOrWhiteSpace(request.Function) || item.Function.ToLower().Contains(request.Function.ToLower())) &&
+          (string.IsNullOrWhiteSpace(request.LastName) || item.LastName.ToLower().Contains(request.LastName.ToLower())) &&
+          (string.IsNullOrWhiteSpace(request.MobilePhoneNumber) || item.MobilePhoneNumber.ToLower().Contains(request.MobilePhoneNumber.ToLower())) &&
+          (string.IsNullOrWhiteSpace(request.PhoneNumber) || item.PhoneNumber.ToLower().Contains(request.PhoneNumber.ToLower())) &&
+          (request.PartnerId == 0 || item.PartnerId == request.PartnerId) &&
+          (!request.Date.HasValue || (request.Date >= item.StartingDate && (!item.EndingDate.HasValue || request.Date < item.EndingDate.Value)))
+          ));
       }
       else
       {

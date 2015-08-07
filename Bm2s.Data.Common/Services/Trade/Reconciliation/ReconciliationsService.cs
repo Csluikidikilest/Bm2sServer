@@ -12,7 +12,10 @@ namespace Bm2s.Data.Common.Services.Trade.Reconciliation
 
       if (!request.Ids.Any())
       {
-        response.Reconciliations.AddRange(Datas.Instance.DataStorage.Reconciliations);
+        response.Reconciliations.AddRange(Datas.Instance.DataStorage.Reconciliations.Where(item =>
+          (request.HeaderLineId == 0 || item.HeaderLineId == request.HeaderLineId) &&
+          (request.PaymentId == 0 || item.PaymentId == request.PaymentId)
+          ));
       }
       else
       {

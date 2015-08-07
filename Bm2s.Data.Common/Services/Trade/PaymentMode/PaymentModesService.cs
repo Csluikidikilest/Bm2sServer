@@ -12,7 +12,11 @@ namespace Bm2s.Data.Common.Services.Trade.PaymentMode
 
       if (!request.Ids.Any())
       {
-        response.PaymentModes.AddRange(Datas.Instance.DataStorage.PaymentModes);
+        response.PaymentModes.AddRange(Datas.Instance.DataStorage.PaymentModes.Where(item =>
+          (string.IsNullOrWhiteSpace(request.Code) || item.Code.ToLower().Contains(request.Code.ToLower())) &&
+          (string.IsNullOrWhiteSpace(request.Name) || item.Name.ToLower().Contains(request.Name.ToLower())) &&
+          (!request.Date.HasValue || (request.Date >= item.StartingDate && (!item.EndingDate.HasValue || request.Date < item.EndingDate.Value)))
+          ));
       }
       else
       {

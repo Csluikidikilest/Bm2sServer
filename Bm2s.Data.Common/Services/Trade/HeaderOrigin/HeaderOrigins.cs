@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ServiceStack.ServiceHost;
 
 namespace Bm2s.Data.Common.Services.Trade.HeaderOrigin
@@ -12,7 +13,13 @@ namespace Bm2s.Data.Common.Services.Trade.HeaderOrigin
       this.Ids = new List<int>();
     }
 
+    public DateTime? Date { get; set; }
+
     public List<int> Ids { get; set; }
+
+    public int HeaderChildId { get; set; }
+
+    public int HeaderParentId { get; set; }
 
     public BLL.Trade.HeaderOrigin HeaderOrigin { get; set; }
   }

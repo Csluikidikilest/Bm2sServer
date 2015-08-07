@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ServiceStack.ServiceHost;
 
 namespace Bm2s.Data.Common.Services.Trade.Payment
@@ -12,7 +13,15 @@ namespace Bm2s.Data.Common.Services.Trade.Payment
       this.Ids = new List<int>();
     }
 
+    public DateTime? Date { get; set; }
+
     public List<int> Ids { get; set; }
+
+    public int PartnerId { get; set; }
+
+    public int PaymentModeId { get; set; }
+
+    public int UnitId { get; set; }
 
     public BLL.Trade.Payment Payment { get; set; }
   }

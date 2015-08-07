@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ServiceStack.ServiceHost;
 
 namespace Bm2s.Data.Common.Services.Partner.Partner
@@ -12,7 +13,21 @@ namespace Bm2s.Data.Common.Services.Partner.Partner
       this.Ids = new List<int>();
     }
 
+    public string Code { get; set; }
+
+    public string CompanyName { get; set; }
+
+    public DateTime? Date { get; set; }
+
     public List<int> Ids { get; set; }
+
+    public bool IsCustomer { get; set; }
+
+    public bool IsSupplier { get; set; }
+
+    public int UserId { get; set; }
+
+    public string WebSite { get; set; }
 
     public BLL.Partner.Partner Partner { get; set; }
   }

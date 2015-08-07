@@ -12,7 +12,27 @@ namespace Bm2s.Data.Common.Services.Trade.HeaderLine
       this.Ids = new List<int>();
     }
 
+    public int ArticleFamilyId { get; set; }
+
+    public int ArticleId { get; set; }
+
+    public int ArticleSubFamilyId { get; set; }
+
+    public int BrandId { get; set; }
+
+    public string Code { get; set; }
+
+    public string Designation { get; set; }
+
+    public int HeaderId { get; set; }
+
+    public int HeaderLineTypeId { get; set; }
+
     public List<int> Ids { get; set; }
+
+    public int LineNumber { get; set; }
+
+    public int UnitId { get; set; }
 
     public BLL.Trade.HeaderLine HeaderLine { get; set; }
   }

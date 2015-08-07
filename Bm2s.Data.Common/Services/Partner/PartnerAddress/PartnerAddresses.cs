@@ -12,7 +12,13 @@ namespace Bm2s.Data.Common.Services.Partner.PartnerAddress
       this.Ids = new List<int>();
     }
 
+    public int AddressId { get; set; }
+
+    public int AddressTypeId { get; set; }
+
     public List<int> Ids { get; set; }
+
+    public int PartnerId { get; set; }
 
     public BLL.Partner.PartnerAddress PartnerAddress { get; set; }
   }

@@ -12,7 +12,10 @@ namespace Bm2s.Data.Common.Services.Partner.PartnerPartnerFamily
 
       if (!request.Ids.Any())
       {
-        response.PartnerPartnerFamilies.AddRange(Datas.Instance.DataStorage.PartnerPartnerFamilies);
+        response.PartnerPartnerFamilies.AddRange(Datas.Instance.DataStorage.PartnerPartnerFamilies.Where(item =>
+          (request.PartnerId == 0 || item.PartnerId == request.PartnerId) &&
+          (request.PartnerFamilyId == 0 || item.PartnerFamilyId == request.PartnerFamilyId)
+          ));
       }
       else
       {

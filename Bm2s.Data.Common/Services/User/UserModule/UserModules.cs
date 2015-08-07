@@ -12,7 +12,13 @@ namespace Bm2s.Data.Common.Services.User.UserModule
       this.Ids = new List<int>();
     }
 
+    public int GrantorId { get; set; }
+
     public List<int> Ids { get; set; }
+
+    public int ModuleId { get; set; }
+
+    public int UserId { get; set; }
 
     public BLL.User.UserModule UserModule { get; set; }
   }

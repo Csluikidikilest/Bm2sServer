@@ -14,6 +14,10 @@ namespace Bm2s.Data.Common.Services.Partner.PartnerPartnerFamily
 
     public List<int> Ids { get; set; }
 
+    public int PartnerFamilyId { get; set; }
+
+    public int PartnerId { get; set; }
+
     public BLL.Partner.PartnerPartnerFamily PartnerPartnerFamily { get; set; }
   }
 }

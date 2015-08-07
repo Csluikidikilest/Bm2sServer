@@ -12,7 +12,10 @@ namespace Bm2s.Data.Common.Services.Trade.HeaderLineType
 
       if (!request.Ids.Any())
       {
-        response.HeaderLineTypes.AddRange(Datas.Instance.DataStorage.HeaderLineTypes);
+        response.HeaderLineTypes.AddRange(Datas.Instance.DataStorage.HeaderLineTypes.Where(item =>
+          (string.IsNullOrWhiteSpace(request.Name) || item.Name.ToLower().Contains(request.Name.ToLower())) &&
+          (!request.Date.HasValue || (request.Date >= item.StartingDate && (!item.EndingDate.HasValue || request.Date < item.EndingDate.Value)))
+          ));
       }
       else
       {

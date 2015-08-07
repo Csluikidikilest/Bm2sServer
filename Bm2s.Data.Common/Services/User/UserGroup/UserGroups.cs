@@ -12,7 +12,11 @@ namespace Bm2s.Data.Common.Services.User.UserGroup
       this.Ids = new List<int>();
     }
 
+    public int GroupId { get; set; }
+
     public List<int> Ids { get; set; }
+
+    public int UserId { get; set; }
 
     public BLL.User.UserGroup UserGroup { get; set; }
   }

@@ -12,7 +12,10 @@ namespace Bm2s.Data.Common.Services.User.Group
 
       if (!request.Ids.Any())
       {
-        response.Groups.AddRange(Datas.Instance.DataStorage.Groups);
+        response.Groups.AddRange(Datas.Instance.DataStorage.Groups.Where(item =>
+          (string.IsNullOrWhiteSpace(request.Code) || item.Code.ToLower().Contains(request.Code.ToLower())) &&
+          (string.IsNullOrWhiteSpace(request.Name) || item.Name.ToLower().Contains(request.Name.ToLower()))
+          ));
       }
       else
       {

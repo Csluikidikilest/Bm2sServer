@@ -12,7 +12,11 @@ namespace Bm2s.Data.Common.Services.Trade.HeaderStatus
 
       if (!request.Ids.Any())
       {
-        response.HeaderStatuses.AddRange(Datas.Instance.DataStorage.HeaderStatuses);
+        response.HeaderStatuses.AddRange(Datas.Instance.DataStorage.HeaderStatuses.Where(item =>
+          (!request.Date.HasValue || (request.Date >= item.StartingDate && (!item.EndingDate.HasValue || request.Date < item.EndingDate.Value))) &&
+          (!request.InterveneOnStock || item.InterveneOnStock) &&
+          (string.IsNullOrWhiteSpace(request.Name) || item.Name.ToLower().Contains(request.Name.ToLower()))
+          ));
       }
       else
       {

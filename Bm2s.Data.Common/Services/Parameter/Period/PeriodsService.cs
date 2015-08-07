@@ -13,8 +13,8 @@ namespace Bm2s.Data.Common.Services.Parameter.Period
       if (!request.Ids.Any())
       {
         response.Periods.AddRange(Datas.Instance.DataStorage.Periods.Where(item =>
-          (string.IsNullOrWhiteSpace(request.Code) || item.Code.Contains(request.Code))&&
-          (string.IsNullOrWhiteSpace(request.Name) || item.Name.Contains(request.Name)) &&
+          (string.IsNullOrWhiteSpace(request.Code) || item.Code.ToLower().Contains(request.Code.ToLower())) &&
+          (string.IsNullOrWhiteSpace(request.Name) || item.Name.ToLower().Contains(request.Name.ToLower())) &&
           (request.UnitId == 0 || item.UnitId == request.UnitId) &&
           (!request.Date.HasValue || (request.Date >= item.StartingDate && (!item.EndingDate.HasValue || request.Date < item.EndingDate.Value)))
           ));

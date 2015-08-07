@@ -12,7 +12,11 @@ namespace Bm2s.Data.Common.Services.Trade.Reconciliation
       this.Ids = new List<int>();
     }
 
+    public int HeaderLineId { get; set; }
+
     public List<int> Ids { get; set; }
+
+    public int PaymentId { get; set; }
 
     public BLL.Trade.Reconciliation Reconciliation { get; set; }
   }

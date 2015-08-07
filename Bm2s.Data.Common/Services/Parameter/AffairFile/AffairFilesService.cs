@@ -14,7 +14,7 @@ public  class AffairFilesService : Service
       {
         response.AffairFiles.AddRange(Datas.Instance.DataStorage.AffairFiles.Where(item =>
           (request.AffairId == 0 || item.AffairId == request.AffairId) &&
-          (string.IsNullOrWhiteSpace(request.Name) || item.Name.Contains(request.Name)) &&
+          (string.IsNullOrWhiteSpace(request.Name) || item.Name.ToLower().Contains(request.Name.ToLower())) &&
           (request.UserId == 0 || item.UserId == request.UserId) &&
           (!request.AddingDate.HasValue || request.AddingDate >= item.AddingDate)
           ));

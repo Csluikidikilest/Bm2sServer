@@ -14,8 +14,8 @@ namespace Bm2s.Data.Common.Services.Article.Nomenclature
       {
         response.Nomenclatures.AddRange(Datas.Instance.DataStorage.Nomenclatures.Where(item =>
           (request.ArticleId == 0 || item.ArticleChildId == request.ArticleId || item.ArticleParentId == request.ArticleId) &&
-          (string.IsNullOrWhiteSpace(request.Code) || item.ArticleChild.Code.Contains(request.Code) || item.ArticleParent.Code.Contains(request.Code)) &&
-          (string.IsNullOrWhiteSpace(request.Designation) || item.ArticleChild.Designation.Contains(request.Designation) || item.ArticleParent.Designation.Contains(request.Designation))
+          (string.IsNullOrWhiteSpace(request.Code) || item.ArticleChild.Code.ToLower().Contains(request.Code.ToLower()) || item.ArticleParent.Code.ToLower().Contains(request.Code.ToLower())) &&
+          (string.IsNullOrWhiteSpace(request.Designation) || item.ArticleChild.Designation.ToLower().Contains(request.Designation.ToLower()) || item.ArticleParent.Designation.ToLower().Contains(request.Designation.ToLower()))
           ));
       }
       else
