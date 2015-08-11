@@ -80,15 +80,10 @@
     <Compile Include="BLL\PointOfSale\Button.cs" />
     <Compile Include="BLL\PointOfSale\Screen.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\PointOfSale\Screen\Screens.cs" />
-    <Compile Include="Services\PointOfSale\Screen\ScreensResponse.cs" />
-    <Compile Include="Services\PointOfSale\Screen\ScreensService.cs" />
     <Compile Include="Utils\Datas.cs" />
     <Compile Include="Utils\DataStorage.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Services\PointOfSale\Button\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Bm2s.Data.Utils\Bm2s.Data.Utils.csproj">
       <Project>{41248fd4-c3bf-4462-9a23-8795d30c7214}</Project>
@@ -101,7 +96,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy Bm2s.Data.POS.dll ..\..\..\Bm2s.Server\bin\Debug\plugins\</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

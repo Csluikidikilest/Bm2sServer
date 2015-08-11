@@ -15,30 +15,14 @@ namespace Bm2s.Server
 
     static AppHost Host { get; set; }
 
-    static string PluginsPath { get; set; }
-
     static string Url { get; set; }
 
-    static FileSystemWatcher Watcher { get; set; }
-
-    [PermissionSet(SecurityAction.Demand, Name = "FullTrust")]
     static int Main(string[] args)
     {
-      PluginsPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + Path.DirectorySeparatorChar + "plugins" + Path.DirectorySeparatorChar;
       Url = string.Format("http://{0}:{1}/", ConfigurationManager.AppSettings["ListeningIp"], ConfigurationManager.AppSettings["ListeningPort"]);
       try
       {
-        Console.Write("Loading file watcher : ");
-        Watcher = new FileSystemWatcher();
-        Watcher.Path = PluginsPath;
-        Watcher.NotifyFilter = NotifyFilters.Attributes | NotifyFilters.CreationTime | NotifyFilters.FileName | NotifyFilters.LastAccess | NotifyFilters.LastWrite | NotifyFilters.Size | NotifyFilters.Security;
-        Watcher.Filter = "*.dll";
-        Watcher.Changed += new FileSystemEventHandler(OnChanged);
-        Watcher.Created += new FileSystemEventHandler(OnChanged);
-        Watcher.Deleted += new FileSystemEventHandler(OnChanged);
-        Watcher.Renamed += new RenamedEventHandler(OnRenamed);
-        Watcher.EnableRaisingEvents = true;
-        Console.WriteLine("[OK]");
+        Console.Write("Loading plugins : ");
 
         LoadPlugins(false);
 
@@ -83,6 +67,10 @@ namespace Bm2s.Server
         case "quit":
           result = true;
           break;
+        default:
+          Console.WriteLine("Unknown command");
+          Command("h");
+          break;
       }
 
       return result;
@@ -91,62 +79,12 @@ namespace Bm2s.Server
     private static void LoadPlugins(bool restart)
     {
       Assemblies = new List<Assembly>();
-      foreach (string path in Directory.GetFiles(PluginsPath).Where(name => name.ToLower().EndsWith(".dll")))
-      {
-        Assemblies.Add(LoadPlugin(path));
-      }
-
-      if (restart)
-      {
-        Console.Write("Restarting Web Services : ");
-      }
-      else
-      {
-        Console.Write("Starting Web Services : ");
-      }
-
-      if (restart)
-      {
-        Host.Stop();
-        Host.Dispose();
-      }
-
+      Bm2s.Data.Common.Utils.Datas.Instance.CheckDatabaseSchema();
+      Assemblies.Add(typeof(Bm2s.Services.Common.Article.Article.Articles).Assembly);
       Host = new AppHost(Assemblies.ToArray());
       Host.Init();
       Host.Start(Url);
       Console.WriteLine("[OK]");
-    }
-
-    private static Assembly LoadPlugin(string path)
-    {
-      Console.Write("Loading " + Path.GetFileNameWithoutExtension(path) + " plugin : ");
-      string assemblyName = Path.GetFileName(path);
-      Assembly assembly = Assembly.LoadFile(path);
-      Type type;
-
-      type = assembly.GetTypes().FirstOrDefault(t => t.Name == "Datas");
-      if (type != null)
-      {
-        var datas = type.GetProperty("Instance").GetValue(null);
-        if (datas == null)
-        {
-          throw new Exception("bad plugins");
-        }
-        type.InvokeMember("CheckDatabaseSchema", BindingFlags.InvokeMethod, null, datas, new object[] { });
-      }
-
-      Console.WriteLine("[OK]");
-      return assembly;
-    }
-
-    private static void OnChanged(object source, FileSystemEventArgs e)
-    {
-      LoadPlugins(true);
-    }
-
-    private static void OnRenamed(object source, RenamedEventArgs e)
-    {
-      LoadPlugins(true);
     }
   }
 }
