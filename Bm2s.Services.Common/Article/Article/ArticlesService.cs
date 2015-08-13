@@ -1,7 +1,7 @@
-﻿using Bm2s.Data.Common.Utils;
-using ServiceStack.ServiceInterface;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Collections.Generic;
+using Bm2s.Data.Common.Utils;
+using ServiceStack.ServiceInterface;
 
 namespace Bm2s.Services.Common.Article.Article
 {
@@ -10,10 +10,10 @@ namespace Bm2s.Services.Common.Article.Article
     public ArticlesResponse Get(Articles request)
     {
       ArticlesResponse response = new ArticlesResponse();
-      List<Bm2s.Data.Common.BLL.Article.Article> articles = new List<Data.Common.BLL.Article.Article>();
+      List<Bm2s.Data.Common.BLL.Article.Article> items = new List<Data.Common.BLL.Article.Article>();
       if (!request.Ids.Any())
       {
-        articles.AddRange(Datas.Instance.DataStorage.Articles.Where(item =>
+        items.AddRange(Datas.Instance.DataStorage.Articles.Where(item =>
           (string.IsNullOrWhiteSpace(request.Code) || item.Code.ToLower().Contains(request.Code.ToLower())) &&
           (string.IsNullOrWhiteSpace(request.Designation) || item.Designation.ToLower().Contains(request.Designation.ToLower())) &&
           (request.ArticleFamilyId == 0 || item.ArticleFamilyId == request.ArticleFamilyId) &&
@@ -24,19 +24,23 @@ namespace Bm2s.Services.Common.Article.Article
       }
       else
       {
-        articles.AddRange(Datas.Instance.DataStorage.Articles.Where(item => request.Ids.Contains(item.Id)));
+        items.AddRange(Datas.Instance.DataStorage.Articles.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.Articles.AddRange(from item in articles
+      response.Articles.AddRange(from item in items
                                  select new Bm2s.Poco.Common.Article.Article()
                                  {
+                                   ArticleFamily = null,
+                                   ArticleSubFamily = null,
+                                   Brand = null,
                                    Code = item.Code,
                                    Description = item.Description,
                                    Designation = item.Designation,
                                    EndingDate = item.EndingDate,
                                    Id = item.Id,
                                    Observation = item.Observation,
-                                   StartingDate = item.StartingDate
+                                   StartingDate = item.StartingDate,
+                                   Unit = null
                                  });
       return response;
     }
@@ -58,7 +62,7 @@ namespace Bm2s.Services.Common.Article.Article
       }
       else
       {
-        Bm2s.Data.Common.BLL.Article.Article article = new Bm2s.Data.Common.BLL.Article.Article()
+        Bm2s.Data.Common.BLL.Article.Article item = new Bm2s.Data.Common.BLL.Article.Article()
         {
           ArticleFamilyId = request.Article.ArticleFamily.Id,
           ArticleSubFamilyId = request.Article.ArticleSubFamily.Id,
@@ -72,8 +76,8 @@ namespace Bm2s.Services.Common.Article.Article
           UnitId = request.Article.Unit.Id
         };
 
-        Datas.Instance.DataStorage.Articles.Add(article);
-        request.Article.Id = article.Id;
+        Datas.Instance.DataStorage.Articles.Add(item);
+        request.Article.Id = item.Id;
       }
       return request.Article;
     }
