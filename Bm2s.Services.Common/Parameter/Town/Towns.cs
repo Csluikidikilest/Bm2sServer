@@ -23,6 +23,6 @@ namespace Bm2s.Services.Common.Parameter.Town
 
     public string ZipCode { get; set; }
 
-    public Bm2s.Data.Common.BLL.Parameter.Town Town { get; set; }
+    public Bm2s.Poco.Common.Parameter.Town Town { get; set; }
   }
 }

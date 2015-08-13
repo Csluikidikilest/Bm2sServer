@@ -22,20 +22,7 @@ namespace Bm2s.Data.Common.BLL.Article
     [References(typeof(Article))]
     public int ArticleParentId { get; set; }
 
-    [Ignore]
-    public Article ArticleParent { get; set; }
-
     [References(typeof(Article))]
     public int ArticleChildId { get; set; }
-
-    [Ignore]
-    public Article ArticleChild { get; set; }
-
-    public override void LazyLoad()
-    {
-      base.LazyLoad();
-      this.ArticleParent = Datas.Instance.DataStorage.Articles.FirstOrDefault<Article>(item => item.Id == this.ArticleParentId);
-      this.ArticleChild = Datas.Instance.DataStorage.Articles.FirstOrDefault<Article>(item => item.Id == this.ArticleChildId);
-    }
   }
 }

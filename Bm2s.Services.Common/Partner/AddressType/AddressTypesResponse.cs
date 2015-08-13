@@ -6,9 +6,9 @@ namespace Bm2s.Services.Common.Partner.AddressType
   {
     public AddressTypesResponse()
     {
-      this.AddressTypes = new List<Bm2s.Data.Common.BLL.Partner.AddressType>();
+      this.AddressTypes = new List<Bm2s.Poco.Common.Partner.AddressType>();
     }
 
-    public List<Bm2s.Data.Common.BLL.Partner.AddressType> AddressTypes { get; set; }
+    public List<Bm2s.Poco.Common.Partner.AddressType> AddressTypes { get; set; }
   }
 }

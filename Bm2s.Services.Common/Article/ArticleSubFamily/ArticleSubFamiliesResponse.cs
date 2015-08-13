@@ -6,9 +6,9 @@ namespace Bm2s.Services.Common.Article.ArticleSubFamily
   {
     public ArticleSubFamiliesResponse()
     {
-      this.ArticleSubFamilies = new List<Bm2s.Data.Common.BLL.Article.ArticleSubFamily>();
+      this.ArticleSubFamilies = new List<Bm2s.Poco.Common.Article.ArticleSubFamily>();
     }
 
-    public List<Bm2s.Data.Common.BLL.Article.ArticleSubFamily> ArticleSubFamilies { get; set; }
+    public List<Bm2s.Poco.Common.Article.ArticleSubFamily> ArticleSubFamilies { get; set; }
   }
 }

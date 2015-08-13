@@ -6,9 +6,9 @@ namespace Bm2s.Services.Common.User.UserModule
   {
     public UserModulesResponse()
     {
-      this.UserModules = new List<Bm2s.Data.Common.BLL.User.UserModule>();
+      this.UserModules = new List<Bm2s.Poco.Common.User.UserModule>();
     }
 
-    public List<Bm2s.Data.Common.BLL.User.UserModule> UserModules { get; set; }
+    public List<Bm2s.Poco.Common.User.UserModule> UserModules { get; set; }
   }
 }

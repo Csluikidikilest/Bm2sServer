@@ -10,9 +10,9 @@ namespace Bm2s.Services.Common.Trade.HeaderFile
   {
     public HeaderFilesResponse()
     {
-      this.HeaderFiles = new List<Bm2s.Data.Common.BLL.Trade.HeaderFile>();
+      this.HeaderFiles = new List<Bm2s.Poco.Common.Trade.HeaderFile>();
     }
 
-    public List<Bm2s.Data.Common.BLL.Trade.HeaderFile> HeaderFiles { get; set; }
+    public List<Bm2s.Poco.Common.Trade.HeaderFile> HeaderFiles { get; set; }
   }
 }

@@ -14,6 +14,6 @@ namespace Bm2s.Services.Common.Partner.Address
 
     public List<int> Ids { get; set; }
 
-    public Bm2s.Data.Common.BLL.Partner.Address Address { get; set; }
+    public Bm2s.Poco.Common.Partner.Address Address { get; set; }
   }
 }

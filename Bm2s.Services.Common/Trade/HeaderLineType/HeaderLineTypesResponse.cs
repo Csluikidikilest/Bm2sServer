@@ -10,9 +10,9 @@ namespace Bm2s.Services.Common.Trade.HeaderLineType
   {
     public HeaderLineTypesResponse()
     {
-      this.HeaderLineTypes = new List<Bm2s.Data.Common.BLL.Trade.HeaderLineType>();
+      this.HeaderLineTypes = new List<Bm2s.Poco.Common.Trade.HeaderLineType>();
     }
 
-    public List<Bm2s.Data.Common.BLL.Trade.HeaderLineType> HeaderLineTypes { get; set; }
+    public List<Bm2s.Poco.Common.Trade.HeaderLineType> HeaderLineTypes { get; set; }
   }
 }

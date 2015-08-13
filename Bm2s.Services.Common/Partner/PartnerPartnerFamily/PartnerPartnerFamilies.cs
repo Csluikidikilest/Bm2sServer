@@ -18,6 +18,6 @@ namespace Bm2s.Services.Common.Partner.PartnerPartnerFamily
 
     public int PartnerId { get; set; }
 
-    public Bm2s.Data.Common.BLL.Partner.PartnerPartnerFamily PartnerPartnerFamily { get; set; }
+    public Bm2s.Poco.Common.Partner.PartnerPartnerFamily PartnerPartnerFamily { get; set; }
   }
 }

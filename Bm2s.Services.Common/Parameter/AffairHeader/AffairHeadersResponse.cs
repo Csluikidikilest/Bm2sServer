@@ -6,9 +6,9 @@ namespace Bm2s.Services.Common.Parameter.AffairHeader
   {
     public AffairHeadersResponse()
     {
-      this.AffairHeaders = new List<Bm2s.Data.Common.BLL.Parameter.AffairHeader>();
+      this.AffairHeaders = new List<Bm2s.Poco.Common.Parameter.AffairHeader>();
     }
 
-    public List<Bm2s.Data.Common.BLL.Parameter.AffairHeader> AffairHeaders { get; set; }
+    public List<Bm2s.Poco.Common.Parameter.AffairHeader> AffairHeaders { get; set; }
   }
 }

@@ -6,9 +6,9 @@ namespace Bm2s.Services.Common.Parameter.Affair
   {
     public AffairsResponse()
     {
-      this.Affairs = new List<Bm2s.Data.Common.BLL.Parameter.Affair>();
+      this.Affairs = new List<Bm2s.Poco.Common.Parameter.Affair>();
     }
 
-    public List<Bm2s.Data.Common.BLL.Parameter.Affair> Affairs { get; set; }
+    public List<Bm2s.Poco.Common.Parameter.Affair> Affairs { get; set; }
   }
 }

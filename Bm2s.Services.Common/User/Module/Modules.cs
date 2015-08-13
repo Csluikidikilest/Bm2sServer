@@ -18,6 +18,6 @@ namespace Bm2s.Services.Common.User.Module
 
     public string Name { get; set; }
 
-    public Bm2s.Data.Common.BLL.User.Module Module { get; set; }
+    public Bm2s.Poco.Common.User.Module Module { get; set; }
   }
 }

@@ -13,9 +13,6 @@ namespace Bm2s.Data.Utils.BLL
   {
     public virtual int Id { get; set; }
 
-    [Ignore]
-    public bool LazyLoaded { get; set; }
-
     public static T Load<T>(IDbConnection dbConnection, int id, bool lazyLoad) where T : Table
     {
       OrmLiteConfig.DialectProvider = dbConnection.GetDialectProvider();
@@ -23,11 +20,6 @@ namespace Bm2s.Data.Utils.BLL
       ev.And(f => f.Id == id);
 
       T result = dbConnection.Select<T>(ev).FirstOrDefault();
-
-      if (result != null && lazyLoad && !result.LazyLoaded)
-      {
-        result.LazyLoad();
-      }
 
       return result;
     }
@@ -49,11 +41,6 @@ namespace Bm2s.Data.Utils.BLL
       int id = 0;
       int.TryParse(dbConnection.GetLastInsertId().ToString(), out id);
       this.Id = id;
-    }
-
-    public virtual void LazyLoad()
-    {
-      this.LazyLoaded = true;
     }
 
     public virtual void Save<T>(IDbConnection dbConnection) where T : Table

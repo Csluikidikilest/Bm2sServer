@@ -18,6 +18,6 @@ namespace Bm2s.Services.Common.Trade.HeaderStatusStep
 
     public List<int> Ids { get; set; }
 
-    public Bm2s.Data.Common.BLL.Trade.HeaderStatusStep HeaderStatusStep { get; set; }
+    public Bm2s.Poco.Common.Trade.HeaderStatusStep HeaderStatusStep { get; set; }
   }
 }

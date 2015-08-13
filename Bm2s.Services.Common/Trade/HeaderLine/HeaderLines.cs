@@ -34,6 +34,6 @@ namespace Bm2s.Services.Common.Trade.HeaderLine
 
     public int UnitId { get; set; }
 
-    public Bm2s.Data.Common.BLL.Trade.HeaderLine HeaderLine { get; set; }
+    public Bm2s.Poco.Common.Trade.HeaderLine HeaderLine { get; set; }
   }
 }

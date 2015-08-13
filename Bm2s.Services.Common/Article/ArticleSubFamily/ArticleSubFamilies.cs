@@ -25,6 +25,6 @@ namespace Bm2s.Services.Common.Article.ArticleSubFamily
 
     public List<int> Ids { get; set; }
 
-    public Bm2s.Data.Common.BLL.Article.ArticleSubFamily ArticleSubFamily { get; set; }
+    public Bm2s.Poco.Common.Article.ArticleSubFamily ArticleSubFamily { get; set; }
   }
 }

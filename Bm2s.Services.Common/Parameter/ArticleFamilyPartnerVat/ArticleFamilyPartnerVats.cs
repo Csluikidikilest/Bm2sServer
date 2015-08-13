@@ -20,6 +20,6 @@ namespace Bm2s.Services.Common.Parameter.ArticleFamilyPartnerVat
 
     public int VatId { get; set; }
 
-    public Bm2s.Data.Common.BLL.Parameter.ArticleFamilyPartnerVat ArticleFamilyPartnerVat { get; set; }
+    public Bm2s.Poco.Common.Parameter.ArticleFamilyPartnerVat ArticleFamilyPartnerVat { get; set; }
   }
 }

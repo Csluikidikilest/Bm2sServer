@@ -6,9 +6,9 @@ namespace Bm2s.Services.Common.Partner.AddressLine
   {
     public AddressLinesResponse()
     {
-      this.AddressLines = new List<Bm2s.Data.Common.BLL.Partner.AddressLine>();
+      this.AddressLines = new List<Bm2s.Poco.Common.Partner.AddressLine>();
     }
 
-    public List<Bm2s.Data.Common.BLL.Partner.AddressLine> AddressLines { get; set; }
+    public List<Bm2s.Poco.Common.Partner.AddressLine> AddressLines { get; set; }
   }
 }

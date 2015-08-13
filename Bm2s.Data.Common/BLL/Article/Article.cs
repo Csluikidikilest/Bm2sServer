@@ -33,34 +33,13 @@ namespace Bm2s.Data.Common.BLL.Article
     [References(typeof(ArticleFamily))]
     public int ArticleFamilyId { get; set; }
 
-    [Ignore]
-    public ArticleFamily ArticleFamily { get; set; }
-
     [References(typeof(ArticleSubFamily))]
     public int ArticleSubFamilyId { get; set; }
-
-    [Ignore]
-    public ArticleSubFamily ArticleSubFamily { get; set; }
 
     [References(typeof(Brand))]
     public int BrandId { get; set; }
 
-    [Ignore]
-    public Brand Brand { get; set; }
-
     [References(typeof(Unit))]
     public int UnitId { get; set; }
-
-    [Ignore]
-    public Unit Unit { get; set; }
-
-    public override void LazyLoad()
-    {
-      base.LazyLoad();
-      this.ArticleFamily = Datas.Instance.DataStorage.ArticleFamilies.FirstOrDefault<ArticleFamily>(item => item.Id == this.ArticleFamilyId);
-      this.ArticleSubFamily = Datas.Instance.DataStorage.ArticleSubFamilies.FirstOrDefault<ArticleSubFamily>(item => item.Id == this.ArticleSubFamilyId);
-      this.Brand = Datas.Instance.DataStorage.Brands.FirstOrDefault<Brand>(item => item.Id == this.BrandId);
-      this.Unit = Datas.Instance.DataStorage.Units.FirstOrDefault<Unit>(item => item.Id == this.UnitId);
-    }
   }
 }

@@ -29,6 +29,6 @@ namespace Bm2s.Services.Common.Trade.Header
 
     public int UserId { get; set; }
 
-    public Bm2s.Data.Common.BLL.Trade.Header Header { get; set; }
+    public Bm2s.Poco.Common.Trade.Header Header { get; set; }
   }
 }

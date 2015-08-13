@@ -6,9 +6,9 @@ namespace Bm2s.Services.Common.Parameter.Parameter
   {
     public ParametersResponse()
     {
-      this.Parameters = new List<Bm2s.Data.Common.BLL.Parameter.Parameter>();
+      this.Parameters = new List<Bm2s.Poco.Common.Parameter.Parameter>();
     }
 
-    public List<Bm2s.Data.Common.BLL.Parameter.Parameter> Parameters { get; set; }
+    public List<Bm2s.Poco.Common.Parameter.Parameter> Parameters { get; set; }
   }
 }

@@ -18,6 +18,6 @@ namespace Bm2s.Services.Common.User.UserGroup
 
     public int UserId { get; set; }
 
-    public Bm2s.Data.Common.BLL.User.UserGroup UserGroup { get; set; }
+    public Bm2s.Poco.Common.User.UserGroup UserGroup { get; set; }
   }
 }

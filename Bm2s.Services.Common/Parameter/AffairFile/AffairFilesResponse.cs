@@ -6,9 +6,9 @@ namespace Bm2s.Services.Common.Parameter.AffairFile
   {
     public AffairFilesResponse()
     {
-      this.AffairFiles = new List<Bm2s.Data.Common.BLL.Parameter.AffairFile>();
+      this.AffairFiles = new List<Bm2s.Poco.Common.Parameter.AffairFile>();
     }
 
-    public List<Bm2s.Data.Common.BLL.Parameter.AffairFile> AffairFiles { get; set; }
+    public List<Bm2s.Poco.Common.Parameter.AffairFile> AffairFiles { get; set; }
   }
 }

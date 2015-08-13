@@ -10,9 +10,9 @@ namespace Bm2s.Services.Common.User.UserActivity
   {
     public UserActivitiesResponse()
     {
-      this.UserActivities = new List<Bm2s.Data.Common.BLL.User.UserActivity>();
+      this.UserActivities = new List<Bm2s.Poco.Common.User.UserActivity>();
     }
 
-    public List<Bm2s.Data.Common.BLL.User.UserActivity> UserActivities { get; set; }
+    public List<Bm2s.Poco.Common.User.UserActivity> UserActivities { get; set; }
   }
 }

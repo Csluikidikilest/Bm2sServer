@@ -19,6 +19,6 @@ namespace Bm2s.Services.Common.Parameter.InventoryHeader
 
     public int Type { get; set; }
 
-    public Bm2s.Data.Common.BLL.Parameter.InventoryHeader InventoryHeader { get; set; }
+    public Bm2s.Poco.Common.Parameter.InventoryHeader InventoryHeader { get; set; }
   }
 }

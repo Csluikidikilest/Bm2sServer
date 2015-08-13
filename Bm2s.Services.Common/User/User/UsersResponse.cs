@@ -10,9 +10,9 @@ namespace Bm2s.Services.Common.User.User
   {
     public UsersResponse()
     {
-      this.Users = new List<Bm2s.Data.Common.BLL.User.User>();
+      this.Users = new List<Bm2s.Poco.Common.User.User>();
     }
 
-    public List<Bm2s.Data.Common.BLL.User.User> Users { get; set; }
+    public List<Bm2s.Poco.Common.User.User> Users { get; set; }
   }
 }

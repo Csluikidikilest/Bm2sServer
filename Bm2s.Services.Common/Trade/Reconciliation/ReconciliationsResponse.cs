@@ -10,9 +10,9 @@ namespace Bm2s.Services.Common.Trade.Reconciliation
   {
     public ReconciliationsResponse()
     {
-      this.Reconciliations = new List<Bm2s.Data.Common.BLL.Trade.Reconciliation>();
+      this.Reconciliations = new List<Bm2s.Poco.Common.Trade.Reconciliation>();
     }
 
-    public List<Bm2s.Data.Common.BLL.Trade.Reconciliation> Reconciliations { get; set; }
+    public List<Bm2s.Poco.Common.Trade.Reconciliation> Reconciliations { get; set; }
   }
 }

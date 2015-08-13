@@ -17,6 +17,6 @@ namespace Bm2s.Services.Common.Partner.AddressType
 
     public string Name { get; set; }
 
-    public Bm2s.Data.Common.BLL.Partner.AddressType AddressType { get; set; }
+    public Bm2s.Poco.Common.Partner.AddressType AddressType { get; set; }
   }
 }

@@ -10,9 +10,9 @@ namespace Bm2s.Services.Common.Trade.PaymentMode
   {
     public PaymentModesResponse()
     {
-      this.PaymentModes = new List<Bm2s.Data.Common.BLL.Trade.PaymentMode>();
+      this.PaymentModes = new List<Bm2s.Poco.Common.Trade.PaymentMode>();
     }
 
-    public List<Bm2s.Data.Common.BLL.Trade.PaymentMode> PaymentModes { get; set; }
+    public List<Bm2s.Poco.Common.Trade.PaymentMode> PaymentModes { get; set; }
   }
 }

@@ -6,9 +6,9 @@ namespace Bm2s.Services.Common.Article.Article
   {
     public ArticlesResponse()
     {
-      this.Articles = new List<Bm2s.Data.Common.BLL.Article.Article>();
+      this.Articles = new List<Bm2s.Poco.Common.Article.Article>();
     }
 
-    public List<Bm2s.Data.Common.BLL.Article.Article> Articles { get; set; }
+    public List<Bm2s.Poco.Common.Article.Article> Articles { get; set; }
   }
 }

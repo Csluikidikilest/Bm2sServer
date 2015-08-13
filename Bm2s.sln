@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bm2s.Server", "Bm2s.Server\Bm2s.Server.csproj", "{01A1DC60-5F17-4570-BCD8-583836E6526A}"
 EndProject
@@ -29,6 +29,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bm2s.Services.Project", "Bm2s.Services.Project\Bm2s.Services.Project.csproj", "{567DAF10-1D00-4C0B-BF16-7F69A3A48E40}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bm2s.Services.Reporting", "Bm2s.Services.Reporting\Bm2s.Services.Reporting.csproj", "{0F78A9A0-1AE2-4ED9-B805-8A1385879794}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bm2s.Poco.Common", "Bm2s.Poco.Common\Bm2s.Poco.Common.csproj", "{DDF41CB4-61B7-453D-8170-722962846E1B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -80,6 +82,10 @@ Global
 		{0F78A9A0-1AE2-4ED9-B805-8A1385879794}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F78A9A0-1AE2-4ED9-B805-8A1385879794}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F78A9A0-1AE2-4ED9-B805-8A1385879794}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDF41CB4-61B7-453D-8170-722962846E1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDF41CB4-61B7-453D-8170-722962846E1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDF41CB4-61B7-453D-8170-722962846E1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDF41CB4-61B7-453D-8170-722962846E1B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

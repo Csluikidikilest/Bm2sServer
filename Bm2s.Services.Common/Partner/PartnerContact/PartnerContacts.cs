@@ -33,6 +33,6 @@ namespace Bm2s.Services.Common.Partner.PartnerContact
 
     public string PhoneNumber { get; set; }
 
-    public Bm2s.Data.Common.BLL.Partner.PartnerContact PartnerContact { get; set; }
+    public Bm2s.Poco.Common.Partner.PartnerContact PartnerContact { get; set; }
   }
 }

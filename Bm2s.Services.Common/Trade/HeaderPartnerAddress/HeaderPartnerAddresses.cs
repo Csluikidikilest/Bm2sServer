@@ -22,6 +22,6 @@ namespace Bm2s.Services.Common.Trade.HeaderPartnerAddress
 
     public int PartnerId { get; set; }
 
-    public Bm2s.Data.Common.BLL.Trade.HeaderPartnerAddress HeaderPartnerAddress { get; set; }
+    public Bm2s.Poco.Common.Trade.HeaderPartnerAddress HeaderPartnerAddress { get; set; }
   }
 }

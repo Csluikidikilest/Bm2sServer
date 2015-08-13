@@ -26,14 +26,5 @@ namespace Bm2s.Data.Common.BLL.Parameter
 
     [References(typeof(Country))]
     public int CountryId { get; set; }
-
-    [Ignore]
-    public Country Country { get; set; }
-
-    public override void LazyLoad()
-    {
-      base.LazyLoad();
-      this.Country = Datas.Instance.DataStorage.Countries.FirstOrDefault<Country>(item => item.Id == this.CountryId);
-    }
   }
 }

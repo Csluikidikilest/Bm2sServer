@@ -25,8 +25,5 @@ namespace Bm2s.Data.POS.BLL.PointOfSale
 
     [References(typeof(Screen))]
     public int ScreenId { get; set; }
-
-    [Ignore]
-    public Screen Screen { get; set; }
   }
 }

@@ -16,20 +16,7 @@ namespace Bm2s.Data.Common.BLL.Parameter
     [References(typeof(InventoryHeader))]
     public int InventoryHeaderId { get; set; }
 
-    [Ignore]
-    public InventoryHeader InventoryHeader { get; set; }
-
     [References(typeof(Article.Article))]
     public int ArticleId { get; set; }
-
-    [Ignore]
-    public Article.Article Article { get; set; }
-
-    public override void LazyLoad()
-    {
-      base.LazyLoad();
-      this.InventoryHeader = Datas.Instance.DataStorage.InventoryHeaders.FirstOrDefault<InventoryHeader>(item => item.Id == this.InventoryHeaderId);
-      this.Article = Datas.Instance.DataStorage.Articles.FirstOrDefault<Article.Article>(item => item.Id == this.ArticleId);
-    }
   }
 }

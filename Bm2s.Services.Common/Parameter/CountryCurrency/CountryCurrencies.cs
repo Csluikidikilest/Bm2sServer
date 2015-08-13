@@ -21,6 +21,6 @@ namespace Bm2s.Services.Common.Parameter.CountryCurrency
 
     public int UnitId { get; set; }
 
-    public Bm2s.Data.Common.BLL.Parameter.CountryCurrency CountryCurrency { get; set; }
+    public Bm2s.Poco.Common.Parameter.CountryCurrency CountryCurrency { get; set; }
   }
 }

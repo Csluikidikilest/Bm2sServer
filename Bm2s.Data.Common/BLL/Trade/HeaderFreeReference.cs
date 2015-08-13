@@ -18,14 +18,5 @@ namespace Bm2s.Data.Common.BLL.Trade
 
     [References(typeof(HeaderStatus))]
     public int HeaderStatusId { get; set; }
-
-    [Ignore]
-    public HeaderStatus HeaderStatus { get; set; }
-
-    public override void LazyLoad()
-    {
-      base.LazyLoad();
-      this.HeaderStatus = Datas.Instance.DataStorage.HeaderStatuses.FirstOrDefault<HeaderStatus>(item => item.Id == this.HeaderStatusId);
-    }
   }
 }

@@ -21,6 +21,6 @@ namespace Bm2s.Services.Common.Parameter.Country
 
     public string Name { get; set; }
 
-    public Bm2s.Data.Common.BLL.Parameter.Country Country { get; set; }
+    public Bm2s.Poco.Common.Parameter.Country Country { get; set; }
 }
 }

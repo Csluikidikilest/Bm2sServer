@@ -23,6 +23,6 @@ namespace Bm2s.Services.Common.Parameter.AffairFile
 
     public int UserId { get; set; }
 
-    public Bm2s.Data.Common.BLL.Parameter.AffairFile AffairFile { get; set; }
+    public Bm2s.Poco.Common.Parameter.AffairFile AffairFile { get; set; }
   }
 }

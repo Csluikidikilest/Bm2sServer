@@ -18,6 +18,6 @@ namespace Bm2s.Services.Common.Parameter.InventoryLine
 
     public int InventoryHeaderId { get; set; }
 
-    public Bm2s.Data.Common.BLL.Parameter.InventoryLine InventoryLine { get; set; }
+    public Bm2s.Poco.Common.Parameter.InventoryLine InventoryLine { get; set; }
   }
 }

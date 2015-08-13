@@ -23,6 +23,6 @@ namespace Bm2s.Services.Common.Trade.Payment
 
     public int UnitId { get; set; }
 
-    public Bm2s.Data.Common.BLL.Trade.Payment Payment { get; set; }
+    public Bm2s.Poco.Common.Trade.Payment Payment { get; set; }
   }
 }

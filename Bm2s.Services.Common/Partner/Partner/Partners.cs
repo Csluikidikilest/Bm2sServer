@@ -29,6 +29,6 @@ namespace Bm2s.Services.Common.Partner.Partner
 
     public string WebSite { get; set; }
 
-    public Bm2s.Data.Common.BLL.Partner.Partner Partner { get; set; }
+    public Bm2s.Poco.Common.Partner.Partner Partner { get; set; }
   }
 }

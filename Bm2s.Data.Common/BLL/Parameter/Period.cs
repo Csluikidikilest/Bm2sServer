@@ -29,14 +29,5 @@ namespace Bm2s.Data.Common.BLL.Parameter
 
     [References(typeof(Unit))]
     public int UnitId { get; set; }
-
-    [Ignore]
-    public Unit Unit { get; set; }
-
-    public override void LazyLoad()
-    {
-      base.LazyLoad();
-      this.Unit = Datas.Instance.DataStorage.Units.FirstOrDefault<Unit>(item => item.Id == this.UnitId);
-    }
   }
 }

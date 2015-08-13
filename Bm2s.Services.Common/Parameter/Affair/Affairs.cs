@@ -22,6 +22,6 @@ namespace Bm2s.Services.Common.Parameter.Affair
 
     public int UserId { get; set; }
 
-    public Bm2s.Data.Common.BLL.Parameter.Affair Affair { get; set; }
+    public Bm2s.Poco.Common.Parameter.Affair Affair { get; set; }
   }
 }

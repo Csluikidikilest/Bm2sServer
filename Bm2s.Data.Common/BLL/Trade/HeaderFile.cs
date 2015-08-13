@@ -24,20 +24,7 @@ namespace Bm2s.Data.Common.BLL.Trade
     [References(typeof(Header))]
     public int HeaderId { get; set; }
 
-    [Ignore]
-    public Header Header { get; set; }
-
     [References(typeof(User.User))]
     public int UserId { get; set; }
-
-    [Ignore]
-    public User.User User { get; set; }
-
-    public override void LazyLoad()
-    {
-      base.LazyLoad();
-      this.Header = Datas.Instance.DataStorage.Headers.FirstOrDefault<Header>(item => item.Id == this.HeaderId);
-      this.User = Datas.Instance.DataStorage.Users.FirstOrDefault<User.User>(item => item.Id == this.UserId);
-    }
   }
 }

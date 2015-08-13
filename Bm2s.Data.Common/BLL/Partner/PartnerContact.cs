@@ -43,14 +43,5 @@ namespace Bm2s.Data.Common.BLL.Partner
 
     [References(typeof(Partner))]
     public int PartnerId { get; set; }
-
-    [Ignore]
-    public Partner Partner { get; set; }
-
-    public override void LazyLoad()
-    {
-      base.LazyLoad();
-      this.Partner = Datas.Instance.DataStorage.Partners.FirstOrDefault<Partner>(item => item.Id == this.PartnerId);
-    }
   }
 }

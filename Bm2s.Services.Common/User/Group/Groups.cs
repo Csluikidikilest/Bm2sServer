@@ -18,6 +18,6 @@ namespace Bm2s.Services.Common.User.Group
 
     public string Name { get; set; }
 
-    public Bm2s.Data.Common.BLL.User.Group Group { get; set; }
+    public Bm2s.Poco.Common.User.Group Group { get; set; }
   }
 }

@@ -21,6 +21,6 @@ namespace Bm2s.Services.Common.Trade.HeaderOrigin
 
     public int HeaderParentId { get; set; }
 
-    public Bm2s.Data.Common.BLL.Trade.HeaderOrigin HeaderOrigin { get; set; }
+    public Bm2s.Poco.Common.Trade.HeaderOrigin HeaderOrigin { get; set; }
   }
 }

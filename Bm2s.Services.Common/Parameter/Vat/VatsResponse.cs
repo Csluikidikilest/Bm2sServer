@@ -6,9 +6,9 @@ namespace Bm2s.Services.Common.Parameter.Vat
   {
     public VatsResponse()
     {
-      this.Vats = new List<Bm2s.Data.Common.BLL.Parameter.Vat>();
+      this.Vats = new List<Bm2s.Poco.Common.Parameter.Vat>();
     }
 
-    public List<Bm2s.Data.Common.BLL.Parameter.Vat> Vats { get; set; }
+    public List<Bm2s.Poco.Common.Parameter.Vat> Vats { get; set; }
   }
 }

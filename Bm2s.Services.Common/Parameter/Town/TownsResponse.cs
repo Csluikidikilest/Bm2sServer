@@ -6,9 +6,9 @@ namespace Bm2s.Services.Common.Parameter.Town
   {
     public TownsResponse()
     {
-      this.Towns = new List<Bm2s.Data.Common.BLL.Parameter.Town>();
+      this.Towns = new List<Bm2s.Poco.Common.Parameter.Town>();
     }
 
-    public List<Bm2s.Data.Common.BLL.Parameter.Town> Towns { get; set; }
+    public List<Bm2s.Poco.Common.Parameter.Town> Towns { get; set; }
   }
 }

@@ -6,9 +6,9 @@ namespace Bm2s.Services.Common.Article.Brand
   {
     public BrandsResponse()
     {
-      this.Brands = new List<Bm2s.Data.Common.BLL.Article.Brand>();
+      this.Brands = new List<Bm2s.Poco.Common.Article.Brand>();
     }
 
-    public List<Bm2s.Data.Common.BLL.Article.Brand> Brands { get; set; }
+    public List<Bm2s.Poco.Common.Article.Brand> Brands { get; set; }
   }
 }

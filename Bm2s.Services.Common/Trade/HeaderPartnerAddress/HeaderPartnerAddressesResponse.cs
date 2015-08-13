@@ -10,9 +10,9 @@ namespace Bm2s.Services.Common.Trade.HeaderPartnerAddress
   {
     public HeaderPartnerAddressesResponse()
     {
-      this.HeaderPartnerAddresses = new List<Bm2s.Data.Common.BLL.Trade.HeaderPartnerAddress>();
+      this.HeaderPartnerAddresses = new List<Bm2s.Poco.Common.Trade.HeaderPartnerAddress>();
     }
 
-    public List<Bm2s.Data.Common.BLL.Trade.HeaderPartnerAddress> HeaderPartnerAddresses { get; set; }
+    public List<Bm2s.Poco.Common.Trade.HeaderPartnerAddress> HeaderPartnerAddresses { get; set; }
   }
 }

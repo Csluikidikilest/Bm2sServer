@@ -33,27 +33,10 @@ namespace Bm2s.Data.Common.BLL.Trade
     [References(typeof(Activity))]
     public int ActivityId { get; set; }
 
-    [Ignore]
-    public Activity Activity { get; set; }
-
     [References(typeof(User.User))]
     public int UserId { get; set; }
 
-    [Ignore]
-    public User.User User { get; set; }
-
     [References(typeof(HeaderStatus))]
     public int HeaderStatusId { get; set; }
-
-    [Ignore]
-    public HeaderStatus HeaderStatus { get; set; }
-
-    public override void LazyLoad()
-    {
-      base.LazyLoad();
-      this.Activity = Datas.Instance.DataStorage.Activities.FirstOrDefault<Activity>(item => item.Id == this.ActivityId);
-      this.User = Datas.Instance.DataStorage.Users.FirstOrDefault<User.User>(item => item.Id == this.UserId);
-      this.HeaderStatus = Datas.Instance.DataStorage.HeaderStatuses.FirstOrDefault<HeaderStatus>(item => item.Id == this.HeaderStatusId);
-    }
   }
 }

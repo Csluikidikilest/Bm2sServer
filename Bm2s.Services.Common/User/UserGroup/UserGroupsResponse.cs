@@ -10,9 +10,9 @@ namespace Bm2s.Services.Common.User.UserGroup
   {
     public UserGroupsResponse()
     {
-      this.UserGroups = new List<Bm2s.Data.Common.BLL.User.UserGroup>();
+      this.UserGroups = new List<Bm2s.Poco.Common.User.UserGroup>();
     }
 
-    public List<Bm2s.Data.Common.BLL.User.UserGroup> UserGroups { get; set; }
+    public List<Bm2s.Poco.Common.User.UserGroup> UserGroups { get; set; }
   }
 }

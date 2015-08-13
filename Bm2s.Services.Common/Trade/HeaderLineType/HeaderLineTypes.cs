@@ -19,6 +19,6 @@ namespace Bm2s.Services.Common.Trade.HeaderLineType
 
     public string Name { get; set; }
 
-    public Bm2s.Data.Common.BLL.Trade.HeaderLineType HeaderLineType { get; set; }
+    public Bm2s.Poco.Common.Trade.HeaderLineType HeaderLineType { get; set; }
   }
 }

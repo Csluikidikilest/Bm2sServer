@@ -16,20 +16,7 @@ namespace Bm2s.Data.Common.BLL.Trade
     [References(typeof(Payment))]
     public int PaymentId { get; set; }
 
-    [Ignore]
-    public Payment Payment { get; set; }
-
     [References(typeof(HeaderLine))]
     public int HeaderLineId { get; set; }
-
-    [Ignore]
-    public HeaderLine HeaderLine { get; set; }
-
-    public override void LazyLoad()
-    {
-      base.LazyLoad();
-      this.Payment = Datas.Instance.DataStorage.Payments.FirstOrDefault<Payment>(item => item.Id == this.PaymentId);
-      this.HeaderLine = Datas.Instance.DataStorage.HeaderLines.FirstOrDefault<HeaderLine>(item => item.Id == this.HeaderLineId);
-    }
   }
 }

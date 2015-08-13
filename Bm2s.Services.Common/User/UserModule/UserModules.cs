@@ -20,6 +20,6 @@ namespace Bm2s.Services.Common.User.UserModule
 
     public int UserId { get; set; }
 
-    public Bm2s.Data.Common.BLL.User.UserModule UserModule { get; set; }
+    public Bm2s.Poco.Common.User.UserModule UserModule { get; set; }
   }
 }

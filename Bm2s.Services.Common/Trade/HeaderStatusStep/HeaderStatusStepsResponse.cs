@@ -10,9 +10,9 @@ namespace Bm2s.Services.Common.Trade.HeaderStatusStep
   {
     public HeaderStatusStepsResponse()
     {
-      this.HeaderStatusSteps = new List<Bm2s.Data.Common.BLL.Trade.HeaderStatusStep>();
+      this.HeaderStatusSteps = new List<Bm2s.Poco.Common.Trade.HeaderStatusStep>();
     }
 
-    public List<Bm2s.Data.Common.BLL.Trade.HeaderStatusStep> HeaderStatusSteps { get; set; }
+    public List<Bm2s.Poco.Common.Trade.HeaderStatusStep> HeaderStatusSteps { get; set; }
   }
 }

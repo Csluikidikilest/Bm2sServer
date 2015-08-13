@@ -18,6 +18,6 @@ namespace Bm2s.Services.Common.Trade.Reconciliation
 
     public int PaymentId { get; set; }
 
-    public Bm2s.Data.Common.BLL.Trade.Reconciliation Reconciliation { get; set; }
+    public Bm2s.Poco.Common.Trade.Reconciliation Reconciliation { get; set; }
   }
 }

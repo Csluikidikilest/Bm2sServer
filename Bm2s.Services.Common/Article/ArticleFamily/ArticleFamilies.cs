@@ -23,6 +23,6 @@ namespace Bm2s.Services.Common.Article.ArticleFamily
 
     public List<int> Ids { get; set; }
 
-    public Bm2s.Data.Common.BLL.Article.ArticleFamily ArticleFamily { get; set; }
+    public Bm2s.Poco.Common.Article.ArticleFamily ArticleFamily { get; set; }
   }
 }

@@ -19,6 +19,6 @@ namespace Bm2s.Services.Common.Article.Price
 
     public List<int> Ids { get; set; }
 
-    public Bm2s.Data.Common.BLL.Article.Price Price { get; set; }
+    public Bm2s.Poco.Common.Article.Price Price { get; set; }
   }
 }

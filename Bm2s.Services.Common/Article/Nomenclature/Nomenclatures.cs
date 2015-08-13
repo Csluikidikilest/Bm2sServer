@@ -20,6 +20,6 @@ namespace Bm2s.Services.Common.Article.Nomenclature
 
     public List<int> Ids { get; set; }
 
-    public Bm2s.Data.Common.BLL.Article.Nomenclature Nomenclature { get; set; }
+    public Bm2s.Poco.Common.Article.Nomenclature Nomenclature { get; set; }
   }
 }

@@ -24,6 +24,6 @@ namespace Bm2s.Services.Common.Parameter.Unit
 
     public string Name { get; set; }
 
-    public Bm2s.Data.Common.BLL.Parameter.Unit Unit { get; set; }
+    public Bm2s.Poco.Common.Parameter.Unit Unit { get; set; }
   }
 }

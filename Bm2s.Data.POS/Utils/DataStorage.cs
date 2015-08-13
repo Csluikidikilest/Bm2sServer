@@ -15,13 +15,5 @@ namespace Bm2s.Data.POS.Utils
       this.Buttons = new Tables<Button>(this._ramStorage, this._dbConnection);
       this.Screens = new Tables<Screen>(this._ramStorage, this._dbConnection);
     }
-
-    public override void LazyLoad()
-    {
-      base.LazyLoad();
-
-      this.Buttons.LazyLoad();
-      this.Screens.LazyLoad();
-    }
   }
 }

@@ -10,9 +10,9 @@ namespace Bm2s.Services.Common.Trade.HeaderFreeReference
   {
     public HeaderFreeReferencesResponse()
     {
-      this.HeaderFreeReferences = new List<Bm2s.Data.Common.BLL.Trade.HeaderFreeReference>();
+      this.HeaderFreeReferences = new List<Bm2s.Poco.Common.Trade.HeaderFreeReference>();
     }
 
-    public List<Bm2s.Data.Common.BLL.Trade.HeaderFreeReference> HeaderFreeReferences { get; set; }
+    public List<Bm2s.Poco.Common.Trade.HeaderFreeReference> HeaderFreeReferences { get; set; }
   }
 }

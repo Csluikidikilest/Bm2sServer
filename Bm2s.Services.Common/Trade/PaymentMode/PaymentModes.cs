@@ -21,6 +21,6 @@ namespace Bm2s.Services.Common.Trade.PaymentMode
 
     public string Name { get; set; }
 
-    public Bm2s.Data.Common.BLL.Trade.PaymentMode PaymentMode { get; set; }
+    public Bm2s.Poco.Common.Trade.PaymentMode PaymentMode { get; set; }
   }
 }

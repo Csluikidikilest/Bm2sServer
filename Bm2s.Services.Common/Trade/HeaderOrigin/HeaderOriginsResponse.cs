@@ -10,9 +10,9 @@ namespace Bm2s.Services.Common.Trade.HeaderOrigin
   {
     public HeaderOriginsResponse()
     {
-      this.HeaderOrigins = new List<Bm2s.Data.Common.BLL.Trade.HeaderOrigin>();
+      this.HeaderOrigins = new List<Bm2s.Poco.Common.Trade.HeaderOrigin>();
     }
 
-    public List<Bm2s.Data.Common.BLL.Trade.HeaderOrigin> HeaderOrigins { get; set; }
+    public List<Bm2s.Poco.Common.Trade.HeaderOrigin> HeaderOrigins { get; set; }
   }
 }

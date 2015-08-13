@@ -6,9 +6,9 @@ namespace Bm2s.Services.Common.Partner.PartnerPartnerFamily
   {
     public PartnerPartnerFamiliesResponse()
     {
-      this.PartnerPartnerFamilies = new List<Bm2s.Data.Common.BLL.Partner.PartnerPartnerFamily>();
+      this.PartnerPartnerFamilies = new List<Bm2s.Poco.Common.Partner.PartnerPartnerFamily>();
     }
 
-    public List<Bm2s.Data.Common.BLL.Partner.PartnerPartnerFamily> PartnerPartnerFamilies { get; set; }
+    public List<Bm2s.Poco.Common.Partner.PartnerPartnerFamily> PartnerPartnerFamilies { get; set; }
   }
 }

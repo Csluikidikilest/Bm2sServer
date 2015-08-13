@@ -6,9 +6,9 @@ namespace Bm2s.Services.Common.Parameter.ArticleSubFamilyPartnerFamilyVat
   {
     public ArticleSubFamilyPartnerFamilyVatsResponse()
     {
-      this.ArticleSubFamilyPartnerFamilyVats = new List<Bm2s.Data.Common.BLL.Parameter.ArticleSubFamilyPartnerFamilyVat>();
+      this.ArticleSubFamilyPartnerFamilyVats = new List<Bm2s.Poco.Common.Parameter.ArticleSubFamilyPartnerFamilyVat>();
     }
 
-    public List<Bm2s.Data.Common.BLL.Parameter.ArticleSubFamilyPartnerFamilyVat> ArticleSubFamilyPartnerFamilyVats { get; set; }
+    public List<Bm2s.Poco.Common.Parameter.ArticleSubFamilyPartnerFamilyVat> ArticleSubFamilyPartnerFamilyVats { get; set; }
   }
 }

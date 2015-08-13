@@ -10,9 +10,9 @@ namespace Bm2s.Services.Common.Trade.Header
   {
     public HeadersResponse()
     {
-      this.Headers = new List<Bm2s.Data.Common.BLL.Trade.Header>();
+      this.Headers = new List<Bm2s.Poco.Common.Trade.Header>();
     }
 
-    public List<Bm2s.Data.Common.BLL.Trade.Header> Headers { get; set; }
+    public List<Bm2s.Poco.Common.Trade.Header> Headers { get; set; }
   }
 }

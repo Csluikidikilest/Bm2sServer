@@ -29,20 +29,7 @@ namespace Bm2s.Data.Common.BLL.Article
     [References(typeof(Article))]
     public int ArticleId { get; set; }
 
-    [Ignore]
-    public Article Article { get; set; }
-
     [References(typeof(Period))]
     public int PeriodId { get; set; }
-
-    [Ignore]
-    public Period Period { get; set; }
-
-    public override void LazyLoad()
-    {
-      base.LazyLoad();
-      this.Article = Datas.Instance.DataStorage.Articles.FirstOrDefault<Article>(item => item.Id == this.ArticleId);
-      this.Period = Datas.Instance.DataStorage.Periods.FirstOrDefault<Period>(item => item.Id == this.PeriodId);
-    }
   }
 }

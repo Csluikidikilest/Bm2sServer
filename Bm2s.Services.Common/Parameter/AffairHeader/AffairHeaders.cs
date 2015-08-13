@@ -18,6 +18,6 @@ namespace Bm2s.Services.Common.Parameter.AffairHeader
     
     public List<int> Ids { get; set; }
 
-    public Bm2s.Data.Common.BLL.Parameter.AffairHeader AffairHeader { get; set; }
+    public Bm2s.Poco.Common.Parameter.AffairHeader AffairHeader { get; set; }
   }
 }

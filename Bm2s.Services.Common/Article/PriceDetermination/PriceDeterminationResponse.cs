@@ -8,24 +8,24 @@ namespace Bm2s.Services.Common.Article.PriceDetermination
 
     public PriceDeterminationResponse()
     {
-      this.articleFamilyPricePartnerFamilies = new List<Bm2s.Data.Common.BLL.Article.ArticleFamilyPricePartnerFamily>();
-      this.articleSubFamilyPricePartnerFamilies = new List<Bm2s.Data.Common.BLL.Article.ArticleSubFamilyPricePartnerFamily>();
-      this.articlePriceParnerFamilies = new List<Bm2s.Data.Common.BLL.Article.ArticlePricePartnerFamily>();
+      this.articleFamilyPricePartnerFamilies = new List<Bm2s.Poco.Common.Article.ArticleFamilyPricePartnerFamily>();
+      this.articleSubFamilyPricePartnerFamilies = new List<Bm2s.Poco.Common.Article.ArticleSubFamilyPricePartnerFamily>();
+      this.articlePriceParnerFamilies = new List<Bm2s.Poco.Common.Article.ArticlePricePartnerFamily>();
     }
 
-    public Bm2s.Data.Common.BLL.Article.Price Price { get; set; }
+    public Bm2s.Poco.Common.Article.Price Price { get; set; }
 
-    public List<Bm2s.Data.Common.BLL.Article.ArticleFamilyPricePartnerFamily> articleFamilyPricePartnerFamilies { get; set; }
+    public List<Bm2s.Poco.Common.Article.ArticleFamilyPricePartnerFamily> articleFamilyPricePartnerFamilies { get; set; }
 
-    public Bm2s.Data.Common.BLL.Article.ArticleFamilyPricePartner articleFamilyPricePartners { get; set; }
+    public Bm2s.Poco.Common.Article.ArticleFamilyPricePartner articleFamilyPricePartners { get; set; }
 
-    public List<Bm2s.Data.Common.BLL.Article.ArticleSubFamilyPricePartnerFamily> articleSubFamilyPricePartnerFamilies { get; set; }
+    public List<Bm2s.Poco.Common.Article.ArticleSubFamilyPricePartnerFamily> articleSubFamilyPricePartnerFamilies { get; set; }
 
-    public Bm2s.Data.Common.BLL.Article.ArticleSubFamilyPricePartner articleSubFamilyPricePartners { get; set; }
+    public Bm2s.Poco.Common.Article.ArticleSubFamilyPricePartner articleSubFamilyPricePartners { get; set; }
 
-    public List<Bm2s.Data.Common.BLL.Article.ArticlePricePartnerFamily> articlePriceParnerFamilies { get; set; }
+    public List<Bm2s.Poco.Common.Article.ArticlePricePartnerFamily> articlePriceParnerFamilies { get; set; }
 
-    public Bm2s.Data.Common.BLL.Article.ArticlePricePartner articlePriceParners { get; set; }
+    public Bm2s.Poco.Common.Article.ArticlePricePartner articlePriceParners { get; set; }
 
     public double TotalPrice
     {
@@ -81,7 +81,7 @@ namespace Bm2s.Services.Common.Article.PriceDetermination
           }
 
           // Each price modifier of this article for the partner families
-          foreach (Bm2s.Data.Common.BLL.Article.ArticlePricePartnerFamily item in articlePriceParnerFamilies)
+          foreach (Bm2s.Poco.Common.Article.ArticlePricePartnerFamily item in articlePriceParnerFamilies)
           {
             if (item.Multiplier.HasValue)
             {
@@ -94,7 +94,7 @@ namespace Bm2s.Services.Common.Article.PriceDetermination
           }
 
           // Each price modifier of the sub family of this article for the partner families
-          foreach (Bm2s.Data.Common.BLL.Article.ArticleSubFamilyPricePartnerFamily item in articleSubFamilyPricePartnerFamilies)
+          foreach (Bm2s.Poco.Common.Article.ArticleSubFamilyPricePartnerFamily item in articleSubFamilyPricePartnerFamilies)
           {
             if (item.Multiplier.HasValue)
             {
@@ -107,7 +107,7 @@ namespace Bm2s.Services.Common.Article.PriceDetermination
           }
 
           // Each price modifier of the family of this article for the partner families
-          foreach (Bm2s.Data.Common.BLL.Article.ArticleFamilyPricePartnerFamily item in articleFamilyPricePartnerFamilies)
+          foreach (Bm2s.Poco.Common.Article.ArticleFamilyPricePartnerFamily item in articleFamilyPricePartnerFamilies)
           {
             if (item.Multiplier.HasValue)
             {

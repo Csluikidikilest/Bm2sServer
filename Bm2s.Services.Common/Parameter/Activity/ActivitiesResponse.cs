@@ -6,9 +6,9 @@ namespace Bm2s.Services.Common.Parameter.Activity
   {
     public ActivitiesResponse()
     {
-      this.Activities = new List<Bm2s.Data.Common.BLL.Parameter.Activity>();
+      this.Activities = new List<Bm2s.Poco.Common.Parameter.Activity>();
     }
 
-    public List<Bm2s.Data.Common.BLL.Parameter.Activity> Activities { get; set; }
+    public List<Bm2s.Poco.Common.Parameter.Activity> Activities { get; set; }
   }
 }

@@ -10,9 +10,9 @@ namespace Bm2s.Services.Common.User.GroupModule
   {
     public GroupModulesResponse()
     {
-      this.GroupModules = new List<Bm2s.Data.Common.BLL.User.GroupModule>();
+      this.GroupModules = new List<Bm2s.Poco.Common.User.GroupModule>();
     }
 
-    public List<Bm2s.Data.Common.BLL.User.GroupModule> GroupModules { get; set; }
+    public List<Bm2s.Poco.Common.User.GroupModule> GroupModules { get; set; }
   }
 }

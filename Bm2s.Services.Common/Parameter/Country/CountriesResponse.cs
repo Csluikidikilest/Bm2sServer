@@ -6,9 +6,9 @@ namespace Bm2s.Services.Common.Parameter.Country
   {
     public CountriesResponse()
     {
-      this.Countries = new List<Bm2s.Data.Common.BLL.Parameter.Country>();
+      this.Countries = new List<Bm2s.Poco.Common.Parameter.Country>();
     }
 
-    public List<Bm2s.Data.Common.BLL.Parameter.Country> Countries { get; set; }
+    public List<Bm2s.Poco.Common.Parameter.Country> Countries { get; set; }
   }
 }

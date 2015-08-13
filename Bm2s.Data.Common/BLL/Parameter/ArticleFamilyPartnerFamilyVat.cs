@@ -26,27 +26,10 @@ namespace Bm2s.Data.Common.BLL.Parameter
     [References(typeof(ArticleFamily))]
     public int ArticleFamilyId { get; set; }
 
-    [Ignore]
-    public ArticleFamily ArticleFamily { get; set; }
-
     [References(typeof(PartnerFamily))]
     public int PartnerFamilyId { get; set; }
 
-    [Ignore]
-    public PartnerFamily PartnerFamily { get; set; }
-
     [References(typeof(Vat))]
     public int VatId { get; set; }
-
-    [Ignore]
-    public Vat Vat { get; set; }
-
-    public override void LazyLoad()
-    {
-      base.LazyLoad();
-      this.ArticleFamily = Datas.Instance.DataStorage.ArticleFamilies.FirstOrDefault<ArticleFamily>(item => item.Id == this.ArticleFamilyId);
-      this.PartnerFamily = Datas.Instance.DataStorage.PartnerFamilies.FirstOrDefault<Partner.PartnerFamily>(item => item.Id == this.PartnerFamilyId);
-      this.Vat = Datas.Instance.DataStorage.Vats.FirstOrDefault<Vat>(item => item.Id == this.VatId);
-    }
   }
 }

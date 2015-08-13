@@ -24,20 +24,7 @@ namespace Bm2s.Data.Common.BLL.Parameter
     [References(typeof(Affair))]
     public int AffairId { get; set; }
 
-    [Ignore]
-    public Affair Affair { get; set; }
-
     [References(typeof(User.User))]
     public int UserId { get; set; }
-
-    [Ignore]
-    public User.User User { get; set; }
-
-    public override void LazyLoad()
-    {
-      base.LazyLoad();
-      this.Affair = Datas.Instance.DataStorage.Affairs.FirstOrDefault<Affair>(item => item.Id == this.AffairId);
-      this.User = Datas.Instance.DataStorage.Users.FirstOrDefault<User.User>(item => item.Id == this.UserId);
-    }
   }
 }

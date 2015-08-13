@@ -16,6 +16,6 @@ namespace Bm2s.Services.Common.Partner.AddressLine
 
     public List<int> Ids { get; set; }
 
-    public Bm2s.Data.Common.BLL.Partner.AddressLine AddressLine { get; set; }
+    public Bm2s.Poco.Common.Partner.AddressLine AddressLine { get; set; }
   }
 }

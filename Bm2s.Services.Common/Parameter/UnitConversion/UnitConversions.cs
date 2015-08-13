@@ -18,6 +18,6 @@ namespace Bm2s.Services.Common.Parameter.UnitConversion
 
     public int ParentId { get; set; }
 
-    public Bm2s.Data.Common.BLL.Parameter.UnitConversion UnitConversion { get; set; }
+    public Bm2s.Poco.Common.Parameter.UnitConversion UnitConversion { get; set; }
   }
 }

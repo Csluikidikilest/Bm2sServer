@@ -32,14 +32,5 @@ namespace Bm2s.Data.Common.BLL.Article
 
     [References(typeof(ArticleFamily))]
     public int ArticleFamilyId { get; set; }
-
-    [Ignore]
-    public ArticleFamily ArticleFamily { get; set; }
-
-    public override void LazyLoad()
-    {
-      base.LazyLoad();
-      this.ArticleFamily = Datas.Instance.DataStorage.ArticleFamilies.FirstOrDefault<ArticleFamily>(arfa => arfa.Id == this.ArticleFamilyId);
-    }
   }
 }

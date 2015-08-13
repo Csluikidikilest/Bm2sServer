@@ -6,9 +6,9 @@ namespace Bm2s.Services.Common.Partner.Partner
   {
     public PartnersResponse()
     {
-      this.Partners = new List<Bm2s.Data.Common.BLL.Partner.Partner>();
+      this.Partners = new List<Bm2s.Poco.Common.Partner.Partner>();
     }
 
-    public List<Bm2s.Data.Common.BLL.Partner.Partner> Partners { get; set; }
+    public List<Bm2s.Poco.Common.Partner.Partner> Partners { get; set; }
   }
 }

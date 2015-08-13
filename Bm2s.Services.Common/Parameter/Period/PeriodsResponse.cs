@@ -6,9 +6,9 @@ namespace Bm2s.Services.Common.Parameter.Period
   {
     public PeriodsResponse()
     {
-      this.Periods = new List<Bm2s.Data.Common.BLL.Parameter.Period>();
+      this.Periods = new List<Bm2s.Poco.Common.Parameter.Period>();
     }
 
-    public List<Bm2s.Data.Common.BLL.Parameter.Period> Periods { get; set; }
+    public List<Bm2s.Poco.Common.Parameter.Period> Periods { get; set; }
   }
 }

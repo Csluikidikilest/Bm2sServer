@@ -20,6 +20,6 @@ namespace Bm2s.Services.Common.Article.Brand
 
     public string Name { get; set; }
 
-    public Bm2s.Data.Common.BLL.Article.Brand Brand { get; set; }
+    public Bm2s.Poco.Common.Article.Brand Brand { get; set; }
   }
 }

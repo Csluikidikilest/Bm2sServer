@@ -27,6 +27,6 @@ namespace Bm2s.Services.Common.Article.Article
 
     public List<int> Ids { get; set; }
 
-    public Bm2s.Data.Common.BLL.Article.Article Article { get; set; }
+    public Bm2s.Poco.Common.Article.Article Article { get; set; }
   }
 }

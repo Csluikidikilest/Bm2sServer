@@ -26,20 +26,7 @@ namespace Bm2s.Data.Common.BLL.Article
     [References(typeof(ArticleSubFamily))]
     public int ArticleSubFamilyId { get; set; }
 
-    [Ignore]
-    public ArticleSubFamily ArticleSubFamily { get; set; }
-
     [References(typeof(PartnerFamily))]
     public int PartnerFamilyId { get; set; }
-
-    [Ignore]
-    public PartnerFamily PartnerFamily { get; set; }
-
-    public override void LazyLoad()
-    {
-      base.LazyLoad();
-      this.ArticleSubFamily = Datas.Instance.DataStorage.ArticleSubFamilies.FirstOrDefault<ArticleSubFamily>(item => item.Id == this.ArticleSubFamilyId);
-      this.PartnerFamily = Datas.Instance.DataStorage.PartnerFamilies.FirstOrDefault<PartnerFamily>(item => item.Id == this.PartnerFamilyId);
-    }
   }
 }

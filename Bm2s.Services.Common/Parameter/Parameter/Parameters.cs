@@ -16,6 +16,6 @@ namespace Bm2s.Services.Common.Parameter.Parameter
 
     public List<int> Ids { get; set; }
 
-    public Bm2s.Data.Common.BLL.Parameter.Parameter Parameter { get; set; }
+    public Bm2s.Poco.Common.Parameter.Parameter Parameter { get; set; }
   }
 }

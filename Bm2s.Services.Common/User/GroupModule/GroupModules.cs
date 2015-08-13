@@ -20,6 +20,6 @@ namespace Bm2s.Services.Common.User.GroupModule
 
     public int ModuleId { get; set; }
 
-    public Bm2s.Data.Common.BLL.User.GroupModule GroupModule { get; set; }
+    public Bm2s.Poco.Common.User.GroupModule GroupModule { get; set; }
   }
 }

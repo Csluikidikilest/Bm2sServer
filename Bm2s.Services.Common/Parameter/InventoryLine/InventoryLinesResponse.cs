@@ -6,9 +6,9 @@ namespace Bm2s.Services.Common.Parameter.InventoryLine
   {
     public InventoryLinesResponse()
     {
-      this.InventoryLines = new List<Bm2s.Data.Common.BLL.Parameter.InventoryLine>();
+      this.InventoryLines = new List<Bm2s.Poco.Common.Parameter.InventoryLine>();
     }
 
-    public List<Bm2s.Data.Common.BLL.Parameter.InventoryLine> InventoryLines { get; set; }
+    public List<Bm2s.Poco.Common.Parameter.InventoryLine> InventoryLines { get; set; }
   }
 }

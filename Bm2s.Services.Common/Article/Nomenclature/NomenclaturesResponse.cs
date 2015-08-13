@@ -6,9 +6,9 @@ namespace Bm2s.Services.Common.Article.Nomenclature
   {
     public NomenclaturesResponse()
     {
-      this.Nomenclatures = new List<Bm2s.Data.Common.BLL.Article.Nomenclature>();
+      this.Nomenclatures = new List<Bm2s.Poco.Common.Article.Nomenclature>();
     }
 
-    public List<Bm2s.Data.Common.BLL.Article.Nomenclature> Nomenclatures { get; set; }
+    public List<Bm2s.Poco.Common.Article.Nomenclature> Nomenclatures { get; set; }
   }
 }

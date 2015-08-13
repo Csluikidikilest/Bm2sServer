@@ -16,6 +16,6 @@ namespace Bm2s.Services.Common.Parameter.Activity
 
     public List<int> Ids { get; set; }
 
-    public Bm2s.Data.Common.BLL.Parameter.Activity Activity { get; set; }
+    public Bm2s.Poco.Common.Parameter.Activity Activity { get; set; }
   }
 }

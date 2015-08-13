@@ -6,9 +6,9 @@ namespace Bm2s.Services.Common.Parameter.Unit
   {
     public UnitsResponse()
     {
-      this.Units = new List<Bm2s.Data.Common.BLL.Parameter.Unit>();
+      this.Units = new List<Bm2s.Poco.Common.Parameter.Unit>();
     }
 
-    public List<Bm2s.Data.Common.BLL.Parameter.Unit> Units { get; set; }
+    public List<Bm2s.Poco.Common.Parameter.Unit> Units { get; set; }
   }
 }

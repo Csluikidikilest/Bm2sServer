@@ -23,6 +23,6 @@ namespace Bm2s.Services.Common.Trade.HeaderFile
 
     public int UserId { get; set; }
 
-    public Bm2s.Data.Common.BLL.Trade.HeaderFile HeaderFile { get; set; }
+    public Bm2s.Poco.Common.Trade.HeaderFile HeaderFile { get; set; }
   }
 }

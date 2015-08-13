@@ -21,6 +21,6 @@ namespace Bm2s.Services.Common.Trade.HeaderStatus
 
     public string Name { get; set; }
 
-    public Bm2s.Data.Common.BLL.Trade.HeaderStatus HeaderStatus { get; set; }
+    public Bm2s.Poco.Common.Trade.HeaderStatus HeaderStatus { get; set; }
   }
 }

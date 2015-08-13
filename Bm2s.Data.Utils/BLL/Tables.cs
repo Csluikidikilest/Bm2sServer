@@ -79,11 +79,6 @@ namespace Bm2s.Data.Utils.BLL
           result = this._dbConnection.FirstOrDefault<T>(x => x.Id == index);
         }
 
-        if (result != null && !result.LazyLoaded)
-        {
-          result.LazyLoad();
-        }
-
         return result;
       }
       set
@@ -133,11 +128,6 @@ namespace Bm2s.Data.Utils.BLL
       List<T> items = this._innerList.Skip(arrayIndex).ToList();
       foreach (T item in items)
       {
-        if (!item.LazyLoaded)
-        {
-          item.LazyLoad();
-        }
-
         array[i] = item;
         i++;
       }
@@ -161,14 +151,6 @@ namespace Bm2s.Data.Utils.BLL
     public bool IsReadOnly
     {
       get { return false; }
-    }
-
-    public void LazyLoad()
-    {
-      foreach (T item in this._innerList)
-      {
-        item.LazyLoad();
-      }
     }
 
     public bool Remove(T item)

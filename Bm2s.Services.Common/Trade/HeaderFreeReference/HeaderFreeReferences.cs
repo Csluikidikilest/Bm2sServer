@@ -16,6 +16,6 @@ namespace Bm2s.Services.Common.Trade.HeaderFreeReference
 
     public List<int> Ids { get; set; }
 
-    public Bm2s.Data.Common.BLL.Trade.HeaderFreeReference HeaderFreeReference { get; set; }
+    public Bm2s.Poco.Common.Trade.HeaderFreeReference HeaderFreeReference { get; set; }
   }
 }

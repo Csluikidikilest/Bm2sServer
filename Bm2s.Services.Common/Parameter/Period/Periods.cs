@@ -22,6 +22,6 @@ namespace Bm2s.Services.Common.Parameter.Period
 
     public int UnitId { get; set; }
 
-    public Bm2s.Data.Common.BLL.Parameter.Period Period { get; set; }
+    public Bm2s.Poco.Common.Parameter.Period Period { get; set; }
   }
 }

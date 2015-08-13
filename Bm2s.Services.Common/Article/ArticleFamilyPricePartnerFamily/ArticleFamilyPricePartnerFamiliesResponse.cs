@@ -10,9 +10,9 @@ namespace Bm2s.Services.Common.Article.ArticleFamilyPricePartnerFamily
   {
     public ArticleFamilyPricePartnerFamiliesResponse()
     {
-      this.ArticleFamilyPricePartnerFamilies = new List<Bm2s.Data.Common.BLL.Article.ArticleFamilyPricePartnerFamily>();
+      this.ArticleFamilyPricePartnerFamilies = new List<Bm2s.Poco.Common.Article.ArticleFamilyPricePartnerFamily>();
     }
 
-    public List<Bm2s.Data.Common.BLL.Article.ArticleFamilyPricePartnerFamily> ArticleFamilyPricePartnerFamilies { get; set; }
+    public List<Bm2s.Poco.Common.Article.ArticleFamilyPricePartnerFamily> ArticleFamilyPricePartnerFamilies { get; set; }
   }
 }

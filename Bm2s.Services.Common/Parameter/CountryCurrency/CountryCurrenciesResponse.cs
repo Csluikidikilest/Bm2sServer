@@ -6,9 +6,9 @@ namespace Bm2s.Services.Common.Parameter.CountryCurrency
   {
     public CountryCurrenciesResponse()
     {
-      this.CountryCurrencies = new List<Bm2s.Data.Common.BLL.Parameter.CountryCurrency>();
+      this.CountryCurrencies = new List<Bm2s.Poco.Common.Parameter.CountryCurrency>();
     }
 
-    public List<Bm2s.Data.Common.BLL.Parameter.CountryCurrency> CountryCurrencies { get; set; }
+    public List<Bm2s.Poco.Common.Parameter.CountryCurrency> CountryCurrencies { get; set; }
   }
 }

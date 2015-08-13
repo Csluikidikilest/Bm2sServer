@@ -24,6 +24,6 @@ namespace Bm2s.Services.Common.Article.ArticleFamilyPricePartner
 
     public int PartnerId { get; set; }
 
-    public Bm2s.Data.Common.BLL.Article.ArticleFamilyPricePartner ArticleFamilyPricePartner { get; set; }
+    public Bm2s.Poco.Common.Article.ArticleFamilyPricePartner ArticleFamilyPricePartner { get; set; }
   }
 }

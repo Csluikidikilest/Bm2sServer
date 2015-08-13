@@ -27,6 +27,6 @@ namespace Bm2s.Services.Common.User.User
 
     public bool IsAnonymous { get; set; }
 
-    public Bm2s.Data.Common.BLL.User.User User { get; set; }
+    public Bm2s.Poco.Common.User.User User { get; set; }
   }
 }

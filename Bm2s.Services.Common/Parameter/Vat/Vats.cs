@@ -19,6 +19,6 @@ namespace Bm2s.Services.Common.Parameter.Vat
 
     public List<int> Ids { get; set; }
 
-    public Bm2s.Data.Common.BLL.Parameter.Vat Vat { get; set; }
+    public Bm2s.Poco.Common.Parameter.Vat Vat { get; set; }
   }
 }

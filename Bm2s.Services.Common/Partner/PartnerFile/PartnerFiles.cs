@@ -23,6 +23,6 @@ namespace Bm2s.Services.Common.Partner.PartnerFil
 
     public int UserId { get; set; }
 
-    public Bm2s.Data.Common.BLL.Partner.PartnerFile PartnerFile { get; set; }
+    public Bm2s.Poco.Common.Partner.PartnerFile PartnerFile { get; set; }
   }
 }

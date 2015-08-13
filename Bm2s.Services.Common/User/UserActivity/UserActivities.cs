@@ -18,6 +18,6 @@ namespace Bm2s.Services.Common.User.UserActivity
 
     public int UserId { get; set; }
 
-    public Bm2s.Data.Common.BLL.User.UserActivity UserActivity { get; set; }
+    public Bm2s.Poco.Common.User.UserActivity UserActivity { get; set; }
   }
 }

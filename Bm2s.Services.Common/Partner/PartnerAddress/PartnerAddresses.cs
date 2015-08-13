@@ -20,6 +20,6 @@ namespace Bm2s.Services.Common.Partner.PartnerAddress
 
     public int PartnerId { get; set; }
 
-    public Bm2s.Data.Common.BLL.Partner.PartnerAddress PartnerAddress { get; set; }
+    public Bm2s.Poco.Common.Partner.PartnerAddress PartnerAddress { get; set; }
   }
 }

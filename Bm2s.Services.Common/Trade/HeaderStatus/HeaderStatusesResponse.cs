@@ -10,9 +10,9 @@ namespace Bm2s.Services.Common.Trade.HeaderStatus
   {
     public HeaderStatusesResponse()
     {
-      this.HeaderStatuses = new List<Bm2s.Data.Common.BLL.Trade.HeaderStatus>();
+      this.HeaderStatuses = new List<Bm2s.Poco.Common.Trade.HeaderStatus>();
     }
 
-    public List<Bm2s.Data.Common.BLL.Trade.HeaderStatus> HeaderStatuses { get; set; }
+    public List<Bm2s.Poco.Common.Trade.HeaderStatus> HeaderStatuses { get; set; }
   }
 }
