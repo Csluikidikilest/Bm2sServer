@@ -1,18 +1,19 @@
 ﻿using Bm2s.Data.Common.Utils;
 using ServiceStack.ServiceInterface;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace Bm2s.Services.Common.Article.ArticleSubFamily
 {
   public class ArticleSubFamiliesService : Service
   {
-    public object Get(ArticleSubFamilies request)
+    public ArticleSubFamiliesResponse Get(ArticleSubFamilies request)
     {
       ArticleSubFamiliesResponse response = new ArticleSubFamiliesResponse();
-
+      List<Bm2s.Data.Common.BLL.Article.ArticleSubFamily> items = new List<Data.Common.BLL.Article.ArticleSubFamily>();
       if (!request.Ids.Any())
       {
-        response.ArticleSubFamilies.AddRange(Datas.Instance.DataStorage.ArticleSubFamilies.Where(item =>
+        items.AddRange(Datas.Instance.DataStorage.ArticleSubFamilies.Where(item =>
           (string.IsNullOrWhiteSpace(request.AccountingEntry) || item.AccountingEntry.ToLower().Contains(request.AccountingEntry.ToLower())) &&
           (string.IsNullOrWhiteSpace(request.Code) || item.Code.ToLower().Contains(request.Code.ToLower())) &&
           (string.IsNullOrWhiteSpace(request.Designation) || item.Designation.ToLower().Contains(request.Designation.ToLower())) &&
@@ -22,21 +23,54 @@ namespace Bm2s.Services.Common.Article.ArticleSubFamily
       }
       else
       {
-        response.ArticleSubFamilies.AddRange(Datas.Instance.DataStorage.ArticleSubFamilies.Where(item => request.Ids.Contains(item.Id)));
+        items.AddRange(Datas.Instance.DataStorage.ArticleSubFamilies.Where(item => request.Ids.Contains(item.Id)));
       }
+
+      response.ArticleSubFamilies.AddRange(from item in items
+                                           select new Bm2s.Poco.Common.Article.ArticleSubFamily()
+                                           {
+                                             AccountingEntry = item.AccountingEntry,
+                                             ArticleFamily = null,
+                                             Code = item.Code,
+                                             Description = item.Description,
+                                             Designation = item.Designation,
+                                             EndingDate = item.EndingDate,
+                                             Id = item.Id,
+                                             StartingDate = item.StartingDate
+                                           });
 
       return response;
     }
 
-    public object Post(ArticleSubFamilies request)
+    public Bm2s.Poco.Common.Article.ArticleSubFamily Post(ArticleSubFamilies request)
     {
       if (request.ArticleSubFamily.Id > 0)
       {
-        Datas.Instance.DataStorage.ArticleSubFamilies[request.ArticleSubFamily.Id] = request.ArticleSubFamily;
+        Bm2s.Data.Common.BLL.Article.ArticleSubFamily item = Datas.Instance.DataStorage.ArticleSubFamilies[request.ArticleSubFamily.Id];
+        item.AccountingEntry = request.ArticleSubFamily.AccountingEntry;
+        item.ArticleFamilyId = request.ArticleSubFamily.ArticleFamily.Id;
+        item.Code = request.ArticleSubFamily.Code;
+        item.Description = request.ArticleSubFamily.Description;
+        item.Designation = request.ArticleSubFamily.Designation;
+        item.EndingDate = request.ArticleSubFamily.EndingDate;
+        item.StartingDate = request.ArticleSubFamily.StartingDate;
+        Datas.Instance.DataStorage.ArticleSubFamilies[request.ArticleSubFamily.Id] = item;
       }
       else
       {
-        Datas.Instance.DataStorage.ArticleSubFamilies.Add(request.ArticleSubFamily);
+        Bm2s.Data.Common.BLL.Article.ArticleSubFamily item = new Data.Common.BLL.Article.ArticleSubFamily()
+        {
+          AccountingEntry = request.ArticleSubFamily.AccountingEntry,
+          ArticleFamilyId = request.ArticleSubFamily.ArticleFamily.Id,
+          Code = request.ArticleSubFamily.Code,
+          Description = request.ArticleSubFamily.Description,
+          Designation = request.ArticleSubFamily.Designation,
+          EndingDate = request.ArticleSubFamily.EndingDate,
+          StartingDate = request.ArticleSubFamily.StartingDate
+        };
+
+        Datas.Instance.DataStorage.ArticleSubFamilies.Add(item);
+        request.ArticleSubFamily.Id = item.Id;
       }
       return request.ArticleSubFamily;
     }

@@ -30,8 +30,8 @@ namespace Bm2s.Services.Common.Article.Article
       response.Articles.AddRange(from item in items
                                  select new Bm2s.Poco.Common.Article.Article()
                                  {
-                                   ArticleFamily = null,
-                                   ArticleSubFamily = null,
+                                   ArticleFamily = new ArticleFamily.ArticleFamiliesService().Get(new ArticleFamily.ArticleFamilies() { Ids = new List<int>() { item.ArticleFamilyId } }).ArticleFamilies.FirstOrDefault(),
+                                   ArticleSubFamily = new ArticleSubFamily.ArticleSubFamiliesService().Get(new ArticleSubFamily.ArticleSubFamilies() { Ids = new List<int>() { item.ArticleSubFamilyId } }).ArticleSubFamilies.FirstOrDefault(),
                                    Brand = null,
                                    Code = item.Code,
                                    Description = item.Description,
@@ -45,20 +45,22 @@ namespace Bm2s.Services.Common.Article.Article
       return response;
     }
 
-    public object Post(Articles request)
+    public Bm2s.Poco.Common.Article.Article Post(Articles request)
     {
       if (request.Article.Id > 0)
       {
-        Datas.Instance.DataStorage.Articles[request.Article.Id].ArticleFamilyId = request.Article.ArticleFamily.Id;
-        Datas.Instance.DataStorage.Articles[request.Article.Id].ArticleSubFamilyId = request.Article.ArticleSubFamily.Id;
-        Datas.Instance.DataStorage.Articles[request.Article.Id].BrandId = request.Article.Brand.Id;
-        Datas.Instance.DataStorage.Articles[request.Article.Id].Code = request.Article.Code;
-        Datas.Instance.DataStorage.Articles[request.Article.Id].Description = request.Article.Description;
-        Datas.Instance.DataStorage.Articles[request.Article.Id].Designation = request.Article.Designation;
-        Datas.Instance.DataStorage.Articles[request.Article.Id].EndingDate = request.Article.EndingDate;
-        Datas.Instance.DataStorage.Articles[request.Article.Id].Observation = request.Article.Observation;
-        Datas.Instance.DataStorage.Articles[request.Article.Id].StartingDate = request.Article.StartingDate;
-        Datas.Instance.DataStorage.Articles[request.Article.Id].UnitId = request.Article.Unit.Id;
+        Bm2s.Data.Common.BLL.Article.Article item = Datas.Instance.DataStorage.Articles[request.Article.Id];
+        item.ArticleFamilyId = request.Article.ArticleFamily.Id;
+        item.ArticleSubFamilyId = request.Article.ArticleSubFamily.Id;
+        item.BrandId = request.Article.Brand.Id;
+        item.Code = request.Article.Code;
+        item.Description = request.Article.Description;
+        item.Designation = request.Article.Designation;
+        item.EndingDate = request.Article.EndingDate;
+        item.Observation = request.Article.Observation;
+        item.StartingDate = request.Article.StartingDate;
+        item.UnitId = request.Article.Unit.Id;
+        Datas.Instance.DataStorage.Articles[request.Article.Id] = item;
       }
       else
       {

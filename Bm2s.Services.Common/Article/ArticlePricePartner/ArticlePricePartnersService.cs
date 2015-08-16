@@ -10,13 +10,13 @@ namespace Bm2s.Services.Common.Article.ArticlePriceParner
 {
   public class ArticlePricePartnersService : Service
   {
-    public object Get(ArticlePricePartners request)
+    public ArticlePricePartnersResponse Get(ArticlePricePartners request)
     {
       ArticlePricePartnersResponse response = new ArticlePricePartnersResponse();
-
+      List<Bm2s.Data.Common.BLL.Article.ArticlePricePartner> items = new List<Data.Common.BLL.Article.ArticlePricePartner>();
       if (!request.Ids.Any())
       {
-        response.ArticlePricePartners.AddRange(Datas.Instance.DataStorage.ArticlePricePartners.Where(item =>
+        items.AddRange(Datas.Instance.DataStorage.ArticlePricePartners.Where(item =>
           (request.PartnerId == 0 || item.PartnerId == request.PartnerId) &&
           (request.ArticleId == 0 || item.ArticleId == request.ArticleId) &&
           (!request.Date.HasValue || (request.Date >= item.StartingDate && (!item.EndingDate.HasValue || request.Date < item.EndingDate.Value)))
@@ -24,22 +24,56 @@ namespace Bm2s.Services.Common.Article.ArticlePriceParner
       }
       else
       {
-        response.ArticlePricePartners.AddRange(Datas.Instance.DataStorage.ArticlePricePartners.Where(item => request.Ids.Contains(item.Id)));
+        items.AddRange(Datas.Instance.DataStorage.ArticlePricePartners.Where(item => request.Ids.Contains(item.Id)));
       }
+
+      response.ArticlePricePartners.AddRange(from item in items
+                                             select new Bm2s.Poco.Common.Article.ArticlePricePartner()
+                                             {
+                                               AddPrice = item.AddPrice,
+                                               Article = null,
+                                               EndingDate = item.EndingDate,
+                                               Id = item.Id,
+                                               Multiplier = item.Multiplier,
+                                               Partner = null,
+                                               Price = item.Price,
+                                               StartingDate = item.StartingDate
+                                             });
 
       return response;
     }
 
-    public object Post(ArticlePricePartners request)
+    public Bm2s.Poco.Common.Article.ArticlePricePartner Post(ArticlePricePartners request)
     {
       if (request.ArticlePriceParner.Id > 0)
       {
-        Datas.Instance.DataStorage.ArticlePricePartners[request.ArticlePriceParner.Id] = request.ArticlePriceParner;
+        Bm2s.Data.Common.BLL.Article.ArticlePricePartner item = Datas.Instance.DataStorage.ArticlePricePartners[request.ArticlePriceParner.Id];
+        item.AddPrice = request.ArticlePriceParner.AddPrice;
+        item.ArticleId = request.ArticlePriceParner.Article.Id;
+        item.EndingDate = request.ArticlePriceParner.EndingDate;
+        item.Multiplier = request.ArticlePriceParner.Multiplier;
+        item.PartnerId = request.ArticlePriceParner.Partner.Id;
+        item.Price = request.ArticlePriceParner.Price;
+        item.StartingDate = request.ArticlePriceParner.StartingDate;
+        Datas.Instance.DataStorage.ArticlePricePartners[request.ArticlePriceParner.Id] = item;
       }
       else
       {
-        Datas.Instance.DataStorage.ArticlePricePartners.Add(request.ArticlePriceParner);
+        Bm2s.Data.Common.BLL.Article.ArticlePricePartner item = new Data.Common.BLL.Article.ArticlePricePartner()
+        {
+          AddPrice = request.ArticlePriceParner.AddPrice,
+          ArticleId = request.ArticlePriceParner.Article.Id,
+          EndingDate = request.ArticlePriceParner.EndingDate,
+          Multiplier = request.ArticlePriceParner.Multiplier,
+          PartnerId = request.ArticlePriceParner.Partner.Id,
+          Price = request.ArticlePriceParner.Price,
+          StartingDate = request.ArticlePriceParner.StartingDate
+        };
+
+        Datas.Instance.DataStorage.ArticlePricePartners.Add(item);
+        request.ArticlePriceParner.Id = item.Id;
       }
+
       return request.ArticlePriceParner;
     }
   }

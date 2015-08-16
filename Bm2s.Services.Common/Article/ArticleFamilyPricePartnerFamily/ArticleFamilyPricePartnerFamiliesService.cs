@@ -27,18 +27,33 @@ namespace Bm2s.Services.Common.Article.ArticleFamilyPricePartnerFamily
         items.AddRange(Datas.Instance.DataStorage.ArticleFamilyPricePartnerFamilies.Where(item => request.Ids.Contains(item.Id)));
       }
 
+      response.ArticleFamilyPricePartnerFamilies.AddRange(from item in items
+                                                          select new Bm2s.Poco.Common.Article.ArticleFamilyPricePartnerFamily()
+                                                          {
+                                                            ArticleFamily = null,
+                                                            EndingDate = item.EndingDate,
+                                                            Id = item.Id,
+                                                            Multiplier = item.Multiplier,
+                                                            PartnerFamily = null,
+                                                            Price = item.Price,
+                                                            StartingDate = item.StartingDate
+                                                          });
+
       return response;
     }
 
-    public object Post(ArticleFamilyPricePartnerFamilies request)
+    public Bm2s.Poco.Common.Article.ArticleFamilyPricePartnerFamily Post(ArticleFamilyPricePartnerFamilies request)
     {
       if (request.ArticleFamilyPricePartnerFamily.Id > 0)
       {
-        Datas.Instance.DataStorage.ArticleFamilyPricePartnerFamilies[request.ArticleFamilyPricePartnerFamily.Id].ArticleFamilyId = request.ArticleFamilyPricePartnerFamily.ArticleFamily.Id;
-        Datas.Instance.DataStorage.ArticleFamilyPricePartnerFamilies[request.ArticleFamilyPricePartnerFamily.Id].EndingDate = request.ArticleFamilyPricePartnerFamily.EndingDate;
-        Datas.Instance.DataStorage.ArticleFamilyPricePartnerFamilies[request.ArticleFamilyPricePartnerFamily.Id].Id = request.ArticleFamilyPricePartnerFamily.ArticleFamily.Id;
-        Datas.Instance.DataStorage.ArticleFamilyPricePartnerFamilies[request.ArticleFamilyPricePartnerFamily.Id].Multiplier = request.ArticleFamilyPricePartnerFamily.Multiplier;
-        Datas.Instance.DataStorage.ArticleFamilyPricePartnerFamilies[request.ArticleFamilyPricePartnerFamily.Id].PartnerFamilyId = request.ArticleFamilyPricePartnerFamily.PartnerFamily.Id;
+        Bm2s.Data.Common.BLL.Article.ArticleFamilyPricePartnerFamily item = Datas.Instance.DataStorage.ArticleFamilyPricePartnerFamilies[request.ArticleFamilyPricePartnerFamily.Id];
+        item.ArticleFamilyId = request.ArticleFamilyPricePartnerFamily.ArticleFamily.Id;
+        item.EndingDate = request.ArticleFamilyPricePartnerFamily.EndingDate;
+        item.Multiplier = request.ArticleFamilyPricePartnerFamily.Multiplier;
+        item.PartnerFamilyId = request.ArticleFamilyPricePartnerFamily.PartnerFamily.Id;
+        item.Price = request.ArticleFamilyPricePartnerFamily.Price;
+        item.StartingDate = request.ArticleFamilyPricePartnerFamily.StartingDate;
+        Datas.Instance.DataStorage.ArticleFamilyPricePartnerFamilies[request.ArticleFamilyPricePartnerFamily.Id] = item;
       }
       else
       {

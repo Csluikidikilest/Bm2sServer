@@ -39,16 +39,18 @@ namespace Bm2s.Services.Common.Article.ArticleFamily
       return response;
     }
 
-    public object Post(ArticleFamilies request)
+    public Bm2s.Poco.Common.Article.ArticleFamily Post(ArticleFamilies request)
     {
       if (request.ArticleFamily.Id > 0)
       {
-        Datas.Instance.DataStorage.ArticleFamilies[request.ArticleFamily.Id].AccountingEntry = request.ArticleFamily.AccountingEntry;
-        Datas.Instance.DataStorage.ArticleFamilies[request.ArticleFamily.Id].Code = request.ArticleFamily.Code;
-        Datas.Instance.DataStorage.ArticleFamilies[request.ArticleFamily.Id].Description = request.ArticleFamily.Description;
-        Datas.Instance.DataStorage.ArticleFamilies[request.ArticleFamily.Id].Designation = request.ArticleFamily.Designation;
-        Datas.Instance.DataStorage.ArticleFamilies[request.ArticleFamily.Id].EndingDate = request.ArticleFamily.EndingDate;
-        Datas.Instance.DataStorage.ArticleFamilies[request.ArticleFamily.Id].StartingDate = request.ArticleFamily.StartingDate;
+        Bm2s.Data.Common.BLL.Article.ArticleFamily item = Datas.Instance.DataStorage.ArticleFamilies[request.ArticleFamily.Id];
+        item.AccountingEntry = request.ArticleFamily.AccountingEntry;
+        item.Code = request.ArticleFamily.Code;
+        item.Description = request.ArticleFamily.Description;
+        item.Designation = request.ArticleFamily.Designation;
+        item.EndingDate = request.ArticleFamily.EndingDate;
+        item.StartingDate = request.ArticleFamily.StartingDate;
+        Datas.Instance.DataStorage.ArticleFamilies[request.ArticleFamily.Id] = item;
       }
       else
       {

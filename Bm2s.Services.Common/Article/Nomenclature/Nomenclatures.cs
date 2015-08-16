@@ -14,10 +14,6 @@ namespace Bm2s.Services.Common.Article.Nomenclature
 
     public int ArticleId { get; set; }
 
-    public string Code { get; set; }
-
-    public string Designation { get; set; }
-
     public List<int> Ids { get; set; }
 
     public Bm2s.Poco.Common.Article.Nomenclature Nomenclature { get; set; }

@@ -10,13 +10,13 @@ namespace Bm2s.Services.Common.Article.ArticleSubFamilyPricePartner
 {
   public class ArticleSubFamilyPricePartnersService : Service
   {
-    public object Get(ArticleSubFamilyPricePartners request)
+    public ArticleSubFamilyPricePartnersResponse Get(ArticleSubFamilyPricePartners request)
     {
       ArticleSubFamilyPricePartnersResponse response = new ArticleSubFamilyPricePartnersResponse();
-
+      List<Bm2s.Data.Common.BLL.Article.ArticleSubFamilyPricePartner> items = new List<Data.Common.BLL.Article.ArticleSubFamilyPricePartner>();
       if (!request.Ids.Any())
       {
-        response.ArticleSubFamilyPricePartners.AddRange(Datas.Instance.DataStorage.ArticleSubFamilyPricePartners.Where(item =>
+        items.AddRange(Datas.Instance.DataStorage.ArticleSubFamilyPricePartners.Where(item =>
           (request.PartnerId == 0 || item.PartnerId == request.PartnerId) &&
           (request.ArticleSubFamilyId == 0 || item.ArticleSubFamilyId == request.ArticleSubFamilyId) &&
           (!request.Date.HasValue || (request.Date >= item.StartingDate && (!item.EndingDate.HasValue || request.Date < item.EndingDate.Value)))
@@ -24,22 +24,56 @@ namespace Bm2s.Services.Common.Article.ArticleSubFamilyPricePartner
       }
       else
       {
-        response.ArticleSubFamilyPricePartners.AddRange(Datas.Instance.DataStorage.ArticleSubFamilyPricePartners.Where(item => request.Ids.Contains(item.Id)));
+        items.AddRange(Datas.Instance.DataStorage.ArticleSubFamilyPricePartners.Where(item => request.Ids.Contains(item.Id)));
       }
+
+      response.ArticleSubFamilyPricePartners.AddRange(from item in items
+                                                      select new Bm2s.Poco.Common.Article.ArticleSubFamilyPricePartner()
+                                                      {
+                                                        AddPrice = item.AddPrice,
+                                                        ArticleSubFamily = null,
+                                                        EndingDate = item.EndingDate,
+                                                        Id = item.Id,
+                                                        Multiplier = item.Multiplier,
+                                                        Partner = null,
+                                                        Price = item.Price,
+                                                        StartingDate = item.StartingDate
+                                                      });
 
       return response;
     }
 
-    public object Post(ArticleSubFamilyPricePartners request)
+    public Bm2s.Poco.Common.Article.ArticleSubFamilyPricePartner Post(ArticleSubFamilyPricePartners request)
     {
       if (request.ArticleSubFamilyPricePartner.Id > 0)
       {
-        Datas.Instance.DataStorage.ArticleSubFamilyPricePartners[request.ArticleSubFamilyPricePartner.Id] = request.ArticleSubFamilyPricePartner;
+        Bm2s.Data.Common.BLL.Article.ArticleSubFamilyPricePartner item = Datas.Instance.DataStorage.ArticleSubFamilyPricePartners[request.ArticleSubFamilyPricePartner.Id];
+        item.AddPrice = request.ArticleSubFamilyPricePartner.AddPrice;
+        item.ArticleSubFamilyId = request.ArticleSubFamilyPricePartner.ArticleSubFamily.Id;
+        item.EndingDate = request.ArticleSubFamilyPricePartner.EndingDate;
+        item.Multiplier = request.ArticleSubFamilyPricePartner.Multiplier;
+        item.PartnerId = request.ArticleSubFamilyPricePartner.Partner.Id;
+        item.Price = request.ArticleSubFamilyPricePartner.Price;
+        item.StartingDate = request.ArticleSubFamilyPricePartner.StartingDate;
+        Datas.Instance.DataStorage.ArticleSubFamilyPricePartners[request.ArticleSubFamilyPricePartner.Id] = item;
       }
       else
       {
-        Datas.Instance.DataStorage.ArticleSubFamilyPricePartners.Add(request.ArticleSubFamilyPricePartner);
+        Bm2s.Data.Common.BLL.Article.ArticleSubFamilyPricePartner item = new Data.Common.BLL.Article.ArticleSubFamilyPricePartner()
+        {
+          AddPrice = request.ArticleSubFamilyPricePartner.AddPrice,
+          ArticleSubFamilyId = request.ArticleSubFamilyPricePartner.ArticleSubFamily.Id,
+          EndingDate = request.ArticleSubFamilyPricePartner.EndingDate,
+          Multiplier = request.ArticleSubFamilyPricePartner.Multiplier,
+          PartnerId = request.ArticleSubFamilyPricePartner.Partner.Id,
+          Price = request.ArticleSubFamilyPricePartner.Price,
+          StartingDate = request.ArticleSubFamilyPricePartner.StartingDate
+        };
+
+        Datas.Instance.DataStorage.ArticleSubFamilyPricePartners.Add(item);
+        request.ArticleSubFamilyPricePartner.Id = item.Id;
       }
+
       return request.ArticleSubFamilyPricePartner;
     }
   }

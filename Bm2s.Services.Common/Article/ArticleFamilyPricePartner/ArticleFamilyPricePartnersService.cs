@@ -42,17 +42,19 @@ namespace Bm2s.Services.Common.Article.ArticleFamilyPricePartner
       return response;
     }
 
-    public object Post(ArticleFamilyPricePartners request)
+    public Bm2s.Poco.Common.Article.ArticleFamilyPricePartner Post(ArticleFamilyPricePartners request)
     {
       if (request.ArticleFamilyPricePartner.Id > 0)
       {
-        Datas.Instance.DataStorage.ArticleFamilyPricePartners[request.ArticleFamilyPricePartner.Id].AddPrice = request.ArticleFamilyPricePartner.AddPrice;
-        Datas.Instance.DataStorage.ArticleFamilyPricePartners[request.ArticleFamilyPricePartner.Id].ArticleFamilyId = request.ArticleFamilyPricePartner.ArticleFamily.Id;
-        Datas.Instance.DataStorage.ArticleFamilyPricePartners[request.ArticleFamilyPricePartner.Id].EndingDate = request.ArticleFamilyPricePartner.EndingDate;
-        Datas.Instance.DataStorage.ArticleFamilyPricePartners[request.ArticleFamilyPricePartner.Id].Multiplier = request.ArticleFamilyPricePartner.Multiplier;
-        Datas.Instance.DataStorage.ArticleFamilyPricePartners[request.ArticleFamilyPricePartner.Id].PartnerId = request.ArticleFamilyPricePartner.Partner.Id;
-        Datas.Instance.DataStorage.ArticleFamilyPricePartners[request.ArticleFamilyPricePartner.Id].Price = request.ArticleFamilyPricePartner.Price;
-        Datas.Instance.DataStorage.ArticleFamilyPricePartners[request.ArticleFamilyPricePartner.Id].StartingDate = request.ArticleFamilyPricePartner.StartingDate;
+        Bm2s.Data.Common.BLL.Article.ArticleFamilyPricePartner item = Datas.Instance.DataStorage.ArticleFamilyPricePartners[request.ArticleFamilyPricePartner.Id];
+        item.AddPrice = request.ArticleFamilyPricePartner.AddPrice;
+        item.ArticleFamilyId = request.ArticleFamilyPricePartner.ArticleFamily.Id;
+        item.EndingDate = request.ArticleFamilyPricePartner.EndingDate;
+        item.Multiplier = request.ArticleFamilyPricePartner.Multiplier;
+        item.PartnerId = request.ArticleFamilyPricePartner.Partner.Id;
+        item.Price = request.ArticleFamilyPricePartner.Price;
+        item.StartingDate = request.ArticleFamilyPricePartner.StartingDate;
+        Datas.Instance.DataStorage.ArticleFamilyPricePartners[request.ArticleFamilyPricePartner.Id] = item;
       }
       else
       {
