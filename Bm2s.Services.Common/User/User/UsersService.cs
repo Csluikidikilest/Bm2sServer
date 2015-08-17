@@ -6,7 +6,7 @@ namespace Bm2s.Services.Common.User.User
 {
   public class UsersService : Service
   {
-    public object Get(Users request)
+    public UsersResponse Get(Users request)
     {
       UsersResponse response = new UsersResponse();
 
