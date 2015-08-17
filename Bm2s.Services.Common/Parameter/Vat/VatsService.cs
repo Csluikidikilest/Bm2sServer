@@ -6,7 +6,7 @@ namespace Bm2s.Services.Common.Parameter.Vat
 {
   public class VatsService : Service
   {
-    public object Get(Vats request)
+    public VatsResponse Get(Vats request)
     {
       VatsResponse response = new VatsResponse();
 

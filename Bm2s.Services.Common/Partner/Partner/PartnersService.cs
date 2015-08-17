@@ -6,7 +6,7 @@ namespace Bm2s.Services.Common.Partner.Partner
 {
   class PartnersService : Service
   {
-    public object Get(Partners request)
+    public PartnersResponse Get(Partners request)
     {
       PartnersResponse response = new PartnersResponse();
 

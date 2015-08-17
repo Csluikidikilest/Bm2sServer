@@ -6,7 +6,7 @@ namespace Bm2s.Services.Common.Trade.Header
 {
   public class HeadersService : Service
   {
-    public object Get(Headers request)
+    public HeadersResponse Get(Headers request)
     {
       HeadersResponse response = new HeadersResponse();
 
@@ -30,7 +30,7 @@ namespace Bm2s.Services.Common.Trade.Header
       return response;
     }
 
-    public object Post(Headers request)
+    public Bm2s.Poco.Common.Trade.Header Post(Headers request)
     {
       if (request.Header.Id > 0)
       {

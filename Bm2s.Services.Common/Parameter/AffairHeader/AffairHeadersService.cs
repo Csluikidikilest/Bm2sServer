@@ -1,40 +1,62 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Bm2s.Data.Common.Utils;
+using Bm2s.Services.Common.Parameter.Affair;
+using Bm2s.Services.Common.Trade.Header;
 using ServiceStack.ServiceInterface;
 
 namespace Bm2s.Services.Common.Parameter.AffairHeader
 {
   class AffairHeadersService : Service
   {
-    public object Get(AffairHeaders request)
+    public AffairHeadersResponse Get(AffairHeaders request)
     {
       AffairHeadersResponse response = new AffairHeadersResponse();
-
+      List<Bm2s.Data.Common.BLL.Parameter.AffairHeader> items = new List<Data.Common.BLL.Parameter.AffairHeader>();
       if (!request.Ids.Any())
       {
-        response.AffairHeaders.AddRange(Datas.Instance.DataStorage.AffairHeaders.Where(item =>
+        items.AddRange(Datas.Instance.DataStorage.AffairHeaders.Where(item =>
           (request.AffairId == 0 || item.AffairId == request.AffairId) &&
           (request.HeaderId == 0 || item.HeaderId == request.HeaderId)
           ));
       }
       else
       {
-        response.AffairHeaders.AddRange(Datas.Instance.DataStorage.AffairHeaders.Where(item => request.Ids.Contains(item.Id)));
+        items.AddRange(Datas.Instance.DataStorage.AffairHeaders.Where(item => request.Ids.Contains(item.Id)));
       }
+
+      response.AffairHeaders.AddRange(from item in items
+                                      select new Bm2s.Poco.Common.Parameter.AffairHeader()
+                                      {
+                                        Affair = new AffairsService().Get(new Affairs() { Ids = new List<int>() { item.AffairId } }).Affairs.FirstOrDefault(),
+                                        Header = new HeadersService().Get(new Headers() { Ids = new List<int>() { item.HeaderId } }).Headers.FirstOrDefault(),
+                                        Id = item.Id
+                                      });
 
       return response;
     }
 
-    public object Post(AffairHeaders request)
+    public Bm2s.Poco.Common.Parameter.AffairHeader Post(AffairHeaders request)
     {
       if (request.AffairHeader.Id > 0)
       {
-        Datas.Instance.DataStorage.AffairHeaders[request.AffairHeader.Id] = request.AffairHeader;
+        Bm2s.Data.Common.BLL.Parameter.AffairHeader item = Datas.Instance.DataStorage.AffairHeaders[request.AffairHeader.Id];
+        item.AffairId = request.AffairHeader.Affair.Id;
+        item.HeaderId = request.AffairHeader.Header.Id;
+        Datas.Instance.DataStorage.AffairHeaders[request.AffairHeader.Id] = item;
       }
       else
       {
-        Datas.Instance.DataStorage.AffairHeaders.Add(request.AffairHeader);
+        Bm2s.Data.Common.BLL.Parameter.AffairHeader item = new Data.Common.BLL.Parameter.AffairHeader()
+        {
+          AffairId = request.AffairHeader.Affair.Id,
+          HeaderId = request.AffairHeader.Header.Id
+        };
+
+        Datas.Instance.DataStorage.AffairHeaders.Add(item);
+        request.AffairHeader.Id = item.Id;
       }
+
       return request.AffairHeader;
     }
   }

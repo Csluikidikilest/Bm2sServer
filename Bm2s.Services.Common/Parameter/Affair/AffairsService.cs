@@ -1,13 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Bm2s.Data.Common.Utils;
+using Bm2s.Services.Common.Parameter.Activity;
+using Bm2s.Services.Common.User.User;
 using ServiceStack.ServiceInterface;
 
 namespace Bm2s.Services.Common.Parameter.Affair
 {
   public class AffairsService : Service
   {
-    public object Get(Affairs request)
+    public AffairsResponse Get(Affairs request)
     {
       AffairsResponse response = new AffairsResponse();
       List<Bm2s.Data.Common.BLL.Parameter.Affair> items = new List<Data.Common.BLL.Parameter.Affair>();
@@ -28,18 +30,18 @@ namespace Bm2s.Services.Common.Parameter.Affair
       response.Affairs.AddRange(from item in items
                                 select new Bm2s.Poco.Common.Parameter.Affair()
                                 {
-                                  Activity = new Activity.ActivitiesService().Get(new Activity.Activities() { Ids = new List<int>() { item.ActivityId } }).Activities.FirstOrDefault(),
+                                  Activity = new ActivitiesService().Get(new Activities() { Ids = new List<int>() { item.ActivityId } }).Activities.FirstOrDefault(),
                                   Code = item.Code,
                                   Description = item.Description,
                                   Id = item.Id,
                                   Name = item.Name,
-                                  User = new User.User.UsersService().Get(new User.User.Users() { Ids = new List<int>() { item.UserId } }).Users.FirstOrDefault()
+                                  User = new UsersService().Get(new Users() { Ids = new List<int>() { item.UserId } }).Users.FirstOrDefault()
                                 });
 
       return response;
     }
 
-    public object Post(Affairs request)
+    public Bm2s.Poco.Common.Parameter.Affair Post(Affairs request)
     {
       if (request.Affair.Id > 0)
       {
