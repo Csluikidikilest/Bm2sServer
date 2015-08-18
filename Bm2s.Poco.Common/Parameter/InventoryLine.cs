@@ -7,8 +7,6 @@ namespace Bm2s.Poco.Common.Parameter
 
     public int Quantity { get; set; }
 
-    public int InventoryHeaderId { get; set; }
-
     public InventoryHeader InventoryHeader { get; set; }
 
     public Article.Article Article { get; set; }

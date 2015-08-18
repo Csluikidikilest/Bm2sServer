@@ -6,7 +6,7 @@ namespace Bm2s.Services.Common.Parameter.Unit
 {
   public class UnitsService : Service
   {
-    public object Get(Units request)
+    public UnitsResponse Get(Units request)
     {
       UnitsResponse response = new UnitsResponse();
 
