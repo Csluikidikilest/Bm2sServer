@@ -1,18 +1,20 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Bm2s.Data.Common.Utils;
+using Bm2s.Services.Common.Parameter.Country;
 using ServiceStack.ServiceInterface;
 
 namespace Bm2s.Services.Common.Parameter.Town
 {
   public class TownsService : Service
   {
-    public object Get(Towns request)
+    public TownsResponse Get(Towns request)
     {
       TownsResponse response = new TownsResponse();
-
+      List<Bm2s.Data.Common.BLL.Parameter.Town> items = new List<Data.Common.BLL.Parameter.Town>();
       if (!request.Ids.Any())
       {
-        response.Towns.AddRange(Datas.Instance.DataStorage.Towns.Where(item =>
+        items.AddRange(Datas.Instance.DataStorage.Towns.Where(item =>
           (request.CountryId == 0 || item.CountryId == request.CountryId) &&
           (string.IsNullOrWhiteSpace(request.Name) || item.Name.ToLower().Contains(request.Name.ToLower())) &&
           (string.IsNullOrWhiteSpace(request.ZipCode) || item.ZipCode.ToLower().Contains(request.ZipCode.ToLower())) &&
@@ -21,22 +23,49 @@ namespace Bm2s.Services.Common.Parameter.Town
       }
       else
       {
-        response.Towns.AddRange(Datas.Instance.DataStorage.Towns.Where(item => request.Ids.Contains(item.Id)));
+        items.AddRange(Datas.Instance.DataStorage.Towns.Where(item => request.Ids.Contains(item.Id)));
       }
+
+      response.Towns.AddRange(from item in items
+                              select new Bm2s.Poco.Common.Parameter.Town()
+                              {
+                                Country = new CountriesService().Get(new Countries() { Ids = new List<int>() { item.CountryId } }).Countries.FirstOrDefault(),
+                                EndingDate = item.EndingDate,
+                                Id = item.Id,
+                                Name = item.Name,
+                                StartingDate = item.StartingDate,
+                                ZipCode = item.ZipCode
+                              });
 
       return response;
     }
 
-    public object Post(Towns request)
+    public Bm2s.Poco.Common.Parameter.Town Post(Towns request)
     {
       if (request.Town.Id > 0)
       {
-        Datas.Instance.DataStorage.Towns[request.Town.Id] = request.Town;
+        Bm2s.Data.Common.BLL.Parameter.Town item = Datas.Instance.DataStorage.Towns[request.Town.Id];
+        item.CountryId = request.Town.Country.Id;
+        item.EndingDate = request.Town.EndingDate;
+        item.Name = request.Town.Name;
+        item.StartingDate = request.Town.StartingDate;
+        item.ZipCode = request.Town.ZipCode;
+        Datas.Instance.DataStorage.Towns[request.Town.Id] = item;
       }
       else
       {
-        Datas.Instance.DataStorage.Towns.Add(request.Town);
+        Bm2s.Data.Common.BLL.Parameter.Town item = new Data.Common.BLL.Parameter.Town() {
+        CountryId = request.Town.Country.Id,
+        EndingDate = request.Town.EndingDate,
+        Name = request.Town.Name,
+        StartingDate = request.Town.StartingDate,
+        ZipCode = request.Town.ZipCode
+        };
+
+        Datas.Instance.DataStorage.Towns.Add(item);
+        request.Town.Id = item.Id;
       }
+
       return request.Town;
     }
   }
