@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Bm2s.Data.Common.Utils;
 using ServiceStack.ServiceInterface;
 
@@ -6,34 +7,52 @@ namespace Bm2s.Services.Common.User.Group
 {
   public class GroupsService : Service
   {
-    public object Get(Groups request)
+    public GroupsResponse Get(Groups request)
     {
       GroupsResponse response = new GroupsResponse();
-
+      List<Bm2s.Data.Common.BLL.User.Group> items = new List<Data.Common.BLL.User.Group>();
       if (!request.Ids.Any())
       {
-        response.Groups.AddRange(Datas.Instance.DataStorage.Groups.Where(item =>
+        items.AddRange(Datas.Instance.DataStorage.Groups.Where(item =>
           (string.IsNullOrWhiteSpace(request.Code) || item.Code.ToLower().Contains(request.Code.ToLower())) &&
           (string.IsNullOrWhiteSpace(request.Name) || item.Name.ToLower().Contains(request.Name.ToLower()))
           ));
       }
       else
       {
-        response.Groups.AddRange(Datas.Instance.DataStorage.Groups.Where(item => request.Ids.Contains(item.Id)));
+        items.AddRange(Datas.Instance.DataStorage.Groups.Where(item => request.Ids.Contains(item.Id)));
       }
+
+      response.Groups.AddRange(from item in items
+                               select new Bm2s.Poco.Common.User.Group()
+                               {
+                                 Code = item.Code,
+                                 Id = item.Id,
+                                 Name = item.Name
+                               });
 
       return response;
     }
 
-    public object Post(Groups request)
+    public Bm2s.Poco.Common.User.Group Post(Groups request)
     {
       if (request.Group.Id > 0)
       {
-        Datas.Instance.DataStorage.Groups[request.Group.Id] = request.Group;
+        Bm2s.Data.Common.BLL.User.Group item = Datas.Instance.DataStorage.Groups[request.Group.Id];
+        item.Code = request.Group.Code;
+        item.Name = request.Group.Name;
+        Datas.Instance.DataStorage.Groups[request.Group.Id] = item;
       }
       else
       {
-        Datas.Instance.DataStorage.Groups.Add(request.Group);
+        Bm2s.Data.Common.BLL.User.Group item = new Data.Common.BLL.User.Group()
+        {
+          Code = request.Group.Code,
+          Name = request.Group.Name
+        };
+
+        Datas.Instance.DataStorage.Groups.Add(item);
+        request.Group.Id = item.Id;
       }
       return request.Group;
     }

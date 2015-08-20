@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Bm2s.Data.Common.Utils;
 using ServiceStack.ServiceInterface;
 
@@ -9,10 +10,10 @@ namespace Bm2s.Services.Common.User.User
     public UsersResponse Get(Users request)
     {
       UsersResponse response = new UsersResponse();
-
+      List<Bm2s.Data.Common.BLL.User.User> items = new List<Data.Common.BLL.User.User>();
       if (!request.Ids.Any())
       {
-        response.Users.AddRange(Datas.Instance.DataStorage.Users.Where(item =>
+        items.AddRange(Datas.Instance.DataStorage.Users.Where(item =>
           (string.IsNullOrWhiteSpace(request.FirstName) || item.FirstName.ToLower().Contains(request.FirstName.ToLower())) &&
           (string.IsNullOrWhiteSpace(request.LastName) || item.LastName.ToLower().Contains(request.LastName.ToLower())) &&
           (string.IsNullOrWhiteSpace(request.Login) || item.Login.ToLower().Contains(request.Login.ToLower())) &&
@@ -23,22 +24,59 @@ namespace Bm2s.Services.Common.User.User
       }
       else
       {
-        response.Users.AddRange(Datas.Instance.DataStorage.Users.Where(item => request.Ids.Contains(item.Id)));
+        items.AddRange(Datas.Instance.DataStorage.Users.Where(item => request.Ids.Contains(item.Id)));
       }
+
+      response.Users.AddRange(from item in items
+                              select new Bm2s.Poco.Common.User.User()
+                              {
+                                EndingDate = item.EndingDate,
+                                FirstName = item.FirstName,
+                                Id = item.Id,
+                                IsAdministrator = item.IsAdministrator,
+                                IsAnonymous = item.IsAnonymous,
+                                LastName = item.LastName,
+                                Login = item.Login,
+                                Password = item.Password,
+                                StartingDate = item.StartingDate
+                              });
 
       return response;
     }
 
-    public object Post(Users request)
+    public Bm2s.Poco.Common.User.User Post(Users request)
     {
       if (request.User.Id > 0)
       {
-        Datas.Instance.DataStorage.Users[request.User.Id] = request.User;
+        Bm2s.Data.Common.BLL.User.User item = Datas.Instance.DataStorage.Users[request.User.Id];
+        item.EndingDate = request.User.EndingDate;
+        item.FirstName = request.User.FirstName;
+        item.IsAdministrator = request.User.IsAdministrator;
+        item.IsAnonymous = request.User.IsAnonymous;
+        item.LastName = request.User.LastName;
+        item.Login = request.User.Login;
+        item.Password = request.User.Password;
+        item.StartingDate = request.User.StartingDate;
+        Datas.Instance.DataStorage.Users[request.User.Id] = item;
       }
       else
       {
-        Datas.Instance.DataStorage.Users.Add(request.User);
+        Bm2s.Data.Common.BLL.User.User item = new Data.Common.BLL.User.User()
+        {
+          EndingDate = request.User.EndingDate,
+          FirstName = request.User.FirstName,
+          IsAdministrator = request.User.IsAdministrator,
+          IsAnonymous = request.User.IsAnonymous,
+          LastName = request.User.LastName,
+          Login = request.User.Login,
+          Password = request.User.Password,
+          StartingDate = request.User.StartingDate
+        };
+
+        Datas.Instance.DataStorage.Users.Add(item);
+        request.User.Id = item.Id;
       }
+
       return request.User;
     }
   }

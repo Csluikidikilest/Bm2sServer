@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Bm2s.Data.Common.Utils;
 using ServiceStack.ServiceInterface;
 
@@ -9,32 +10,54 @@ namespace Bm2s.Services.Common.Trade.HeaderLineType
     public HeaderLineTypesResponse Get(HeaderLineTypes request)
     {
       HeaderLineTypesResponse response = new HeaderLineTypesResponse();
-
+      List<Bm2s.Data.Common.BLL.Trade.HeaderLineType> items = new List<Data.Common.BLL.Trade.HeaderLineType>();
       if (!request.Ids.Any())
       {
-        response.HeaderLineTypes.AddRange(Datas.Instance.DataStorage.HeaderLineTypes.Where(item =>
+        items.AddRange(Datas.Instance.DataStorage.HeaderLineTypes.Where(item =>
           (string.IsNullOrWhiteSpace(request.Name) || item.Name.ToLower().Contains(request.Name.ToLower())) &&
           (!request.Date.HasValue || (request.Date >= item.StartingDate && (!item.EndingDate.HasValue || request.Date < item.EndingDate.Value)))
           ));
       }
       else
       {
-        response.HeaderLineTypes.AddRange(Datas.Instance.DataStorage.HeaderLineTypes.Where(item => request.Ids.Contains(item.Id)));
+        items.AddRange(Datas.Instance.DataStorage.HeaderLineTypes.Where(item => request.Ids.Contains(item.Id)));
       }
+
+      response.HeaderLineTypes.AddRange(from item in items
+                                        select new Bm2s.Poco.Common.Trade.HeaderLineType()
+                                        {
+                                          EndingDate = item.EndingDate,
+                                          Id = item.Id,
+                                          Name = item.Name,
+                                          StartingDate = item.StartingDate
+                                        });
 
       return response;
     }
 
-    public object Post(HeaderLineTypes request)
+    public Bm2s.Poco.Common.Trade.HeaderLineType Post(HeaderLineTypes request)
     {
       if (request.HeaderLineType.Id > 0)
       {
-        Datas.Instance.DataStorage.HeaderLineTypes[request.HeaderLineType.Id] = request.HeaderLineType;
+        Bm2s.Data.Common.BLL.Trade.HeaderLineType item = Datas.Instance.DataStorage.HeaderLineTypes[request.HeaderLineType.Id];
+        item.EndingDate = request.HeaderLineType.EndingDate;
+        item.Name = request.HeaderLineType.Name;
+        item.StartingDate = request.HeaderLineType.StartingDate;
+        Datas.Instance.DataStorage.HeaderLineTypes[request.HeaderLineType.Id] = item;
       }
       else
       {
-        Datas.Instance.DataStorage.HeaderLineTypes.Add(request.HeaderLineType);
+        Bm2s.Data.Common.BLL.Trade.HeaderLineType item = new Data.Common.BLL.Trade.HeaderLineType()
+        {
+          EndingDate = request.HeaderLineType.EndingDate,
+          Name = request.HeaderLineType.Name,
+          StartingDate = request.HeaderLineType.StartingDate
+        };
+
+        Datas.Instance.DataStorage.HeaderLineTypes.Add(item);
+        request.HeaderLineType.Id = item.Id;
       }
+
       return request.HeaderLineType;
     }
   }

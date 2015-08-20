@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Bm2s.Data.Common.Utils;
 using ServiceStack.ServiceInterface;
 
@@ -6,13 +7,13 @@ namespace Bm2s.Services.Common.Trade.PaymentMode
 {
   public class PaymentModesService : Service
   {
-    public object Get(PaymentModes request)
+    public PaymentModesResponse Get(PaymentModes request)
     {
       PaymentModesResponse response = new PaymentModesResponse();
-
+      List<Bm2s.Data.Common.BLL.Trade.PaymentMode> items = new List<Data.Common.BLL.Trade.PaymentMode>();
       if (!request.Ids.Any())
       {
-        response.PaymentModes.AddRange(Datas.Instance.DataStorage.PaymentModes.Where(item =>
+        items.AddRange(Datas.Instance.DataStorage.PaymentModes.Where(item =>
           (string.IsNullOrWhiteSpace(request.Code) || item.Code.ToLower().Contains(request.Code.ToLower())) &&
           (string.IsNullOrWhiteSpace(request.Name) || item.Name.ToLower().Contains(request.Name.ToLower())) &&
           (!request.Date.HasValue || (request.Date >= item.StartingDate && (!item.EndingDate.HasValue || request.Date < item.EndingDate.Value)))
@@ -20,22 +21,47 @@ namespace Bm2s.Services.Common.Trade.PaymentMode
       }
       else
       {
-        response.PaymentModes.AddRange(Datas.Instance.DataStorage.PaymentModes.Where(item => request.Ids.Contains(item.Id)));
+        items.AddRange(Datas.Instance.DataStorage.PaymentModes.Where(item => request.Ids.Contains(item.Id)));
       }
+
+      response.PaymentModes.AddRange(from item in items
+                                     select new Bm2s.Poco.Common.Trade.PaymentMode()
+                                     {
+                                       Code = item.Code,
+                                       EndingDate = item.EndingDate,
+                                       Id = item.Id,
+                                       Name = item.Name,
+                                       StartingDate = item.StartingDate
+                                     });
 
       return response;
     }
 
-    public object Post(PaymentModes request)
+    public Bm2s.Poco.Common.Trade.PaymentMode Post(PaymentModes request)
     {
       if (request.PaymentMode.Id > 0)
       {
-        Datas.Instance.DataStorage.PaymentModes[request.PaymentMode.Id] = request.PaymentMode;
+        Bm2s.Data.Common.BLL.Trade.PaymentMode item = Datas.Instance.DataStorage.PaymentModes[request.PaymentMode.Id];
+        item.Code = request.PaymentMode.Code;
+        item.EndingDate = request.PaymentMode.EndingDate;
+        item.Name = request.PaymentMode.Name;
+        item.StartingDate = request.PaymentMode.StartingDate;
+        Datas.Instance.DataStorage.PaymentModes[request.PaymentMode.Id] = item;
       }
       else
       {
-        Datas.Instance.DataStorage.PaymentModes.Add(request.PaymentMode);
+        Bm2s.Data.Common.BLL.Trade.PaymentMode item = new Data.Common.BLL.Trade.PaymentMode()
+        {
+          Code = request.PaymentMode.Code,
+          EndingDate = request.PaymentMode.EndingDate,
+          Name = request.PaymentMode.Name,
+          StartingDate = request.PaymentMode.StartingDate
+        };
+
+        Datas.Instance.DataStorage.PaymentModes.Add(item);
+        request.PaymentMode.Id = item.Id;
       }
+
       return request.PaymentMode;
     }
   }

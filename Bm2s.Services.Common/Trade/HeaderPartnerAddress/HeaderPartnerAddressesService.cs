@@ -1,18 +1,23 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Bm2s.Data.Common.Utils;
+using Bm2s.Services.Common.Partner.Address;
+using Bm2s.Services.Common.Partner.AddressType;
+using Bm2s.Services.Common.Partner.Partner;
+using Bm2s.Services.Common.Trade.Header;
 using ServiceStack.ServiceInterface;
 
 namespace Bm2s.Services.Common.Trade.HeaderPartnerAddress
 {
   public class HeaderPartnerAddressesService : Service
   {
-    public object Get(HeaderPartnerAddresses request)
+    public HeaderPartnerAddressesResponse Get(HeaderPartnerAddresses request)
     {
       HeaderPartnerAddressesResponse response = new HeaderPartnerAddressesResponse();
-
+      List<Bm2s.Data.Common.BLL.Trade.HeaderPartnerAddress> items = new List<Data.Common.BLL.Trade.HeaderPartnerAddress>();
       if (!request.Ids.Any())
       {
-        response.HeaderPartnerAddresses.AddRange(Datas.Instance.DataStorage.HeaderPartnerAddresses.Where(item =>
+        items.AddRange(Datas.Instance.DataStorage.HeaderPartnerAddresses.Where(item =>
           (request.AddressId == 0 || item.AddressId == request.AddressId) &&
           (request.AddressTypeId == 0 || item.AddressTypeId == request.AddressTypeId) &&
           (request.HeaderId == 0 || item.HeaderId == request.HeaderId) &&
@@ -21,22 +26,47 @@ namespace Bm2s.Services.Common.Trade.HeaderPartnerAddress
       }
       else
       {
-        response.HeaderPartnerAddresses.AddRange(Datas.Instance.DataStorage.HeaderPartnerAddresses.Where(item => request.Ids.Contains(item.Id)));
+        items.AddRange(Datas.Instance.DataStorage.HeaderPartnerAddresses.Where(item => request.Ids.Contains(item.Id)));
       }
+
+      response.HeaderPartnerAddresses.AddRange(from item in items
+                                               select new Bm2s.Poco.Common.Trade.HeaderPartnerAddress()
+                                               {
+                                                 Address = new AddressesService().Get(new Addresses() { Ids = new List<int>() { item.AddressId } }).Addresses.FirstOrDefault(),
+                                                 AddressType = new AddressTypesService().Get(new AddressTypes() { Ids = new List<int>() { item.AddressTypeId } }).AddressTypes.FirstOrDefault(),
+                                                 Header = new HeadersService().Get(new Headers() { Ids = new List<int>() { item.HeaderId } }).Headers.FirstOrDefault(),
+                                                 Id = item.Id,
+                                                 Partner = new PartnersService().Get(new Partners() { Ids = new List<int>() { item.PartnerId } }).Partners.FirstOrDefault()
+                                               });
 
       return response;
     }
 
-    public object Post(HeaderPartnerAddresses request)
+    public Bm2s.Poco.Common.Trade.HeaderPartnerAddress Post(HeaderPartnerAddresses request)
     {
       if (request.HeaderPartnerAddress.Id > 0)
       {
-        Datas.Instance.DataStorage.HeaderPartnerAddresses[request.HeaderPartnerAddress.Id] = request.HeaderPartnerAddress;
+        Bm2s.Data.Common.BLL.Trade.HeaderPartnerAddress item = Datas.Instance.DataStorage.HeaderPartnerAddresses[request.HeaderPartnerAddress.Id];
+        item.AddressId = request.HeaderPartnerAddress.Address.Id;
+        item.AddressTypeId = request.HeaderPartnerAddress.AddressType.Id;
+        item.HeaderId = request.HeaderPartnerAddress.Header.Id;
+        item.PartnerId = request.HeaderPartnerAddress.Partner.Id;
+        Datas.Instance.DataStorage.HeaderPartnerAddresses[request.HeaderPartnerAddress.Id] = item;
       }
       else
       {
-        Datas.Instance.DataStorage.HeaderPartnerAddresses.Add(request.HeaderPartnerAddress);
+        Bm2s.Data.Common.BLL.Trade.HeaderPartnerAddress item = new Data.Common.BLL.Trade.HeaderPartnerAddress()
+        {
+          AddressId = request.HeaderPartnerAddress.Address.Id,
+          AddressTypeId = request.HeaderPartnerAddress.AddressType.Id,
+          HeaderId = request.HeaderPartnerAddress.Header.Id,
+          PartnerId = request.HeaderPartnerAddress.Partner.Id
+        };
+
+        Datas.Instance.DataStorage.HeaderPartnerAddresses.Add(item);
+        request.HeaderPartnerAddress.Id = item.Id;
       }
+
       return request.HeaderPartnerAddress;
     }
   }

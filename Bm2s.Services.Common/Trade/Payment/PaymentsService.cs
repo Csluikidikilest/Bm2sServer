@@ -1,18 +1,22 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Bm2s.Data.Common.Utils;
+using Bm2s.Services.Common.Parameter.Unit;
+using Bm2s.Services.Common.Partner.Partner;
+using Bm2s.Services.Common.Trade.PaymentMode;
 using ServiceStack.ServiceInterface;
 
 namespace Bm2s.Services.Common.Trade.Payment
 {
   public class PaymentsService : Service
   {
-    public object Get(Payments request)
+    public PaymentsResponse Get(Payments request)
     {
       PaymentsResponse response = new PaymentsResponse();
-
+      List<Bm2s.Data.Common.BLL.Trade.Payment> items = new List<Data.Common.BLL.Trade.Payment>();
       if (!request.Ids.Any())
       {
-        response.Payments.AddRange(Datas.Instance.DataStorage.Payments.Where(item =>
+        items.AddRange(Datas.Instance.DataStorage.Payments.Where(item =>
           (!request.Date.HasValue || item.Date >= request.Date) &&
           (request.PartnerId == 0 || item.PartnerId == request.PartnerId) &&
           (request.PaymentModeId == 0 || item.PaymentModeId == request.PaymentModeId) &&
@@ -21,22 +25,50 @@ namespace Bm2s.Services.Common.Trade.Payment
       }
       else
       {
-        response.Payments.AddRange(Datas.Instance.DataStorage.Payments.Where(item => request.Ids.Contains(item.Id)));
+        items.AddRange(Datas.Instance.DataStorage.Payments.Where(item => request.Ids.Contains(item.Id)));
       }
+
+      response.Payments.AddRange(from item in items
+                                 select new Bm2s.Poco.Common.Trade.Payment()
+                                 {
+                                   Amount = item.Amount,
+                                   Date = item.Date,
+                                   Id = item.Id,
+                                   Partner = new PartnersService().Get(new Partners() { Ids = new List<int>() { item.PartnerId } }).Partners.FirstOrDefault(),
+                                   PaymentMode = new PaymentModesService().Get(new PaymentModes() { Ids = new List<int>() { item.PaymentModeId } }).PaymentModes.FirstOrDefault(),
+                                   Unit = new UnitsService().Get(new Units() { Ids = new List<int>() { item.UnitId } }).Units.FirstOrDefault()
+                                 });
 
       return response;
     }
 
-    public object Post(Payments request)
+    public Bm2s.Poco.Common.Trade.Payment Post(Payments request)
     {
       if (request.Payment.Id > 0)
       {
-        Datas.Instance.DataStorage.Payments[request.Payment.Id] = request.Payment;
+        Bm2s.Data.Common.BLL.Trade.Payment item = Datas.Instance.DataStorage.Payments[request.Payment.Id];
+        item.Amount = request.Payment.Amount;
+        item.Date = request.Payment.Date;
+        item.PartnerId = request.Payment.Partner.Id;
+        item.PaymentModeId = request.Payment.PaymentMode.Id;
+        item.UnitId = request.Payment.Unit.Id;
+        Datas.Instance.DataStorage.Payments[request.Payment.Id] = item;
       }
       else
       {
-        Datas.Instance.DataStorage.Payments.Add(request.Payment);
+        Bm2s.Data.Common.BLL.Trade.Payment item = new Data.Common.BLL.Trade.Payment()
+        {
+          Amount = request.Payment.Amount,
+          Date = request.Payment.Date,
+          PartnerId = request.Payment.Partner.Id,
+          PaymentModeId = request.Payment.PaymentMode.Id,
+          UnitId = request.Payment.Unit.Id
+        };
+
+        Datas.Instance.DataStorage.Payments.Add(item);
+        request.Payment.Id = item.Id;
       }
+
       return request.Payment;
     }
   }
