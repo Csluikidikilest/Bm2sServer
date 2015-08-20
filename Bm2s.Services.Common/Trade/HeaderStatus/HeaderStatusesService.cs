@@ -6,7 +6,7 @@ namespace Bm2s.Services.Common.Trade.HeaderStatus
 {
   public class HeaderStatusesService : Service
   {
-    public object Get(HeaderStatuses request)
+    public HeaderStatusesResponse Get(HeaderStatuses request)
     {
       HeaderStatusesResponse response = new HeaderStatusesResponse();
 

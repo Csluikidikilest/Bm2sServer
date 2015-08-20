@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Bm2s.Data.Common.Utils;
+using Bm2s.Services.Common.Article.Brand;
+using Bm2s.Services.Common.Parameter.Unit;
 using ServiceStack.ServiceInterface;
 
 namespace Bm2s.Services.Common.Article.Article
@@ -32,7 +34,7 @@ namespace Bm2s.Services.Common.Article.Article
                                  {
                                    ArticleFamily = new ArticleFamily.ArticleFamiliesService().Get(new ArticleFamily.ArticleFamilies() { Ids = new List<int>() { item.ArticleFamilyId } }).ArticleFamilies.FirstOrDefault(),
                                    ArticleSubFamily = new ArticleSubFamily.ArticleSubFamiliesService().Get(new ArticleSubFamily.ArticleSubFamilies() { Ids = new List<int>() { item.ArticleSubFamilyId } }).ArticleSubFamilies.FirstOrDefault(),
-                                   Brand = null,
+                                   Brand = new BrandsService().Get(new Brands(){Ids = new List<int>(){item.BrandId}}).Brands.FirstOrDefault(),
                                    Code = item.Code,
                                    Description = item.Description,
                                    Designation = item.Designation,
@@ -40,7 +42,7 @@ namespace Bm2s.Services.Common.Article.Article
                                    Id = item.Id,
                                    Observation = item.Observation,
                                    StartingDate = item.StartingDate,
-                                   Unit = null
+                                   Unit = new UnitsService().Get(new Units() { Ids = new List<int>() { item.UnitId} }).Units.FirstOrDefault()
                                  });
       return response;
     }

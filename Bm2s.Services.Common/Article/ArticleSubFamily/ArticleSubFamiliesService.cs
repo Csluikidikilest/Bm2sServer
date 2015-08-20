@@ -2,6 +2,7 @@
 using ServiceStack.ServiceInterface;
 using System.Linq;
 using System.Collections.Generic;
+using Bm2s.Services.Common.Article.ArticleFamily;
 
 namespace Bm2s.Services.Common.Article.ArticleSubFamily
 {
@@ -30,7 +31,7 @@ namespace Bm2s.Services.Common.Article.ArticleSubFamily
                                            select new Bm2s.Poco.Common.Article.ArticleSubFamily()
                                            {
                                              AccountingEntry = item.AccountingEntry,
-                                             ArticleFamily = null,
+                                             ArticleFamily = new ArticleFamiliesService().Get(new ArticleFamilies() { Ids = new List<int>() { item.ArticleFamilyId } }).ArticleFamilies.FirstOrDefault(),
                                              Code = item.Code,
                                              Description = item.Description,
                                              Designation = item.Designation,

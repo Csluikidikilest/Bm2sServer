@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Bm2s.Services.Common.Article.ArticleSubFamily;
+using Bm2s.Services.Common.Partner.PartnerFamily;
 
 namespace Bm2s.Services.Common.Article.ArticleSubFamilyPricePartnerFamily
 {
@@ -30,11 +32,11 @@ namespace Bm2s.Services.Common.Article.ArticleSubFamilyPricePartnerFamily
       response.ArticleSubFamilyPricePartnerFamilies.AddRange(from item in items
                                                              select new Bm2s.Poco.Common.Article.ArticleSubFamilyPricePartnerFamily()
                                                              {
-                                                               ArticleSubFamily = null,
+                                                               ArticleSubFamily = new ArticleSubFamiliesService().Get(new ArticleSubFamilies() { Ids = new List<int>() { item.ArticleSubFamilyId } }).ArticleSubFamilies.FirstOrDefault(),
                                                                EndingDate = item.EndingDate,
                                                                Id = item.Id,
                                                                Multiplier = item.Multiplier,
-                                                               PartnerFamily = null,
+                                                               PartnerFamily = new PartnerFamiliesService().Get(new PartnerFamilies() { Ids = new List<int>() { item.PartnerFamilyId } }).PartnerFamilies.FirstOrDefault(),
                                                                Price = item.Price,
                                                                StartingDate = item.StartingDate
                                                              });

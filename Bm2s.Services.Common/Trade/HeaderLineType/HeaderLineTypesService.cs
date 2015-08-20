@@ -6,7 +6,7 @@ namespace Bm2s.Services.Common.Trade.HeaderLineType
 {
   public class HeaderLineTypesService : Service
   {
-    public object Get(HeaderLineTypes request)
+    public HeaderLineTypesResponse Get(HeaderLineTypes request)
     {
       HeaderLineTypesResponse response = new HeaderLineTypesResponse();
 

@@ -1,7 +1,8 @@
-﻿using Bm2s.Data.Common.Utils;
-using ServiceStack.ServiceInterface;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using Bm2s.Data.Common.Utils;
+using Bm2s.Services.Common.Article.Article;
+using ServiceStack.ServiceInterface;
 
 namespace Bm2s.Services.Common.Article.Price
 {
@@ -26,7 +27,7 @@ namespace Bm2s.Services.Common.Article.Price
       response.Prices.AddRange(from item in items
                                select new Bm2s.Poco.Common.Article.Price()
                                {
-                                 Article = null,
+                                 Article = new ArticlesService().Get(new Articles() { Ids = new List<int>() { item.ArticleId} }).Articles.FirstOrDefault(),
                                  BasePrice = item.BasePrice,
                                  EndingDate = item.EndingDate,
                                  Id = item.Id,

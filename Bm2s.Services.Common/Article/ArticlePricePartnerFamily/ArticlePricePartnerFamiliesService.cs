@@ -1,10 +1,9 @@
-﻿using Bm2s.Data.Common.Utils;
-using ServiceStack.ServiceInterface;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Bm2s.Data.Common.Utils;
+using Bm2s.Services.Common.Article.Article;
+using Bm2s.Services.Common.Partner.PartnerFamily;
+using ServiceStack.ServiceInterface;
 
 namespace Bm2s.Services.Common.Article.ArticlePricePartnerFamily
 {
@@ -30,11 +29,11 @@ namespace Bm2s.Services.Common.Article.ArticlePricePartnerFamily
       response.ArticlePricePartnerFamilies.AddRange(from item in items
                                                     select new Bm2s.Poco.Common.Article.ArticlePricePartnerFamily()
                                                     {
-                                                      Article = null,
+                                                      Article = new ArticlesService().Get(new Articles() { Ids = new List<int>() { item.ArticleId } }).Articles.FirstOrDefault(),
                                                       EndingDate = item.EndingDate,
                                                       Id = item.Id,
                                                       Multiplier = item.Multiplier,
-                                                      PartnerFamily = null,
+                                                      PartnerFamily = new PartnerFamiliesService().Get(new PartnerFamilies() { Ids = new List<int>() { item.PartnerFamilyId } }).PartnerFamilies.FirstOrDefault(),
                                                       Price = item.Price,
                                                       StartingDate = item.StartingDate
                                                     });

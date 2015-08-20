@@ -2,6 +2,7 @@
 using ServiceStack.ServiceInterface;
 using System.Linq;
 using System.Collections.Generic;
+using Bm2s.Services.Common.Article.Article;
 
 namespace Bm2s.Services.Common.Article.Nomenclature
 {
@@ -25,8 +26,8 @@ namespace Bm2s.Services.Common.Article.Nomenclature
       response.Nomenclatures.AddRange(from item in items
                                       select new Bm2s.Poco.Common.Article.Nomenclature()
                                       {
-                                        ArticleChild = null,
-                                        ArticleParent = null,
+                                        ArticleChild = new ArticlesService().Get(new Articles() { Ids = new List<int>() { item.ArticleChildId } }).Articles.FirstOrDefault(),
+                                        ArticleParent = new ArticlesService().Get(new Articles() { Ids = new List<int>() { item.ArticleParentId } }).Articles.FirstOrDefault(),
                                         BuyPrice = item.BuyPrice,
                                         Id = item.Id,
                                         Multiplier = item.Multiplier,
