@@ -1,18 +1,20 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Bm2s.Data.Common.Utils;
+using Bm2s.Services.Common.Partner.Partner;
 using ServiceStack.ServiceInterface;
 
 namespace Bm2s.Services.Common.Partner.PartnerContact
 {
   class PartnerContactsService : Service
   {
-    public object Get(PartnerContacts request)
+    public PartnerContactsResponse Get(PartnerContacts request)
     {
       PartnerContactsResponse response = new PartnerContactsResponse();
-
+      List<Bm2s.Data.Common.BLL.Partner.PartnerContact> items = new List<Data.Common.BLL.Partner.PartnerContact>();
       if (!request.Ids.Any())
       {
-        response.PartnerContacts.AddRange(Datas.Instance.DataStorage.PartnerContacts.Where(item =>
+        items.AddRange(Datas.Instance.DataStorage.PartnerContacts.Where(item =>
           (string.IsNullOrWhiteSpace(request.Email) || item.Email.ToLower().Contains(request.Email.ToLower())) &&
           (string.IsNullOrWhiteSpace(request.FaxNumber) || item.FaxNumber.ToLower().Contains(request.FaxNumber.ToLower())) &&
           (string.IsNullOrWhiteSpace(request.FirstName) || item.FirstName.ToLower().Contains(request.FirstName.ToLower())) &&
@@ -26,22 +28,68 @@ namespace Bm2s.Services.Common.Partner.PartnerContact
       }
       else
       {
-        response.PartnerContacts.AddRange(Datas.Instance.DataStorage.PartnerContacts.Where(item => request.Ids.Contains(item.Id)));
+        items.AddRange(Datas.Instance.DataStorage.PartnerContacts.Where(item => request.Ids.Contains(item.Id)));
       }
+
+      response.PartnerContacts.AddRange(from item in items
+                                        select new Bm2s.Poco.Common.Partner.PartnerContact()
+                                        {
+                                          Email = item.Email,
+                                          EndingDate = item.EndingDate,
+                                          FaxNumber = item.FaxNumber,
+                                          FirstName  = item.FirstName,
+                                          Function = item.Function,
+                                          Id = item.Id,
+                                          LastName = item.LastName,
+                                          MobilePhoneNumber = item.MobilePhoneNumber,
+                                          Observation = item.Observation,
+                                          Partner = new PartnersService().Get(new Partners() { Ids = new List<int>() { item.PartnerId } }).Partners.FirstOrDefault(),
+                                          PhoneNumber = item.PhoneNumber,
+                                          StartingDate = item.StartingDate
+                                        });
 
       return response;
     }
 
-    public object Post(PartnerContacts request)
+    public Bm2s.Poco.Common.Partner.PartnerContact Post(PartnerContacts request)
     {
       if (request.PartnerContact.Id > 0)
       {
-        Datas.Instance.DataStorage.PartnerContacts[request.PartnerContact.Id] = request.PartnerContact;
+        Bm2s.Data.Common.BLL.Partner.PartnerContact item = Datas.Instance.DataStorage.PartnerContacts[request.PartnerContact.Id];
+        item.Email = request.PartnerContact.Email;
+        item.EndingDate = request.PartnerContact.EndingDate;
+        item.FaxNumber = request.PartnerContact.FaxNumber;
+        item.FirstName = request.PartnerContact.FirstName;
+        item.Function = request.PartnerContact.Function;
+        item.LastName = request.PartnerContact.LastName;
+        item.MobilePhoneNumber = request.PartnerContact.MobilePhoneNumber;
+        item.Observation = request.PartnerContact.Observation;
+        item.PartnerId = request.PartnerContact.Partner.Id;
+        item.PhoneNumber = request.PartnerContact.PhoneNumber;
+        item.StartingDate = request.PartnerContact.StartingDate;
+        Datas.Instance.DataStorage.PartnerContacts[request.PartnerContact.Id] = item;
       }
       else
       {
-        Datas.Instance.DataStorage.PartnerContacts.Add(request.PartnerContact);
+        Bm2s.Data.Common.BLL.Partner.PartnerContact item = new Data.Common.BLL.Partner.PartnerContact()
+        {
+          Email = request.PartnerContact.Email,
+          EndingDate = request.PartnerContact.EndingDate,
+          FaxNumber = request.PartnerContact.FaxNumber,
+          FirstName = request.PartnerContact.FirstName,
+          Function = request.PartnerContact.Function,
+          LastName = request.PartnerContact.LastName,
+          MobilePhoneNumber = request.PartnerContact.MobilePhoneNumber,
+          Observation = request.PartnerContact.Observation,
+          PartnerId = request.PartnerContact.Partner.Id,
+          PhoneNumber = request.PartnerContact.PhoneNumber,
+          StartingDate = request.PartnerContact.StartingDate
+        };
+
+        Datas.Instance.DataStorage.PartnerContacts.Add(item);
+        request.PartnerContact.Id = item.Id;
       }
+
       return request.PartnerContact;
     }
   }

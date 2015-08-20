@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Bm2s.Data.Common.Utils;
 using ServiceStack.ServiceInterface;
 
@@ -6,35 +7,60 @@ namespace Bm2s.Services.Common.Partner.AddressType
 {
   class AddressTypesService : Service
   {
-    public object Get(AddressTypes request)
+    public AddressTypesResponse Get(AddressTypes request)
     {
       AddressTypesResponse response = new AddressTypesResponse();
-
+      List<Bm2s.Data.Common.BLL.Partner.AddressType> items = new List<Data.Common.BLL.Partner.AddressType>();
       if (!request.Ids.Any())
       {
-        response.AddressTypes.AddRange(Datas.Instance.DataStorage.AddressTypes.Where(item =>
+        items.AddRange(Datas.Instance.DataStorage.AddressTypes.Where(item =>
           (string.IsNullOrWhiteSpace(request.Code) || item.Code.ToLower().Contains(request.Code.ToLower())) &&
           (string.IsNullOrWhiteSpace(request.Name) || item.Name.ToLower().Contains(request.Name.ToLower()))
           ));
       }
       else
       {
-        response.AddressTypes.AddRange(Datas.Instance.DataStorage.AddressTypes.Where(item => request.Ids.Contains(item.Id)));
+        items.AddRange(Datas.Instance.DataStorage.AddressTypes.Where(item => request.Ids.Contains(item.Id)));
       }
+
+      response.AddressTypes.AddRange(from item in items
+                                     select new Bm2s.Poco.Common.Partner.AddressType()
+                                     {
+                                       Code = item.Code,
+                                       EndingDate = item.EndingDate,
+                                       Id = item.Id,
+                                       Name = item.Name,
+                                       StartingDate = item.StartingDate
+                                     });
 
       return response;
     }
 
-    public object Post(AddressTypes request)
+    public Bm2s.Poco.Common.Partner.AddressType Post(AddressTypes request)
     {
       if (request.AddressType.Id > 0)
       {
-        Datas.Instance.DataStorage.AddressTypes[request.AddressType.Id] = request.AddressType;
+        Bm2s.Data.Common.BLL.Partner.AddressType item = Datas.Instance.DataStorage.AddressTypes[request.AddressType.Id];
+        item.Code = request.AddressType.Code;
+        item.EndingDate = request.AddressType.EndingDate;
+        item.Name = request.AddressType.Name;
+        item.StartingDate = request.AddressType.StartingDate;
+        Datas.Instance.DataStorage.AddressTypes[request.AddressType.Id] = item;
       }
       else
       {
-        Datas.Instance.DataStorage.AddressTypes.Add(request.AddressType);
+        Bm2s.Data.Common.BLL.Partner.AddressType item = new Data.Common.BLL.Partner.AddressType()
+        {
+          Code = request.AddressType.Code,
+          EndingDate = request.AddressType.EndingDate,
+          Name = request.AddressType.Name,
+          StartingDate = request.AddressType.StartingDate
+        };
+
+        Datas.Instance.DataStorage.AddressTypes.Add(item);
+        request.AddressType.Id = item.Id;
       }
+
       return request.AddressType;
     }
   }

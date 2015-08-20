@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Bm2s.Data.Common.Utils;
 using ServiceStack.ServiceInterface;
 
@@ -6,32 +7,54 @@ namespace Bm2s.Services.Common.Partner.Address
 {
   class AddressesService : Service
   {
-    public object Get(Addresses request)
+    public AddressesResponse Get(Addresses request)
     {
       AddressesResponse response = new AddressesResponse();
-
+      List<Bm2s.Data.Common.BLL.Partner.Address> items = new List<Data.Common.BLL.Partner.Address>();
       if (!request.Ids.Any())
       {
-        response.Addresses.AddRange(Datas.Instance.DataStorage.Addresses);
+        items.AddRange(Datas.Instance.DataStorage.Addresses);
       }
       else
       {
-        response.Addresses.AddRange(Datas.Instance.DataStorage.Addresses.Where(item => request.Ids.Contains(item.Id)));
+        items.AddRange(Datas.Instance.DataStorage.Addresses.Where(item => request.Ids.Contains(item.Id)));
       }
+
+      response.Addresses.AddRange(from item in items
+                                  select new Bm2s.Poco.Common.Partner.Address()
+                                  {
+                                    CountryName = item.CountryName,
+                                    Id = item.Id,
+                                    TownName = item.TownName,
+                                    TownZipCode = item.TownZipCode
+                                  });
 
       return response;
     }
 
-    public object Post(Addresses request)
+    public Bm2s.Poco.Common.Partner.Address Post(Addresses request)
     {
       if (request.Address.Id > 0)
       {
-        Datas.Instance.DataStorage.Addresses[request.Address.Id] = request.Address;
+        Bm2s.Data.Common.BLL.Partner.Address item = Datas.Instance.DataStorage.Addresses[request.Address.Id];
+        item.CountryName = request.Address.CountryName;
+        item.TownName = request.Address.TownName;
+        item.TownZipCode = request.Address.TownZipCode;
+        Datas.Instance.DataStorage.Addresses[request.Address.Id] = item;
       }
       else
       {
-        Datas.Instance.DataStorage.Addresses.Add(request.Address);
+        Bm2s.Data.Common.BLL.Partner.Address item = new Data.Common.BLL.Partner.Address()
+        {
+          CountryName = request.Address.CountryName,
+          TownName = request.Address.TownName,
+          TownZipCode = request.Address.TownZipCode
+        };
+
+        Datas.Instance.DataStorage.Addresses.Add(item);
+        request.Address.Id = item.Id;
       }
+
       return request.Address;
     }
   }
