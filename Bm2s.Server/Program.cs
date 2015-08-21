@@ -57,15 +57,19 @@ namespace Bm2s.Server
         case "help":
           Console.WriteLine();
           Console.WriteLine("---------------------------------------------------");
-          Console.WriteLine("h or help       : this help");
-          Console.WriteLine("q or quit       : quit server");
-          Console.WriteLine("c or clear      : clear console");
+          Console.WriteLine("h or help        : this help");
+          Console.WriteLine("q or quit        : quit server");
+          Console.WriteLine("c or clear       : clear console");
+          Console.WriteLine("test             : create some datas to test server");
           Console.WriteLine("---------------------------------------------------");
           Console.WriteLine();
           break;
         case "q":
         case "quit":
           result = true;
+          break;
+        case "test":
+          Test();
           break;
         default:
           Console.WriteLine("Unknown command");
@@ -85,6 +89,11 @@ namespace Bm2s.Server
       Host.Init();
       Host.Start(Url);
       Console.WriteLine("[OK]");
+    }
+
+    private static void Test()
+    {
+      Data.Common.Utils.Datas.Instance.DataStorage.CreateDatasForTest();
     }
   }
 }
