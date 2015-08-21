@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4F295791-6FB8-4269-8829-418552D07FAF}</ProjectGuid>
+    <ProjectGuid>{03F3D9E3-DEC2-4F69-A875-FCF8A74DE423}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Bm2s.Web.Utils</RootNamespace>
-    <AssemblyName>Bm2s.Web.Utils</AssemblyName>
+    <RootNamespace>Bm2s.Connectivity.Utils</RootNamespace>
+    <AssemblyName>Bm2s.Connectivity.Utils</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -43,7 +43,7 @@
       <HintPath>..\packages\ServiceStack.Common.3.9.71\lib\net35\ServiceStack.Interfaces.dll</HintPath>
     </Reference>
     <Reference Include="ServiceStack.OrmLite">
-      <HintPath>..\packages\ServiceStack.OrmLite.Oracle.3.9.71\lib\net35\ServiceStack.OrmLite.dll</HintPath>
+      <HintPath>..\packages\ServiceStack.OrmLite.MySql.3.9.71\lib\net35\ServiceStack.OrmLite.dll</HintPath>
     </Reference>
     <Reference Include="ServiceStack.OrmLite.MySql">
       <HintPath>..\packages\ServiceStack.OrmLite.MySql.3.9.71\lib\net35\ServiceStack.OrmLite.MySql.dll</HintPath>
@@ -80,28 +80,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Bm2s.Data.Common\Bm2s.Data.Common.csproj">
-      <Project>{794dbdc4-a28e-488e-90bc-79526943b5db}</Project>
-      <Name>Bm2s.Data.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Bm2s.Data.POS\Bm2s.Data.POS.csproj">
-      <Project>{1e8e6d58-0645-4097-b808-ea9b42692ad6}</Project>
-      <Name>Bm2s.Data.POS</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Bm2s.Data.Project\Bm2s.Data.Project.csproj">
-      <Project>{3cbd160b-ee2b-4c0d-a429-b1cfd581bae2}</Project>
-      <Name>Bm2s.Data.Project</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Bm2s.Data.Reporting\Bm2s.Data.Reporting.csproj">
-      <Project>{1b11c219-e96b-4f6f-881d-6193ea2d519f}</Project>
-      <Name>Bm2s.Data.Reporting</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Bm2s.Data.Utils\Bm2s.Data.Utils.csproj">
-      <Project>{41248fd4-c3bf-4462-9a23-8795d30c7214}</Project>
-      <Name>Bm2s.Data.Utils</Name>
+    <ProjectReference Include="..\Bm2s.Poco.Common\Bm2s.Poco.Common.csproj">
+      <Project>{ddf41cb4-61b7-453d-8170-722962846e1b}</Project>
+      <Name>Bm2s.Poco.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

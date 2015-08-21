@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using ServiceStack.ServiceClient.Web;
 using ServiceStack.ServiceHost;
 
-namespace Bm2s.Web.Utils
+namespace Bm2s.Connectivity.Utils
 {
   public class Bm2sClient : IDisposable
   {

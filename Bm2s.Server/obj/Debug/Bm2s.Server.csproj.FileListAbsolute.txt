@@ -144,3 +144,5 @@ D:\Dev\Sources\Csharp\Bm2sServer\Bm2s.Server\bin\Debug\Bm2s.Data.Reporting.pdb
 D:\Dev\Sources\Csharp\Bm2sServer\Bm2s.Server\bin\Debug\Bm2s.Services.POS.pdb
 D:\Dev\Sources\Csharp\Bm2sServer\Bm2s.Server\bin\Debug\Bm2s.Services.Project.pdb
 D:\Dev\Sources\Csharp\Bm2sServer\Bm2s.Server\bin\Debug\Bm2s.Services.Reporting.pdb
+D:\Dev\Sources\Csharp\Bm2sServer\Bm2s.Server\bin\Debug\Bm2s.Poco.Common.dll
+D:\Dev\Sources\Csharp\Bm2sServer\Bm2s.Server\bin\Debug\Bm2s.Poco.Common.pdb

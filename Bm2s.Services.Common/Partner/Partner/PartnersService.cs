@@ -57,7 +57,7 @@ namespace Bm2s.Services.Common.Partner.Partner
       {
         Bm2s.Data.Common.BLL.Partner.Partner item = Datas.Instance.DataStorage.Partners[request.Partner.Id];
         item.Code = request.Partner.Code;
-        item.CompanyIdentifier = item.CompanyIdentifier;
+        item.CompanyIdentifier = request.Partner.CompanyIdentifier;
         item.CompanyName = request.Partner.CompanyName;
         item.Email = request.Partner.Email;
         item.EndingDate = request.Partner.EndingDate;
@@ -77,7 +77,7 @@ namespace Bm2s.Services.Common.Partner.Partner
         Bm2s.Data.Common.BLL.Partner.Partner item = new Data.Common.BLL.Partner.Partner()
         {
           Code = request.Partner.Code,
-          CompanyIdentifier = item.CompanyIdentifier,
+          CompanyIdentifier = request.Partner.CompanyIdentifier,
           CompanyName = request.Partner.CompanyName,
           Email = request.Partner.Email,
           EndingDate = request.Partner.EndingDate,

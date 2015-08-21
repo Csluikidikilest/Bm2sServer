@@ -10,7 +10,7 @@ namespace Bm2s.Services.Common.Article.PriceDetermination
     {
       this.articleFamilyPricePartnerFamilies = new List<Bm2s.Poco.Common.Article.ArticleFamilyPricePartnerFamily>();
       this.articleSubFamilyPricePartnerFamilies = new List<Bm2s.Poco.Common.Article.ArticleSubFamilyPricePartnerFamily>();
-      this.articlePriceParnerFamilies = new List<Bm2s.Poco.Common.Article.ArticlePricePartnerFamily>();
+      this.articlePricePartnerFamilies = new List<Bm2s.Poco.Common.Article.ArticlePricePartnerFamily>();
     }
 
     public Bm2s.Poco.Common.Article.Price Price { get; set; }
@@ -23,9 +23,9 @@ namespace Bm2s.Services.Common.Article.PriceDetermination
 
     public Bm2s.Poco.Common.Article.ArticleSubFamilyPricePartner articleSubFamilyPricePartners { get; set; }
 
-    public List<Bm2s.Poco.Common.Article.ArticlePricePartnerFamily> articlePriceParnerFamilies { get; set; }
+    public List<Bm2s.Poco.Common.Article.ArticlePricePartnerFamily> articlePricePartnerFamilies { get; set; }
 
-    public Bm2s.Poco.Common.Article.ArticlePricePartner articlePriceParners { get; set; }
+    public Bm2s.Poco.Common.Article.ArticlePricePartner articlePricePartners { get; set; }
 
     public double TotalPrice
     {
@@ -36,17 +36,17 @@ namespace Bm2s.Services.Common.Article.PriceDetermination
           this._totalPrice = this.Price.BasePrice;
 
           // The price of this article for the partner
-          if (this.articlePriceParners.Multiplier.HasValue)
+          if (this.articlePricePartners.Multiplier.HasValue)
           {
-            this._totalPrice *= this.articlePriceParners.Multiplier;
+            this._totalPrice *= this.articlePricePartners.Multiplier;
           }
-          else if (this.articlePriceParners.AddPrice)
+          else if (this.articlePricePartners.AddPrice)
           {
-            this._totalPrice += this.articlePriceParners.Price;
+            this._totalPrice += this.articlePricePartners.Price;
           }
           else
           {
-            this._totalPrice = this.articlePriceParners.Price;
+            this._totalPrice = this.articlePricePartners.Price;
             return this._totalPrice.Value;
           }
 
@@ -81,7 +81,7 @@ namespace Bm2s.Services.Common.Article.PriceDetermination
           }
 
           // Each price modifier of this article for the partner families
-          foreach (Bm2s.Poco.Common.Article.ArticlePricePartnerFamily item in articlePriceParnerFamilies)
+          foreach (Bm2s.Poco.Common.Article.ArticlePricePartnerFamily item in articlePricePartnerFamilies)
           {
             if (item.Multiplier.HasValue)
             {
