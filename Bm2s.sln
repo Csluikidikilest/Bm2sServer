@@ -46,6 +46,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bm2s.Client.Test", "Bm2s.Cl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bm2s.Connectivity.Common", "Bm2s.Connectivity.Common\Bm2s.Connectivity.Common.csproj", "{CFB6FAE2-DE21-44E4-9E8E-D240BA0C221D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Response", "Response", "{719191E8-179A-44AF-93FA-B90F4525DE7C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bm2s.Response.Common", "Bm2s.Response.Common\Bm2s.Response.Common.csproj", "{DCA56C1D-B180-49ED-935F-0D129C128CD3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -108,6 +112,10 @@ Global
 		{CFB6FAE2-DE21-44E4-9E8E-D240BA0C221D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CFB6FAE2-DE21-44E4-9E8E-D240BA0C221D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CFB6FAE2-DE21-44E4-9E8E-D240BA0C221D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCA56C1D-B180-49ED-935F-0D129C128CD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCA56C1D-B180-49ED-935F-0D129C128CD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCA56C1D-B180-49ED-935F-0D129C128CD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCA56C1D-B180-49ED-935F-0D129C128CD3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -126,5 +134,6 @@ Global
 		{03F3D9E3-DEC2-4F69-A875-FCF8A74DE423} = {625BCAE3-1685-42BB-B0E4-FF5A86E36D3A}
 		{27C96118-3639-42AC-8189-DE95802724F7} = {E0647483-72ED-4EBF-A2AE-875D1D7840FD}
 		{CFB6FAE2-DE21-44E4-9E8E-D240BA0C221D} = {625BCAE3-1685-42BB-B0E4-FF5A86E36D3A}
+		{DCA56C1D-B180-49ED-935F-0D129C128CD3} = {719191E8-179A-44AF-93FA-B90F4525DE7C}
 	EndGlobalSection
 EndGlobal
