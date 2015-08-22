@@ -47,7 +47,7 @@ namespace Bm2s.Services.Common.Article.Article
       return response;
     }
 
-    public Bm2s.Poco.Common.Article.Article Post(Articles request)
+    public ArticlesResponse Post(Articles request)
     {
       if (request.Article.Id > 0)
       {
@@ -83,7 +83,10 @@ namespace Bm2s.Services.Common.Article.Article
         Datas.Instance.DataStorage.Articles.Add(item);
         request.Article.Id = item.Id;
       }
-      return request.Article;
+
+      ArticlesResponse response = new ArticlesResponse();
+      response.Articles.Add(request.Article);
+      return response;
     }
   }
 }

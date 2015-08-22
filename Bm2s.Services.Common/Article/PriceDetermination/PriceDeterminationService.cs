@@ -16,7 +16,7 @@ namespace Bm2s.Services.Common.Article.PriceDetermination
 {
   public class PriceDeterminationService : Service
   {
-    public object Get(PriceDetermination request)
+    public PriceDeterminationResponse Get(PriceDetermination request)
     {
       PriceDeterminationResponse response = new PriceDeterminationResponse();
 

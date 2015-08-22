@@ -66,7 +66,7 @@ namespace Bm2s.Services.Common.Trade.HeaderLine
       return response;
     }
 
-    public Bm2s.Poco.Common.Trade.HeaderLine Post(HeaderLines request)
+    public HeaderLinesResponse Post(HeaderLines request)
     {
       if (request.HeaderLine.Id > 0)
       {
@@ -121,7 +121,9 @@ namespace Bm2s.Services.Common.Trade.HeaderLine
         request.HeaderLine.Id = item.Id;
       }
 
-      return request.HeaderLine;
+      HeaderLinesResponse response = new HeaderLinesResponse();
+      response.HeaderLines.Add(request.HeaderLine);
+      return response;
     }
   }
 }

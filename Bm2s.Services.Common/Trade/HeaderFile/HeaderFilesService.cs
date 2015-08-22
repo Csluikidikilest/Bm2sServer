@@ -41,7 +41,7 @@ namespace Bm2s.Services.Common.Trade.HeaderFile
       return response;
     }
 
-    public Bm2s.Poco.Common.Trade.HeaderFile Post(HeaderFiles request)
+    public HeaderFilesResponse Post(HeaderFiles request)
     {
       if (request.HeaderFile.Id > 0)
       {
@@ -68,7 +68,9 @@ namespace Bm2s.Services.Common.Trade.HeaderFile
         request.HeaderFile.Id = item.Id;
       }
 
-      return request.HeaderFile;
+      HeaderFilesResponse response = new HeaderFilesResponse();
+      response.HeaderFiles.Add(request.HeaderFile);
+      return response;
     }
   }
 }

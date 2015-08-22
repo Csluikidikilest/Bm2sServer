@@ -37,7 +37,7 @@ namespace Bm2s.Services.Common.Parameter.Country
       return response;
     }
 
-    public Bm2s.Poco.Common.Parameter.Country Post(Countries request)
+    public CountriesResponse Post(Countries request)
     {
       if (request.Country.Id > 0)
       {
@@ -62,7 +62,9 @@ namespace Bm2s.Services.Common.Parameter.Country
         request.Country.Id = item.Id;
       }
 
-      return request.Country;
+      CountriesResponse response = new CountriesResponse();
+      response.Countries.Add(request.Country);
+      return response;
     }
   }
 }

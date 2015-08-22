@@ -40,7 +40,7 @@ namespace Bm2s.Services.Common.User.GroupModule
       return response;
     }
 
-    public Bm2s.Poco.Common.User.GroupModule Post(GroupModules request)
+    public GroupModulesResponse Post(GroupModules request)
     {
       if (request.GroupModule.Id > 0)
       {
@@ -65,7 +65,9 @@ namespace Bm2s.Services.Common.User.GroupModule
         request.GroupModule.Id = item.Id;
       }
 
-      return request.GroupModule;
+      GroupModulesResponse response = new GroupModulesResponse();
+      response.GroupModules.Add(request.GroupModule);
+      return response;
     }
   }
 }

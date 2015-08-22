@@ -43,7 +43,7 @@ namespace Bm2s.Services.Common.Article.ArticleSubFamily
       return response;
     }
 
-    public Bm2s.Poco.Common.Article.ArticleSubFamily Post(ArticleSubFamilies request)
+    public ArticleSubFamiliesResponse Post(ArticleSubFamilies request)
     {
       if (request.ArticleSubFamily.Id > 0)
       {
@@ -73,7 +73,10 @@ namespace Bm2s.Services.Common.Article.ArticleSubFamily
         Datas.Instance.DataStorage.ArticleSubFamilies.Add(item);
         request.ArticleSubFamily.Id = item.Id;
       }
-      return request.ArticleSubFamily;
+
+      ArticleSubFamiliesResponse response = new ArticleSubFamiliesResponse();
+      response.ArticleSubFamilies.Add(request.ArticleSubFamily);
+      return response;
     }
   }
 }

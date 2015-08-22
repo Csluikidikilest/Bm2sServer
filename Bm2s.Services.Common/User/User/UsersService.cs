@@ -44,7 +44,7 @@ namespace Bm2s.Services.Common.User.User
       return response;
     }
 
-    public Bm2s.Poco.Common.User.User Post(Users request)
+    public UsersResponse Post(Users request)
     {
       if (request.User.Id > 0)
       {
@@ -77,7 +77,9 @@ namespace Bm2s.Services.Common.User.User
         request.User.Id = item.Id;
       }
 
-      return request.User;
+      UsersResponse response = new UsersResponse();
+      response.Users.Add(request.User);
+      return response;
     }
   }
 }

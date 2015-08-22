@@ -42,7 +42,7 @@ namespace Bm2s.Services.Common.Trade.HeaderPartnerAddress
       return response;
     }
 
-    public Bm2s.Poco.Common.Trade.HeaderPartnerAddress Post(HeaderPartnerAddresses request)
+    public HeaderPartnerAddressesResponse Post(HeaderPartnerAddresses request)
     {
       if (request.HeaderPartnerAddress.Id > 0)
       {
@@ -67,7 +67,9 @@ namespace Bm2s.Services.Common.Trade.HeaderPartnerAddress
         request.HeaderPartnerAddress.Id = item.Id;
       }
 
-      return request.HeaderPartnerAddress;
+      HeaderPartnerAddressesResponse response = new HeaderPartnerAddressesResponse();
+      response.HeaderPartnerAddresses.Add(request.HeaderPartnerAddress);
+      return response;
     }
   }
 }

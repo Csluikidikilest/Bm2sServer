@@ -39,7 +39,7 @@ namespace Bm2s.Services.Common.Partner.PartnerAddress
       return response;
     }
 
-    public Bm2s.Poco.Common.Partner.PartnerAddress Post(PartnerAddresses request)
+    public PartnerAddressesResponse Post(PartnerAddresses request)
     {
       if (request.PartnerAddress.Id > 0)
       {
@@ -62,7 +62,9 @@ namespace Bm2s.Services.Common.Partner.PartnerAddress
         request.PartnerAddress.Id = item.Id;
       }
 
-      return request.PartnerAddress;
+      PartnerAddressesResponse response = new PartnerAddressesResponse();
+      response.PartnerAddresses.Add(request.PartnerAddress);
+      return response;
     }
   }
 }

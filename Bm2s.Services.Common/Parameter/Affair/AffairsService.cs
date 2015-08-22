@@ -41,7 +41,7 @@ namespace Bm2s.Services.Common.Parameter.Affair
       return response;
     }
 
-    public Bm2s.Poco.Common.Parameter.Affair Post(Affairs request)
+    public AffairsResponse Post(Affairs request)
     {
       if (request.Affair.Id > 0)
       {
@@ -68,7 +68,9 @@ namespace Bm2s.Services.Common.Parameter.Affair
         request.Affair.Id = item.Id;
       }
 
-      return request.Affair;
+      AffairsResponse response = new AffairsResponse();
+      response.Affairs.Add(request.Affair);
+      return response;
     }
   }
 }

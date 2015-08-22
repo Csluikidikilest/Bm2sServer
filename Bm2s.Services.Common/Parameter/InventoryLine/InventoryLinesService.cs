@@ -37,7 +37,7 @@ namespace Bm2s.Services.Common.Parameter.InventoryLine
       return response;
     }
 
-    public Bm2s.Poco.Common.Parameter.InventoryLine Post(InventoryLines request)
+    public InventoryLinesResponse Post(InventoryLines request)
     {
       if (request.InventoryLine.Id > 0)
       {
@@ -60,7 +60,9 @@ namespace Bm2s.Services.Common.Parameter.InventoryLine
         request.InventoryLine.Id = item.Id;
       }
 
-      return request.InventoryLine;
+      InventoryLinesResponse response = new InventoryLinesResponse();
+      response.InventoryLines.Add(request.InventoryLine);
+      return response;
     }
   }
 }

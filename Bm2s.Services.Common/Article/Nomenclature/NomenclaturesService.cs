@@ -37,7 +37,7 @@ namespace Bm2s.Services.Common.Article.Nomenclature
       return response;
     }
 
-    public Bm2s.Poco.Common.Article.Nomenclature Post(Nomenclatures request)
+    public NomenclaturesResponse Post(Nomenclatures request)
     {
       if (request.Nomenclature.Id > 0)
       {
@@ -64,7 +64,9 @@ namespace Bm2s.Services.Common.Article.Nomenclature
         request.Nomenclature.Id = item.Id;
       }
 
-      return request.Nomenclature;
+      NomenclaturesResponse response = new NomenclaturesResponse();
+      response.Nomenclatures.Add(request.Nomenclature);
+      return response;
     }
   }
 }

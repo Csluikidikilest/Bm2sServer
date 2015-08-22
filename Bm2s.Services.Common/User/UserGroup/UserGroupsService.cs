@@ -36,7 +36,7 @@ namespace Bm2s.Services.Common.User.UserGroup
       return response;
     }
 
-    public Bm2s.Poco.Common.User.UserGroup Post(UserGroups request)
+    public UserGroupsResponse Post(UserGroups request)
     {
       if (request.UserGroup.Id > 0)
       {
@@ -57,7 +57,9 @@ namespace Bm2s.Services.Common.User.UserGroup
         request.UserGroup.Id = item.Id;
       }
 
-      return request.UserGroup;
+      UserGroupsResponse response = new UserGroupsResponse();
+      response.UserGroups.Add(request.UserGroup);
+      return response;
     }
   }
 }

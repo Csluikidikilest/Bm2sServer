@@ -34,7 +34,7 @@ namespace Bm2s.Services.Common.User.Group
       return response;
     }
 
-    public Bm2s.Poco.Common.User.Group Post(Groups request)
+    public GroupsResponse Post(Groups request)
     {
       if (request.Group.Id > 0)
       {
@@ -54,7 +54,10 @@ namespace Bm2s.Services.Common.User.Group
         Datas.Instance.DataStorage.Groups.Add(item);
         request.Group.Id = item.Id;
       }
-      return request.Group;
+
+      GroupsResponse response = new GroupsResponse();
+      response.Groups.Add(request.Group);
+      return response;
     }
   }
 }

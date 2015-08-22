@@ -39,7 +39,7 @@ namespace Bm2s.Services.Common.Parameter.AffairFile
       return response;
     }
 
-    public Bm2s.Poco.Common.Parameter.AffairFile Post(AffairFiles request)
+    public AffairFilesResponse Post(AffairFiles request)
     {
       if (request.AffairFile.Id > 0)
       {
@@ -66,7 +66,9 @@ namespace Bm2s.Services.Common.Parameter.AffairFile
         request.AffairFile.Id = item.Id;
       }
 
-      return request.AffairFile;
+      AffairFilesResponse response = new AffairFilesResponse();
+      response.AffairFiles.Add(request.AffairFile);
+      return response;
     }
   }
 }

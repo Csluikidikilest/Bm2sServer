@@ -35,7 +35,7 @@ namespace Bm2s.Services.Common.Trade.HeaderStatusStep
       return response;
     }
 
-    public Bm2s.Poco.Common.Trade.HeaderStatusStep Post(HeaderStatusSteps request)
+    public HeaderStatusStepsResponse Post(HeaderStatusSteps request)
     {
       if (request.HeaderStatusStep.Id > 0)
       {
@@ -56,7 +56,9 @@ namespace Bm2s.Services.Common.Trade.HeaderStatusStep
         request.HeaderStatusStep.Id = item.Id;
       }
 
-      return request.HeaderStatusStep;
+      HeaderStatusStepsResponse response = new HeaderStatusStepsResponse();
+      response.HeaderStatusSteps.Add(request.HeaderStatusStep);
+      return response;
     }
   }
 }

@@ -37,7 +37,7 @@ namespace Bm2s.Services.Common.Trade.HeaderOrigin
       return response;
     }
 
-    public Bm2s.Poco.Common.Trade.HeaderOrigin Post(HeaderOrigins request)
+    public HeaderOriginsResponse Post(HeaderOrigins request)
     {
       if (request.HeaderOrigin.Id > 0)
       {
@@ -60,7 +60,9 @@ namespace Bm2s.Services.Common.Trade.HeaderOrigin
         request.HeaderOrigin.Id = item.Id;
       }
 
-      return request.HeaderOrigin;
+      HeaderOriginsResponse response = new HeaderOriginsResponse();
+      response.HeaderOrigins.Add(request.HeaderOrigin);
+      return response;
     }
   }
 }

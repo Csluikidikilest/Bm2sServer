@@ -37,7 +37,7 @@ namespace Bm2s.Services.Common.Article.Brand
       return response;
     }
 
-    public Bm2s.Poco.Common.Article.Brand Post(Brands request)
+    public BrandsResponse Post(Brands request)
     {
       if (request.Brand.Id > 0)
       {
@@ -62,7 +62,9 @@ namespace Bm2s.Services.Common.Article.Brand
         request.Brand.Id = item.Id;
       }
 
-      return request.Brand;
+      BrandsResponse response = new BrandsResponse();
+      response.Brands.Add(request.Brand);
+      return response;
     }
   }
 }

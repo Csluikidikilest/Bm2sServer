@@ -35,7 +35,7 @@ namespace Bm2s.Services.Common.Trade.HeaderLineType
       return response;
     }
 
-    public Bm2s.Poco.Common.Trade.HeaderLineType Post(HeaderLineTypes request)
+    public HeaderLineTypesResponse Post(HeaderLineTypes request)
     {
       if (request.HeaderLineType.Id > 0)
       {
@@ -58,7 +58,9 @@ namespace Bm2s.Services.Common.Trade.HeaderLineType
         request.HeaderLineType.Id = item.Id;
       }
 
-      return request.HeaderLineType;
+      HeaderLineTypesResponse response = new HeaderLineTypesResponse();
+      response.HeaderLineTypes.Add(request.HeaderLineType);
+      return response;
     }
   }
 }

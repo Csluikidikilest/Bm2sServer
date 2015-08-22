@@ -40,7 +40,7 @@ namespace Bm2s.Services.Common.Parameter.Town
       return response;
     }
 
-    public Bm2s.Poco.Common.Parameter.Town Post(Towns request)
+    public TownsResponse Post(Towns request)
     {
       if (request.Town.Id > 0)
       {
@@ -66,7 +66,9 @@ namespace Bm2s.Services.Common.Parameter.Town
         request.Town.Id = item.Id;
       }
 
-      return request.Town;
+      TownsResponse response = new TownsResponse();
+      response.Towns.Add(request.Town);
+      return response;
     }
   }
 }

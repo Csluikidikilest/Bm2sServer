@@ -260,12 +260,7 @@
     <Compile Include="User\User\UsersResponse.cs" />
     <Compile Include="User\User\UsersService.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Parameter\SelectorColumn\" />
-    <Folder Include="Parameter\SelectorScreen\" />
-    <Folder Include="User\GroupSelectorColumn\" />
-    <Folder Include="User\UserSelectorColumn\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Bm2s.Data.Common\Bm2s.Data.Common.csproj">
       <Project>{794dbdc4-a28e-488e-90bc-79526943b5db}</Project>

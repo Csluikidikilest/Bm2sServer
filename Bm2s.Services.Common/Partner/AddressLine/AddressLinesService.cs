@@ -35,7 +35,7 @@ namespace Bm2s.Services.Common.Partner.AddressLine
       return response;
     }
 
-    public Bm2s.Poco.Common.Partner.AddressLine Post(AddressLines request)
+    public AddressLinesResponse Post(AddressLines request)
     {
       if (request.AddressLine.Id > 0)
       {
@@ -58,7 +58,9 @@ namespace Bm2s.Services.Common.Partner.AddressLine
         request.AddressLine.Id = item.Id;
       }
 
-      return request.AddressLine;
+      AddressLinesResponse response = new AddressLinesResponse();
+      response.AddressLines.Add(request.AddressLine);
+      return response;
     }
   }
 }

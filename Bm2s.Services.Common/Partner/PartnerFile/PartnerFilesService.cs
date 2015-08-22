@@ -41,7 +41,7 @@ namespace Bm2s.Services.Common.Partner.PartnerFil
       return response;
     }
 
-    public Bm2s.Poco.Common.Partner.PartnerFile Post(PartnerFiles request)
+    public PartnerFilesResponse Post(PartnerFiles request)
     {
       if (request.PartnerFile.Id > 0)
       {
@@ -68,7 +68,9 @@ namespace Bm2s.Services.Common.Partner.PartnerFil
         request.PartnerFile.Id = item.Id;
       }
 
-      return request.PartnerFile;
+      PartnerFilesResponse response = new PartnerFilesResponse();
+      response.PartnerFiles.Add(request.PartnerFile);
+      return response;
     }
   }
 }

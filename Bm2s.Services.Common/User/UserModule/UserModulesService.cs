@@ -39,7 +39,7 @@ namespace Bm2s.Services.Common.User.UserModule
       return response;
     }
 
-    public Bm2s.Poco.Common.User.UserModule Post(UserModules request)
+    public UserModulesResponse Post(UserModules request)
     {
       if (request.UserModule.Id > 0)
       {
@@ -64,7 +64,9 @@ namespace Bm2s.Services.Common.User.UserModule
         request.UserModule.Id = item.Id;
       }
 
-      return request.UserModule;
+      UserModulesResponse response = new UserModulesResponse();
+      response.UserModules.Add(request.UserModule);
+      return response;
     }
   }
 }

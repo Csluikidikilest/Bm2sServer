@@ -42,7 +42,7 @@ namespace Bm2s.Services.Common.Trade.Payment
       return response;
     }
 
-    public Bm2s.Poco.Common.Trade.Payment Post(Payments request)
+    public PaymentsResponse Post(Payments request)
     {
       if (request.Payment.Id > 0)
       {
@@ -69,7 +69,9 @@ namespace Bm2s.Services.Common.Trade.Payment
         request.Payment.Id = item.Id;
       }
 
-      return request.Payment;
+      PaymentsResponse response = new PaymentsResponse();
+      response.Payments.Add(request.Payment);
+      return response;
     }
   }
 }

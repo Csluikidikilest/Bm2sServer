@@ -9,18 +9,18 @@ using ServiceStack.ServiceHost;
 
 namespace Bm2s.Connectivity.Utils
 {
-  public class Bm2sClient : IDisposable
+  public class ConnectorHelper : IDisposable
   {
     private string _url;
 
     private JsonServiceClient _client;
 
-    public Bm2sClient()
+    public ConnectorHelper()
       : this(ConfigurationManager.ConnectionStrings["Bm2sServer"].ConnectionString)
     {
     }
 
-    public Bm2sClient(string url)
+    public ConnectorHelper(string url)
     {
       this._url = url;
     }

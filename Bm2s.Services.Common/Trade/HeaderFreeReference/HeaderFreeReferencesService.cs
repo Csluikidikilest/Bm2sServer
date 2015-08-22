@@ -34,7 +34,7 @@ namespace Bm2s.Services.Common.Trade.HeaderFreeReference
       return response;
     }
 
-    public Bm2s.Poco.Common.Trade.HeaderFreeReference Post(HeaderFreeReferences request)
+    public HeaderFreeReferencesResponse Post(HeaderFreeReferences request)
     {
       if (request.HeaderFreeReference.Id > 0)
       {
@@ -55,7 +55,9 @@ namespace Bm2s.Services.Common.Trade.HeaderFreeReference
         request.HeaderFreeReference.Id = item.Id;
       }
 
-      return request.HeaderFreeReference;
+      HeaderFreeReferencesResponse response = new HeaderFreeReferencesResponse();
+      response.HeaderFreeReferences.Add(request.HeaderFreeReference);
+      return response;
     }
   }
 }

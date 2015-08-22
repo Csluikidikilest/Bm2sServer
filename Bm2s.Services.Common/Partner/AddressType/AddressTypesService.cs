@@ -36,7 +36,7 @@ namespace Bm2s.Services.Common.Partner.AddressType
       return response;
     }
 
-    public Bm2s.Poco.Common.Partner.AddressType Post(AddressTypes request)
+    public AddressTypesResponse Post(AddressTypes request)
     {
       if (request.AddressType.Id > 0)
       {
@@ -61,7 +61,9 @@ namespace Bm2s.Services.Common.Partner.AddressType
         request.AddressType.Id = item.Id;
       }
 
-      return request.AddressType;
+      AddressTypesResponse response = new AddressTypesResponse();
+      response.AddressTypes.Add(request.AddressType);
+      return response;
     }
   }
 }

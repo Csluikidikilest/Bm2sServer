@@ -34,7 +34,7 @@ namespace Bm2s.Services.Common.Parameter.InventoryHeader
       return response;
     }
 
-    public Bm2s.Poco.Common.Parameter.InventoryHeader Post(InventoryHeaders request)
+    public InventoryHeadersResponse Post(InventoryHeaders request)
     {
       if (request.InventoryHeader.Id > 0)
       {
@@ -57,7 +57,9 @@ namespace Bm2s.Services.Common.Parameter.InventoryHeader
         request.InventoryHeader.Id = item.Id;
       }
 
-      return request.InventoryHeader;
+      InventoryHeadersResponse response = new InventoryHeadersResponse();
+      response.InventoryHeaders.Add(request.InventoryHeader);
+      return response;
     }
   }
 }

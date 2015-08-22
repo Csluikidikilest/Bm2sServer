@@ -39,7 +39,7 @@ namespace Bm2s.Services.Common.Parameter.CountryCurrency
       return response;
     }
 
-    public Bm2s.Poco.Common.Parameter.CountryCurrency Post(CountryCurrencies request)
+    public CountryCurrenciesResponse Post(CountryCurrencies request)
     {
       if (request.CountryCurrency.Id > 0)
       {
@@ -64,7 +64,9 @@ namespace Bm2s.Services.Common.Parameter.CountryCurrency
         request.CountryCurrency.Id = item.Id;
       }
 
-      return request.CountryCurrency;
+      CountryCurrenciesResponse response = new CountryCurrenciesResponse();
+      response.CountryCurrencies.Add(request.CountryCurrency);
+      return response;
     }
   }
 }

@@ -42,7 +42,7 @@ namespace Bm2s.Services.Common.Parameter.Unit
       return response;
     }
 
-    public Bm2s.Poco.Common.Parameter.Unit Post(Units request)
+    public UnitsResponse Post(Units request)
     {
       if (request.Unit.Id > 0)
       {
@@ -73,7 +73,9 @@ namespace Bm2s.Services.Common.Parameter.Unit
         request.Unit.Id = item.Id;
       }
 
-      return request.Unit;
+      UnitsResponse response = new UnitsResponse();
+      response.Units.Add(request.Unit);
+      return response;
     }
   }
 }

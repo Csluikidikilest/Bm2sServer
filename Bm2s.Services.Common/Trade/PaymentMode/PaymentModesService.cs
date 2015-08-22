@@ -37,7 +37,7 @@ namespace Bm2s.Services.Common.Trade.PaymentMode
       return response;
     }
 
-    public Bm2s.Poco.Common.Trade.PaymentMode Post(PaymentModes request)
+    public PaymentModesResponse Post(PaymentModes request)
     {
       if (request.PaymentMode.Id > 0)
       {
@@ -62,7 +62,9 @@ namespace Bm2s.Services.Common.Trade.PaymentMode
         request.PaymentMode.Id = item.Id;
       }
 
-      return request.PaymentMode;
+      PaymentModesResponse response = new PaymentModesResponse();
+      response.PaymentModes.Add(request.PaymentMode);
+      return response;
     }
   }
 }

@@ -51,7 +51,7 @@ namespace Bm2s.Services.Common.Partner.Partner
       return response;
     }
 
-    public Bm2s.Poco.Common.Partner.Partner Post(Partners request)
+    public PartnersResponse Post(Partners request)
     {
       if (request.Partner.Id > 0)
       {
@@ -96,7 +96,9 @@ namespace Bm2s.Services.Common.Partner.Partner
         request.Partner.Id = item.Id;
       }
 
-      return request.Partner;
+      PartnersResponse response = new PartnersResponse();
+      response.Partners.Add(request.Partner);
+      return response;
     }
   }
 }

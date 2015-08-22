@@ -38,7 +38,7 @@ namespace Bm2s.Services.Common.Parameter.Activity
       return response;
     }
 
-    public Bm2s.Poco.Common.Parameter.Activity Post(Activities request)
+    public ActivitiesResponse Post(Activities request)
     {
       if (request.Activity.Id > 0)
       {
@@ -69,7 +69,9 @@ namespace Bm2s.Services.Common.Parameter.Activity
         request.Activity.Id = item.Id;
       }
 
-      return request.Activity;
+      ActivitiesResponse response = new ActivitiesResponse();
+      response.Activities.Add(request.Activity);
+      return response;
     }
   }
 }

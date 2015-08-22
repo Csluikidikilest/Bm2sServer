@@ -37,7 +37,7 @@ namespace Bm2s.Services.Common.Parameter.Vat
       return response;
     }
 
-    public Bm2s.Poco.Common.Parameter.Vat Post(Vats request)
+    public VatsResponse Post(Vats request)
     {
       if (request.Vat.Id > 0)
       {
@@ -64,7 +64,9 @@ namespace Bm2s.Services.Common.Parameter.Vat
         request.Vat.Id = item.Id;
       }
 
-      return request.Vat;
+      VatsResponse response = new VatsResponse();
+      response.Vats.Add(request.Vat);
+      return response;
     }
   }
 }

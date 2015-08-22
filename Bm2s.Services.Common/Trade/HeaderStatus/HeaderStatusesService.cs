@@ -37,7 +37,7 @@ namespace Bm2s.Services.Common.Trade.HeaderStatus
       return response;
     }
 
-    public Bm2s.Poco.Common.Trade.HeaderStatus Post(HeaderStatuses request)
+    public HeaderStatusesResponse Post(HeaderStatuses request)
     {
       if (request.HeaderStatus.Id > 0)
       {
@@ -61,8 +61,10 @@ namespace Bm2s.Services.Common.Trade.HeaderStatus
         Datas.Instance.DataStorage.HeaderStatuses.Add(item);
         request.HeaderStatus.Id = item.Id;
       }
-      
-      return request.HeaderStatus;
+
+      HeaderStatusesResponse response = new HeaderStatusesResponse();
+      response.HeaderStatuses.Add(request.HeaderStatus);
+      return response;
     }
   }
 }

@@ -37,7 +37,7 @@ namespace Bm2s.Services.Common.User.UserActivity
       return response;
     }
 
-    public Bm2s.Poco.Common.User.UserActivity Post(UserActivities request)
+    public UserActivitiesResponse Post(UserActivities request)
     {
       if (request.UserActivity.Id > 0)
       {
@@ -60,7 +60,9 @@ namespace Bm2s.Services.Common.User.UserActivity
         request.UserActivity.Id = item.Id;
       }
 
-      return request.UserActivity;
+      UserActivitiesResponse response = new UserActivitiesResponse();
+      response.UserActivities.Add(request.UserActivity);
+      return response;
     }
   }
 }

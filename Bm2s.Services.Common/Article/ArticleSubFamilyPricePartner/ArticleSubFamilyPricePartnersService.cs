@@ -45,7 +45,7 @@ namespace Bm2s.Services.Common.Article.ArticleSubFamilyPricePartner
       return response;
     }
 
-    public Bm2s.Poco.Common.Article.ArticleSubFamilyPricePartner Post(ArticleSubFamilyPricePartners request)
+    public ArticleSubFamilyPricePartnersResponse Post(ArticleSubFamilyPricePartners request)
     {
       if (request.ArticleSubFamilyPricePartner.Id > 0)
       {
@@ -76,7 +76,9 @@ namespace Bm2s.Services.Common.Article.ArticleSubFamilyPricePartner
         request.ArticleSubFamilyPricePartner.Id = item.Id;
       }
 
-      return request.ArticleSubFamilyPricePartner;
+      ArticleSubFamilyPricePartnersResponse response = new ArticleSubFamilyPricePartnersResponse();
+      response.ArticleSubFamilyPricePartners.Add(request.ArticleSubFamilyPricePartner);
+      return response;
     }
   }
 }

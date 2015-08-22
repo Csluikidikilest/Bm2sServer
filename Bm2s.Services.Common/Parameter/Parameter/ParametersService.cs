@@ -38,7 +38,7 @@ namespace Bm2s.Services.Common.Parameter.Parameter
       return response;
     }
 
-    public Bm2s.Poco.Common.Parameter.Parameter Post(Parameters request)
+    public ParametersResponse Post(Parameters request)
     {
       if (request.Parameter.Id > 0)
       {
@@ -68,7 +68,9 @@ namespace Bm2s.Services.Common.Parameter.Parameter
         request.Parameter.Id = item.Id;
       }
 
-      return request.Parameter;
+      ParametersResponse response = new ParametersResponse();
+      response.Parameters.Add(request.Parameter);
+      return response;
     }
   }
 }

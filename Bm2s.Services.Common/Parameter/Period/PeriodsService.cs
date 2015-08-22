@@ -41,7 +41,7 @@ namespace Bm2s.Services.Common.Parameter.Period
       return response;
     }
 
-    public Bm2s.Poco.Common.Parameter.Period Post(Periods request)
+    public PeriodsResponse Post(Periods request)
     {
       if (request.Period.Id > 0)
       {
@@ -70,7 +70,9 @@ namespace Bm2s.Services.Common.Parameter.Period
         request.Period.Id = item.Id;
       }
 
-      return request.Period;
+      PeriodsResponse response = new PeriodsResponse();
+      response.Periods.Add(request.Period);
+      return response;
     }
   }
 }

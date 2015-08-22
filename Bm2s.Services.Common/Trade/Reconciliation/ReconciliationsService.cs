@@ -37,7 +37,7 @@ namespace Bm2s.Services.Common.Trade.Reconciliation
       return response;
     }
 
-    public Bm2s.Poco.Common.Trade.Reconciliation Post(Reconciliations request)
+    public ReconciliationsResponse Post(Reconciliations request)
     {
       if (request.Reconciliation.Id > 0)
       {
@@ -60,7 +60,9 @@ namespace Bm2s.Services.Common.Trade.Reconciliation
         request.Reconciliation.Id = item.Id;
       }
 
-      return request.Reconciliation;
+      ReconciliationsResponse response = new ReconciliationsResponse();
+      response.Reconciliations.Add(request.Reconciliation);
+      return response;
     }
   }
 }

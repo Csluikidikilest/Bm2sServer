@@ -37,7 +37,7 @@ namespace Bm2s.Services.Common.Parameter.UnitConversion
       return response;
     }
 
-    public Bm2s.Poco.Common.Parameter.UnitConversion Post(UnitConversions request)
+    public UnitConversionsResponse Post(UnitConversions request)
     {
       if (request.UnitConversion.Id > 0)
       {
@@ -62,7 +62,9 @@ namespace Bm2s.Services.Common.Parameter.UnitConversion
         request.UnitConversion.Id = item.Id;
       }
 
-      return request.UnitConversion;
+      UnitConversionsResponse response = new UnitConversionsResponse();
+      response.UnitConversions.Add(request.UnitConversion);
+      return response;
     }
   }
 }

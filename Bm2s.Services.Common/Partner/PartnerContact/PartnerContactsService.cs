@@ -51,7 +51,7 @@ namespace Bm2s.Services.Common.Partner.PartnerContact
       return response;
     }
 
-    public Bm2s.Poco.Common.Partner.PartnerContact Post(PartnerContacts request)
+    public PartnerContactsResponse Post(PartnerContacts request)
     {
       if (request.PartnerContact.Id > 0)
       {
@@ -90,7 +90,9 @@ namespace Bm2s.Services.Common.Partner.PartnerContact
         request.PartnerContact.Id = item.Id;
       }
 
-      return request.PartnerContact;
+      PartnerContactsResponse response = new PartnerContactsResponse();
+      response.PartnerContacts.Add(request.PartnerContact);
+      return response;
     }
   }
 }

@@ -42,7 +42,7 @@ namespace Bm2s.Services.Common.Parameter.ArticleFamilyPartnerFamilyVat
       return response;
     }
 
-    public Bm2s.Poco.Common.Parameter.ArticleFamilyPartnerFamilyVat Post(ArticleFamilyPartnerFamilyVats request)
+    public ArticleFamilyPartnerFamilyVatsResponse Post(ArticleFamilyPartnerFamilyVats request)
     {
       if (request.ArticleFamilyPartnerFamilyVat.Id > 0)
       {
@@ -71,7 +71,9 @@ namespace Bm2s.Services.Common.Parameter.ArticleFamilyPartnerFamilyVat
         request.ArticleFamilyPartnerFamilyVat.Id = item.Id;
       }
 
-      return request.ArticleFamilyPartnerFamilyVat;
+      ArticleFamilyPartnerFamilyVatsResponse response = new ArticleFamilyPartnerFamilyVatsResponse();
+      response.ArticleFamilyPartnerFamilyVats.Add(request.ArticleFamilyPartnerFamilyVat);
+      return response;
     }
   }
 }

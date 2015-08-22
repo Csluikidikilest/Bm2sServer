@@ -44,7 +44,7 @@ namespace Bm2s.Services.Common.Article.ArticleFamilyPricePartner
       return response;
     }
 
-    public Bm2s.Poco.Common.Article.ArticleFamilyPricePartner Post(ArticleFamilyPricePartners request)
+    public ArticleFamilyPricePartnersResponse Post(ArticleFamilyPricePartners request)
     {
       if (request.ArticleFamilyPricePartner.Id > 0)
       {
@@ -74,7 +74,10 @@ namespace Bm2s.Services.Common.Article.ArticleFamilyPricePartner
         Datas.Instance.DataStorage.ArticleFamilyPricePartners.Add(item);
         request.ArticleFamilyPricePartner.Id = item.Id;
       }
-      return request.ArticleFamilyPricePartner;
+
+      ArticleFamilyPricePartnersResponse response = new ArticleFamilyPricePartnersResponse();
+      response.ArticleFamilyPricePartners.Add(request.ArticleFamilyPricePartner);
+      return response;
     }
   }
 }

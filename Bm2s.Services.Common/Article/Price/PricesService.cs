@@ -37,7 +37,7 @@ namespace Bm2s.Services.Common.Article.Price
       return response;
     }
 
-    public Bm2s.Poco.Common.Article.Price Post(Prices request)
+    public PricesResponse Post(Prices request)
     {
       if (request.Price.Id > 0)
       {
@@ -62,7 +62,9 @@ namespace Bm2s.Services.Common.Article.Price
         request.Price.Id = item.Id;
       }
 
-      return request.Price;
+      PricesResponse response = new PricesResponse();
+      response.Prices.Add(request.Price);
+      return response;
     }
   }
 }

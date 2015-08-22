@@ -50,7 +50,7 @@ namespace Bm2s.Services.Common.Trade.Header
       return response;
     }
 
-    public Bm2s.Poco.Common.Trade.Header Post(Headers request)
+    public HeadersResponse Post(Headers request)
     {
       if (request.Header.Id > 0)
       {
@@ -87,7 +87,9 @@ namespace Bm2s.Services.Common.Trade.Header
         request.Header.Id = item.Id;
       }
 
-      return request.Header;
+      HeadersResponse response = new HeadersResponse();
+      response.Headers.Add(request.Header);
+      return response;
     }
   }
 }

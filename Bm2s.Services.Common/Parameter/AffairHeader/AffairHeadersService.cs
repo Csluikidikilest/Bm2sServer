@@ -36,7 +36,7 @@ namespace Bm2s.Services.Common.Parameter.AffairHeader
       return response;
     }
 
-    public Bm2s.Poco.Common.Parameter.AffairHeader Post(AffairHeaders request)
+    public AffairHeadersResponse Post(AffairHeaders request)
     {
       if (request.AffairHeader.Id > 0)
       {
@@ -57,7 +57,9 @@ namespace Bm2s.Services.Common.Parameter.AffairHeader
         request.AffairHeader.Id = item.Id;
       }
 
-      return request.AffairHeader;
+      AffairHeadersResponse response = new AffairHeadersResponse();
+      response.AffairHeaders.Add(request.AffairHeader);
+      return response;
     }
   }
 }

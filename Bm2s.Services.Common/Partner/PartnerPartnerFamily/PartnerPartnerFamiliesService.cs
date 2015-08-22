@@ -36,7 +36,7 @@ namespace Bm2s.Services.Common.Partner.PartnerPartnerFamily
       return response;
     }
 
-    public Bm2s.Poco.Common.Partner.PartnerPartnerFamily Post(PartnerPartnerFamilies request)
+    public PartnerPartnerFamiliesResponse Post(PartnerPartnerFamilies request)
     {
       if (request.PartnerPartnerFamily.Id > 0)
       {
@@ -57,7 +57,9 @@ namespace Bm2s.Services.Common.Partner.PartnerPartnerFamily
         request.PartnerPartnerFamily.Id = item.Id;
       }
 
-      return request.PartnerPartnerFamily;
+      PartnerPartnerFamiliesResponse response = new PartnerPartnerFamiliesResponse();
+      response.PartnerPartnerFamilies.Add(request.PartnerPartnerFamily);
+      return response;
     }
   }
 }
