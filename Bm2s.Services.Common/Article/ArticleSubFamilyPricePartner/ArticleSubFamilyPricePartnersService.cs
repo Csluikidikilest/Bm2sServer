@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using Bm2s.Services.Common.Article.ArticleSubFamily;
 using Bm2s.Services.Common.Partner.Partner;
 using Bm2s.Response.Common.Article.ArticleSubFamilyPricePartner;
+using Bm2s.Response.Common.Article.ArticleSubFamily;
+using Bm2s.Response.Common.Partner.Partner;
 
 namespace Bm2s.Services.Common.Article.ArticleSubFamilyPricePartner
 {

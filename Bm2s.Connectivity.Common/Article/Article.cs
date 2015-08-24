@@ -1,24 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Bm2s.Connectivity.Utils;
+﻿using Bm2s.Connectivity.Utils;
+using Bm2s.Response.Common.Article.Article;
 
 namespace Bm2s.Connectivity.Common.Article
 {
-  public class Article : Connector
+  public class Article : ClientBase
   {
     public Article()
       : base()
     {
-      this.Poco = new Poco.Common.Article.Article();
+      this.Request = new Articles();
+      this.Response = new ArticlesResponse();
     }
 
-    public Bm2s.Poco.Common.Article.Article Poco { get; protected set; }
+    public Articles Request { get; set; }
 
-    protected override void LoadFromNameValueCollection(System.Collections.Specialized.NameValueCollection param)
+    public ArticlesResponse Response { get; set; }
+
+    public void Get()
     {
+      this.Response = this.ConnectorHelper.Get(this.Request);
+      this.IsFilled = true;
     }
   }
 }

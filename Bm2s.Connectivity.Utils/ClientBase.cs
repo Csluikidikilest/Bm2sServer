@@ -8,9 +8,9 @@ using System.Web;
 
 namespace Bm2s.Connectivity.Utils
 {
-  public class Connector
+  public class ClientBase
   {
-    public Connector()
+    public ClientBase()
     {
       this.ConnectorHelper = new ConnectorHelper();
     }

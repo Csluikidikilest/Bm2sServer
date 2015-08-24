@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Bm2s.Data.Common.Utils;
+using Bm2s.Response.Common.Article.Article;
 using Bm2s.Response.Common.Article.ArticlePricePartnerFamily;
+using Bm2s.Response.Common.Partner.PartnerFamily;
 using Bm2s.Services.Common.Article.Article;
 using Bm2s.Services.Common.Partner.PartnerFamily;
 using ServiceStack.ServiceInterface;

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Collections.Generic;
 using Bm2s.Services.Common.Article.Article;
 using Bm2s.Response.Common.Article.Nomenclature;
+using Bm2s.Response.Common.Article.Article;
 
 namespace Bm2s.Services.Common.Article.Nomenclature
 {
