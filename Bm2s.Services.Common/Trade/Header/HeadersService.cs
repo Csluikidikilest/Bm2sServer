@@ -1,6 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Bm2s.Data.Common.Utils;
+using Bm2s.Response.Common.Parameter.Activity;
+using Bm2s.Response.Common.Trade.Header;
+using Bm2s.Response.Common.Trade.HeaderStatus;
+using Bm2s.Response.Common.User.User;
 using Bm2s.Services.Common.Parameter.Activity;
 using Bm2s.Services.Common.Trade.HeaderStatus;
 using Bm2s.Services.Common.User.User;

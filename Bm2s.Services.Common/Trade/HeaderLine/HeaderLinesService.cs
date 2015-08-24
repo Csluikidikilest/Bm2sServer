@@ -1,6 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Bm2s.Data.Common.Utils;
+using Bm2s.Response.Common.Article.Article;
+using Bm2s.Response.Common.Article.ArticleFamily;
+using Bm2s.Response.Common.Article.ArticleSubFamily;
+using Bm2s.Response.Common.Article.Brand;
+using Bm2s.Response.Common.Parameter.Unit;
+using Bm2s.Response.Common.Trade.Header;
+using Bm2s.Response.Common.Trade.HeaderLine;
+using Bm2s.Response.Common.Trade.HeaderLineType;
 using Bm2s.Services.Common.Article.Article;
 using Bm2s.Services.Common.Article.ArticleFamily;
 using Bm2s.Services.Common.Article.ArticleSubFamily;

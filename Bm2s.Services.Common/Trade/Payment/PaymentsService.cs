@@ -1,6 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Bm2s.Data.Common.Utils;
+using Bm2s.Response.Common.Parameter.Unit;
+using Bm2s.Response.Common.Partner.Partner;
+using Bm2s.Response.Common.Trade.Payment;
+using Bm2s.Response.Common.Trade.PaymentMode;
 using Bm2s.Services.Common.Parameter.Unit;
 using Bm2s.Services.Common.Partner.Partner;
 using Bm2s.Services.Common.Trade.PaymentMode;

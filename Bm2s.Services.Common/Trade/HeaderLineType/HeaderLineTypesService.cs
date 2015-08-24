@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Bm2s.Data.Common.Utils;
+using Bm2s.Response.Common.Trade.HeaderLineType;
 using ServiceStack.ServiceInterface;
 
 namespace Bm2s.Services.Common.Trade.HeaderLineType

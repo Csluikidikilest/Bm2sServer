@@ -3,6 +3,7 @@ using ServiceStack.ServiceInterface;
 using System.Linq;
 using System.Collections.Generic;
 using Bm2s.Services.Common.Article.ArticleFamily;
+using Bm2s.Response.Common.Article.ArticleSubFamily;
 
 namespace Bm2s.Services.Common.Article.ArticleSubFamily
 {

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Bm2s.Data.Common.Utils;
+using Bm2s.Response.Common.Parameter.Vat;
 using ServiceStack.ServiceInterface;
 
 namespace Bm2s.Services.Common.Parameter.Vat

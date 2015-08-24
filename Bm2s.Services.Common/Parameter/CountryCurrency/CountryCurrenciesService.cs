@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Bm2s.Data.Common.Utils;
+using Bm2s.Response.Common.Parameter.CountryCurrency;
 using Bm2s.Services.Common.Parameter.Country;
 using Bm2s.Services.Common.Parameter.Unit;
 using ServiceStack.ServiceInterface;
@@ -9,7 +10,7 @@ namespace Bm2s.Services.Common.Parameter.CountryCurrency
 {
   public class CountryCurrenciesService : Service
   {
-    public object Get(CountryCurrencies request)
+    public CountryCurrenciesResponse Get(CountryCurrencies request)
     {
       CountryCurrenciesResponse response = new CountryCurrenciesResponse();
       List<Bm2s.Data.Common.BLL.Parameter.CountryCurrency> items = new List<Data.Common.BLL.Parameter.CountryCurrency>();

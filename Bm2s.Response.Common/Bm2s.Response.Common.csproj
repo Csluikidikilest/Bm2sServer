@@ -199,6 +199,12 @@
     <Compile Include="User\User\Users.cs" />
     <Compile Include="User\User\UsersResponse.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Bm2s.Poco.Common\Bm2s.Poco.Common.csproj">
+      <Project>{ddf41cb4-61b7-453d-8170-722962846e1b}</Project>
+      <Name>Bm2s.Poco.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

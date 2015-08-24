@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Bm2s.Data.Common.Utils;
+using Bm2s.Response.Common.Partner.Partner;
+using Bm2s.Response.Common.Partner.PartnerContact;
 using Bm2s.Services.Common.Partner.Partner;
 using ServiceStack.ServiceInterface;
 

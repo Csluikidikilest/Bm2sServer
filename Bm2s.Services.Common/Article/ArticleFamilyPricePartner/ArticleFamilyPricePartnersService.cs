@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Bm2s.Services.Common.Article.ArticleFamily;
 using Bm2s.Services.Common.Partner.Partner;
+using Bm2s.Response.Common.Article.ArticleFamilyPricePartner;
 
 namespace Bm2s.Services.Common.Article.ArticleFamilyPricePartner
 {

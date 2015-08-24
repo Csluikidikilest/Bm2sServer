@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Bm2s.Data.Common.Utils;
+using Bm2s.Response.Common.Trade.HeaderLine;
+using Bm2s.Response.Common.Trade.Payment;
+using Bm2s.Response.Common.Trade.Reconciliation;
 using Bm2s.Services.Common.Trade.HeaderLine;
 using Bm2s.Services.Common.Trade.Payment;
 using ServiceStack.ServiceInterface;

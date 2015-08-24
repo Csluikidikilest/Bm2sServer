@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Bm2s.Data.Common.Utils;
+using Bm2s.Response.Common.Parameter.ArticlePartnerVat;
 using Bm2s.Services.Common.Article.Article;
 using Bm2s.Services.Common.Parameter.Vat;
 using Bm2s.Services.Common.Partner.Partner;
@@ -10,7 +11,7 @@ namespace Bm2s.Services.Common.Parameter.ArticlePartnerVat
 {
   public class ArticlePartnerVatsService : Service
   {
-    public object Get(ArticlePartnerVats request)
+    public ArticlePartnerVatsResponse Get(ArticlePartnerVats request)
     {
       ArticlePartnerVatsResponse response = new ArticlePartnerVatsResponse();
       List<Bm2s.Data.Common.BLL.Parameter.ArticlePartnerVat> items = new List<Data.Common.BLL.Parameter.ArticlePartnerVat>();

@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Bm2s.Data.Common.Utils;
+using Bm2s.Response.Common.Partner.Address;
+using Bm2s.Response.Common.Partner.AddressLine;
 using Bm2s.Services.Common.Partner.Address;
 using ServiceStack.ServiceInterface;
 

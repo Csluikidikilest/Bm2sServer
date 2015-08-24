@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Bm2s.Data.Common.Utils;
+using Bm2s.Response.Common.User.Module;
+using Bm2s.Response.Common.User.User;
+using Bm2s.Response.Common.User.UserModule;
 using Bm2s.Services.Common.User.Module;
 using Bm2s.Services.Common.User.User;
 using ServiceStack.ServiceInterface;

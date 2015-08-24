@@ -11,12 +11,22 @@ using Bm2s.Services.Common.Article.ArticleSubFamilyPricePartnerFamily;
 using Bm2s.Services.Common.Article.ArticleSubFamilyPricePartner;
 using Bm2s.Services.Common.Article.ArticlePricePartnerFamily;
 using Bm2s.Services.Common.Article.ArticlePriceParner;
+using Bm2s.Response.Common.Article.PriceDetermination;
+using Bm2s.Response.Common.Article.Article;
+using Bm2s.Response.Common.Partner.PartnerPartnerFamily;
+using Bm2s.Response.Common.Article.Price;
+using Bm2s.Response.Common.Article.ArticleFamilyPricePartnerFamily;
+using Bm2s.Response.Common.Article.ArticleSubFamilyPricePartnerFamily;
+using Bm2s.Response.Common.Article.ArticlePricePartnerFamily;
+using Bm2s.Response.Common.Article.ArticleFamilyPricePartner;
+using Bm2s.Response.Common.Article.ArticleSubFamilyPricePartner;
+using Bm2s.Response.Common.Article.ArticlePriceParner;
 
 namespace Bm2s.Services.Common.Article.PriceDetermination
 {
   public class PriceDeterminationService : Service
   {
-    public PriceDeterminationResponse Get(PriceDetermination request)
+    public PriceDeterminationResponse Get(Bm2s.Response.Common.Article.PriceDetermination.PriceDetermination request)
     {
       PriceDeterminationResponse response = new PriceDeterminationResponse();
 

@@ -2,6 +2,7 @@
 using ServiceStack.ServiceInterface;
 using System.Linq;
 using System.Collections.Generic;
+using Bm2s.Response.Common.Article.Brand;
 
 namespace Bm2s.Services.Common.Article.Brand
 {

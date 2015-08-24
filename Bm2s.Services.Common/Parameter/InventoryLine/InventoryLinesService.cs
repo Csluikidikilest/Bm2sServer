@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Bm2s.Data.Common.Utils;
+using Bm2s.Response.Common.Parameter.InventoryLine;
 using Bm2s.Services.Common.Article.Article;
 using Bm2s.Services.Common.Parameter.InventoryHeader;
 using ServiceStack.ServiceInterface;

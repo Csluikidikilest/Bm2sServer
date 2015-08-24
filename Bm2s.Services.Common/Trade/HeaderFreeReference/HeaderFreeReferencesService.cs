@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Bm2s.Data.Common.Utils;
+using Bm2s.Response.Common.Trade.HeaderFreeReference;
+using Bm2s.Response.Common.Trade.HeaderStatus;
 using Bm2s.Services.Common.Trade.HeaderStatus;
 using ServiceStack.ServiceInterface;
 

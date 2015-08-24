@@ -1,12 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Bm2s.Data.Common.Utils;
+using Bm2s.Response.Common.Partner.Partner;
+using Bm2s.Response.Common.User.User;
 using Bm2s.Services.Common.User.User;
 using ServiceStack.ServiceInterface;
 
 namespace Bm2s.Services.Common.Partner.Partner
 {
-  class PartnersService : Service
+  public class PartnersService : Service
   {
     public PartnersResponse Get(Partners request)
     {

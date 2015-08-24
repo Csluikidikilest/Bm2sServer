@@ -2,7 +2,7 @@
 
 namespace Bm2s.Response.Common.Partner.Address
 {
-  class AddressesResponse
+  public class AddressesResponse
   {
     public AddressesResponse()
     {

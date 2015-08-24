@@ -1,6 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Bm2s.Data.Common.Utils;
+using Bm2s.Response.Common.Partner.Address;
+using Bm2s.Response.Common.Partner.AddressType;
+using Bm2s.Response.Common.Partner.Partner;
+using Bm2s.Response.Common.Trade.Header;
+using Bm2s.Response.Common.Trade.HeaderPartnerAddress;
 using Bm2s.Services.Common.Partner.Address;
 using Bm2s.Services.Common.Partner.AddressType;
 using Bm2s.Services.Common.Partner.Partner;

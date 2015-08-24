@@ -4,8 +4,12 @@ using Bm2s.Data.Common.Utils;
 using Bm2s.Services.Common.Partner.Partner;
 using Bm2s.Services.Common.User.User;
 using ServiceStack.ServiceInterface;
+using Bm2s.Services.Common.Partner.PartnerFile;
+using Bm2s.Response.Common.Partner.PartnerFil;
+using Bm2s.Response.Common.Partner.Partner;
+using Bm2s.Response.Common.User.User;
 
-namespace Bm2s.Services.Common.Partner.PartnerFil
+namespace Bm2s.Services.Common.Partner.PartnerFile
 {
   class PartnerFilesService : Service
   {

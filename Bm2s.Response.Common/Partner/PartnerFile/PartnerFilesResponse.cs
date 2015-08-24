@@ -2,7 +2,7 @@
 
 namespace Bm2s.Response.Common.Partner.PartnerFil
 {
-  class PartnerFilesResponse
+  public class PartnerFilesResponse
   {
     public PartnerFilesResponse()
     {
