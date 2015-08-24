@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Bm2s.Data.Common.Utils;
+using Bm2s.Response.Common.Article.ArticleFamily;
 using Bm2s.Response.Common.Parameter.ArticleFamilyPartnerVat;
+using Bm2s.Response.Common.Parameter.Vat;
+using Bm2s.Response.Common.Partner.Partner;
 using Bm2s.Services.Common.Article.ArticleFamily;
 using Bm2s.Services.Common.Parameter.Vat;
 using Bm2s.Services.Common.Partner.Partner;

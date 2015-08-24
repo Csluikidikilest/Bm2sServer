@@ -2,6 +2,10 @@
 using System.Linq;
 using Bm2s.Data.Common.Utils;
 using Bm2s.Response.Common.Article.Article;
+using Bm2s.Response.Common.Article.ArticleFamily;
+using Bm2s.Response.Common.Article.ArticleSubFamily;
+using Bm2s.Response.Common.Article.Brand;
+using Bm2s.Response.Common.Parameter.Unit;
 using Bm2s.Services.Common.Article.Brand;
 using Bm2s.Services.Common.Parameter.Unit;
 using ServiceStack.ServiceInterface;
@@ -33,9 +37,9 @@ namespace Bm2s.Services.Common.Article.Article
       response.Articles.AddRange(from item in items
                                  select new Bm2s.Poco.Common.Article.Article()
                                  {
-                                   ArticleFamily = new ArticleFamily.ArticleFamiliesService().Get(new ArticleFamily.ArticleFamilies() { Ids = new List<int>() { item.ArticleFamilyId } }).ArticleFamilies.FirstOrDefault(),
-                                   ArticleSubFamily = new ArticleSubFamily.ArticleSubFamiliesService().Get(new ArticleSubFamily.ArticleSubFamilies() { Ids = new List<int>() { item.ArticleSubFamilyId } }).ArticleSubFamilies.FirstOrDefault(),
-                                   Brand = new BrandsService().Get(new Brands(){Ids = new List<int>(){item.BrandId}}).Brands.FirstOrDefault(),
+                                   ArticleFamily = new ArticleFamily.ArticleFamiliesService().Get(new ArticleFamilies() { Ids = new List<int>() { item.ArticleFamilyId } }).ArticleFamilies.FirstOrDefault(),
+                                   ArticleSubFamily = new ArticleSubFamily.ArticleSubFamiliesService().Get(new ArticleSubFamilies() { Ids = new List<int>() { item.ArticleSubFamilyId } }).ArticleSubFamilies.FirstOrDefault(),
+                                   Brand = new BrandsService().Get(new Brands() { Ids = new List<int>() { item.BrandId } }).Brands.FirstOrDefault(),
                                    Code = item.Code,
                                    Description = item.Description,
                                    Designation = item.Designation,
@@ -43,7 +47,7 @@ namespace Bm2s.Services.Common.Article.Article
                                    Id = item.Id,
                                    Observation = item.Observation,
                                    StartingDate = item.StartingDate,
-                                   Unit = new UnitsService().Get(new Units() { Ids = new List<int>() { item.UnitId} }).Units.FirstOrDefault()
+                                   Unit = new UnitsService().Get(new Units() { Ids = new List<int>() { item.UnitId } }).Units.FirstOrDefault()
                                  });
       return response;
     }

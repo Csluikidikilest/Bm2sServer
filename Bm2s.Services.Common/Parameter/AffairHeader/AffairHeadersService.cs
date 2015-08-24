@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Bm2s.Data.Common.Utils;
+using Bm2s.Response.Common.Parameter.Affair;
 using Bm2s.Response.Common.Parameter.AffairHeader;
+using Bm2s.Response.Common.Trade.Header;
 using Bm2s.Services.Common.Parameter.Affair;
 using Bm2s.Services.Common.Trade.Header;
 using ServiceStack.ServiceInterface;

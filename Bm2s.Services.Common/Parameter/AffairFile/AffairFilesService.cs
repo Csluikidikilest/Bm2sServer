@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Bm2s.Data.Common.Utils;
+using Bm2s.Response.Common.Parameter.Affair;
 using Bm2s.Response.Common.Parameter.AffairFile;
+using Bm2s.Response.Common.User.User;
 using ServiceStack.ServiceInterface;
 
 namespace Bm2s.Services.Common.Parameter.AffairFile
@@ -30,11 +32,11 @@ namespace Bm2s.Services.Common.Parameter.AffairFile
                                     select new Bm2s.Poco.Common.Parameter.AffairFile()
                                     {
                                       AddingDate = item.AddingDate,
-                                      Affair = new Affair.AffairsService().Get(new Affair.Affairs() { Ids = new List<int>() { item.AffairId } }).Affairs.FirstOrDefault(),
+                                      Affair = new Affair.AffairsService().Get(new Affairs() { Ids = new List<int>() { item.AffairId } }).Affairs.FirstOrDefault(),
                                       File = item.File,
                                       Id = item.Id,
                                       Name = item.Name,
-                                      User = new User.User.UsersService().Get(new User.User.Users() { Ids = new List<int>() { item.UserId } }).Users.FirstOrDefault()
+                                      User = new User.User.UsersService().Get(new Users() { Ids = new List<int>() { item.UserId } }).Users.FirstOrDefault()
                                     });
 
       return response;

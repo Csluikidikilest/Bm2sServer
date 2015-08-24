@@ -4,6 +4,7 @@ using System.Linq;
 using System.Collections.Generic;
 using Bm2s.Services.Common.Article.ArticleFamily;
 using Bm2s.Response.Common.Article.ArticleSubFamily;
+using Bm2s.Response.Common.Article.ArticleFamily;
 
 namespace Bm2s.Services.Common.Article.ArticleSubFamily
 {
