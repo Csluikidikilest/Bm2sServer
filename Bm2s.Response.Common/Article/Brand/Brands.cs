@@ -12,6 +12,7 @@ namespace Bm2s.Response.Common.Article.Brand
     {
       this.Ids = new List<int>();
     }
+
     public string Code { get; set; }
 
     public DateTime? Date { get; set; }

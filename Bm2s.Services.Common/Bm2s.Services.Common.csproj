@@ -88,6 +88,8 @@
     <Compile Include="Article\Nomenclature\NomenclaturesService.cs" />
     <Compile Include="Article\PriceDetermination\PriceDeterminationService.cs" />
     <Compile Include="Article\Price\PricesService.cs" />
+    <Compile Include="Article\SubscriptionPartner\SubscriptionPartnersService.cs" />
+    <Compile Include="Article\Subscription\SubscriptionsService.cs" />
     <Compile Include="Parameter\Activity\ActivitiesService.cs" />
     <Compile Include="Parameter\AffairFile\AffairFilesService.cs" />
     <Compile Include="Parameter\AffairHeader\AffairHeadersService.cs" />

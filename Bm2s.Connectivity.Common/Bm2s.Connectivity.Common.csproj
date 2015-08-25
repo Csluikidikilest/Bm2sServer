@@ -81,6 +81,28 @@
     <Compile Include="Article\Article.cs" />
     <Compile Include="Article\ArticleFamily.cs" />
     <Compile Include="Article\ArticleFamilyPricePartner.cs" />
+    <Compile Include="Article\ArticleFamilyPricePartnerFamily.cs" />
+    <Compile Include="Article\ArticlePricePartner.cs" />
+    <Compile Include="Article\ArticlePricePartnerFamily.cs" />
+    <Compile Include="Article\ArticleSubFamily.cs" />
+    <Compile Include="Article\ArticleSubFamilyPricePartner.cs" />
+    <Compile Include="Article\ArticleSubFamilyPricePartnerFamily.cs" />
+    <Compile Include="Article\Brand.cs" />
+    <Compile Include="Article\Nomenclature.cs" />
+    <Compile Include="Article\Price.cs" />
+    <Compile Include="Article\Subscription.cs" />
+    <Compile Include="Article\SubscriptionPartner.cs" />
+    <Compile Include="Parameter\Activity.cs" />
+    <Compile Include="Parameter\Affair.cs" />
+    <Compile Include="Parameter\AffairFile.cs" />
+    <Compile Include="Parameter\AffairHeader.cs" />
+    <Compile Include="Parameter\ArticleFamilyPartnerFamilyVat.cs">
+      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
+    </Compile>
+    <Compile Include="Parameter\ArticleFamilyPartnerVat.cs" />
+    <Compile Include="Parameter\ArticlePartnerVat.cs" />
+    <Compile Include="Parameter\ArticleSubFamilyPartnerFamilyVat.cs" />
+    <Compile Include="Parameter\ArticleSubFamilyPartnerVat.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -98,7 +120,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Parameter\" />
     <Folder Include="Partner\" />
     <Folder Include="Trade\" />
     <Folder Include="User\" />

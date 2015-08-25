@@ -101,6 +101,10 @@
     <Compile Include="Article\PriceDetermination\PriceDeterminationResponse.cs" />
     <Compile Include="Article\Price\Prices.cs" />
     <Compile Include="Article\Price\PricesResponse.cs" />
+    <Compile Include="Article\SubscriptionPartner\SubscriptionPartners.cs" />
+    <Compile Include="Article\SubscriptionPartner\SubscriptionPartnersResponse.cs" />
+    <Compile Include="Article\Subscription\Subscriptions.cs" />
+    <Compile Include="Article\Subscription\SubscriptionsResponse.cs" />
     <Compile Include="Parameter\Activity\Activities.cs" />
     <Compile Include="Parameter\Activity\ActivitiesResponse.cs" />
     <Compile Include="Parameter\AffairFile\AffairFiles.cs" />
