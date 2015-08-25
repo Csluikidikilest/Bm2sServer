@@ -103,7 +103,45 @@
     <Compile Include="Parameter\ArticlePartnerVat.cs" />
     <Compile Include="Parameter\ArticleSubFamilyPartnerFamilyVat.cs" />
     <Compile Include="Parameter\ArticleSubFamilyPartnerVat.cs" />
+    <Compile Include="Parameter\Country.cs" />
+    <Compile Include="Parameter\CountryCurrency.cs" />
+    <Compile Include="Parameter\InventoryHeader.cs" />
+    <Compile Include="Parameter\InventoryLine.cs" />
+    <Compile Include="Parameter\Parameter.cs" />
+    <Compile Include="Parameter\Period.cs" />
+    <Compile Include="Parameter\Town.cs" />
+    <Compile Include="Parameter\Unit.cs" />
+    <Compile Include="Parameter\UnitConversion.cs" />
+    <Compile Include="Parameter\Vat.cs" />
+    <Compile Include="Partner\Address.cs" />
+    <Compile Include="Partner\AddressLine.cs" />
+    <Compile Include="Partner\AddressType.cs" />
+    <Compile Include="Partner\Partner.cs" />
+    <Compile Include="Partner\PartnerAddress.cs" />
+    <Compile Include="Partner\PartnerContact.cs" />
+    <Compile Include="Partner\PartnerFamily.cs" />
+    <Compile Include="Partner\PartnerFile.cs" />
+    <Compile Include="Partner\PartnerPartnerFamily.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Trade\Header.cs" />
+    <Compile Include="Trade\HeaderFile.cs" />
+    <Compile Include="Trade\HeaderFreeReference.cs" />
+    <Compile Include="Trade\HeaderLine.cs" />
+    <Compile Include="Trade\HeaderLineType.cs" />
+    <Compile Include="Trade\HeaderOrigin.cs" />
+    <Compile Include="Trade\HeaderPartnerAddress.cs" />
+    <Compile Include="Trade\HeaderStatus.cs" />
+    <Compile Include="Trade\HeaderStatusStep.cs" />
+    <Compile Include="Trade\Payment.cs" />
+    <Compile Include="Trade\PaymentMode.cs" />
+    <Compile Include="Trade\Reconciliation.cs" />
+    <Compile Include="User\Group.cs" />
+    <Compile Include="User\GroupModule.cs" />
+    <Compile Include="User\Module.cs" />
+    <Compile Include="User\User.cs" />
+    <Compile Include="User\UserActivity.cs" />
+    <Compile Include="User\UserGroup.cs" />
+    <Compile Include="User\UserModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bm2s.Connectivity.Utils\Bm2s.Connectivity.Utils.csproj">
@@ -119,11 +157,7 @@
       <Name>Bm2s.Response.Common</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Partner\" />
-    <Folder Include="Trade\" />
-    <Folder Include="User\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

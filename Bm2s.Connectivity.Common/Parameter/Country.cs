@@ -1,0 +1,25 @@
+﻿using Bm2s.Connectivity.Utils;
+using Bm2s.Response.Common.Parameter.Country;
+
+namespace Bm2s.Connectivity.Common.Parameter
+{
+  public class Country : ClientBase
+  {
+    public Country()
+      : base()
+    {
+      this.Request = new Countries();
+      this.Response = new CountriesResponse();
+    }
+
+    public Countries Request { get; set; }
+
+    public CountriesResponse Response { get; set; }
+
+    public void Get()
+    {
+      this.Response = this.ConnectorHelper.Get(this.Request);
+      this.IsFilled = true;
+    }
+  }
+}

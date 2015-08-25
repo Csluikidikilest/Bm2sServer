@@ -1,0 +1,25 @@
+﻿using Bm2s.Connectivity.Utils;
+using Bm2s.Response.Common.Trade.Header;
+
+namespace Bm2s.Connectivity.Common.Trade
+{
+  public class Header : ClientBase
+  {
+    public Header()
+      : base()
+    {
+      this.Request = new Headers();
+      this.Response = new HeadersResponse();
+    }
+
+    public Headers Request { get; set; }
+
+    public HeadersResponse Response { get; set; }
+
+    public void Get()
+    {
+      this.Response = this.ConnectorHelper.Get(this.Request);
+      this.IsFilled = true;
+    }
+  }
+}

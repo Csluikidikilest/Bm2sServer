@@ -184,3 +184,5 @@ D:\Dev\Projets\Bm2sServer\Bm2s.Server\bin\Debug\Bm2s.Services.Project.pdb
 D:\Dev\Projets\Bm2sServer\Bm2s.Server\bin\Debug\Bm2s.Services.Reporting.pdb
 D:\Dev\Sources\Csharp\Bm2sServer\Bm2s.Server\bin\Debug\Bm2s.Response.Common.dll
 D:\Dev\Sources\Csharp\Bm2sServer\Bm2s.Server\bin\Debug\Bm2s.Response.Common.pdb
+F:\Projets\Csharp\Bm2sServer\Bm2s.Server\bin\Debug\Bm2s.Response.Common.dll
+F:\Projets\Csharp\Bm2sServer\Bm2s.Server\bin\Debug\Bm2s.Response.Common.pdb

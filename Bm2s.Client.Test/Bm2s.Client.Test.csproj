@@ -47,6 +47,24 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Bm2s.Connectivity.Common\Bm2s.Connectivity.Common.csproj">
+      <Project>{cfb6fae2-de21-44e4-9e8e-d240ba0c221d}</Project>
+      <Name>Bm2s.Connectivity.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bm2s.Connectivity.Utils\Bm2s.Connectivity.Utils.csproj">
+      <Project>{03f3d9e3-dec2-4f69-a875-fcf8a74de423}</Project>
+      <Name>Bm2s.Connectivity.Utils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bm2s.Poco.Common\Bm2s.Poco.Common.csproj">
+      <Project>{ddf41cb4-61b7-453d-8170-722962846e1b}</Project>
+      <Name>Bm2s.Poco.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bm2s.Response.Common\Bm2s.Response.Common.csproj">
+      <Project>{dca56c1d-b180-49ed-935f-0d129c128cd3}</Project>
+      <Name>Bm2s.Response.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
