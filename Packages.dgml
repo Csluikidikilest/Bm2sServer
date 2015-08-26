@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DirectedGraph GraphDirection="LeftToRight" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+  <Nodes>
+    <Node Id="Client\Bm2s.Client" Label="Bm2s.Client" Category="Projet" />
+    <Node Id="bootstrap 3.0.0" Label="bootstrap 3.0.0" Category="Package" />
+    <Node Id="jQuery 1.10.2" Label="jQuery 1.10.2" Category="Package" />
+    <Node Id="Microsoft.AspNet.Mvc 5.2.3" Label="Microsoft.AspNet.Mvc 5.2.3" Category="Package" />
+    <Node Id="Microsoft.AspNet.Mvc.fr 5.2.3" Label="Microsoft.AspNet.Mvc.fr 5.2.3" Category="Package" />
+    <Node Id="Microsoft.AspNet.Razor 3.2.3" Label="Microsoft.AspNet.Razor 3.2.3" Category="Package" />
+    <Node Id="Microsoft.AspNet.Razor.fr 3.2.3" Label="Microsoft.AspNet.Razor.fr 3.2.3" Category="Package" />
+    <Node Id="Microsoft.AspNet.WebPages 3.2.3" Label="Microsoft.AspNet.WebPages 3.2.3" Category="Package" />
+    <Node Id="Microsoft.AspNet.WebPages.fr 3.2.3" Label="Microsoft.AspNet.WebPages.fr 3.2.3" Category="Package" />
+    <Node Id="Microsoft.Web.Infrastructure 1.0.0.0" Label="Microsoft.Web.Infrastructure 1.0.0.0" Category="Package" />
+    <Node Id="Modernizr 2.6.2" Label="Modernizr 2.6.2" Category="Package" />
+    <Node Id="Data\Bm2s.Data.Common" Label="Bm2s.Data.Common" Category="Projet" />
+    <Node Id="Npgsql 2.2.5" Label="Npgsql 2.2.5" Category="Package" />
+    <Node Id="ServiceStack 3.9.71" Label="ServiceStack 3.9.71" Category="Package" />
+    <Node Id="ServiceStack.Common 3.9.71" Label="ServiceStack.Common 3.9.71" Category="Package" />
+    <Node Id="ServiceStack.OrmLite.MySql 3.9.71" Label="ServiceStack.OrmLite.MySql 3.9.71" Category="Package" />
+    <Node Id="ServiceStack.OrmLite.Oracle 3.9.71" Label="ServiceStack.OrmLite.Oracle 3.9.71" Category="Package" />
+    <Node Id="ServiceStack.OrmLite.PostgreSQL 3.9.71" Label="ServiceStack.OrmLite.PostgreSQL 3.9.71" Category="Package" />
+    <Node Id="ServiceStack.OrmLite.SqlServer 3.9.71" Label="ServiceStack.OrmLite.SqlServer 3.9.71" Category="Package" />
+    <Node Id="ServiceStack.Redis 3.9.71" Label="ServiceStack.Redis 3.9.71" Category="Package" />
+    <Node Id="ServiceStack.Text 3.9.71" Label="ServiceStack.Text 3.9.71" Category="Package" />
+    <Node Id="Data\Bm2s.Data.Utils" Label="Bm2s.Data.Utils" Category="Projet" />
+    <Node Id="Npgsql 2.2.5" Label="Npgsql 2.2.5" Category="Package" />
+    <Node Id="ServiceStack 3.9.71" Label="ServiceStack 3.9.71" Category="Package" />
+    <Node Id="ServiceStack.Common 3.9.71" Label="ServiceStack.Common 3.9.71" Category="Package" />
+    <Node Id="ServiceStack.OrmLite.MySql 3.9.71" Label="ServiceStack.OrmLite.MySql 3.9.71" Category="Package" />
+    <Node Id="ServiceStack.OrmLite.Oracle 3.9.71" Label="ServiceStack.OrmLite.Oracle 3.9.71" Category="Package" />
+    <Node Id="ServiceStack.OrmLite.PostgreSQL 3.9.71" Label="ServiceStack.OrmLite.PostgreSQL 3.9.71" Category="Package" />
+    <Node Id="ServiceStack.OrmLite.SqlServer 3.9.71" Label="ServiceStack.OrmLite.SqlServer 3.9.71" Category="Package" />
+    <Node Id="ServiceStack.Redis 3.9.71" Label="ServiceStack.Redis 3.9.71" Category="Package" />
+    <Node Id="ServiceStack.Text 3.9.71" Label="ServiceStack.Text 3.9.71" Category="Package" />
+    <Node Id="Data\Bm2s.Data.Reporting" Label="Bm2s.Data.Reporting" Category="Projet" />
+    <Node Id="Npgsql 2.2.5" Label="Npgsql 2.2.5" Category="Package" />
+    <Node Id="ServiceStack 3.9.71" Label="ServiceStack 3.9.71" Category="Package" />
+    <Node Id="ServiceStack.Common 3.9.71" Label="ServiceStack.Common 3.9.71" Category="Package" />
+    <Node Id="ServiceStack.OrmLite.MySql 3.9.71" Label="ServiceStack.OrmLite.MySql 3.9.71" Category="Package" />
+    <Node Id="ServiceStack.OrmLite.Oracle 3.9.71" Label="ServiceStack.OrmLite.Oracle 3.9.71" Category="Package" />
+    <Node Id="ServiceStack.OrmLite.PostgreSQL 3.9.71" Label="ServiceStack.OrmLite.PostgreSQL 3.9.71" Category="Package" />
+    <Node Id="ServiceStack.OrmLite.SqlServer 3.9.71" Label="ServiceStack.OrmLite.SqlServer 3.9.71" Category="Package" />
+    <Node Id="ServiceStack.Redis 3.9.71" Label="ServiceStack.Redis 3.9.71" Category="Package" />
+    <Node Id="ServiceStack.Text 3.9.71" Label="ServiceStack.Text 3.9.71" Category="Package" />
+    <Node Id="Data\Bm2s.Data.Project" Label="Bm2s.Data.Project" Category="Projet" />
+    <Node Id="Npgsql 2.2.5" Label="Npgsql 2.2.5" Category="Package" />
+    <Node Id="ServiceStack 3.9.71" Label="ServiceStack 3.9.71" Category="Package" />
+    <Node Id="ServiceStack.Common 3.9.71" Label="ServiceStack.Common 3.9.71" Category="Package" />
+    <Node Id="ServiceStack.OrmLite.MySql 3.9.71" Label="ServiceStack.OrmLite.MySql 3.9.71" Category="Package" />
+    <Node Id="ServiceStack.OrmLite.Oracle 3.9.71" Label="ServiceStack.OrmLite.Oracle 3.9.71" Category="Package" />
+    <Node Id="ServiceStack.OrmLite.PostgreSQL 3.9.71" Label="ServiceStack.OrmLite.PostgreSQL 3.9.71" Category="Package" />
+    <Node Id="ServiceStack.OrmLite.SqlServer 3.9.71" Label="ServiceStack.OrmLite.SqlServer 3.9.71" Category="Package" />
+    <Node Id="ServiceStack.Redis 3.9.71" Label="ServiceStack.Redis 3.9.71" Category="Package" />
+    <Node Id="ServiceStack.Text 3.9.71" Label="ServiceStack.Text 3.9.71" Category="Package" />
+    <Node Id="Data\Bm2s.Data.POS" Label="Bm2s.Data.POS" Category="Projet" />
+    <Node Id="Npgsql 2.2.5" Label="Npgsql 2.2.5" Category="Package" />
+    <Node Id="ServiceStack 3.9.71" Label="ServiceStack 3.9.71" Category="Package" />
+    <Node Id="ServiceStack.Common 3.9.71" Label="ServiceStack.Common 3.9.71" Category="Package" />
+    <Node Id="ServiceStack.OrmLite.MySql 3.9.71" Label="ServiceStack.OrmLite.MySql 3.9.71" Category="Package" />
+    <Node Id="ServiceStack.OrmLite.Oracle 3.9.71" Label="ServiceStack.OrmLite.Oracle 3.9.71" Category="Package" />
+    <Node Id="ServiceStack.OrmLite.PostgreSQL 3.9.71" Label="ServiceStack.OrmLite.PostgreSQL 3.9.71" Category="Package" />
+    <Node Id="ServiceStack.OrmLite.SqlServer 3.9.71" Label="ServiceStack.OrmLite.SqlServer 3.9.71" Category="Package" />
+    <Node Id="ServiceStack.Redis 3.9.71" Label="ServiceStack.Redis 3.9.71" Category="Package" />
+    <Node Id="ServiceStack.Text 3.9.71" Label="ServiceStack.Text 3.9.71" Category="Package" />
+    <Node Id="Bm2s.Server" Label="Bm2s.Server" Category="Projet" />
+    <Node Id="Npgsql 2.2.5" Label="Npgsql 2.2.5" Category="Package" />
+    <Node Id="ServiceStack 3.9.71" Label="ServiceStack 3.9.71" Category="Package" />
+    <Node Id="ServiceStack.Common 3.9.71" Label="ServiceStack.Common 3.9.71" Category="Package" />
+    <Node Id="ServiceStack.OrmLite.MySql 3.9.71" Label="ServiceStack.OrmLite.MySql 3.9.71" Category="Package" />
+    <Node Id="ServiceStack.OrmLite.Oracle 3.9.71" Label="ServiceStack.OrmLite.Oracle 3.9.71" Category="Package" />
+    <Node Id="ServiceStack.OrmLite.PostgreSQL 3.9.71" Label="ServiceStack.OrmLite.PostgreSQL 3.9.71" Category="Package" />
+    <Node Id="ServiceStack.OrmLite.SqlServer 3.9.71" Label="ServiceStack.OrmLite.SqlServer 3.9.71" Category="Package" />
+    <Node Id="ServiceStack.Redis 3.9.71" Label="ServiceStack.Redis 3.9.71" Category="Package" />
+    <Node Id="ServiceStack.Text 3.9.71" Label="ServiceStack.Text 3.9.71" Category="Package" />
+  </Nodes>
+  <Links>
+    <Link Source="Microsoft.AspNet.Mvc 5.2.3" Target="Microsoft.AspNet.WebPages 3.2.3" Category="Dépendance de package" />
+    <Link Source="Microsoft.AspNet.Mvc 5.2.3" Target="Microsoft.AspNet.Razor 3.2.3" Category="Dépendance de package" />
+    <Link Source="Microsoft.AspNet.Mvc.fr 5.2.3" Target="Microsoft.AspNet.Mvc 5.2.3" Category="Dépendance de package" />
+    <Link Source="Microsoft.AspNet.Razor.fr 3.2.3" Target="Microsoft.AspNet.Razor 3.2.3" Category="Dépendance de package" />
+    <Link Source="Microsoft.AspNet.WebPages 3.2.3" Target="Microsoft.Web.Infrastructure 1.0.0.0" Category="Dépendance de package" />
+    <Link Source="Microsoft.AspNet.WebPages 3.2.3" Target="Microsoft.AspNet.Razor 3.2.3" Category="Dépendance de package" />
+    <Link Source="Microsoft.AspNet.WebPages.fr 3.2.3" Target="Microsoft.AspNet.WebPages 3.2.3" Category="Dépendance de package" />
+    <Link Source="Client\Bm2s.Client" Target="bootstrap 3.0.0" Category="Package installé" />
+    <Link Source="Client\Bm2s.Client" Target="jQuery 1.10.2" Category="Package installé" />
+    <Link Source="Client\Bm2s.Client" Target="Microsoft.AspNet.Mvc.fr 5.2.3" Category="Package installé" />
+    <Link Source="Client\Bm2s.Client" Target="Microsoft.AspNet.Razor.fr 3.2.3" Category="Package installé" />
+    <Link Source="Client\Bm2s.Client" Target="Microsoft.AspNet.WebPages.fr 3.2.3" Category="Package installé" />
+    <Link Source="Client\Bm2s.Client" Target="Modernizr 2.6.2" Category="Package installé" />
+    <Link Source="ServiceStack 3.9.71" Target="ServiceStack.Common 3.9.71" Category="Dépendance de package" />
+    <Link Source="ServiceStack 3.9.71" Target="ServiceStack.Redis 3.9.71" Category="Dépendance de package" />
+    <Link Source="ServiceStack 3.9.71" Target="ServiceStack.OrmLite.SqlServer 3.9.71" Category="Dépendance de package" />
+    <Link Source="ServiceStack.Common 3.9.71" Target="ServiceStack.Text 3.9.71" Category="Dépendance de package" />
+    <Link Source="ServiceStack.OrmLite.MySql 3.9.71" Target="ServiceStack.Common 3.9.71" Category="Dépendance de package" />
+    <Link Source="ServiceStack.OrmLite.Oracle 3.9.71" Target="ServiceStack.Common 3.9.71" Category="Dépendance de package" />
+    <Link Source="ServiceStack.OrmLite.PostgreSQL 3.9.71" Target="Npgsql 2.2.5" Category="Dépendance de package" />
+    <Link Source="ServiceStack.OrmLite.PostgreSQL 3.9.71" Target="ServiceStack.Common 3.9.71" Category="Dépendance de package" />
+    <Link Source="ServiceStack.OrmLite.SqlServer 3.9.71" Target="ServiceStack.Common 3.9.71" Category="Dépendance de package" />
+    <Link Source="ServiceStack.Redis 3.9.71" Target="ServiceStack.Common 3.9.71" Category="Dépendance de package" />
+    <Link Source="Data\Bm2s.Data.Common" Target="ServiceStack 3.9.71" Category="Package installé" />
+    <Link Source="Data\Bm2s.Data.Common" Target="ServiceStack.OrmLite.MySql 3.9.71" Category="Package installé" />
+    <Link Source="Data\Bm2s.Data.Common" Target="ServiceStack.OrmLite.Oracle 3.9.71" Category="Package installé" />
+    <Link Source="Data\Bm2s.Data.Common" Target="ServiceStack.OrmLite.PostgreSQL 3.9.71" Category="Package installé" />
+    <Link Source="ServiceStack 3.9.71" Target="ServiceStack.Common 3.9.71" Category="Dépendance de package" />
+    <Link Source="ServiceStack 3.9.71" Target="ServiceStack.Redis 3.9.71" Category="Dépendance de package" />
+    <Link Source="ServiceStack 3.9.71" Target="ServiceStack.OrmLite.SqlServer 3.9.71" Category="Dépendance de package" />
+    <Link Source="ServiceStack.Common 3.9.71" Target="ServiceStack.Text 3.9.71" Category="Dépendance de package" />
+    <Link Source="ServiceStack.OrmLite.MySql 3.9.71" Target="ServiceStack.Common 3.9.71" Category="Dépendance de package" />
+    <Link Source="ServiceStack.OrmLite.Oracle 3.9.71" Target="ServiceStack.Common 3.9.71" Category="Dépendance de package" />
+    <Link Source="ServiceStack.OrmLite.PostgreSQL 3.9.71" Target="Npgsql 2.2.5" Category="Dépendance de package" />
+    <Link Source="ServiceStack.OrmLite.PostgreSQL 3.9.71" Target="ServiceStack.Common 3.9.71" Category="Dépendance de package" />
+    <Link Source="ServiceStack.OrmLite.SqlServer 3.9.71" Target="ServiceStack.Common 3.9.71" Category="Dépendance de package" />
+    <Link Source="ServiceStack.Redis 3.9.71" Target="ServiceStack.Common 3.9.71" Category="Dépendance de package" />
+    <Link Source="Data\Bm2s.Data.Utils" Target="ServiceStack 3.9.71" Category="Package installé" />
+    <Link Source="Data\Bm2s.Data.Utils" Target="ServiceStack.OrmLite.MySql 3.9.71" Category="Package installé" />
+    <Link Source="Data\Bm2s.Data.Utils" Target="ServiceStack.OrmLite.Oracle 3.9.71" Category="Package installé" />
+    <Link Source="Data\Bm2s.Data.Utils" Target="ServiceStack.OrmLite.PostgreSQL 3.9.71" Category="Package installé" />
+    <Link Source="ServiceStack 3.9.71" Target="ServiceStack.Common 3.9.71" Category="Dépendance de package" />
+    <Link Source="ServiceStack 3.9.71" Target="ServiceStack.Redis 3.9.71" Category="Dépendance de package" />
+    <Link Source="ServiceStack 3.9.71" Target="ServiceStack.OrmLite.SqlServer 3.9.71" Category="Dépendance de package" />
+    <Link Source="ServiceStack.Common 3.9.71" Target="ServiceStack.Text 3.9.71" Category="Dépendance de package" />
+    <Link Source="ServiceStack.OrmLite.MySql 3.9.71" Target="ServiceStack.Common 3.9.71" Category="Dépendance de package" />
+    <Link Source="ServiceStack.OrmLite.Oracle 3.9.71" Target="ServiceStack.Common 3.9.71" Category="Dépendance de package" />
+    <Link Source="ServiceStack.OrmLite.PostgreSQL 3.9.71" Target="Npgsql 2.2.5" Category="Dépendance de package" />
+    <Link Source="ServiceStack.OrmLite.PostgreSQL 3.9.71" Target="ServiceStack.Common 3.9.71" Category="Dépendance de package" />
+    <Link Source="ServiceStack.OrmLite.SqlServer 3.9.71" Target="ServiceStack.Common 3.9.71" Category="Dépendance de package" />
+    <Link Source="ServiceStack.Redis 3.9.71" Target="ServiceStack.Common 3.9.71" Category="Dépendance de package" />
+    <Link Source="Data\Bm2s.Data.Reporting" Target="ServiceStack 3.9.71" Category="Package installé" />
+    <Link Source="Data\Bm2s.Data.Reporting" Target="ServiceStack.OrmLite.MySql 3.9.71" Category="Package installé" />
+    <Link Source="Data\Bm2s.Data.Reporting" Target="ServiceStack.OrmLite.Oracle 3.9.71" Category="Package installé" />
+    <Link Source="Data\Bm2s.Data.Reporting" Target="ServiceStack.OrmLite.PostgreSQL 3.9.71" Category="Package installé" />
+    <Link Source="ServiceStack 3.9.71" Target="ServiceStack.Common 3.9.71" Category="Dépendance de package" />
+    <Link Source="ServiceStack 3.9.71" Target="ServiceStack.Redis 3.9.71" Category="Dépendance de package" />
+    <Link Source="ServiceStack 3.9.71" Target="ServiceStack.OrmLite.SqlServer 3.9.71" Category="Dépendance de package" />
+    <Link Source="ServiceStack.Common 3.9.71" Target="ServiceStack.Text 3.9.71" Category="Dépendance de package" />
+    <Link Source="ServiceStack.OrmLite.MySql 3.9.71" Target="ServiceStack.Common 3.9.71" Category="Dépendance de package" />
+    <Link Source="ServiceStack.OrmLite.Oracle 3.9.71" Target="ServiceStack.Common 3.9.71" Category="Dépendance de package" />
+    <Link Source="ServiceStack.OrmLite.PostgreSQL 3.9.71" Target="Npgsql 2.2.5" Category="Dépendance de package" />
+    <Link Source="ServiceStack.OrmLite.PostgreSQL 3.9.71" Target="ServiceStack.Common 3.9.71" Category="Dépendance de package" />
+    <Link Source="ServiceStack.OrmLite.SqlServer 3.9.71" Target="ServiceStack.Common 3.9.71" Category="Dépendance de package" />
+    <Link Source="ServiceStack.Redis 3.9.71" Target="ServiceStack.Common 3.9.71" Category="Dépendance de package" />
+    <Link Source="Data\Bm2s.Data.Project" Target="ServiceStack 3.9.71" Category="Package installé" />
+    <Link Source="Data\Bm2s.Data.Project" Target="ServiceStack.OrmLite.MySql 3.9.71" Category="Package installé" />
+    <Link Source="Data\Bm2s.Data.Project" Target="ServiceStack.OrmLite.Oracle 3.9.71" Category="Package installé" />
+    <Link Source="Data\Bm2s.Data.Project" Target="ServiceStack.OrmLite.PostgreSQL 3.9.71" Category="Package installé" />
+    <Link Source="ServiceStack 3.9.71" Target="ServiceStack.Common 3.9.71" Category="Dépendance de package" />
+    <Link Source="ServiceStack 3.9.71" Target="ServiceStack.Redis 3.9.71" Category="Dépendance de package" />
+    <Link Source="ServiceStack 3.9.71" Target="ServiceStack.OrmLite.SqlServer 3.9.71" Category="Dépendance de package" />
+    <Link Source="ServiceStack.Common 3.9.71" Target="ServiceStack.Text 3.9.71" Category="Dépendance de package" />
+    <Link Source="ServiceStack.OrmLite.MySql 3.9.71" Target="ServiceStack.Common 3.9.71" Category="Dépendance de package" />
+    <Link Source="ServiceStack.OrmLite.Oracle 3.9.71" Target="ServiceStack.Common 3.9.71" Category="Dépendance de package" />
+    <Link Source="ServiceStack.OrmLite.PostgreSQL 3.9.71" Target="Npgsql 2.2.5" Category="Dépendance de package" />
+    <Link Source="ServiceStack.OrmLite.PostgreSQL 3.9.71" Target="ServiceStack.Common 3.9.71" Category="Dépendance de package" />
+    <Link Source="ServiceStack.OrmLite.SqlServer 3.9.71" Target="ServiceStack.Common 3.9.71" Category="Dépendance de package" />
+    <Link Source="ServiceStack.Redis 3.9.71" Target="ServiceStack.Common 3.9.71" Category="Dépendance de package" />
+    <Link Source="Data\Bm2s.Data.POS" Target="ServiceStack 3.9.71" Category="Package installé" />
+    <Link Source="Data\Bm2s.Data.POS" Target="ServiceStack.OrmLite.MySql 3.9.71" Category="Package installé" />
+    <Link Source="Data\Bm2s.Data.POS" Target="ServiceStack.OrmLite.Oracle 3.9.71" Category="Package installé" />
+    <Link Source="Data\Bm2s.Data.POS" Target="ServiceStack.OrmLite.PostgreSQL 3.9.71" Category="Package installé" />
+    <Link Source="ServiceStack 3.9.71" Target="ServiceStack.Common 3.9.71" Category="Dépendance de package" />
+    <Link Source="ServiceStack 3.9.71" Target="ServiceStack.Redis 3.9.71" Category="Dépendance de package" />
+    <Link Source="ServiceStack 3.9.71" Target="ServiceStack.OrmLite.SqlServer 3.9.71" Category="Dépendance de package" />
+    <Link Source="ServiceStack.Common 3.9.71" Target="ServiceStack.Text 3.9.71" Category="Dépendance de package" />
+    <Link Source="ServiceStack.OrmLite.MySql 3.9.71" Target="ServiceStack.Common 3.9.71" Category="Dépendance de package" />
+    <Link Source="ServiceStack.OrmLite.Oracle 3.9.71" Target="ServiceStack.Common 3.9.71" Category="Dépendance de package" />
+    <Link Source="ServiceStack.OrmLite.PostgreSQL 3.9.71" Target="Npgsql 2.2.5" Category="Dépendance de package" />
+    <Link Source="ServiceStack.OrmLite.PostgreSQL 3.9.71" Target="ServiceStack.Common 3.9.71" Category="Dépendance de package" />
+    <Link Source="ServiceStack.OrmLite.SqlServer 3.9.71" Target="ServiceStack.Common 3.9.71" Category="Dépendance de package" />
+    <Link Source="ServiceStack.Redis 3.9.71" Target="ServiceStack.Common 3.9.71" Category="Dépendance de package" />
+    <Link Source="Bm2s.Server" Target="ServiceStack 3.9.71" Category="Package installé" />
+    <Link Source="Bm2s.Server" Target="ServiceStack.OrmLite.MySql 3.9.71" Category="Package installé" />
+    <Link Source="Bm2s.Server" Target="ServiceStack.OrmLite.Oracle 3.9.71" Category="Package installé" />
+    <Link Source="Bm2s.Server" Target="ServiceStack.OrmLite.PostgreSQL 3.9.71" Category="Package installé" />
+  </Links>
+  <Categories>
+    <Category Id="Projet" />
+    <Category Id="Package" />
+  </Categories>
+  <Styles>
+    <Style TargetType="Node" GroupLabel="Projet" ValueLabel="True">
+      <Condition Expression="HasCategory('Projet')" />
+      <Setter Property="Background" Value="Blue" />
+    </Style>
+    <Style TargetType="Link" GroupLabel="Dépendance de package" ValueLabel="True">
+      <Condition Expression="HasCategory('Dépendance de package')" />
+      <Setter Property="Background" Value="Yellow" />
+    </Style>
+  </Styles>
+</DirectedGraph>

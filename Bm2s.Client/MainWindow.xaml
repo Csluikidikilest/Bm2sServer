@@ -1,0 +1,9 @@
+﻿<Window x:Class="Bm2s.Client.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Bm2s="clr-namespace:Bm2s.Client.UI"
+        Title="MainWindow" Height="300" Width="300">
+    <Grid>
+    <Bm2s:MainContainer></Bm2s:MainContainer>
+    </Grid>
+</Window>

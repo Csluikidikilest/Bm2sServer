@@ -4,18 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{FE07D9AC-2699-4CAD-96B9-C48788A1A89A}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <ProjectGuid>{D19583AF-356B-449D-B0DE-927F3C2709C7}</ProjectGuid>
+    <OutputType>library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Bm2s.Client</RootNamespace>
-    <AssemblyName>Bm2s.Client</AssemblyName>
+    <RootNamespace>Bm2s.Client.UI</RootNamespace>
+    <AssemblyName>Bm2s.Client.UI</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -25,7 +24,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -49,21 +47,8 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
-    <Compile Include="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="UI\MainContainer.xaml.cs">
+    <Compile Include="MainContainer.xaml.cs">
       <DependentUpon>MainContainer.xaml</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -82,25 +67,36 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Resource Include="Fonts\fontawesome-webfont.ttf" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <Resource Include="Resources\fontawesome-webfont.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="MainWindow.xaml">
+    <Page Include="MainContainer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\MainContainer.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Bm2s.Connectivity.Common\Bm2s.Connectivity.Common.csproj">
+      <Project>{cfb6fae2-de21-44e4-9e8e-d240ba0c221d}</Project>
+      <Name>Bm2s.Connectivity.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bm2s.Connectivity.Utils\Bm2s.Connectivity.Utils.csproj">
+      <Project>{03f3d9e3-dec2-4f69-a875-fcf8a74de423}</Project>
+      <Name>Bm2s.Connectivity.Utils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bm2s.Poco.Common\Bm2s.Poco.Common.csproj">
+      <Project>{ddf41cb4-61b7-453d-8170-722962846e1b}</Project>
+      <Name>Bm2s.Poco.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bm2s.Response.Common\Bm2s.Response.Common.csproj">
+      <Project>{dca56c1d-b180-49ed-935f-0d129c128cd3}</Project>
+      <Name>Bm2s.Response.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
