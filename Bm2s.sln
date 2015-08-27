@@ -54,6 +54,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{109856A3-8
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bm2s.Client", "Bm2s.Client\Bm2s.Client.csproj", "{FE07D9AC-2699-4CAD-96B9-C48788A1A89A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ClientWeb", "ClientWeb", "{7D977849-3748-4DA9-A231-659B8DE838A3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

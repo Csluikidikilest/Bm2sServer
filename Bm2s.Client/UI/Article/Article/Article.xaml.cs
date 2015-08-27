@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Bm2s.Client.UI
+namespace Bm2s.Client.UI.Article.Article
 {
   /// <summary>
-  /// Logique d'interaction pour MainContainer.xaml
+  /// Logique d'interaction pour Article.xaml
   /// </summary>
-  public partial class MainContainer : Page
+  public partial class Article : UserControl
   {
-    public MainContainer()
+    public Article()
     {
       InitializeComponent();
     }
