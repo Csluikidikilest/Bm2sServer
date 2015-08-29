@@ -28,14 +28,14 @@ namespace Bm2s.Services.Common.Trade.Reconciliation
         items.AddRange(Datas.Instance.DataStorage.Reconciliations.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.Reconciliations.AddRange(from item in items
+      response.Reconciliations.AddRange((from item in items
                                         select new Bm2s.Poco.Common.Trade.Reconciliation()
                                         {
                                           Amount = item.Amount,
                                           HeaderLine = new HeaderLinesService().Get(new HeaderLines() { Ids = new List<int>() { item.HeaderLineId} }).HeaderLines.FirstOrDefault(),
                                           Id = item.Id,
                                           Payment = new PaymentsService().Get(new Payments() { Ids = new List<int>() { item.PaymentId} }).Payments.FirstOrDefault()
-                                        });
+                                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
 
       return response;
     }

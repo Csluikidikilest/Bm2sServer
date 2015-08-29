@@ -9,7 +9,7 @@ namespace Bm2s.Response.Common.Article.ArticleSubFamilyPricePartnerFamily
 {
   [Route("/bm2s/articlesubfamilypricepartnerfamilies", Verbs = "GET, POST")]
   [Route("/bm2s/articlesubfamilypricepartnerfamilies/{Ids}", Verbs = "GET")]
-  public class ArticleSubFamilyPricePartnerFamilies : IReturn<ArticleSubFamilyPricePartnerFamiliesResponse>
+  public class ArticleSubFamilyPricePartnerFamilies : Request, IReturn<ArticleSubFamilyPricePartnerFamiliesResponse>
   {
     public ArticleSubFamilyPricePartnerFamilies()
     {
@@ -19,8 +19,6 @@ namespace Bm2s.Response.Common.Article.ArticleSubFamilyPricePartnerFamily
     public int ArticleSubFamilyId { get; set; }
 
     public DateTime? Date { get; set; }
-
-    public List<int> Ids { get; set; }
 
     public int PartnerFamilyId { get; set; }
 

@@ -28,7 +28,7 @@ namespace Bm2s.Services.Common.Parameter.Town
         items.AddRange(Datas.Instance.DataStorage.Towns.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.Towns.AddRange(from item in items
+      response.Towns.AddRange((from item in items
                               select new Bm2s.Poco.Common.Parameter.Town()
                               {
                                 Country = new CountriesService().Get(new Countries() { Ids = new List<int>() { item.CountryId } }).Countries.FirstOrDefault(),
@@ -37,7 +37,7 @@ namespace Bm2s.Services.Common.Parameter.Town
                                 Name = item.Name,
                                 StartingDate = item.StartingDate,
                                 ZipCode = item.ZipCode
-                              });
+                              }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
 
       return response;
     }

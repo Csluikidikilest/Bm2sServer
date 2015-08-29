@@ -24,14 +24,14 @@ namespace Bm2s.Services.Common.User.Module
         items.AddRange(Datas.Instance.DataStorage.Modules.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.Modules.AddRange(from item in items
+      response.Modules.AddRange((from item in items
                                 select new Bm2s.Poco.Common.User.Module()
                                 {
                                   Code = item.Code,
                                   Description = item.Description,
                                   Id = item.Id,
                                   Name = item.Name
-                                });
+                                }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
 
       return response;
     }

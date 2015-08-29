@@ -31,7 +31,7 @@ namespace Bm2s.Services.Common.Parameter.ArticleSubFamilyPartnerFamilyVat
         items.AddRange(Datas.Instance.DataStorage.ArticleSubFamilyPartnerFamilyVats.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.ArticleSubFamilyPartnerFamilyVats.AddRange(from item in items
+      response.ArticleSubFamilyPartnerFamilyVats.AddRange((from item in items
                                                           select new Bm2s.Poco.Common.Parameter.ArticleSubFamilyPartnerFamilyVat()
                                                           {
                                                             AccountingEntry = item.AccountingEntry,
@@ -41,7 +41,7 @@ namespace Bm2s.Services.Common.Parameter.ArticleSubFamilyPartnerFamilyVat
                                                             PartnerFamily = new PartnerFamiliesService().Get(new PartnerFamilies() { Ids = new List<int>() { item.PartnerFamilyId } }).PartnerFamilies.FirstOrDefault(),
                                                             Rate = item.Rate,
                                                             Vat = new VatsService().Get(new Vats() { Ids = new List<int>() { item.VatId } }).Vats.FirstOrDefault()
-                                                          });
+                                                          }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
 
       return response;
     }

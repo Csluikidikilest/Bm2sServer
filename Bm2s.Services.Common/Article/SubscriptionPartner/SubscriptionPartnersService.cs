@@ -28,13 +28,13 @@ namespace Bm2s.Services.Common.Article.SubscriptionPartner
         items.AddRange(Datas.Instance.DataStorage.SubscriptionPartners.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.SubscriptionPartners.AddRange(from item in items
+      response.SubscriptionPartners.AddRange((from item in items
                                              select new Bm2s.Poco.Common.Article.SubscriptionPartner()
                                              {
                                                Id = item.Id,
                                                Partner = new PartnersService().Get(new Partners() { Ids = new List<int>() { item.PartnerId } }).Partners.FirstOrDefault(),
                                                Subscription = new SubscriptionsService().Get(new Subscriptions() { Ids = new List<int>() { item.SubscriptionId } }).Subscriptions.FirstOrDefault()
-                                             });
+                                             }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
 
       return response;
     }

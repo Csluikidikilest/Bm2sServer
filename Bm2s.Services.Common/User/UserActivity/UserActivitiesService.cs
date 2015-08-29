@@ -28,14 +28,14 @@ namespace Bm2s.Services.Common.User.UserActivity
         items.AddRange(Datas.Instance.DataStorage.UserActivities.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.UserActivities.AddRange(from item in items
+      response.UserActivities.AddRange((from item in items
                                        select new Bm2s.Poco.Common.User.UserActivity()
                                        {
                                          Activity = new ActivitiesService().Get(new Activities() { Ids = new List<int>() { item.ActivityId } }).Activities.FirstOrDefault(),
                                          Id = item.Id,
                                          IsDefault = item.IsDefault,
                                          User = new UsersService().Get(new Users() { Ids = new List<int>() { item.UserId } }).Users.FirstOrDefault()
-                                       });
+                                       }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
 
       return response;
     }

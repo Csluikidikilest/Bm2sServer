@@ -5,7 +5,7 @@ namespace Bm2s.Response.Common.Trade.HeaderStatusStep
 {
   [Route("/bm2s/headerstatussteps", Verbs = "GET, POST")]
   [Route("/bm2s/headerstatussteps/{Ids}", Verbs = "GET")]
-  public class HeaderStatusSteps : IReturn<HeaderStatusStepsResponse>
+  public class HeaderStatusSteps : Request, IReturn<HeaderStatusStepsResponse>
   {
     public HeaderStatusSteps()
     {
@@ -15,8 +15,6 @@ namespace Bm2s.Response.Common.Trade.HeaderStatusStep
     public int HeaderStatusChildId { get; set; }
 
     public int HeaderStatusParentId { get; set; }
-
-    public List<int> Ids { get; set; }
 
     public Bm2s.Poco.Common.Trade.HeaderStatusStep HeaderStatusStep { get; set; }
   }

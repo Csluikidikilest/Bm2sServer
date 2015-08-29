@@ -25,7 +25,7 @@ namespace Bm2s.Services.Common.Partner.PartnerFamily
         items.AddRange(Datas.Instance.DataStorage.PartnerFamilies.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.PartnerFamilies.AddRange(from item in items
+      response.PartnerFamilies.AddRange((from item in items
                                         select new Bm2s.Poco.Common.Partner.PartnerFamily()
                                         {
                                           Code = item.Code,
@@ -34,7 +34,7 @@ namespace Bm2s.Services.Common.Partner.PartnerFamily
                                           EndingDate = item.EndingDate,
                                           Id = item.Id,
                                           StartingDate = item.StartingDate
-                                        });
+                                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
 
       return response;
     }

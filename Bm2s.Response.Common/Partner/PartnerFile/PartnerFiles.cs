@@ -6,7 +6,7 @@ namespace Bm2s.Response.Common.Partner.PartnerFil
 {
   [Route("/bm2s/partnerfiles", Verbs = "GET, POST")]
   [Route("/bm2s/partnerfiles/{Ids}", Verbs = "GET")]
-  public class PartnerFiles : IReturn<PartnerFilesResponse>
+  public class PartnerFiles : Request, IReturn<PartnerFilesResponse>
   {
     public PartnerFiles()
     {
@@ -14,8 +14,6 @@ namespace Bm2s.Response.Common.Partner.PartnerFil
     }
 
     public DateTime? AddingDate { get; set; }
-
-    public List<int> Ids { get; set; }
 
     public string Name { get; set; }
 

@@ -26,7 +26,7 @@ namespace Bm2s.Services.Common.Parameter.UnitConversion
         items.AddRange(Datas.Instance.DataStorage.UnitConversions.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.UnitConversions.AddRange(from item in items
+      response.UnitConversions.AddRange((from item in items
                                         select new Bm2s.Poco.Common.Parameter.UnitConversion()
                                         {
                                           Child = new UnitsService().Get(new Units() { Ids = new List<int>() { item.ChildId } }).Units.FirstOrDefault(),
@@ -34,7 +34,7 @@ namespace Bm2s.Services.Common.Parameter.UnitConversion
                                           Multiplier = item.Multiplier,
                                           Parent = new UnitsService().Get(new Units() { Ids = new List<int>() { item.ParentId } }).Units.FirstOrDefault(),
                                           Quantity = item.Quantity
-                                        });
+                                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
 
       return response;
     }

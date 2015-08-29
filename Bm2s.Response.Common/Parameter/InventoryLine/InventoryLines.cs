@@ -5,7 +5,7 @@ namespace Bm2s.Response.Common.Parameter.InventoryLine
 {
   [Route("/bm2s/inventorylines", Verbs = "GET, POST")]
   [Route("/bm2s/inventorylines/{Ids}", Verbs = "GET")]
-  public class InventoryLines : IReturn<InventoryLinesResponse>
+  public class InventoryLines : Request, IReturn<InventoryLinesResponse>
   {
     public InventoryLines()
     {
@@ -13,8 +13,6 @@ namespace Bm2s.Response.Common.Parameter.InventoryLine
     }
 
     public int ArticleId { get; set; }
-
-    public List<int> Ids { get; set; }
 
     public int InventoryHeaderId { get; set; }
 

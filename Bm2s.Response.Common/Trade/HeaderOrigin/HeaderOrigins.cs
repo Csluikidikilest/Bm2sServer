@@ -6,7 +6,7 @@ namespace Bm2s.Response.Common.Trade.HeaderOrigin
 {
   [Route("/bm2s/headerorigins", Verbs = "GET, POST")]
   [Route("/bm2s/headerorigins/{Ids}", Verbs = "GET")]
-  public class HeaderOrigins : IReturn<HeaderOriginsResponse>
+  public class HeaderOrigins : Request, IReturn<HeaderOriginsResponse>
   {
     public HeaderOrigins()
     {
@@ -14,8 +14,6 @@ namespace Bm2s.Response.Common.Trade.HeaderOrigin
     }
 
     public DateTime? Date { get; set; }
-
-    public List<int> Ids { get; set; }
 
     public int HeaderChildId { get; set; }
 

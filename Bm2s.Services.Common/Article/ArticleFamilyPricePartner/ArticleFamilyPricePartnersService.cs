@@ -32,7 +32,7 @@ namespace Bm2s.Services.Common.Article.ArticleFamilyPricePartner
         items.AddRange(Datas.Instance.DataStorage.ArticleFamilyPricePartners.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.ArticleFamilyPricePartners.AddRange(from item in items
+      response.ArticleFamilyPricePartners.AddRange((from item in items
                                                    select new Bm2s.Poco.Common.Article.ArticleFamilyPricePartner()
                                                    {
                                                      AddPrice = item.AddPrice,
@@ -43,7 +43,7 @@ namespace Bm2s.Services.Common.Article.ArticleFamilyPricePartner
                                                      Partner = new PartnersService().Get(new Partners() { Ids = new List<int>() { item.PartnerId } }).Partners.FirstOrDefault(),
                                                      Price = item.Price,
                                                      StartingDate = item.StartingDate
-                                                   });
+                                                   }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
       return response;
     }
 

@@ -24,7 +24,7 @@ namespace Bm2s.Services.Common.Partner.AddressType
         items.AddRange(Datas.Instance.DataStorage.AddressTypes.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.AddressTypes.AddRange(from item in items
+      response.AddressTypes.AddRange((from item in items
                                      select new Bm2s.Poco.Common.Partner.AddressType()
                                      {
                                        Code = item.Code,
@@ -32,7 +32,7 @@ namespace Bm2s.Services.Common.Partner.AddressType
                                        Id = item.Id,
                                        Name = item.Name,
                                        StartingDate = item.StartingDate
-                                     });
+                                     }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
 
       return response;
     }

@@ -6,7 +6,7 @@ namespace Bm2s.Response.Common.Article.Price
 {
   [Route("/bm2s/prices", Verbs = "GET, POST")]
   [Route("/bm2s/prices/{Ids}", Verbs = "GET")]
-  public class Prices : IReturn<PricesResponse>
+  public class Prices : Request, IReturn<PricesResponse>
   {
     public Prices()
     {
@@ -16,8 +16,6 @@ namespace Bm2s.Response.Common.Article.Price
     public int ArticleId { get; set; }
 
     public DateTime? Date { get; set; }
-
-    public List<int> Ids { get; set; }
 
     public Bm2s.Poco.Common.Article.Price Price { get; set; }
   }

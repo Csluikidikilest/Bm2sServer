@@ -31,7 +31,7 @@ namespace Bm2s.Services.Common.User.GroupModule
         items.AddRange(Datas.Instance.DataStorage.GroupModules.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.GroupModules.AddRange(from item in items
+      response.GroupModules.AddRange((from item in items
                                      select new Bm2s.Poco.Common.User.GroupModule()
                                      {
                                        Granted = item.Granted,
@@ -39,7 +39,7 @@ namespace Bm2s.Services.Common.User.GroupModule
                                        Group = new GroupsService().Get(new Groups() { Ids = new List<int>() { item.GroupId} }).Groups.FirstOrDefault(),
                                        Id = item.Id,
                                        Module = new ModulesService().Get(new Modules() { Ids = new List<int>() { item.ModuleId} }).Modules.FirstOrDefault()
-                                     });
+                                     }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
 
       return response;
     }

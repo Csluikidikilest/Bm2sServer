@@ -6,7 +6,7 @@ namespace Bm2s.Response.Common.User.User
 {
   [Route("/bm2s/users", Verbs = "GET, POST")]
   [Route("/bm2s/users/{Ids}", Verbs = "GET")]
-  public class Users : IReturn<UsersResponse>
+  public class Users : Request, IReturn<UsersResponse>
   {
     public Users()
     {
@@ -20,8 +20,6 @@ namespace Bm2s.Response.Common.User.User
     public string LastName { get; set; }
 
     public string Login { get; set; }
-
-    public List<int> Ids { get; set; }
 
     public bool IsAdministrator { get; set; }
 

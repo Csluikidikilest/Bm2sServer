@@ -6,7 +6,7 @@ namespace Bm2s.Response.Common.Parameter.Town
 {
   [Route("/bm2s/towns", Verbs = "GET, POST")]
   [Route("/bm2s/towns/{Ids}", Verbs = "GET")]
-  public class Towns : IReturn<TownsResponse>
+  public class Towns : Request, IReturn<TownsResponse>
   {
     public Towns()
     {
@@ -16,8 +16,6 @@ namespace Bm2s.Response.Common.Parameter.Town
     public int CountryId { get; set; }
 
     public DateTime? Date { get; set; }
-
-    public List<int> Ids { get; set; }
 
     public string Name { get; set; }
 

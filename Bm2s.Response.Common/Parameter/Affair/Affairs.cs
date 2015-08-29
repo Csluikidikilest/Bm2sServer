@@ -5,7 +5,7 @@ namespace Bm2s.Response.Common.Parameter.Affair
 {
   [Route("/bm2s/affairs", Verbs = "GET, POST")]
   [Route("/bm2s/affairs/{Ids}", Verbs = "GET")]
-  public class Affairs : IReturn<AffairsResponse>
+  public class Affairs : Request, IReturn<AffairsResponse>
   {
     public Affairs()
     {
@@ -15,8 +15,6 @@ namespace Bm2s.Response.Common.Parameter.Affair
     public int ActivityId { get; set; }
 
     public string Code { get; set; }
-
-    public List<int> Ids { get; set; }
 
     public string Name { get; set; }
 

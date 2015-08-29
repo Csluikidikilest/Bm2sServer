@@ -25,7 +25,7 @@ namespace Bm2s.Services.Common.Parameter.Country
         items.AddRange(Datas.Instance.DataStorage.Countries.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.Countries.AddRange(from item in items
+      response.Countries.AddRange((from item in items
                                   select new Bm2s.Poco.Common.Parameter.Country()
                                   {
                                     Code = item.Code,
@@ -33,7 +33,7 @@ namespace Bm2s.Services.Common.Parameter.Country
                                     Id = item.Id,
                                     Name = item.Name,
                                     StartingDate = item.StartingDate
-                                  });
+                                  }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
 
       return response;
     }

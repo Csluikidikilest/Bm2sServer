@@ -5,7 +5,7 @@ namespace Bm2s.Response.Common.Partner.PartnerAddress
 {
   [Route("/bm2s/partneraddresses", Verbs = "GET, POST")]
   [Route("/bm2s/partneraddresses/{Ids}", Verbs = "GET")]
-  public class PartnerAddresses : IReturn<PartnerAddressesResponse>
+  public class PartnerAddresses : Request, IReturn<PartnerAddressesResponse>
   {
     public PartnerAddresses()
     {
@@ -15,8 +15,6 @@ namespace Bm2s.Response.Common.Partner.PartnerAddress
     public int AddressId { get; set; }
 
     public int AddressTypeId { get; set; }
-
-    public List<int> Ids { get; set; }
 
     public int PartnerId { get; set; }
 

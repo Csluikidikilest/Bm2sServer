@@ -26,7 +26,7 @@ namespace Bm2s.Services.Common.Article.ArticleFamily
         items.AddRange(Datas.Instance.DataStorage.ArticleFamilies.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.ArticleFamilies.AddRange(from item in items
+      response.ArticleFamilies.AddRange((from item in items
                                         select new Bm2s.Poco.Common.Article.ArticleFamily()
                                         {
                                           AccountingEntry = item.AccountingEntry,
@@ -36,7 +36,7 @@ namespace Bm2s.Services.Common.Article.ArticleFamily
                                           EndingDate = item.EndingDate,
                                           Id = item.Id,
                                           StartingDate = item.StartingDate,
-                                        });
+                                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
       return response;
     }
 

@@ -33,7 +33,7 @@ namespace Bm2s.Services.Common.Partner.PartnerContact
         items.AddRange(Datas.Instance.DataStorage.PartnerContacts.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.PartnerContacts.AddRange(from item in items
+      response.PartnerContacts.AddRange((from item in items
                                         select new Bm2s.Poco.Common.Partner.PartnerContact()
                                         {
                                           Email = item.Email,
@@ -48,7 +48,7 @@ namespace Bm2s.Services.Common.Partner.PartnerContact
                                           Partner = new PartnersService().Get(new Partners() { Ids = new List<int>() { item.PartnerId } }).Partners.FirstOrDefault(),
                                           PhoneNumber = item.PhoneNumber,
                                           StartingDate = item.StartingDate
-                                        });
+                                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
 
       return response;
     }

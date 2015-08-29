@@ -6,14 +6,12 @@ namespace Bm2s.Response.Common.Article.SubscriptionPartner
 {
   [Route("/bm2s/subscriptionpartners", Verbs = "GET, POST")]
   [Route("/bm2s/subscriptionpartners/{Ids}", Verbs = "GET")]
-  public class SubscriptionPartners : IReturn<SubscriptionPartnersResponse>
+  public class SubscriptionPartners : Request, IReturn<SubscriptionPartnersResponse>
   {
     public SubscriptionPartners()
     {
       this.Ids = new List<int>();
     }
-
-    public List<int> Ids { get; set; }
 
     public int SubscriptionId { get; set; }
 

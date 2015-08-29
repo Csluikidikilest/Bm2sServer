@@ -27,7 +27,7 @@ namespace Bm2s.Services.Common.Parameter.Unit
         items.AddRange(Datas.Instance.DataStorage.Units.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.Units.AddRange(from item in items
+      response.Units.AddRange((from item in items
                               select new Bm2s.Poco.Common.Parameter.Unit()
                               {
                                 Code = item.Code,
@@ -38,7 +38,7 @@ namespace Bm2s.Services.Common.Parameter.Unit
                                 IsPeriod = item.IsPeriod,
                                 Name = item.Name,
                                 StartingDate = item.StartingDate
-                              });
+                              }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
 
       return response;
     }

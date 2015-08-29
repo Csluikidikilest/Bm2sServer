@@ -6,7 +6,7 @@ namespace Bm2s.Response.Common.Trade.HeaderFile
 {
   [Route("/bm2s/headerfiles", Verbs = "GET, POST")]
   [Route("/bm2s/headerfiles/{Ids}", Verbs = "GET")]
-  public class HeaderFiles : IReturn<HeaderFilesResponse>
+  public class HeaderFiles : Request, IReturn<HeaderFilesResponse>
   {
     public HeaderFiles()
     {
@@ -16,8 +16,6 @@ namespace Bm2s.Response.Common.Trade.HeaderFile
     public DateTime? AddingDate { get; set; }
 
     public int HeaderId { get; set; }
-
-    public List<int> Ids { get; set; }
 
     public string Name { get; set; }
 

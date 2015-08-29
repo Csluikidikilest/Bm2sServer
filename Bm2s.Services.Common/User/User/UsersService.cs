@@ -28,7 +28,7 @@ namespace Bm2s.Services.Common.User.User
         items.AddRange(Datas.Instance.DataStorage.Users.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.Users.AddRange(from item in items
+      response.Users.AddRange((from item in items
                               select new Bm2s.Poco.Common.User.User()
                               {
                                 EndingDate = item.EndingDate,
@@ -40,7 +40,7 @@ namespace Bm2s.Services.Common.User.User
                                 Login = item.Login,
                                 Password = item.Password,
                                 StartingDate = item.StartingDate
-                              });
+                              }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
 
       return response;
     }

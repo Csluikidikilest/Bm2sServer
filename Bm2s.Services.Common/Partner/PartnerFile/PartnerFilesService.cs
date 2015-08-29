@@ -31,7 +31,7 @@ namespace Bm2s.Services.Common.Partner.PartnerFile
         items.AddRange(Datas.Instance.DataStorage.PartnerFiles.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.PartnerFiles.AddRange(from item in items
+      response.PartnerFiles.AddRange((from item in items
                                      select new Bm2s.Poco.Common.Partner.PartnerFile()
                                      {
                                        AddingDate = item.AddingDate,
@@ -40,7 +40,7 @@ namespace Bm2s.Services.Common.Partner.PartnerFile
                                        Name = item.Name,
                                        Partner = new PartnersService().Get(new Partners() { Ids = new List<int>() { item.PartnerId } }).Partners.FirstOrDefault(),
                                        User = new UsersService().Get(new Users() { Ids = new List<int>() { item.UserId } }).Users.FirstOrDefault()
-                                     });
+                                     }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
 
       return response;
     }

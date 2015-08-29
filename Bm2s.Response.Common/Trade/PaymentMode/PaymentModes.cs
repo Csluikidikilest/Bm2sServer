@@ -6,7 +6,7 @@ namespace Bm2s.Response.Common.Trade.PaymentMode
 {
   [Route("/bm2s/paymentmodes", Verbs = "GET, POST")]
   [Route("/bm2s/paymentmodes/{Ids}", Verbs = "GET")]
-  public class PaymentModes : IReturn<PaymentModesResponse>
+  public class PaymentModes : Request, IReturn<PaymentModesResponse>
   {
     public PaymentModes()
     {
@@ -16,8 +16,6 @@ namespace Bm2s.Response.Common.Trade.PaymentMode
     public string Code { get; set; }
 
     public DateTime? Date { get; set; }
-
-    public List<int> Ids { get; set; }
 
     public string Name { get; set; }
 

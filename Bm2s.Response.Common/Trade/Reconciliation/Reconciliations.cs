@@ -5,7 +5,7 @@ namespace Bm2s.Response.Common.Trade.Reconciliation
 {
   [Route("/bm2s/reconciliations", Verbs = "GET, POST")]
   [Route("/bm2s/reconciliations/{Ids}", Verbs = "GET")]
-  public class Reconciliations : IReturn<ReconciliationsResponse>
+  public class Reconciliations : Request, IReturn<ReconciliationsResponse>
   {
     public Reconciliations()
     {
@@ -13,8 +13,6 @@ namespace Bm2s.Response.Common.Trade.Reconciliation
     }
 
     public int HeaderLineId { get; set; }
-
-    public List<int> Ids { get; set; }
 
     public int PaymentId { get; set; }
 

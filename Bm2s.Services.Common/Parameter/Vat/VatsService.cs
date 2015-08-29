@@ -24,7 +24,7 @@ namespace Bm2s.Services.Common.Parameter.Vat
         items.AddRange(Datas.Instance.DataStorage.Vats.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.Vats.AddRange(from item in items
+      response.Vats.AddRange((from item in items
                              select new Bm2s.Poco.Common.Parameter.Vat()
                              {
                                AccountingEntry = item.AccountingEntry,
@@ -33,7 +33,7 @@ namespace Bm2s.Services.Common.Parameter.Vat
                                Id = item.Id,
                                Rate = item.Rate,
                                StartingDate = item.StartingDate
-                             });
+                             }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
 
       return response;
     }

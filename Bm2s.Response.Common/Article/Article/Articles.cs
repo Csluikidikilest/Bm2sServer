@@ -6,7 +6,7 @@ namespace Bm2s.Response.Common.Article.Article
 {
   [Route("/bm2s/articles", Verbs = "GET, POST")]
   [Route("/bm2s/articles/{Ids}", Verbs = "GET")]
-  public class Articles : IReturn<ArticlesResponse>
+  public class Articles : Request, IReturn<ArticlesResponse>
   {
     public Articles()
     {
@@ -24,8 +24,6 @@ namespace Bm2s.Response.Common.Article.Article
     public DateTime? Date { get; set; }
 
     public string Designation { get; set; }
-
-    public List<int> Ids { get; set; }
 
     public Bm2s.Poco.Common.Article.Article Article { get; set; }
   }

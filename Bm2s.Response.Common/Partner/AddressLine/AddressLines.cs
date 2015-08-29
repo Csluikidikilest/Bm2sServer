@@ -5,7 +5,7 @@ namespace Bm2s.Response.Common.Partner.AddressLine
 {
   [Route("/bm2s/addresslines", Verbs = "GET, POST")]
   [Route("/bm2s/addresslines/{Ids}", Verbs = "GET")]
-  public class AddressLines : IReturn<AddressLinesResponse>
+  public class AddressLines : Request, IReturn<AddressLinesResponse>
   {
     public AddressLines()
     {
@@ -13,8 +13,6 @@ namespace Bm2s.Response.Common.Partner.AddressLine
     }
 
     public int AddressId { get; set; }
-
-    public List<int> Ids { get; set; }
 
     public Bm2s.Poco.Common.Partner.AddressLine AddressLine { get; set; }
   }

@@ -5,7 +5,7 @@ namespace Bm2s.Response.Common.Parameter.AffairHeader
 {
   [Route("/bm2s/affairheaders", Verbs = "GET, POST")]
   [Route("/bm2s/affairheaders/{Ids}", Verbs = "GET")]
-  public class AffairHeaders : IReturn<AffairHeadersResponse>
+  public class AffairHeaders : Request, IReturn<AffairHeadersResponse>
   {
     public AffairHeaders()
     {
@@ -15,8 +15,6 @@ namespace Bm2s.Response.Common.Parameter.AffairHeader
     public int AffairId { get; set; }
 
     public int HeaderId { get; set; }
-    
-    public List<int> Ids { get; set; }
 
     public Bm2s.Poco.Common.Parameter.AffairHeader AffairHeader { get; set; }
   }

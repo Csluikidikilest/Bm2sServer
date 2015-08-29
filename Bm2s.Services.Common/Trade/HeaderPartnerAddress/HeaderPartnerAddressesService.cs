@@ -34,7 +34,7 @@ namespace Bm2s.Services.Common.Trade.HeaderPartnerAddress
         items.AddRange(Datas.Instance.DataStorage.HeaderPartnerAddresses.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.HeaderPartnerAddresses.AddRange(from item in items
+      response.HeaderPartnerAddresses.AddRange((from item in items
                                                select new Bm2s.Poco.Common.Trade.HeaderPartnerAddress()
                                                {
                                                  Address = new AddressesService().Get(new Addresses() { Ids = new List<int>() { item.AddressId } }).Addresses.FirstOrDefault(),
@@ -42,7 +42,7 @@ namespace Bm2s.Services.Common.Trade.HeaderPartnerAddress
                                                  Header = new HeadersService().Get(new Headers() { Ids = new List<int>() { item.HeaderId } }).Headers.FirstOrDefault(),
                                                  Id = item.Id,
                                                  Partner = new PartnersService().Get(new Partners() { Ids = new List<int>() { item.PartnerId } }).Partners.FirstOrDefault()
-                                               });
+                                               }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
 
       return response;
     }

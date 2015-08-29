@@ -26,7 +26,7 @@ namespace Bm2s.Services.Common.Article.Price
         items.AddRange(Datas.Instance.DataStorage.Prices.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.Prices.AddRange(from item in items
+      response.Prices.AddRange((from item in items
                                select new Bm2s.Poco.Common.Article.Price()
                                {
                                  Article = new ArticlesService().Get(new Articles() { Ids = new List<int>() { item.ArticleId} }).Articles.FirstOrDefault(),
@@ -34,7 +34,7 @@ namespace Bm2s.Services.Common.Article.Price
                                  EndingDate = item.EndingDate,
                                  Id = item.Id,
                                  StartingDate = item.StartingDate
-                               });
+                               }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
 
       return response;
     }

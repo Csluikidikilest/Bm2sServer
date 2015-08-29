@@ -5,7 +5,7 @@ namespace Bm2s.Response.Common.Parameter.Parameter
 {
   [Route("/bm2s/parameters", Verbs = "GET, POST")]
   [Route("/bm2s/parameters/{Ids}", Verbs = "GET")]
-  public class Parameters : IReturn<ParametersResponse>
+  public class Parameters : Request, IReturn<ParametersResponse>
   {
     public Parameters()
     {
@@ -13,8 +13,6 @@ namespace Bm2s.Response.Common.Parameter.Parameter
     }
 
     public string Code { get; set; }
-
-    public List<int> Ids { get; set; }
 
     public Bm2s.Poco.Common.Parameter.Parameter Parameter { get; set; }
   }

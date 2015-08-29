@@ -5,7 +5,7 @@ namespace Bm2s.Response.Common.User.UserModule
 {
   [Route("/bm2s/usermodules", Verbs = "GET, POST")]
   [Route("/bm2s/usermodules/{Ids}", Verbs = "GET")]
-  public class UserModules : IReturn<UserModulesResponse>
+  public class UserModules : Request, IReturn<UserModulesResponse>
   {
     public UserModules()
     {
@@ -13,8 +13,6 @@ namespace Bm2s.Response.Common.User.UserModule
     }
 
     public int GrantorId { get; set; }
-
-    public List<int> Ids { get; set; }
 
     public int ModuleId { get; set; }
 

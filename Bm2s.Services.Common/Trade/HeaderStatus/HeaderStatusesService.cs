@@ -25,7 +25,7 @@ namespace Bm2s.Services.Common.Trade.HeaderStatus
         items.AddRange(Datas.Instance.DataStorage.HeaderStatuses.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.HeaderStatuses.AddRange(from item in items
+      response.HeaderStatuses.AddRange((from item in items
                                        select new Bm2s.Poco.Common.Trade.HeaderStatus()
                                        {
                                          EndingDate = item.EndingDate,
@@ -33,7 +33,7 @@ namespace Bm2s.Services.Common.Trade.HeaderStatus
                                          InterveneOnStock = item.InterveneOnStock,
                                          Name = item.Name,
                                          StartingDate = item.StartingDate
-                                       });
+                                       }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
 
       return response;
     }

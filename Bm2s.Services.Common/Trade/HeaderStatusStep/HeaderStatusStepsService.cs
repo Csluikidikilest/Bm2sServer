@@ -26,13 +26,13 @@ namespace Bm2s.Services.Common.Trade.HeaderStatusStep
         items.AddRange(Datas.Instance.DataStorage.HeaderStatusSteps.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.HeaderStatusSteps.AddRange(from item in items
+      response.HeaderStatusSteps.AddRange((from item in items
                                           select new Bm2s.Poco.Common.Trade.HeaderStatusStep()
                                           {
                                             HeaderStatusChild = new HeaderStatusesService().Get(new HeaderStatuses() { Ids = new List<int>() { item.HeaderStatusChildId } }).HeaderStatuses.FirstOrDefault(),
                                             HeaderStatusParent = new HeaderStatusesService().Get(new HeaderStatuses() { Ids = new List<int>() { item.HeaderStatusParentId } }).HeaderStatuses.FirstOrDefault(),
                                             Id = item.Id
-                                          });
+                                          }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
 
       return response;
     }

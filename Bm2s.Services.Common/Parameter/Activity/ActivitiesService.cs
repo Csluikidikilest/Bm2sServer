@@ -23,7 +23,7 @@ namespace Bm2s.Services.Common.Parameter.Activity
         items.AddRange(Datas.Instance.DataStorage.Activities.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.Activities.AddRange(from item in items
+      response.Activities.AddRange((from item in items
                                    select new Bm2s.Poco.Common.Parameter.Activity()
                                    {
                                      Address1 = item.Address1,
@@ -34,7 +34,7 @@ namespace Bm2s.Services.Common.Parameter.Activity
                                      Id = item.Id,
                                      TownName = item.TownName,
                                      TownZipCode = item.TownZipCode
-                                   });
+                                   }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
 
       return response;
     }

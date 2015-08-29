@@ -25,7 +25,7 @@ namespace Bm2s.Services.Common.Trade.PaymentMode
         items.AddRange(Datas.Instance.DataStorage.PaymentModes.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.PaymentModes.AddRange(from item in items
+      response.PaymentModes.AddRange((from item in items
                                      select new Bm2s.Poco.Common.Trade.PaymentMode()
                                      {
                                        Code = item.Code,
@@ -33,7 +33,7 @@ namespace Bm2s.Services.Common.Trade.PaymentMode
                                        Id = item.Id,
                                        Name = item.Name,
                                        StartingDate = item.StartingDate
-                                     });
+                                     }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
 
       return response;
     }

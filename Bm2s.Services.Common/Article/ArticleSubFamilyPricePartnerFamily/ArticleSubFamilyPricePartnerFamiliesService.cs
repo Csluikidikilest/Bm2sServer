@@ -32,7 +32,7 @@ namespace Bm2s.Services.Common.Article.ArticleSubFamilyPricePartnerFamily
         items.AddRange(Datas.Instance.DataStorage.ArticleSubFamilyPricePartnerFamilies.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.ArticleSubFamilyPricePartnerFamilies.AddRange(from item in items
+      response.ArticleSubFamilyPricePartnerFamilies.AddRange((from item in items
                                                              select new Bm2s.Poco.Common.Article.ArticleSubFamilyPricePartnerFamily()
                                                              {
                                                                ArticleSubFamily = new ArticleSubFamiliesService().Get(new ArticleSubFamilies() { Ids = new List<int>() { item.ArticleSubFamilyId } }).ArticleSubFamilies.FirstOrDefault(),
@@ -42,7 +42,7 @@ namespace Bm2s.Services.Common.Article.ArticleSubFamilyPricePartnerFamily
                                                                PartnerFamily = new PartnerFamiliesService().Get(new PartnerFamilies() { Ids = new List<int>() { item.PartnerFamilyId } }).PartnerFamilies.FirstOrDefault(),
                                                                Price = item.Price,
                                                                StartingDate = item.StartingDate
-                                                             });
+                                                             }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
 
       return response;
     }

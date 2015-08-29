@@ -6,7 +6,7 @@ namespace Bm2s.Response.Common.Partner.PartnerFamily
 {
   [Route("/bm2s/partnerfamilies", Verbs = "GET, POST")]
   [Route("/bm2s/partnerfamilies/{Ids}", Verbs = "GET")]
-  public class PartnerFamilies : IReturn<PartnerFamiliesResponse>
+  public class PartnerFamilies : Request, IReturn<PartnerFamiliesResponse>
   {
     public PartnerFamilies()
     {
@@ -18,8 +18,6 @@ namespace Bm2s.Response.Common.Partner.PartnerFamily
     public DateTime? Date { get; set; }
 
     public string Designation { get; set; }
-
-    public List<int> Ids { get; set; }
 
     public Bm2s.Poco.Common.Partner.PartnerFamily PartnerFamily { get; set; }
   }

@@ -5,7 +5,7 @@ namespace Bm2s.Response.Common.User.UserGroup
 {
   [Route("/bm2s/usergroups", Verbs = "GET, POST")]
   [Route("/bm2s/usergroups/{Ids}", Verbs = "GET")]
-  public class UserGroups : IReturn<UserGroupsResponse>
+  public class UserGroups : Request, IReturn<UserGroupsResponse>
   {
     public UserGroups()
     {
@@ -13,8 +13,6 @@ namespace Bm2s.Response.Common.User.UserGroup
     }
 
     public int GroupId { get; set; }
-
-    public List<int> Ids { get; set; }
 
     public int UserId { get; set; }
 

@@ -30,7 +30,7 @@ namespace Bm2s.Services.Common.Parameter.Affair
         items.AddRange(Datas.Instance.DataStorage.Affairs.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.Affairs.AddRange(from item in items
+      response.Affairs.AddRange((from item in items
                                 select new Bm2s.Poco.Common.Parameter.Affair()
                                 {
                                   Activity = new ActivitiesService().Get(new Activities() { Ids = new List<int>() { item.ActivityId } }).Activities.FirstOrDefault(),
@@ -39,7 +39,7 @@ namespace Bm2s.Services.Common.Parameter.Affair
                                   Id = item.Id,
                                   Name = item.Name,
                                   User = new UsersService().Get(new Users() { Ids = new List<int>() { item.UserId } }).Users.FirstOrDefault()
-                                });
+                                }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
 
       return response;
     }

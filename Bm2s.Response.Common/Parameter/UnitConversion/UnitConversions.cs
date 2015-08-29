@@ -5,7 +5,7 @@ namespace Bm2s.Response.Common.Parameter.UnitConversion
 {
   [Route("/bm2s/unitconversions", Verbs = "GET, POST")]
   [Route("/bm2s/unitconversions/{Ids}", Verbs = "GET")]
-  public class UnitConversions : IReturn<UnitConversionsResponse>
+  public class UnitConversions : Request, IReturn<UnitConversionsResponse>
   {
     public UnitConversions()
     {
@@ -13,8 +13,6 @@ namespace Bm2s.Response.Common.Parameter.UnitConversion
     }
 
     public int ChildId { get; set; }
-
-    public List<int> Ids { get; set; }
 
     public int ParentId { get; set; }
 

@@ -25,7 +25,7 @@ namespace Bm2s.Services.Common.Article.Brand
         items.AddRange(Datas.Instance.DataStorage.Brands.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.Brands.AddRange(from item in items
+      response.Brands.AddRange((from item in items
                                select new Bm2s.Poco.Common.Article.Brand()
                                {
                                  Code = item.Code,
@@ -33,7 +33,7 @@ namespace Bm2s.Services.Common.Article.Brand
                                  Id = item.Id,
                                  Name = item.Name,
                                  StartingDate = item.StartingDate
-                               });
+                               }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
 
       return response;
     }

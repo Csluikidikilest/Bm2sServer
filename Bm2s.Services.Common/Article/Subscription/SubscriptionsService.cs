@@ -30,7 +30,7 @@ namespace Bm2s.Services.Common.Article.Subscription
         items.AddRange(Datas.Instance.DataStorage.Subscriptions.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.Subscriptions.AddRange(from item in items
+      response.Subscriptions.AddRange((from item in items
                                       select new Bm2s.Poco.Common.Article.Subscription()
                                       {
                                         Article = new ArticlesService().Get(new Articles() { Ids = new List<int>() { item.ArticleId } }).Articles.FirstOrDefault(),
@@ -40,7 +40,7 @@ namespace Bm2s.Services.Common.Article.Subscription
                                         Id = item.Id,
                                         Period = new PeriodsService().Get(new Periods() { Ids = new List<int>() { item.PeriodId } }).Periods.FirstOrDefault(),
                                         StartingDate = item.StartingDate
-                                      });
+                                      }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
 
       return response;
     }

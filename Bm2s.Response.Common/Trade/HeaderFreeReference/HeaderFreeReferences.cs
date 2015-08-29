@@ -5,7 +5,7 @@ namespace Bm2s.Response.Common.Trade.HeaderFreeReference
 {
   [Route("/bm2s/headerfreereferences", Verbs = "GET, POST")]
   [Route("/bm2s/headerfreereferences/{Ids}", Verbs = "GET")]
-  public class HeaderFreeReferences : IReturn<HeaderFreeReferencesResponse>
+  public class HeaderFreeReferences : Request, IReturn<HeaderFreeReferencesResponse>
   {
     public HeaderFreeReferences()
     {
@@ -13,8 +13,6 @@ namespace Bm2s.Response.Common.Trade.HeaderFreeReference
     }
 
     public int HeaderStatusId { get; set; }
-
-    public List<int> Ids { get; set; }
 
     public Bm2s.Poco.Common.Trade.HeaderFreeReference HeaderFreeReference { get; set; }
   }

@@ -5,14 +5,12 @@ namespace Bm2s.Response.Common.Partner.PartnerPartnerFamily
 {
   [Route("/bm2s/partnerpartnerfamilies", Verbs = "GET, POST")]
   [Route("/bm2s/partnerpartnerfamilies/{Ids}", Verbs = "GET")]
-  public class PartnerPartnerFamilies : IReturn<PartnerPartnerFamiliesResponse>
+  public class PartnerPartnerFamilies : Request, IReturn<PartnerPartnerFamiliesResponse>
   {
     public PartnerPartnerFamilies()
     {
       this.Ids = new List<int>();
     }
-
-    public List<int> Ids { get; set; }
 
     public int PartnerFamilyId { get; set; }
 

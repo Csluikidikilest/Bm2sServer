@@ -208,6 +208,10 @@
       <Project>{ddf41cb4-61b7-453d-8170-722962846e1b}</Project>
       <Name>Bm2s.Poco.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Bm2s.Response\Bm2s.Response.csproj">
+      <Project>{d37a62cc-e7f4-4399-9c60-e327c6936bc9}</Project>
+      <Name>Bm2s.Response</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

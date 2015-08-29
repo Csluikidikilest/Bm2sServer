@@ -6,7 +6,7 @@ namespace Bm2s.Response.Common.Partner.Partner
 {
   [Route("/bm2s/partners", Verbs = "GET, POST")]
   [Route("/bm2s/partners/{Ids}", Verbs = "GET")]
-  public class Partners : IReturn<PartnersResponse>
+  public class Partners : Request, IReturn<PartnersResponse>
   {
     public Partners()
     {
@@ -18,8 +18,6 @@ namespace Bm2s.Response.Common.Partner.Partner
     public string CompanyName { get; set; }
 
     public DateTime? Date { get; set; }
-
-    public List<int> Ids { get; set; }
 
     public bool IsCustomer { get; set; }
 

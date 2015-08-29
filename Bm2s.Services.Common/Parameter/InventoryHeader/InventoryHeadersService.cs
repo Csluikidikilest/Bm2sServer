@@ -24,13 +24,13 @@ namespace Bm2s.Services.Common.Parameter.InventoryHeader
         items.AddRange(Datas.Instance.DataStorage.InventoryHeaders.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.InventoryHeaders.AddRange(from item in items
+      response.InventoryHeaders.AddRange((from item in items
                                          select new Bm2s.Poco.Common.Parameter.InventoryHeader()
                                          {
                                            Date = item.Date,
                                            Id = item.Id,
                                            Type = item.Type
-                                         });
+                                         }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
 
       return response;
     }

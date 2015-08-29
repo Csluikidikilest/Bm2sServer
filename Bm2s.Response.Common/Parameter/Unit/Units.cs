@@ -6,7 +6,7 @@ namespace Bm2s.Response.Common.Parameter.Unit
 {
   [Route("/bm2s/units", Verbs = "GET, POST")]
   [Route("/bm2s/units/{Ids}", Verbs = "GET")]
-  public class Units : IReturn<UnitsResponse>
+  public class Units : Request, IReturn<UnitsResponse>
   {
     public Units()
     {
@@ -15,8 +15,6 @@ namespace Bm2s.Response.Common.Parameter.Unit
     public string Code { get; set; }
 
     public DateTime? Date { get; set; }
-
-    public List<int> Ids { get; set; }
 
     public bool IsCurrency { get; set; }
 

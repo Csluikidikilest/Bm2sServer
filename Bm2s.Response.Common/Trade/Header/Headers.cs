@@ -6,7 +6,7 @@ namespace Bm2s.Response.Common.Trade.Header
 {
   [Route("/bm2s/headers", Verbs = "GET, POST")]
   [Route("/bm2s/headers/{Ids}", Verbs = "GET")]
-  public class Headers : IReturn<HeadersResponse>
+  public class Headers : Request, IReturn<HeadersResponse>
   {
     public Headers()
     {
@@ -20,8 +20,6 @@ namespace Bm2s.Response.Common.Trade.Header
     public string Description { get; set; }
 
     public int HeaderStatusId { get; set; }
-
-    public List<int> Ids { get; set; }
 
     public bool IsSell { get; set; }
 

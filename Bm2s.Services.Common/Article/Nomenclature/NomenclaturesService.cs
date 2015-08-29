@@ -25,7 +25,7 @@ namespace Bm2s.Services.Common.Article.Nomenclature
         items.AddRange(Datas.Instance.DataStorage.Nomenclatures.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.Nomenclatures.AddRange(from item in items
+      response.Nomenclatures.AddRange((from item in items
                                       select new Bm2s.Poco.Common.Article.Nomenclature()
                                       {
                                         ArticleChild = new ArticlesService().Get(new Articles() { Ids = new List<int>() { item.ArticleChildId } }).Articles.FirstOrDefault(),
@@ -34,7 +34,7 @@ namespace Bm2s.Services.Common.Article.Nomenclature
                                         Id = item.Id,
                                         Multiplier = item.Multiplier,
                                         Quantity = item.Quantity
-                                      });
+                                      }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
 
       return response;
     }

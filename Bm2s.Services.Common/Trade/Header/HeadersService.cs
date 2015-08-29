@@ -35,7 +35,7 @@ namespace Bm2s.Services.Common.Trade.Header
         items.AddRange(Datas.Instance.DataStorage.Headers.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.Headers.AddRange(from item in items
+      response.Headers.AddRange((from item in items
                                 select new Bm2s.Poco.Common.Trade.Header()
                                 {
                                   Activity = new ActivitiesService().Get(new Activities() { Ids = new List<int>() { item.ActivityId} }).Activities.FirstOrDefault(),
@@ -49,7 +49,7 @@ namespace Bm2s.Services.Common.Trade.Header
                                   IsSell = item.IsSell,
                                   Reference = item.Reference,
                                   User = new UsersService().Get(new Users() { Ids = new List<int>() { item.UserId} }).Users.FirstOrDefault()
-                                });
+                                }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
 
       return response;
     }

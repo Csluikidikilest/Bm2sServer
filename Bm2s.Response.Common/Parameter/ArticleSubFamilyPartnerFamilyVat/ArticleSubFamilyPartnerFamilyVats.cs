@@ -5,7 +5,7 @@ namespace Bm2s.Response.Common.Parameter.ArticleSubFamilyPartnerFamilyVat
 {
   [Route("/bm2s/articlesubfamilypartnerfamilyvats", Verbs = "GET, POST")]
   [Route("/bm2s/articlesubfamilypartnerfamilyvats/{Ids}", Verbs = "GET")]
-  public class ArticleSubFamilyPartnerFamilyVats : IReturn<ArticleSubFamilyPartnerFamilyVatsResponse>
+  public class ArticleSubFamilyPartnerFamilyVats : Request, IReturn<ArticleSubFamilyPartnerFamilyVatsResponse>
   {
     public ArticleSubFamilyPartnerFamilyVats()
     {
@@ -13,8 +13,6 @@ namespace Bm2s.Response.Common.Parameter.ArticleSubFamilyPartnerFamilyVat
     }
 
     public int ArticleSubFamilyId { get; set; }
-
-    public List<int> Ids { get; set; }
 
     public int PartnerFamilyId { get; set; }
 

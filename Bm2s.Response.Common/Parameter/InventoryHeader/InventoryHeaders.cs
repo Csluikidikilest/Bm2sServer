@@ -6,7 +6,7 @@ namespace Bm2s.Response.Common.Parameter.InventoryHeader
 {
   [Route("/bm2s/inventoryheaders", Verbs = "GET, POST")]
   [Route("/bm2s/inventoryheaders/{Ids}", Verbs = "GET")]
-  public class InventoryHeaders : IReturn<InventoryHeadersResponse>
+  public class InventoryHeaders : Request, IReturn<InventoryHeadersResponse>
   {
     public InventoryHeaders()
     {
@@ -14,8 +14,6 @@ namespace Bm2s.Response.Common.Parameter.InventoryHeader
     }
 
     public DateTime? Date { get; set; }
-
-    public List<int> Ids { get; set; }
 
     public int Type { get; set; }
 

@@ -46,7 +46,7 @@ namespace Bm2s.Services.Common.Trade.HeaderLine
         items.AddRange(Datas.Instance.DataStorage.HeaderLines.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.HeaderLines.AddRange(from item in items
+      response.HeaderLines.AddRange((from item in items
                                     select new Bm2s.Poco.Common.Trade.HeaderLine()
                                     {
                                       Article = new ArticlesService().Get(new Articles() { Ids = new List<int>() { item.ArticleId } }).Articles.FirstOrDefault(),
@@ -69,7 +69,7 @@ namespace Bm2s.Services.Common.Trade.HeaderLine
                                       SupplierCompanyName = item.SupplierCompanyName,
                                       Unit = new UnitsService().Get(new Units() { Ids = new List<int>() { item.UnitId } }).Units.FirstOrDefault(),
                                       VatRate = item.VatRate
-                                    });
+                                    }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
 
       return response;
     }

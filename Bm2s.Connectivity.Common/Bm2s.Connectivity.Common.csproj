@@ -156,6 +156,10 @@
       <Project>{dca56c1d-b180-49ed-935f-0d129c128cd3}</Project>
       <Name>Bm2s.Response.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Bm2s.Response\Bm2s.Response.csproj">
+      <Project>{d37a62cc-e7f4-4399-9c60-e327c6936bc9}</Project>
+      <Name>Bm2s.Response</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

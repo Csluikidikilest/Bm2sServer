@@ -28,13 +28,13 @@ namespace Bm2s.Services.Common.User.UserGroup
         items.AddRange(Datas.Instance.DataStorage.UserGroups.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.UserGroups.AddRange(from item in items
+      response.UserGroups.AddRange((from item in items
                                    select new Bm2s.Poco.Common.User.UserGroup()
                                    {
                                      Group = new GroupsService().Get(new Groups() { Ids = new List<int>() { item.GroupId } }).Groups.FirstOrDefault(),
                                      Id = item.Id,
                                      User = new UsersService().Get(new Users() { Ids = new List<int>() { item.UserId } }).Users.FirstOrDefault()
-                                   });
+                                   }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
 
       return response;
     }
