@@ -3,7 +3,7 @@ using System;
 
 namespace Bm2s.Response.Common.Article.PriceDetermination
 {
-  [Route("/bm2s/prices/{ArticleId}/{PartnerId}/{Date}", Verbs = "GET")]
+  [Route("/bm2s/pricedetermination/{ArticleId}/{PartnerId}/{Date}", Verbs = "GET")]
   public class PriceDetermination : IReturn<PriceDeterminationResponse>
   {
     public PriceDetermination()

@@ -41,7 +41,7 @@ namespace Bm2s.Connectivity.Utils
       this.LoadFromNameValueCollection(HttpContext.Current.Request.QueryString);
     }
 
-    protected virtual void LoadFromNameValueCollection(NameValueCollection param)
+    protected virtual void LoadFromNameValueCollection(NameValueCollection parameters)
     {
     }
   }

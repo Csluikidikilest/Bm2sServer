@@ -13,6 +13,11 @@ namespace Bm2s.Services
     {
       var type = typeof(T);
       var property = type.GetProperty(ordering);
+      if (property == null)
+      {
+        property = type.GetProperty("Id");
+      }
+
       var parameter = Expression.Parameter(type, "p");
       var propertyAccess = Expression.MakeMemberAccess(parameter, property);
       var orderByExp = Expression.Lambda(propertyAccess, parameter);
