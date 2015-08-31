@@ -120,53 +120,13 @@ namespace Bm2s.Data.Common.Utils
         this.DbConnection.CreateTableIfNotExists<UserActivity>();
         this.DbConnection.CreateTableIfNotExists<UserGroup>();
         this.DbConnection.CreateTableIfNotExists<UserModule>();
+        this.DbConnection.CreateTableIfNotExists<Language>();
+        this.DbConnection.CreateTableIfNotExists<Translation>();
       }
       catch (Exception)
       {
         throw;
       }
-    }
-
-    /// <summary>
-    /// Create some datas for some tests
-    /// </summary>
-    public override void CreateDatasForTest()
-    {
-      ArticleFamily arfa1 = new ArticleFamily() { Code = "ARFA1", Description = "Family 1", Designation = "Family 1", StartingDate = DateTime.Now };
-      this.DataStorage.ArticleFamilies.Add(arfa1);
-
-      ArticleFamily arfa2 = new ArticleFamily() { Code = "ARFA2", Description = "Family 2", Designation = "Family 2", StartingDate = DateTime.Now };
-      this.DataStorage.ArticleFamilies.Add(arfa2);
-
-      ArticleSubFamily arsf11 = new ArticleSubFamily() { ArticleFamilyId = arfa1.Id, Code = "ARSF11", Description = "Subfamily 11", Designation = "Subfamily 11", StartingDate = DateTime.Now };
-      this.DataStorage.ArticleSubFamilies.Add(arsf11);
-
-      ArticleSubFamily arsf12 = new ArticleSubFamily() { ArticleFamilyId = arfa1.Id, Code = "ARSF12", Description = "Subfamily 12", Designation = "Subfamily 12", StartingDate = DateTime.Now };
-      this.DataStorage.ArticleSubFamilies.Add(arsf12);
-
-      ArticleSubFamily arsf21 = new ArticleSubFamily() { ArticleFamilyId = arfa2.Id, Code = "ARSF21", Description = "Subfamily 21", Designation = "Subfamily 21", StartingDate = DateTime.Now };
-      this.DataStorage.ArticleSubFamilies.Add(arsf21);
-
-      ArticleSubFamily arsf22 = new ArticleSubFamily() { ArticleFamilyId = arfa2.Id, Code = "ARSF22", Description = "Subfamily 22", Designation = "Subfamily 22", StartingDate = DateTime.Now };
-      this.DataStorage.ArticleSubFamilies.Add(arsf22);
-
-      ArticleSubFamily arsf23 = new ArticleSubFamily() { ArticleFamilyId = arfa2.Id, Code = "ARSF23", Description = "Subfamily 23", Designation = "Subfamily 23", StartingDate = DateTime.Now };
-      this.DataStorage.ArticleSubFamilies.Add(arsf23);
-
-      Brand bran1 = new Brand() { Code = "BRAND 1", Name = "Brand 1", StartingDate = DateTime.Now };
-      this.DataStorage.Brands.Add(bran1);
-
-      Brand bran2 = new Brand() { Code = "BRAND 2", Name = "Brand 2", StartingDate = DateTime.Now };
-      this.DataStorage.Brands.Add(bran2);
-
-      Unit unit1 = new Unit() { Code = "UNIT 1", Name = "Unit 1", Description = "Unit 1", IsCurrency = false, IsPeriod = false, StartingDate = DateTime.Now };
-      this.DataStorage.Units.Add(unit1);
-
-      Article arti11 = new Article() { ArticleFamilyId = arfa1.Id, ArticleSubFamilyId = arsf11.Id, BrandId = bran1.Id, Code = "ARTI11", Description = "Article 1", Designation = "Article 1", StartingDate = DateTime.Now, UnitId = unit1.Id };
-      this.DataStorage.Articles.Add(arti11);
-
-      Price pric1 = new Price() { ArticleId = arti11.Id, BasePrice = 13.0, StartingDate = DateTime.Now };
-      this.DataStorage.Prices.Add(pric1);
     }
   }
 }

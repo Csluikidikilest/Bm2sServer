@@ -133,12 +133,16 @@
     <Compile Include="Parameter\InventoryHeader\InventoryHeadersResponse.cs" />
     <Compile Include="Parameter\InventoryLine\InventoryLines.cs" />
     <Compile Include="Parameter\InventoryLine\InventoryLinesResponse.cs" />
+    <Compile Include="Parameter\Language\Languages.cs" />
+    <Compile Include="Parameter\Language\LanguagesResponse.cs" />
     <Compile Include="Parameter\Parameter\Parameters.cs" />
     <Compile Include="Parameter\Parameter\ParametersResponse.cs" />
     <Compile Include="Parameter\Period\Periods.cs" />
     <Compile Include="Parameter\Period\PeriodsResponse.cs" />
     <Compile Include="Parameter\Town\Towns.cs" />
     <Compile Include="Parameter\Town\TownsResponse.cs" />
+    <Compile Include="Parameter\Translation\Translations.cs" />
+    <Compile Include="Parameter\Translation\TranslationsResponse.cs" />
     <Compile Include="Parameter\UnitConversion\UnitConversions.cs" />
     <Compile Include="Parameter\UnitConversion\UnitConversionsResponse.cs" />
     <Compile Include="Parameter\Unit\Units.cs" />

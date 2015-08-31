@@ -107,9 +107,11 @@
     <Compile Include="Parameter\CountryCurrency.cs" />
     <Compile Include="Parameter\InventoryHeader.cs" />
     <Compile Include="Parameter\InventoryLine.cs" />
+    <Compile Include="Parameter\Language.cs" />
     <Compile Include="Parameter\Parameter.cs" />
     <Compile Include="Parameter\Period.cs" />
     <Compile Include="Parameter\Town.cs" />
+    <Compile Include="Parameter\Translation.cs" />
     <Compile Include="Parameter\Unit.cs" />
     <Compile Include="Parameter\UnitConversion.cs" />
     <Compile Include="Parameter\Vat.cs" />

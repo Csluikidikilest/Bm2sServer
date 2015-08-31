@@ -4,7 +4,7 @@ using ServiceStack.DataAnnotations;
 
 namespace Bm2s.Data.Common.BLL.Parameter
 {
-  public class Affair : Table
+  public class Translation : Table
   {
     [AutoIncrement]
     [PrimaryKey]
@@ -12,18 +12,20 @@ namespace Bm2s.Data.Common.BLL.Parameter
 
     [Required]
     [StringLength(250)]
-    public string Code { get; set; }
+    public string Application { get; set; }
 
     [Required]
     [StringLength(250)]
-    public string Name { get; set; }
+    public string Screen{ get; set; }
 
-    public string Description { get; set; }
+    [Required]
+    [StringLength(250)]
+    public string Key { get; set; }
 
-    [References(typeof(Activity))]
-    public int ActivityId { get; set; }
+    [Required]
+    public string Value { get; set; }
 
-    [References(typeof(User.User))]
-    public int UserId { get; set; }
+    [References(typeof(Language))]
+    public int LanguageId { get; set; }
   }
 }

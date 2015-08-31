@@ -104,9 +104,11 @@
     <Compile Include="Parameter\Country\CountriesService.cs" />
     <Compile Include="Parameter\InventoryHeader\InventoryHeadersService.cs" />
     <Compile Include="Parameter\InventoryLine\InventoryLinesService.cs" />
+    <Compile Include="Parameter\Language\LanguagesService.cs" />
     <Compile Include="Parameter\Parameter\ParametersService.cs" />
     <Compile Include="Parameter\Period\PeriodsService.cs" />
     <Compile Include="Parameter\Town\TownsService.cs" />
+    <Compile Include="Parameter\Translation\TranslationsService.cs" />
     <Compile Include="Parameter\UnitConversion\UnitConversionsService.cs" />
     <Compile Include="Parameter\Unit\UnitsService.cs" />
     <Compile Include="Parameter\Vat\VatsService.cs" />

@@ -39,9 +39,11 @@ namespace Bm2s.Data.Common.Utils
     public Tables<CountryCurrency> CountryCurrencies { get; set; }
     public Tables<InventoryHeader> InventoryHeaders { get; set; }
     public Tables<InventoryLine> InventoryLines { get; set; }
+    public Tables<Language> Languages { get; set; }
     public Tables<Parameter> Parameters { get; set; }
     public Tables<Period> Periods { get; set; }
     public Tables<Town> Towns { get; set; }
+    public Tables<Translation> Translations { get; set; }
     public Tables<Unit> Units { get; set; }
     public Tables<UnitConversion> UnitConversions { get; set; }
     public Tables<Vat> Vats { get; set; }
@@ -109,9 +111,11 @@ namespace Bm2s.Data.Common.Utils
       this.CountryCurrencies = new Tables<CountryCurrency>(this._ramStorage, this._dbConnection);
       this.InventoryHeaders = new Tables<InventoryHeader>(this._ramStorage, this._dbConnection);
       this.InventoryLines = new Tables<InventoryLine>(this._ramStorage, this._dbConnection);
+      this.Languages = new Tables<Language>(this._ramStorage, this._dbConnection);
       this.Parameters = new Tables<Parameter>(this._ramStorage, this._dbConnection);
       this.Periods = new Tables<Period>(this._ramStorage, this._dbConnection);
       this.Towns = new Tables<Town>(this._ramStorage, this._dbConnection);
+      this.Translations = new Tables<Translation>(this._ramStorage, this._dbConnection);
       this.Units = new Tables<Unit>(this._ramStorage, this._dbConnection);
       this.UnitConversions = new Tables<UnitConversion>(this._ramStorage, this._dbConnection);
       this.Vats = new Tables<Vat>(this._ramStorage, this._dbConnection);
@@ -162,10 +166,10 @@ namespace Bm2s.Data.Common.Utils
       ArticleSubFamily subFamily3 = new ArticleSubFamily() { AccountingEntry = "SUBFAMILY3", ArticleFamilyId = family2.Id, Code = "SUBFAMILY3", Description = "Sub family 3", Designation = "Sub family 3", EndingDate = null, StartingDate = new System.DateTime(2015, 1, 1) };
       this.ArticleSubFamilies.Add(subFamily3);
 
-      Brand brand = new Brand() { Code = "BRAND", EndingDate = null, Name = "Brand", StartingDate = new System.DateTime(2015, 1,1)};
+      Brand brand = new Brand() { Code = "BRAND", EndingDate = null, Name = "Brand", StartingDate = new System.DateTime(2015, 1, 1) };
       this.Brands.Add(brand);
 
-      Unit unit = new Unit(){ Code = "UNITY", Description = "Unity", EndingDate = null, IsCurrency = false, IsPeriod = false, Name = "Unity", StartingDate = new System.DateTime(2015,1,1)};
+      Unit unit = new Unit() { Code = "UNITY", Description = "Unity", EndingDate = null, IsCurrency = false, IsPeriod = false, Name = "Unity", StartingDate = new System.DateTime(2015, 1, 1) };
       this.Units.Add(unit);
 
       Article article1 = new Article() { ArticleFamilyId = subFamily1.ArticleFamilyId, ArticleSubFamilyId = subFamily1.Id, BrandId = brand.Id, Code = "ARTICLE1", Description = "Article 1", Designation = "Article 1", EndingDate = null, Observation = string.Empty, StartingDate = new System.DateTime(2015, 1, 1), UnitId = unit.Id };
@@ -175,13 +179,13 @@ namespace Bm2s.Data.Common.Utils
       Article article3 = new Article() { ArticleFamilyId = subFamily3.ArticleFamilyId, ArticleSubFamilyId = subFamily3.Id, BrandId = brand.Id, Code = "ARTICLE3", Description = "Article 3", Designation = "Article 3", EndingDate = null, Observation = string.Empty, StartingDate = new System.DateTime(2015, 1, 1), UnitId = unit.Id };
       this.Articles.Add(article3);
 
-      User user = new User(){ EndingDate = null, FirstName = "ADMINISTRATOR", IsAdministrator = true, IsAnonymous = false, LastName = string.Empty, Login = "Admin", Password = "Admin", StartingDate= new System.DateTime(2015,1,1)};
+      User user = new User() { EndingDate = null, FirstName = "ADMINISTRATOR", IsAdministrator = true, IsAnonymous = false, LastName = string.Empty, Login = "Admin", Password = "Admin", StartingDate = new System.DateTime(2015, 1, 1) };
       this.Users.Add(user);
 
       Partner partner = new Partner() { Code = "UNKOWN PARTNER", CompanyIdentifier = string.Empty, CompanyName = string.Empty, Email = string.Empty, EndingDate = null, FaxNumber = string.Empty, IsCustomer = true, IsSupplier = true, Observation = string.Empty, PhoneNumber = string.Empty, PriceMultiplier = 1, StartingDate = new System.DateTime(2015, 1, 1), UserId = user.Id };
       this.Partners.Add(partner);
 
-      Activity activity = new Activity(){ CompanyName = "Bm2s", CountryName = "FRANCE", TownName="Toulon", TownZipCode = "83000", Address1 = "301 Litorral F MISTRAL", Address2 = string.Empty, Address3 = string.Empty};
+      Activity activity = new Activity() { CompanyName = "Bm2s", CountryName = "FRANCE", TownName = "Toulon", TownZipCode = "83000", Address1 = "301 Litorral F MISTRAL", Address2 = string.Empty, Address3 = string.Empty };
       this.Activities.Add(activity);
 
       HeaderStatus headerStatus = new HeaderStatus() { EndingDate = null, InterveneOnStock = true, Name = "HEADERSTATUS", StartingDate = new System.DateTime(2015, 1, 1) };
@@ -190,7 +194,7 @@ namespace Bm2s.Data.Common.Utils
       Header header = new Header() { ActivityId = activity.Id, Date = System.DateTime.Now, DeliveryObservation = string.Empty, Description = string.Empty, FooterDiscount = 0, HeaderStatusId = headerStatus.Id, IsSell = true, Reference = "HEADER1", UserId = user.Id };
       this.Headers.Add(header);
 
-      HeaderLineType headerLineType = new HeaderLineType(){ EndingDate = null, Name= "HEADERLINETYPE1", StartingDate = new System.DateTime(2015,1,1)};
+      HeaderLineType headerLineType = new HeaderLineType() { EndingDate = null, Name = "HEADERLINETYPE1", StartingDate = new System.DateTime(2015, 1, 1) };
       this.HeaderLineTypes.Add(headerLineType);
 
       HeaderLine headerLine1 = new HeaderLine() { ArticleId = article1.Id, ArticleFamilyId = article1.ArticleFamilyId, ArticleSubFamilyId = article1.ArticleSubFamilyId, BrandId = article1.BrandId, Code = article1.Code, Description = string.Empty, Designation = string.Empty, HeaderId = header.Id, BuyPrice = 0, HeaderLineTypeId = headerLineType.Id, IsPrintable = true, LineNumber = 1, Quantity = 2, SellPrice = 20.10, UnitId = article1.UnitId, VatRate = 19.6 };
@@ -199,6 +203,12 @@ namespace Bm2s.Data.Common.Utils
       this.HeaderLines.Add(headerLine2);
       HeaderLine headerLine3 = new HeaderLine() { ArticleId = article3.Id, ArticleFamilyId = article3.ArticleFamilyId, ArticleSubFamilyId = article3.ArticleSubFamilyId, BrandId = article3.BrandId, Code = article3.Code, Description = string.Empty, Designation = string.Empty, HeaderId = header.Id, BuyPrice = 0, HeaderLineTypeId = headerLineType.Id, IsPrintable = true, LineNumber = 1, Quantity = 4, SellPrice = 20.30, UnitId = article3.UnitId, VatRate = 19.6 };
       this.HeaderLines.Add(headerLine3);
+
+      Language lang1 = new Language() { Code = "FR", Name = "Français" };
+      this.Languages.Add(lang1);
+
+      Language lang2 = new Language() { Code = "EN", Name = "English" };
+      this.Languages.Add(lang2);
     }
   }
 }

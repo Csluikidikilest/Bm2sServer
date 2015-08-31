@@ -105,9 +105,11 @@
     <Compile Include="BLL\Parameter\CountryCurrency.cs" />
     <Compile Include="BLL\Parameter\InventoryHeader.cs" />
     <Compile Include="BLL\Parameter\InventoryLine.cs" />
+    <Compile Include="BLL\Parameter\Language.cs" />
     <Compile Include="BLL\Parameter\Parameter.cs" />
     <Compile Include="BLL\Parameter\Period.cs" />
     <Compile Include="BLL\Parameter\Town.cs" />
+    <Compile Include="BLL\Parameter\Translation.cs" />
     <Compile Include="BLL\Parameter\Unit.cs" />
     <Compile Include="BLL\Parameter\UnitConversion.cs" />
     <Compile Include="BLL\Parameter\Vat.cs" />
