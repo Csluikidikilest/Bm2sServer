@@ -22,6 +22,12 @@ namespace Bm2s.Connectivity.Common.Parameter
       this.IsFilled = true;
     }
 
+    public void Post()
+    {
+      this.Response = this.ConnectorHelper.Post(this.Request);
+      this.IsFilled = true;
+    }
+
     protected override void LoadFromNameValueCollection(System.Collections.Specialized.NameValueCollection parameters)
     {
       this.Request.LoadFromNameValueCollection(parameters);

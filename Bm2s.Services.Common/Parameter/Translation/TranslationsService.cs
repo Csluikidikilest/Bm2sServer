@@ -22,7 +22,8 @@ namespace Bm2s.Services.Common.Parameter.Translation
         items.AddRange(Datas.Instance.DataStorage.Translations.Where(item =>
           (string.IsNullOrWhiteSpace(request.Application) || item.Application.ToLower().Contains(request.Application.ToLower())) &&
           (string.IsNullOrWhiteSpace(request.Key) || item.Key.ToLower().Contains(request.Key.ToLower())) &&
-          (string.IsNullOrWhiteSpace(request.Screen) || item.Screen.ToLower().Contains(request.Screen.ToLower()))
+          (string.IsNullOrWhiteSpace(request.Screen) || item.Screen.ToLower().Contains(request.Screen.ToLower())) &&
+          (request.LanguageId == 0 || item.LanguageId == request.LanguageId)
           ));
       }
       else

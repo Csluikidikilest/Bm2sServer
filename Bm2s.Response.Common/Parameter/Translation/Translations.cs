@@ -14,6 +14,8 @@ namespace Bm2s.Response.Common.Parameter.Translation
 
     public string Application { get; set; }
 
+    public int LanguageId { get; set; }
+
     public string Screen { get; set; }
 
     public string Key { get; set; }
