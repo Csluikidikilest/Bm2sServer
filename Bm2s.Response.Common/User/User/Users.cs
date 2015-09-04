@@ -15,6 +15,8 @@ namespace Bm2s.Response.Common.User.User
 
     public DateTime? Date { get; set; }
 
+    public int DefaultLanguageId { get; set; }
+
     public string FirstName { get; set; }
 
     public string LastName { get; set; }

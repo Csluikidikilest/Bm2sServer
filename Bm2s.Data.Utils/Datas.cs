@@ -106,9 +106,9 @@ namespace Bm2s.Data.Utils
     }
 
     /// <summary>
-    /// Create some datas for some tests
+    /// Create datas for the first use
     /// </summary>
-    public virtual void CreateDatasForTest()
+    public virtual void CheckFirstUseDatas()
     {
     }
   }

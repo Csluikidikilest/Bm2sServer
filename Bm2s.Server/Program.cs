@@ -84,6 +84,7 @@ namespace Bm2s.Server
     {
       Assemblies = new List<Assembly>();
       Bm2s.Data.Common.Utils.Datas.Instance.CheckDatabaseSchema();
+      Bm2s.Data.Common.Utils.Datas.Instance.CheckFirstUseDatas();
       Assemblies.Add(typeof(Bm2s.Services.Common.Article.Article.ArticlesService).Assembly);
       Host = new AppHost(Assemblies.ToArray());
       Host.Init();

@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Configuration;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using Bm2s.Data.Common.BLL.Article;
 using Bm2s.Data.Common.BLL.Parameter;
 using Bm2s.Data.Common.BLL.Partner;
@@ -63,6 +66,7 @@ namespace Bm2s.Data.Common.Utils
         this.DbConnection.CreateTableIfNotExists<Brand>();
         this.DbConnection.CreateTableIfNotExists<Unit>();
         this.DbConnection.CreateTableIfNotExists<Article>();
+        this.DbConnection.CreateTableIfNotExists<Language>();
         this.DbConnection.CreateTableIfNotExists<User>();
         this.DbConnection.CreateTableIfNotExists<Partner>();
         this.DbConnection.CreateTableIfNotExists<ArticleFamilyPricePartner>();
@@ -120,12 +124,73 @@ namespace Bm2s.Data.Common.Utils
         this.DbConnection.CreateTableIfNotExists<UserActivity>();
         this.DbConnection.CreateTableIfNotExists<UserGroup>();
         this.DbConnection.CreateTableIfNotExists<UserModule>();
-        this.DbConnection.CreateTableIfNotExists<Language>();
         this.DbConnection.CreateTableIfNotExists<Translation>();
       }
       catch (Exception)
       {
         throw;
+      }
+    }
+
+    /// <summary>
+    /// Create datas for the first use
+    /// </summary>
+    public override void CheckFirstUseDatas()
+    {
+      base.CheckFirstUseDatas();
+
+      // Languages : ISO CODE 639-3 : https://en.wikipedia.org/wiki/ISO_639
+      BLL.Parameter.Language english = this.DataStorage.Languages.FirstOrDefault(item => item.Code.ToLower() == "eng");
+      if (english == null)
+      {
+        english = new Language() { Code = "eng", Name = "English" };
+        this.DataStorage.Languages.Add(english);
+      }
+
+      // Group : administrators
+      BLL.User.Group administrators = this.DataStorage.Groups.FirstOrDefault(item => item.Code == "Administrators");
+      if (administrators == null)
+      {
+        administrators = new Group() { Code = "Administrators", Name = "System Administrator" };
+        this.DataStorage.Groups.Add(administrators);
+      }
+
+      // User : administrator
+      BLL.User.User administrator = this.DataStorage.Users.FirstOrDefault(item => item.Login == "Administrator");
+      if (administrator == null)
+      {
+        SHA512 hash = SHA512.Create();
+        byte[] passwordBytes = hash.ComputeHash(Encoding.UTF8.GetBytes("Administrator"));
+
+        StringBuilder password = new StringBuilder();
+        foreach (byte passwordByte in passwordBytes)
+        {
+          password.Append(passwordByte.ToString("X2"));
+        }
+
+        administrator = new User() { DefaultLanguageId = english.Id, FirstName = "Administrator", IsAdministrator = true, IsAnonymous = false, LastName = string.Empty, Login = "Administrator", Password = password.ToString(), StartingDate = new DateTime(2015, 11, 2) };
+        this.DataStorage.Users.Add(administrator);
+        BLL.User.UserGroup administratorGroups = new UserGroup() { GroupId = administrators.Id, UserId = administrator.Id };
+        this.DataStorage.UserGroups.Add(administratorGroups);
+      }
+
+      // Group : visitors
+      BLL.User.Group visitors = this.DataStorage.Groups.FirstOrDefault(item => item.Code == "Visitors");
+      if (visitors == null)
+      {
+        visitors = new Group() { Code = "Visitors", Name = "Visitors" };
+        this.DataStorage.Groups.Add(visitors);
+      }
+
+      // User : administrator
+      BLL.User.User visitor = this.DataStorage.Users.FirstOrDefault(item => item.Login == "Visitor");
+      if (visitor == null)
+      {
+        visitor = new User() { DefaultLanguageId = english.Id, FirstName = "Visitor", IsAdministrator = false, IsAnonymous = true, LastName = string.Empty, Login = string.Empty, Password = string.Empty, StartingDate = new DateTime(2015, 11, 2) };
+        this.DataStorage.Users.Add(visitor);
+
+        BLL.User.UserGroup visitorGroups = new UserGroup() { GroupId = visitors.Id, UserId = visitor.Id };
+        this.DataStorage.UserGroups.Add(visitorGroups);
       }
     }
   }

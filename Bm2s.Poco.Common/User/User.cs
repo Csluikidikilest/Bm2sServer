@@ -21,5 +21,7 @@ namespace Bm2s.Poco.Common.User
     public DateTime StartingDate { get; set; }
 
     public DateTime? EndingDate { get; set; }
+
+    public Parameter.Language DefaultLanguage { get; set; }
   }
 }
