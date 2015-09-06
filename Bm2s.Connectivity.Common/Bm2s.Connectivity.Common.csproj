@@ -139,6 +139,7 @@
     <Compile Include="Trade\Reconciliation.cs" />
     <Compile Include="User\Group.cs" />
     <Compile Include="User\GroupModule.cs" />
+    <Compile Include="User\Login.cs" />
     <Compile Include="User\Module.cs" />
     <Compile Include="User\User.cs" />
     <Compile Include="User\UserActivity.cs" />

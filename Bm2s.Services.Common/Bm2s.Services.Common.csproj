@@ -136,6 +136,7 @@
     <Compile Include="Trade\Reconciliation\ReconciliationsService.cs" />
     <Compile Include="User\GroupModule\GroupModulesService.cs" />
     <Compile Include="User\Group\GroupsService.cs" />
+    <Compile Include="User\Login\LoginService.cs" />
     <Compile Include="User\Module\ModulesService.cs" />
     <Compile Include="User\UserActivity\UserActivitiesService.cs" />
     <Compile Include="User\UserGroup\UserGroupsService.cs" />

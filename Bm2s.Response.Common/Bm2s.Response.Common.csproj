@@ -196,6 +196,8 @@
     <Compile Include="User\GroupModule\GroupModulesResponse.cs" />
     <Compile Include="User\Group\Groups.cs" />
     <Compile Include="User\Group\GroupsResponse.cs" />
+    <Compile Include="User\Login\Login.cs" />
+    <Compile Include="User\Login\LoginResponse.cs" />
     <Compile Include="User\Module\Modules.cs" />
     <Compile Include="User\Module\ModulesResponse.cs" />
     <Compile Include="User\UserActivity\UserActivities.cs" />

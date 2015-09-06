@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using System.Linq;
 using Bm2s.Data.Common.BLL.Article;
 using Bm2s.Data.Common.BLL.Parameter;
 using Bm2s.Data.Common.BLL.Partner;
@@ -179,8 +180,7 @@ namespace Bm2s.Data.Common.Utils
       Article article3 = new Article() { ArticleFamilyId = subFamily3.ArticleFamilyId, ArticleSubFamilyId = subFamily3.Id, BrandId = brand.Id, Code = "ARTICLE3", Description = "Article 3", Designation = "Article 3", EndingDate = null, Observation = string.Empty, StartingDate = new System.DateTime(2015, 1, 1), UnitId = unit.Id };
       this.Articles.Add(article3);
 
-      User user = new User() { EndingDate = null, FirstName = "ADMINISTRATOR", IsAdministrator = true, IsAnonymous = false, LastName = string.Empty, Login = "Admin", Password = "Admin", StartingDate = new System.DateTime(2015, 1, 1) };
-      this.Users.Add(user);
+      User user = this.Users.FirstOrDefault(item => item.IsAdministrator);
 
       Partner partner = new Partner() { Code = "UNKOWN PARTNER", CompanyIdentifier = string.Empty, CompanyName = string.Empty, Email = string.Empty, EndingDate = null, FaxNumber = string.Empty, IsCustomer = true, IsSupplier = true, Observation = string.Empty, PhoneNumber = string.Empty, PriceMultiplier = 1, StartingDate = new System.DateTime(2015, 1, 1), UserId = user.Id };
       this.Partners.Add(partner);
@@ -203,12 +203,6 @@ namespace Bm2s.Data.Common.Utils
       this.HeaderLines.Add(headerLine2);
       HeaderLine headerLine3 = new HeaderLine() { ArticleId = article3.Id, ArticleFamilyId = article3.ArticleFamilyId, ArticleSubFamilyId = article3.ArticleSubFamilyId, BrandId = article3.BrandId, Code = article3.Code, Description = string.Empty, Designation = string.Empty, HeaderId = header.Id, BuyPrice = 0, HeaderLineTypeId = headerLineType.Id, IsPrintable = true, LineNumber = 1, Quantity = 4, SellPrice = 20.30, UnitId = article3.UnitId, VatRate = 19.6 };
       this.HeaderLines.Add(headerLine3);
-
-      Language lang1 = new Language() { Code = "FR", Name = "Français" };
-      this.Languages.Add(lang1);
-
-      Language lang2 = new Language() { Code = "EN", Name = "English" };
-      this.Languages.Add(lang2);
     }
   }
 }
