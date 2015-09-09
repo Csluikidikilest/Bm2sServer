@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Bm2s.Data.Common.Utils;
 using Bm2s.Response.Common.Parameter.Language;
@@ -13,21 +14,25 @@ namespace Bm2s.Services.Common.User.Login
     public LoginResponse Get(Bm2s.Response.Common.User.Login.Login request)
     {
       LoginResponse response = new LoginResponse();
-      Bm2s.Data.Common.BLL.User.User user = Datas.Instance.DataStorage.Users.FirstOrDefault(item => item.Login == request.UserLogin && item.Password == request.Password);
+      Bm2s.Data.Common.BLL.User.User user = Datas.Instance.DataStorage.Users.FirstOrDefault(item => item.Login == request.UserLogin && item.Password == request.Password && item.StartingDate <= DateTime.Now && (!item.EndingDate.HasValue || item.EndingDate.Value > DateTime.Now));
 
-      response.User = new Poco.Common.User.User()
+      if (user != null)
       {
-        DefaultLanguage = new LanguagesService().Get(new Languages() { Ids = new List<int>() { user.DefaultLanguageId } }).Languages.FirstOrDefault(),
-        EndingDate = user.EndingDate,
-        FirstName = user.FirstName,
-        Id = user.Id,
-        IsAdministrator = user.IsAdministrator,
-        IsAnonymous = user.IsAnonymous,
-        LastName = user.LastName,
-        Login = user.Login,
-        Password = user.Password,
-        StartingDate = user.StartingDate
-      };
+        response.User = new Poco.Common.User.User()
+        {
+          DefaultLanguage = new LanguagesService().Get(new Languages() { Ids = new List<int>() { user.DefaultLanguageId } }).Languages.FirstOrDefault(),
+          EndingDate = user.EndingDate,
+          FirstName = user.FirstName,
+          Id = user.Id,
+          IsAdministrator = user.IsAdministrator,
+          IsAnonymous = user.IsAnonymous,
+          LastName = user.LastName,
+          Login = user.Login,
+          Password = user.Password,
+          StartingDate = user.StartingDate
+        };
+      }
+
       return response;
     }
   }
