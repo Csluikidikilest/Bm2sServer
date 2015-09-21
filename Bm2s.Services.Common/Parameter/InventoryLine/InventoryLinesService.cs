@@ -28,14 +28,25 @@ namespace Bm2s.Services.Common.Parameter.InventoryLine
         items.AddRange(Datas.Instance.DataStorage.InventoryLines.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.InventoryLines.AddRange((from item in items
-                                       select new Bm2s.Poco.Common.Parameter.InventoryLine()
-                                       {
-                                         Article = new ArticlesService().Get(new Articles() { Ids = new List<int>() { item.ArticleId } }).Articles.FirstOrDefault(),
-                                         Id = item.Id,
-                                         InventoryHeader = new InventoryHeadersService().Get(new InventoryHeaders() { Ids = new List<int>() { item.InventoryHeaderId } }).InventoryHeaders.FirstOrDefault(),
-                                         Quantity = item.Quantity
-                                       }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      var collection = (from item in items
+                        select new Bm2s.Poco.Common.Parameter.InventoryLine()
+                        {
+                          Article = new ArticlesService().Get(new Articles() { Ids = new List<int>() { item.ArticleId } }).Articles.FirstOrDefault(),
+                          Id = item.Id,
+                          InventoryHeader = new InventoryHeadersService().Get(new InventoryHeaders() { Ids = new List<int>() { item.InventoryHeaderId } }).InventoryHeaders.FirstOrDefault(),
+                          Quantity = item.Quantity
+                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+
+      response.ItemsCount = collection.Count();
+      if (request.PageSize > 0)
+      {
+        response.InventoryLines.AddRange(collection.Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      }
+      else
+      {
+        response.InventoryLines.AddRange(collection);
+      }
+      response.PagesCount = collection.Count() / response.InventoryLines.Count + (collection.Count() % response.InventoryLines.Count > 0 ? 1 : 0);
 
       return response;
     }

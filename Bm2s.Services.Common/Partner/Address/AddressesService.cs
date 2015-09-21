@@ -21,14 +21,25 @@ namespace Bm2s.Services.Common.Partner.Address
         items.AddRange(Datas.Instance.DataStorage.Addresses.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.Addresses.AddRange((from item in items
-                                  select new Bm2s.Poco.Common.Partner.Address()
-                                  {
-                                    CountryName = item.CountryName,
-                                    Id = item.Id,
-                                    TownName = item.TownName,
-                                    TownZipCode = item.TownZipCode
-                                  }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      var collection = (from item in items
+                        select new Bm2s.Poco.Common.Partner.Address()
+                        {
+                          CountryName = item.CountryName,
+                          Id = item.Id,
+                          TownName = item.TownName,
+                          TownZipCode = item.TownZipCode
+                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+
+      response.ItemsCount = collection.Count();
+      if (request.PageSize > 0)
+      {
+        response.Addresses.AddRange(collection.Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      }
+      else
+      {
+        response.Addresses.AddRange(collection);
+      }
+      response.PagesCount = collection.Count() / response.Addresses.Count + (collection.Count() % response.Addresses.Count > 0 ? 1 : 0);
 
       return response;
     }

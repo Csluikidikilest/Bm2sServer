@@ -2,7 +2,7 @@
 
 namespace Bm2s.Response.Common.Article.Price
 {
-  public class PricesResponse
+  public class PricesResponse : Response
   {
     public PricesResponse()
     {

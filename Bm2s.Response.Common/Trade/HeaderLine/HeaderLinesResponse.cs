@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Bm2s.Response.Common.Trade.HeaderLine
 {
-  public class HeaderLinesResponse
+  public class HeaderLinesResponse : Response
   {
     public HeaderLinesResponse()
     {

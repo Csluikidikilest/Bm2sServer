@@ -2,7 +2,7 @@
 
 namespace Bm2s.Response.Common.User.UserModule
 {
-  public class UserModulesResponse
+  public class UserModulesResponse : Response
   {
     public UserModulesResponse()
     {

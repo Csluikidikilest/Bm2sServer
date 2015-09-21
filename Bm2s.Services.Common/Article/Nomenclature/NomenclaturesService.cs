@@ -25,16 +25,27 @@ namespace Bm2s.Services.Common.Article.Nomenclature
         items.AddRange(Datas.Instance.DataStorage.Nomenclatures.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.Nomenclatures.AddRange((from item in items
-                                      select new Bm2s.Poco.Common.Article.Nomenclature()
-                                      {
-                                        ArticleChild = new ArticlesService().Get(new Articles() { Ids = new List<int>() { item.ArticleChildId } }).Articles.FirstOrDefault(),
-                                        ArticleParent = new ArticlesService().Get(new Articles() { Ids = new List<int>() { item.ArticleParentId } }).Articles.FirstOrDefault(),
-                                        BuyPrice = item.BuyPrice,
-                                        Id = item.Id,
-                                        Multiplier = item.Multiplier,
-                                        Quantity = item.Quantity
-                                      }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      var collection = (from item in items
+                        select new Bm2s.Poco.Common.Article.Nomenclature()
+                        {
+                          ArticleChild = new ArticlesService().Get(new Articles() { Ids = new List<int>() { item.ArticleChildId } }).Articles.FirstOrDefault(),
+                          ArticleParent = new ArticlesService().Get(new Articles() { Ids = new List<int>() { item.ArticleParentId } }).Articles.FirstOrDefault(),
+                          BuyPrice = item.BuyPrice,
+                          Id = item.Id,
+                          Multiplier = item.Multiplier,
+                          Quantity = item.Quantity
+                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+
+      response.ItemsCount = collection.Count();
+      if (request.PageSize > 0)
+      {
+        response.Nomenclatures.AddRange(collection.Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      }
+      else
+      {
+        response.Nomenclatures.AddRange(collection);
+      }
+      response.PagesCount = collection.Count() / response.Nomenclatures.Count + (collection.Count() % response.Nomenclatures.Count > 0 ? 1 : 0);
 
       return response;
     }

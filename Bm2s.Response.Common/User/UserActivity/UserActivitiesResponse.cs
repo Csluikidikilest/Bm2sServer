@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Bm2s.Response.Common.User.UserActivity
 {
-  public class UserActivitiesResponse
+  public class UserActivitiesResponse : Response
   {
     public UserActivitiesResponse()
     {

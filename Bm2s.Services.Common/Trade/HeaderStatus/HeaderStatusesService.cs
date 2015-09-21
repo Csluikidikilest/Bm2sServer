@@ -25,15 +25,26 @@ namespace Bm2s.Services.Common.Trade.HeaderStatus
         items.AddRange(Datas.Instance.DataStorage.HeaderStatuses.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.HeaderStatuses.AddRange((from item in items
-                                       select new Bm2s.Poco.Common.Trade.HeaderStatus()
-                                       {
-                                         EndingDate = item.EndingDate,
-                                         Id = item.Id,
-                                         InterveneOnStock = item.InterveneOnStock,
-                                         Name = item.Name,
-                                         StartingDate = item.StartingDate
-                                       }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      var collection = (from item in items
+                        select new Bm2s.Poco.Common.Trade.HeaderStatus()
+                        {
+                          EndingDate = item.EndingDate,
+                          Id = item.Id,
+                          InterveneOnStock = item.InterveneOnStock,
+                          Name = item.Name,
+                          StartingDate = item.StartingDate
+                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+
+      response.ItemsCount = collection.Count();
+      if (request.PageSize > 0)
+      {
+        response.HeaderStatuses.AddRange(collection.Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      }
+      else
+      {
+        response.HeaderStatuses.AddRange(collection);
+      }
+      response.PagesCount = collection.Count() / response.HeaderStatuses.Count + (collection.Count() % response.HeaderStatuses.Count > 0 ? 1 : 0);
 
       return response;
     }

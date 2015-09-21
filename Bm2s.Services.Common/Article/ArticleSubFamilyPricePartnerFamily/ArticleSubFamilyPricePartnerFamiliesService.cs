@@ -32,17 +32,28 @@ namespace Bm2s.Services.Common.Article.ArticleSubFamilyPricePartnerFamily
         items.AddRange(Datas.Instance.DataStorage.ArticleSubFamilyPricePartnerFamilies.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.ArticleSubFamilyPricePartnerFamilies.AddRange((from item in items
-                                                             select new Bm2s.Poco.Common.Article.ArticleSubFamilyPricePartnerFamily()
-                                                             {
-                                                               ArticleSubFamily = new ArticleSubFamiliesService().Get(new ArticleSubFamilies() { Ids = new List<int>() { item.ArticleSubFamilyId } }).ArticleSubFamilies.FirstOrDefault(),
-                                                               EndingDate = item.EndingDate,
-                                                               Id = item.Id,
-                                                               Multiplier = item.Multiplier,
-                                                               PartnerFamily = new PartnerFamiliesService().Get(new PartnerFamilies() { Ids = new List<int>() { item.PartnerFamilyId } }).PartnerFamilies.FirstOrDefault(),
-                                                               Price = item.Price,
-                                                               StartingDate = item.StartingDate
-                                                             }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      var collection = (from item in items
+                        select new Bm2s.Poco.Common.Article.ArticleSubFamilyPricePartnerFamily()
+                        {
+                          ArticleSubFamily = new ArticleSubFamiliesService().Get(new ArticleSubFamilies() { Ids = new List<int>() { item.ArticleSubFamilyId } }).ArticleSubFamilies.FirstOrDefault(),
+                          EndingDate = item.EndingDate,
+                          Id = item.Id,
+                          Multiplier = item.Multiplier,
+                          PartnerFamily = new PartnerFamiliesService().Get(new PartnerFamilies() { Ids = new List<int>() { item.PartnerFamilyId } }).PartnerFamilies.FirstOrDefault(),
+                          Price = item.Price,
+                          StartingDate = item.StartingDate
+                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+
+      response.ItemsCount = collection.Count();
+      if (request.PageSize > 0)
+      {
+        response.ArticleSubFamilyPricePartnerFamilies.AddRange(collection.Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      }
+      else
+      {
+        response.ArticleSubFamilyPricePartnerFamilies.AddRange(collection);
+      }
+      response.PagesCount = collection.Count() / response.ArticleSubFamilyPricePartnerFamilies.Count + (collection.Count() % response.ArticleSubFamilyPricePartnerFamilies.Count > 0 ? 1 : 0);
 
       return response;
     }

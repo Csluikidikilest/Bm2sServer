@@ -26,17 +26,29 @@ namespace Bm2s.Services.Common.Article.ArticleFamily
         items.AddRange(Datas.Instance.DataStorage.ArticleFamilies.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.ArticleFamilies.AddRange((from item in items
-                                        select new Bm2s.Poco.Common.Article.ArticleFamily()
-                                        {
-                                          AccountingEntry = item.AccountingEntry,
-                                          Code = item.Code,
-                                          Description = item.Description,
-                                          Designation = item.Designation,
-                                          EndingDate = item.EndingDate,
-                                          Id = item.Id,
-                                          StartingDate = item.StartingDate,
-                                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      var collection = (from item in items
+                        select new Bm2s.Poco.Common.Article.ArticleFamily()
+                        {
+                          AccountingEntry = item.AccountingEntry,
+                          Code = item.Code,
+                          Description = item.Description,
+                          Designation = item.Designation,
+                          EndingDate = item.EndingDate,
+                          Id = item.Id,
+                          StartingDate = item.StartingDate,
+                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+
+      response.ItemsCount = collection.Count();
+      if (request.PageSize > 0)
+      {
+        response.ArticleFamilies.AddRange(collection.Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      }
+      else
+      {
+        response.ArticleFamilies.AddRange(collection);
+      }
+      response.PagesCount = collection.Count() / response.ArticleFamilies.Count + (collection.Count() % response.ArticleFamilies.Count > 0 ? 1 : 0);
+
       return response;
     }
 

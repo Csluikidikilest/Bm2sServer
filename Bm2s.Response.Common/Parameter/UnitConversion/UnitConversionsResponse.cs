@@ -2,7 +2,7 @@
 
 namespace Bm2s.Response.Common.Parameter.UnitConversion
 {
-  public class UnitConversionsResponse
+  public class UnitConversionsResponse : Response
   {
     public UnitConversionsResponse()
     {

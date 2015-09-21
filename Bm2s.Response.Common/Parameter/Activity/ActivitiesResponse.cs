@@ -2,7 +2,7 @@
 
 namespace Bm2s.Response.Common.Parameter.Activity
 {
-  public class ActivitiesResponse
+  public class ActivitiesResponse : Response
   {
     public ActivitiesResponse()
     {

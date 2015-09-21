@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Bm2s.Response.Common.Trade.HeaderFreeReference
 {
-  public class HeaderFreeReferencesResponse
+  public class HeaderFreeReferencesResponse : Response
   {
     public HeaderFreeReferencesResponse()
     {

@@ -25,15 +25,26 @@ namespace Bm2s.Services.Common.Trade.PaymentMode
         items.AddRange(Datas.Instance.DataStorage.PaymentModes.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.PaymentModes.AddRange((from item in items
-                                     select new Bm2s.Poco.Common.Trade.PaymentMode()
-                                     {
-                                       Code = item.Code,
-                                       EndingDate = item.EndingDate,
-                                       Id = item.Id,
-                                       Name = item.Name,
-                                       StartingDate = item.StartingDate
-                                     }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      var collection = (from item in items
+                        select new Bm2s.Poco.Common.Trade.PaymentMode()
+                        {
+                          Code = item.Code,
+                          EndingDate = item.EndingDate,
+                          Id = item.Id,
+                          Name = item.Name,
+                          StartingDate = item.StartingDate
+                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+
+      response.ItemsCount = collection.Count();
+      if (request.PageSize > 0)
+      {
+        response.PaymentModes.AddRange(collection.Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      }
+      else
+      {
+        response.PaymentModes.AddRange(collection);
+      }
+      response.PagesCount = collection.Count() / response.PaymentModes.Count + (collection.Count() % response.PaymentModes.Count > 0 ? 1 : 0);
 
       return response;
     }

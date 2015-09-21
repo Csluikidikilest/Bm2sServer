@@ -2,7 +2,7 @@
 
 namespace Bm2s.Response.Common.Parameter.Period
 {
-  public class PeriodsResponse
+  public class PeriodsResponse : Response
   {
     public PeriodsResponse()
     {

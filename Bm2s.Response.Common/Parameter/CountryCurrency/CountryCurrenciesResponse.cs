@@ -2,7 +2,7 @@
 
 namespace Bm2s.Response.Common.Parameter.CountryCurrency
 {
-  public class CountryCurrenciesResponse
+  public class CountryCurrenciesResponse : Response
   {
     public CountryCurrenciesResponse()
     {

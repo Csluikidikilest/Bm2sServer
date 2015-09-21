@@ -31,17 +31,28 @@ namespace Bm2s.Services.Common.Parameter.ArticleFamilyPartnerVat
         items.AddRange(Datas.Instance.DataStorage.ArticleFamilyPartnerVats.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.ArticleFamilyPartnerVats.AddRange((from item in items
-                                                 select new Bm2s.Poco.Common.Parameter.ArticleFamilyPartnerVat()
-                                                 {
-                                                   AccountingEntry = item.AccountingEntry,
-                                                   ArticleFamily = new ArticleFamiliesService().Get(new ArticleFamilies() { Ids = new List<int>() { item.ArticleFamilyId } }).ArticleFamilies.FirstOrDefault(),
-                                                   Id = item.Id,
-                                                   Multiplier = item.Multiplier,
-                                                   Partner = new PartnersService().Get(new Partners() { Ids = new List<int>() { item.PartnerId } }).Partners.FirstOrDefault(),
-                                                   Rate = item.Rate,
-                                                   Vat = new VatsService().Get(new Vats() { Ids = new List<int>() { item.VatId } }).Vats.FirstOrDefault()
-                                                 }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      var collection = (from item in items
+                        select new Bm2s.Poco.Common.Parameter.ArticleFamilyPartnerVat()
+                        {
+                          AccountingEntry = item.AccountingEntry,
+                          ArticleFamily = new ArticleFamiliesService().Get(new ArticleFamilies() { Ids = new List<int>() { item.ArticleFamilyId } }).ArticleFamilies.FirstOrDefault(),
+                          Id = item.Id,
+                          Multiplier = item.Multiplier,
+                          Partner = new PartnersService().Get(new Partners() { Ids = new List<int>() { item.PartnerId } }).Partners.FirstOrDefault(),
+                          Rate = item.Rate,
+                          Vat = new VatsService().Get(new Vats() { Ids = new List<int>() { item.VatId } }).Vats.FirstOrDefault()
+                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+
+      response.ItemsCount = collection.Count();
+      if (request.PageSize > 0)
+      {
+        response.ArticleFamilyPartnerVats.AddRange(collection.Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      }
+      else
+      {
+        response.ArticleFamilyPartnerVats.AddRange(collection);
+      }
+      response.PagesCount = collection.Count() / response.ArticleFamilyPartnerVats.Count + (collection.Count() % response.ArticleFamilyPartnerVats.Count > 0 ? 1 : 0);
 
       return response;
     }

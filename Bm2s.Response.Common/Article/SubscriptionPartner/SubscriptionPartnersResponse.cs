@@ -2,7 +2,7 @@
 
 namespace Bm2s.Response.Common.Article.SubscriptionPartner
 {
-  public class SubscriptionPartnersResponse
+  public class SubscriptionPartnersResponse : Response
   {
     public SubscriptionPartnersResponse()
     {

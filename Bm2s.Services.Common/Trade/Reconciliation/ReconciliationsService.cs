@@ -28,14 +28,25 @@ namespace Bm2s.Services.Common.Trade.Reconciliation
         items.AddRange(Datas.Instance.DataStorage.Reconciliations.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.Reconciliations.AddRange((from item in items
-                                        select new Bm2s.Poco.Common.Trade.Reconciliation()
-                                        {
-                                          Amount = item.Amount,
-                                          HeaderLine = new HeaderLinesService().Get(new HeaderLines() { Ids = new List<int>() { item.HeaderLineId} }).HeaderLines.FirstOrDefault(),
-                                          Id = item.Id,
-                                          Payment = new PaymentsService().Get(new Payments() { Ids = new List<int>() { item.PaymentId} }).Payments.FirstOrDefault()
-                                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      var collection = (from item in items
+                        select new Bm2s.Poco.Common.Trade.Reconciliation()
+                        {
+                          Amount = item.Amount,
+                          HeaderLine = new HeaderLinesService().Get(new HeaderLines() { Ids = new List<int>() { item.HeaderLineId } }).HeaderLines.FirstOrDefault(),
+                          Id = item.Id,
+                          Payment = new PaymentsService().Get(new Payments() { Ids = new List<int>() { item.PaymentId } }).Payments.FirstOrDefault()
+                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+
+      response.ItemsCount = collection.Count();
+      if (request.PageSize > 0)
+      {
+        response.Reconciliations.AddRange(collection.Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      }
+      else
+      {
+        response.Reconciliations.AddRange(collection);
+      }
+      response.PagesCount = collection.Count() / response.Reconciliations.Count + (collection.Count() % response.Reconciliations.Count > 0 ? 1 : 0);
 
       return response;
     }

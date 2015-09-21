@@ -23,18 +23,29 @@ namespace Bm2s.Services.Common.Parameter.Parameter
         items.AddRange(Datas.Instance.DataStorage.Parameters.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.Parameters.AddRange((from item in items
-                                   select new Bm2s.Poco.Common.Parameter.Parameter()
-                                   {
-                                     bValue = item.bValue,
-                                     Code = item.Code,
-                                     dValue = item.dValue,
-                                     fValue = item.fValue,
-                                     Id = item.Id,
-                                     iValue = item.iValue,
-                                     sValue = item.sValue,
-                                     ValueType = item.ValueType
-                                   }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      var collection = (from item in items
+                        select new Bm2s.Poco.Common.Parameter.Parameter()
+                        {
+                          bValue = item.bValue,
+                          Code = item.Code,
+                          dValue = item.dValue,
+                          fValue = item.fValue,
+                          Id = item.Id,
+                          iValue = item.iValue,
+                          sValue = item.sValue,
+                          ValueType = item.ValueType
+                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+
+      response.ItemsCount = collection.Count();
+      if (request.PageSize > 0)
+      {
+        response.Parameters.AddRange(collection.Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      }
+      else
+      {
+        response.Parameters.AddRange(collection);
+      }
+      response.PagesCount = collection.Count() / response.Parameters.Count + (collection.Count() % response.Parameters.Count > 0 ? 1 : 0);
 
       return response;
     }

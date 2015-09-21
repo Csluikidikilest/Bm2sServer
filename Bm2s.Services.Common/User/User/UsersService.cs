@@ -31,20 +31,31 @@ namespace Bm2s.Services.Common.User.User
         items.AddRange(Datas.Instance.DataStorage.Users.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.Users.AddRange((from item in items
-                              select new Bm2s.Poco.Common.User.User()
-                              {
-                                DefaultLanguage = new LanguagesService().Get(new Languages() { Ids = new List<int>() { item.DefaultLanguageId}}).Languages.FirstOrDefault(),
-                                EndingDate = item.EndingDate,
-                                FirstName = item.FirstName,
-                                Id = item.Id,
-                                IsAdministrator = item.IsAdministrator,
-                                IsAnonymous = item.IsAnonymous,
-                                LastName = item.LastName,
-                                Login = item.Login,
-                                Password = item.Password,
-                                StartingDate = item.StartingDate
-                              }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      var collection = (from item in items
+                        select new Bm2s.Poco.Common.User.User()
+                        {
+                          DefaultLanguage = new LanguagesService().Get(new Languages() { Ids = new List<int>() { item.DefaultLanguageId } }).Languages.FirstOrDefault(),
+                          EndingDate = item.EndingDate,
+                          FirstName = item.FirstName,
+                          Id = item.Id,
+                          IsAdministrator = item.IsAdministrator,
+                          IsAnonymous = item.IsAnonymous,
+                          LastName = item.LastName,
+                          Login = item.Login,
+                          Password = item.Password,
+                          StartingDate = item.StartingDate
+                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+
+      response.ItemsCount = collection.Count();
+      if (request.PageSize > 0)
+      {
+        response.Users.AddRange(collection.Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      }
+      else
+      {
+        response.Users.AddRange(collection);
+      }
+      response.PagesCount = collection.Count() / response.Users.Count + (collection.Count() % response.Users.Count > 0 ? 1 : 0);
 
       return response;
     }

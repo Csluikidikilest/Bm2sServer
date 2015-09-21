@@ -25,14 +25,25 @@ namespace Bm2s.Services.Common.Partner.AddressLine
         items.AddRange(Datas.Instance.DataStorage.AddressLines.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.AddressLines.AddRange((from item in items
-                                     select new Bm2s.Poco.Common.Partner.AddressLine()
-                                     {
-                                       Address = new AddressesService().Get(new Addresses() { Ids = new List<int>() { item.AddressId} }).Addresses.FirstOrDefault(),
-                                       Id = item.Id,
-                                       Line = item.Line,
-                                       Order = item.Order
-                                     }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      var collection = (from item in items
+                        select new Bm2s.Poco.Common.Partner.AddressLine()
+                        {
+                          Address = new AddressesService().Get(new Addresses() { Ids = new List<int>() { item.AddressId } }).Addresses.FirstOrDefault(),
+                          Id = item.Id,
+                          Line = item.Line,
+                          Order = item.Order
+                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+
+      response.ItemsCount = collection.Count();
+      if (request.PageSize > 0)
+      {
+        response.AddressLines.AddRange(collection.Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      }
+      else
+      {
+        response.AddressLines.AddRange(collection);
+      }
+      response.PagesCount = collection.Count() / response.AddressLines.Count + (collection.Count() % response.AddressLines.Count > 0 ? 1 : 0);
 
       return response;
     }

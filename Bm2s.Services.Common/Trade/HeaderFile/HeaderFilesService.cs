@@ -30,16 +30,27 @@ namespace Bm2s.Services.Common.Trade.HeaderFile
         items.AddRange(Datas.Instance.DataStorage.HeaderFiles.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.HeaderFiles.AddRange((from item in items
-                                    select new Bm2s.Poco.Common.Trade.HeaderFile()
-                                    {
-                                      AddingDate = item.AddingDate,
-                                      File = item.File,
-                                      Header = new HeadersService().Get(new Headers() { Ids = new List<int>() { item.HeaderId } }).Headers.FirstOrDefault(),
-                                      Id = item.Id,
-                                      Name = item.Name,
-                                      User = new UsersService().Get(new Users() { Ids = new List<int>() { item.UserId } }).Users.FirstOrDefault()
-                                    }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      var collection = (from item in items
+                        select new Bm2s.Poco.Common.Trade.HeaderFile()
+                        {
+                          AddingDate = item.AddingDate,
+                          File = item.File,
+                          Header = new HeadersService().Get(new Headers() { Ids = new List<int>() { item.HeaderId } }).Headers.FirstOrDefault(),
+                          Id = item.Id,
+                          Name = item.Name,
+                          User = new UsersService().Get(new Users() { Ids = new List<int>() { item.UserId } }).Users.FirstOrDefault()
+                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+
+      response.ItemsCount = collection.Count();
+      if (request.PageSize > 0)
+      {
+        response.HeaderFiles.AddRange(collection.Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      }
+      else
+      {
+        response.HeaderFiles.AddRange(collection);
+      }
+      response.PagesCount = collection.Count() / response.HeaderFiles.Count + (collection.Count() % response.HeaderFiles.Count > 0 ? 1 : 0);
 
       return response;
     }

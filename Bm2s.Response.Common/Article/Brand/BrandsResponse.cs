@@ -2,7 +2,7 @@
 
 namespace Bm2s.Response.Common.Article.Brand
 {
-  public class BrandsResponse
+  public class BrandsResponse : Response
   {
     public BrandsResponse()
     {

@@ -2,7 +2,7 @@
 
 namespace Bm2s.Response.Common.Parameter.AffairHeader
 {
-  public class AffairHeadersResponse
+  public class AffairHeadersResponse : Response
   {
     public AffairHeadersResponse()
     {

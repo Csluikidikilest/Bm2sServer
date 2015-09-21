@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Bm2s.Response.Common.Article.ArticleFamilyPricePartner
 {
-  public class ArticleFamilyPricePartnersResponse
+  public class ArticleFamilyPricePartnersResponse : Response
   {
     public ArticleFamilyPricePartnersResponse()
     {

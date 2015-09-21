@@ -2,7 +2,7 @@
 
 namespace Bm2s.Response.Common.Parameter.Unit
 {
-  public class UnitsResponse
+  public class UnitsResponse : Response
   {
     public UnitsResponse()
     {

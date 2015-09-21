@@ -29,18 +29,29 @@ namespace Bm2s.Services.Common.Article.ArticleSubFamily
         items.AddRange(Datas.Instance.DataStorage.ArticleSubFamilies.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.ArticleSubFamilies.AddRange((from item in items
-                                           select new Bm2s.Poco.Common.Article.ArticleSubFamily()
-                                           {
-                                             AccountingEntry = item.AccountingEntry,
-                                             ArticleFamily = new ArticleFamiliesService().Get(new ArticleFamilies() { Ids = new List<int>() { item.ArticleFamilyId } }).ArticleFamilies.FirstOrDefault(),
-                                             Code = item.Code,
-                                             Description = item.Description,
-                                             Designation = item.Designation,
-                                             EndingDate = item.EndingDate,
-                                             Id = item.Id,
-                                             StartingDate = item.StartingDate
-                                           }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      var collection = (from item in items
+                        select new Bm2s.Poco.Common.Article.ArticleSubFamily()
+                        {
+                          AccountingEntry = item.AccountingEntry,
+                          ArticleFamily = new ArticleFamiliesService().Get(new ArticleFamilies() { Ids = new List<int>() { item.ArticleFamilyId } }).ArticleFamilies.FirstOrDefault(),
+                          Code = item.Code,
+                          Description = item.Description,
+                          Designation = item.Designation,
+                          EndingDate = item.EndingDate,
+                          Id = item.Id,
+                          StartingDate = item.StartingDate
+                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+
+      response.ItemsCount = collection.Count();
+      if (request.PageSize > 0)
+      {
+        response.ArticleSubFamilies.AddRange(collection.Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      }
+      else
+      {
+        response.ArticleSubFamilies.AddRange(collection);
+      }
+      response.PagesCount = collection.Count() / response.ArticleSubFamilies.Count + (collection.Count() % response.ArticleSubFamilies.Count > 0 ? 1 : 0);
 
       return response;
     }

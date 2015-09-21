@@ -2,7 +2,7 @@
 
 namespace Bm2s.Response.Common.Parameter.Country
 {
-  public class CountriesResponse
+  public class CountriesResponse : Response
   {
     public CountriesResponse()
     {

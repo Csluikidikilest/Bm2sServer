@@ -2,7 +2,7 @@
 
 namespace Bm2s.Response.Common.Parameter.InventoryLine
 {
-  public class InventoryLinesResponse
+  public class InventoryLinesResponse : Response
   {
     public InventoryLinesResponse()
     {

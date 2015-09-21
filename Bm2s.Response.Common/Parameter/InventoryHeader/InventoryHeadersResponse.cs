@@ -2,7 +2,7 @@
 
 namespace Bm2s.Response.Common.Parameter.InventoryHeader
 {
-  public class InventoryHeadersResponse
+  public class InventoryHeadersResponse : Response
   {
     public InventoryHeadersResponse()
     {

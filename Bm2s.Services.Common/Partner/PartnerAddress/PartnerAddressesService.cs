@@ -31,14 +31,25 @@ namespace Bm2s.Services.Common.Partner.PartnerAddress
         items.AddRange(Datas.Instance.DataStorage.PartnerAddresses.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.PartnerAddresses.AddRange((from item in items
-                                         select new Bm2s.Poco.Common.Partner.PartnerAddress()
-                                         {
-                                           Address = new AddressesService().Get(new Addresses() { Ids = new List<int>() { item.AddressId } }).Addresses.FirstOrDefault(),
-                                           AddressType = new AddressTypesService().Get(new AddressTypes() { Ids = new List<int>() { item.AddressTypeId } }).AddressTypes.FirstOrDefault(),
-                                           Id = item.Id,
-                                           Partner = new PartnersService().Get(new Partners() { Ids = new List<int>() { item.PartnerId } }).Partners.FirstOrDefault()
-                                         }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      var collection = (from item in items
+                        select new Bm2s.Poco.Common.Partner.PartnerAddress()
+                        {
+                          Address = new AddressesService().Get(new Addresses() { Ids = new List<int>() { item.AddressId } }).Addresses.FirstOrDefault(),
+                          AddressType = new AddressTypesService().Get(new AddressTypes() { Ids = new List<int>() { item.AddressTypeId } }).AddressTypes.FirstOrDefault(),
+                          Id = item.Id,
+                          Partner = new PartnersService().Get(new Partners() { Ids = new List<int>() { item.PartnerId } }).Partners.FirstOrDefault()
+                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+
+      response.ItemsCount = collection.Count();
+      if (request.PageSize > 0)
+      {
+        response.PartnerAddresses.AddRange(collection.Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      }
+      else
+      {
+        response.PartnerAddresses.AddRange(collection);
+      }
+      response.PagesCount = collection.Count() / response.PartnerAddresses.Count + (collection.Count() % response.PartnerAddresses.Count > 0 ? 1 : 0);
 
       return response;
     }

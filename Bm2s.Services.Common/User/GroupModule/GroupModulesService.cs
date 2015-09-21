@@ -31,15 +31,26 @@ namespace Bm2s.Services.Common.User.GroupModule
         items.AddRange(Datas.Instance.DataStorage.GroupModules.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.GroupModules.AddRange((from item in items
-                                     select new Bm2s.Poco.Common.User.GroupModule()
-                                     {
-                                       Granted = item.Granted,
-                                       Grantor = new UsersService().Get(new Users() { Ids = new List<int>() { item.GrantorId} }).Users.FirstOrDefault(),
-                                       Group = new GroupsService().Get(new Groups() { Ids = new List<int>() { item.GroupId} }).Groups.FirstOrDefault(),
-                                       Id = item.Id,
-                                       Module = new ModulesService().Get(new Modules() { Ids = new List<int>() { item.ModuleId} }).Modules.FirstOrDefault()
-                                     }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      var collection = (from item in items
+                        select new Bm2s.Poco.Common.User.GroupModule()
+                        {
+                          Granted = item.Granted,
+                          Grantor = new UsersService().Get(new Users() { Ids = new List<int>() { item.GrantorId } }).Users.FirstOrDefault(),
+                          Group = new GroupsService().Get(new Groups() { Ids = new List<int>() { item.GroupId } }).Groups.FirstOrDefault(),
+                          Id = item.Id,
+                          Module = new ModulesService().Get(new Modules() { Ids = new List<int>() { item.ModuleId } }).Modules.FirstOrDefault()
+                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+
+      response.ItemsCount = collection.Count();
+      if (request.PageSize > 0)
+      {
+        response.GroupModules.AddRange(collection.Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      }
+      else
+      {
+        response.GroupModules.AddRange(collection);
+      }
+      response.PagesCount = collection.Count() / response.GroupModules.Count + (collection.Count() % response.GroupModules.Count > 0 ? 1 : 0);
 
       return response;
     }

@@ -2,7 +2,7 @@
 
 namespace Bm2s.Response.Common.Parameter.Translation
 {
-  public class TranslationsResponse
+  public class TranslationsResponse : Response
   {
     public TranslationsResponse()
     {

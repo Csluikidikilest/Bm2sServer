@@ -2,7 +2,7 @@
 
 namespace Bm2s.Response.Common.Partner.AddressLine
 {
-  public class AddressLinesResponse
+  public class AddressLinesResponse : Response
   {
     public AddressLinesResponse()
     {

@@ -28,13 +28,24 @@ namespace Bm2s.Services.Common.Parameter.AffairHeader
         items.AddRange(Datas.Instance.DataStorage.AffairHeaders.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.AffairHeaders.AddRange((from item in items
-                                      select new Bm2s.Poco.Common.Parameter.AffairHeader()
-                                      {
-                                        Affair = new AffairsService().Get(new Affairs() { Ids = new List<int>() { item.AffairId } }).Affairs.FirstOrDefault(),
-                                        Header = new HeadersService().Get(new Headers() { Ids = new List<int>() { item.HeaderId } }).Headers.FirstOrDefault(),
-                                        Id = item.Id
-                                      }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      var collection = (from item in items
+                        select new Bm2s.Poco.Common.Parameter.AffairHeader()
+                        {
+                          Affair = new AffairsService().Get(new Affairs() { Ids = new List<int>() { item.AffairId } }).Affairs.FirstOrDefault(),
+                          Header = new HeadersService().Get(new Headers() { Ids = new List<int>() { item.HeaderId } }).Headers.FirstOrDefault(),
+                          Id = item.Id
+                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+
+      response.ItemsCount = collection.Count();
+      if (request.PageSize > 0)
+      {
+        response.AffairHeaders.AddRange(collection.Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      }
+      else
+      {
+        response.AffairHeaders.AddRange(collection);
+      }
+      response.PagesCount = collection.Count() / response.AffairHeaders.Count + (collection.Count() % response.AffairHeaders.Count > 0 ? 1 : 0);
 
       return response;
     }

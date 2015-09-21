@@ -27,18 +27,29 @@ namespace Bm2s.Services.Common.Parameter.Unit
         items.AddRange(Datas.Instance.DataStorage.Units.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.Units.AddRange((from item in items
-                              select new Bm2s.Poco.Common.Parameter.Unit()
-                              {
-                                Code = item.Code,
-                                Description = item.Description,
-                                EndingDate = item.EndingDate,
-                                Id = item.Id,
-                                IsCurrency = item.IsCurrency,
-                                IsPeriod = item.IsPeriod,
-                                Name = item.Name,
-                                StartingDate = item.StartingDate
-                              }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      var collection = (from item in items
+                        select new Bm2s.Poco.Common.Parameter.Unit()
+                        {
+                          Code = item.Code,
+                          Description = item.Description,
+                          EndingDate = item.EndingDate,
+                          Id = item.Id,
+                          IsCurrency = item.IsCurrency,
+                          IsPeriod = item.IsPeriod,
+                          Name = item.Name,
+                          StartingDate = item.StartingDate
+                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+
+      response.ItemsCount = collection.Count();
+      if (request.PageSize > 0)
+      {
+        response.Units.AddRange(collection.Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      }
+      else
+      {
+        response.Units.AddRange(collection);
+      }
+      response.PagesCount = collection.Count() / response.Units.Count + (collection.Count() % response.Units.Count > 0 ? 1 : 0);
 
       return response;
     }

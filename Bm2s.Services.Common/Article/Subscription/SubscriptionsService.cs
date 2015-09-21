@@ -30,17 +30,28 @@ namespace Bm2s.Services.Common.Article.Subscription
         items.AddRange(Datas.Instance.DataStorage.Subscriptions.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.Subscriptions.AddRange((from item in items
-                                      select new Bm2s.Poco.Common.Article.Subscription()
-                                      {
-                                        Article = new ArticlesService().Get(new Articles() { Ids = new List<int>() { item.ArticleId } }).Articles.FirstOrDefault(),
-                                        Code = item.Code,
-                                        Designation = item.Designation,
-                                        EndingDate = item.EndingDate,
-                                        Id = item.Id,
-                                        Period = new PeriodsService().Get(new Periods() { Ids = new List<int>() { item.PeriodId } }).Periods.FirstOrDefault(),
-                                        StartingDate = item.StartingDate
-                                      }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      var collection = (from item in items
+                        select new Bm2s.Poco.Common.Article.Subscription()
+                        {
+                          Article = new ArticlesService().Get(new Articles() { Ids = new List<int>() { item.ArticleId } }).Articles.FirstOrDefault(),
+                          Code = item.Code,
+                          Designation = item.Designation,
+                          EndingDate = item.EndingDate,
+                          Id = item.Id,
+                          Period = new PeriodsService().Get(new Periods() { Ids = new List<int>() { item.PeriodId } }).Periods.FirstOrDefault(),
+                          StartingDate = item.StartingDate
+                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+
+      response.ItemsCount = collection.Count();
+      if (request.PageSize > 0)
+      {
+        response.Subscriptions.AddRange(collection.Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      }
+      else
+      {
+        response.Subscriptions.AddRange(collection);
+      }
+      response.PagesCount = collection.Count() / response.Subscriptions.Count + (collection.Count() % response.Subscriptions.Count > 0 ? 1 : 0);
 
       return response;
     }

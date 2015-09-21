@@ -2,7 +2,7 @@
 
 namespace Bm2s.Response.Common.Parameter.Language
 {
-  public class LanguagesResponse
+  public class LanguagesResponse : Response
   {
     public LanguagesResponse()
     {

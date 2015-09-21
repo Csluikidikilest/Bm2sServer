@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Bm2s.Response.Common.Trade.HeaderOrigin
 {
-  public class HeaderOriginsResponse
+  public class HeaderOriginsResponse : Response
   {
     public HeaderOriginsResponse()
     {

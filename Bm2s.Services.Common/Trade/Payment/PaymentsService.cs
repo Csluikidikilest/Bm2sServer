@@ -32,16 +32,27 @@ namespace Bm2s.Services.Common.Trade.Payment
         items.AddRange(Datas.Instance.DataStorage.Payments.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.Payments.AddRange((from item in items
-                                 select new Bm2s.Poco.Common.Trade.Payment()
-                                 {
-                                   Amount = item.Amount,
-                                   Date = item.Date,
-                                   Id = item.Id,
-                                   Partner = new PartnersService().Get(new Partners() { Ids = new List<int>() { item.PartnerId } }).Partners.FirstOrDefault(),
-                                   PaymentMode = new PaymentModesService().Get(new PaymentModes() { Ids = new List<int>() { item.PaymentModeId } }).PaymentModes.FirstOrDefault(),
-                                   Unit = new UnitsService().Get(new Units() { Ids = new List<int>() { item.UnitId } }).Units.FirstOrDefault()
-                                 }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      var collection = (from item in items
+                        select new Bm2s.Poco.Common.Trade.Payment()
+                        {
+                          Amount = item.Amount,
+                          Date = item.Date,
+                          Id = item.Id,
+                          Partner = new PartnersService().Get(new Partners() { Ids = new List<int>() { item.PartnerId } }).Partners.FirstOrDefault(),
+                          PaymentMode = new PaymentModesService().Get(new PaymentModes() { Ids = new List<int>() { item.PaymentModeId } }).PaymentModes.FirstOrDefault(),
+                          Unit = new UnitsService().Get(new Units() { Ids = new List<int>() { item.UnitId } }).Units.FirstOrDefault()
+                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+
+      response.ItemsCount = collection.Count();
+      if (request.PageSize > 0)
+      {
+        response.Payments.AddRange(collection.Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      }
+      else
+      {
+        response.Payments.AddRange(collection);
+      }
+      response.PagesCount = collection.Count() / response.Payments.Count + (collection.Count() % response.Payments.Count > 0 ? 1 : 0);
 
       return response;
     }

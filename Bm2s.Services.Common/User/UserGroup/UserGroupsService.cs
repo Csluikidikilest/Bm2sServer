@@ -28,13 +28,24 @@ namespace Bm2s.Services.Common.User.UserGroup
         items.AddRange(Datas.Instance.DataStorage.UserGroups.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.UserGroups.AddRange((from item in items
-                                   select new Bm2s.Poco.Common.User.UserGroup()
-                                   {
-                                     Group = new GroupsService().Get(new Groups() { Ids = new List<int>() { item.GroupId } }).Groups.FirstOrDefault(),
-                                     Id = item.Id,
-                                     User = new UsersService().Get(new Users() { Ids = new List<int>() { item.UserId } }).Users.FirstOrDefault()
-                                   }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      var collection = (from item in items
+                        select new Bm2s.Poco.Common.User.UserGroup()
+                        {
+                          Group = new GroupsService().Get(new Groups() { Ids = new List<int>() { item.GroupId } }).Groups.FirstOrDefault(),
+                          Id = item.Id,
+                          User = new UsersService().Get(new Users() { Ids = new List<int>() { item.UserId } }).Users.FirstOrDefault()
+                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+
+      response.ItemsCount = collection.Count();
+      if (request.PageSize > 0)
+      {
+        response.UserGroups.AddRange(collection.Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      }
+      else
+      {
+        response.UserGroups.AddRange(collection);
+      }
+      response.PagesCount = collection.Count() / response.UserGroups.Count + (collection.Count() % response.UserGroups.Count > 0 ? 1 : 0);
 
       return response;
     }

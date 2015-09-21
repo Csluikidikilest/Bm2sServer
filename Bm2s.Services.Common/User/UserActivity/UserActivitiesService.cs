@@ -28,14 +28,25 @@ namespace Bm2s.Services.Common.User.UserActivity
         items.AddRange(Datas.Instance.DataStorage.UserActivities.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.UserActivities.AddRange((from item in items
-                                       select new Bm2s.Poco.Common.User.UserActivity()
-                                       {
-                                         Activity = new ActivitiesService().Get(new Activities() { Ids = new List<int>() { item.ActivityId } }).Activities.FirstOrDefault(),
-                                         Id = item.Id,
-                                         IsDefault = item.IsDefault,
-                                         User = new UsersService().Get(new Users() { Ids = new List<int>() { item.UserId } }).Users.FirstOrDefault()
-                                       }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      var collection = (from item in items
+                        select new Bm2s.Poco.Common.User.UserActivity()
+                        {
+                          Activity = new ActivitiesService().Get(new Activities() { Ids = new List<int>() { item.ActivityId } }).Activities.FirstOrDefault(),
+                          Id = item.Id,
+                          IsDefault = item.IsDefault,
+                          User = new UsersService().Get(new Users() { Ids = new List<int>() { item.UserId } }).Users.FirstOrDefault()
+                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+
+      response.ItemsCount = collection.Count();
+      if (request.PageSize > 0)
+      {
+        response.UserActivities.AddRange(collection.Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      }
+      else
+      {
+        response.UserActivities.AddRange(collection);
+      }
+      response.PagesCount = collection.Count() / response.UserActivities.Count + (collection.Count() % response.UserActivities.Count > 0 ? 1 : 0);
 
       return response;
     }

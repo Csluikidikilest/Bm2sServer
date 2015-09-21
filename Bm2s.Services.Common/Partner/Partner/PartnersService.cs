@@ -30,25 +30,36 @@ namespace Bm2s.Services.Common.Partner.Partner
         items.AddRange(Datas.Instance.DataStorage.Partners.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.Partners.AddRange((from item in items
-                                 select new Bm2s.Poco.Common.Partner.Partner()
-                                 {
-                                   Code = item.Code,
-                                   CompanyIdentifier = item.CompanyIdentifier,
-                                   CompanyName = item.CompanyName,
-                                   Email = item.Email,
-                                   EndingDate = item.EndingDate,
-                                   FaxNumber = item.FaxNumber,
-                                   Id = item.Id,
-                                   IsCustomer = item.IsCustomer,
-                                   IsSupplier = item.IsSupplier,
-                                   Observation = item.Observation,
-                                   PhoneNumber = item.PhoneNumber,
-                                   PriceMultiplier = item.PriceMultiplier,
-                                   StartingDate = item.StartingDate,
-                                   User = new UsersService().Get(new Users() { Ids = new List<int>() { item.UserId } }).Users.FirstOrDefault(),
-                                   WebSite = item.WebSite
-                                 }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      var collection = (from item in items
+                        select new Bm2s.Poco.Common.Partner.Partner()
+                        {
+                          Code = item.Code,
+                          CompanyIdentifier = item.CompanyIdentifier,
+                          CompanyName = item.CompanyName,
+                          Email = item.Email,
+                          EndingDate = item.EndingDate,
+                          FaxNumber = item.FaxNumber,
+                          Id = item.Id,
+                          IsCustomer = item.IsCustomer,
+                          IsSupplier = item.IsSupplier,
+                          Observation = item.Observation,
+                          PhoneNumber = item.PhoneNumber,
+                          PriceMultiplier = item.PriceMultiplier,
+                          StartingDate = item.StartingDate,
+                          User = new UsersService().Get(new Users() { Ids = new List<int>() { item.UserId } }).Users.FirstOrDefault(),
+                          WebSite = item.WebSite
+                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+
+      response.ItemsCount = collection.Count();
+      if (request.PageSize > 0)
+      {
+        response.Partners.AddRange(collection.Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      }
+      else
+      {
+        response.Partners.AddRange(collection);
+      }
+      response.PagesCount = collection.Count() / response.Partners.Count + (collection.Count() % response.Partners.Count > 0 ? 1 : 0);
 
       return response;
     }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Bm2s.Response.Common.Trade.PaymentMode
 {
-  public class PaymentModesResponse
+  public class PaymentModesResponse : Response
   {
     public PaymentModesResponse()
     {

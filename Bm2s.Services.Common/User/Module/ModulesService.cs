@@ -24,14 +24,25 @@ namespace Bm2s.Services.Common.User.Module
         items.AddRange(Datas.Instance.DataStorage.Modules.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.Modules.AddRange((from item in items
-                                select new Bm2s.Poco.Common.User.Module()
-                                {
-                                  Code = item.Code,
-                                  Description = item.Description,
-                                  Id = item.Id,
-                                  Name = item.Name
-                                }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      var collection = (from item in items
+                        select new Bm2s.Poco.Common.User.Module()
+                        {
+                          Code = item.Code,
+                          Description = item.Description,
+                          Id = item.Id,
+                          Name = item.Name
+                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+
+      response.ItemsCount = collection.Count();
+      if (request.PageSize > 0)
+      {
+        response.Modules.AddRange(collection.Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      }
+      else
+      {
+        response.Modules.AddRange(collection);
+      }
+      response.PagesCount = collection.Count() / response.Modules.Count + (collection.Count() % response.Modules.Count > 0 ? 1 : 0);
 
       return response;
     }

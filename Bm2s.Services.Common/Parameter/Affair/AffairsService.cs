@@ -30,16 +30,27 @@ namespace Bm2s.Services.Common.Parameter.Affair
         items.AddRange(Datas.Instance.DataStorage.Affairs.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.Affairs.AddRange((from item in items
-                                select new Bm2s.Poco.Common.Parameter.Affair()
-                                {
-                                  Activity = new ActivitiesService().Get(new Activities() { Ids = new List<int>() { item.ActivityId } }).Activities.FirstOrDefault(),
-                                  Code = item.Code,
-                                  Description = item.Description,
-                                  Id = item.Id,
-                                  Name = item.Name,
-                                  User = new UsersService().Get(new Users() { Ids = new List<int>() { item.UserId } }).Users.FirstOrDefault()
-                                }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      var collection = (from item in items
+                        select new Bm2s.Poco.Common.Parameter.Affair()
+                        {
+                          Activity = new ActivitiesService().Get(new Activities() { Ids = new List<int>() { item.ActivityId } }).Activities.FirstOrDefault(),
+                          Code = item.Code,
+                          Description = item.Description,
+                          Id = item.Id,
+                          Name = item.Name,
+                          User = new UsersService().Get(new Users() { Ids = new List<int>() { item.UserId } }).Users.FirstOrDefault()
+                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+
+      response.ItemsCount = collection.Count();
+      if (request.PageSize > 0)
+      {
+        response.Affairs.AddRange(collection.Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      }
+      else
+      {
+        response.Affairs.AddRange(collection);
+      }
+      response.PagesCount = collection.Count() / response.Affairs.Count + (collection.Count() % response.Affairs.Count > 0 ? 1 : 0);
 
       return response;
     }

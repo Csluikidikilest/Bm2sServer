@@ -2,7 +2,7 @@
 
 namespace Bm2s.Response.Common.Parameter.ArticleFamilyPartnerVat
 {
-  public class ArticleFamilyPartnerVatsResponse
+  public class ArticleFamilyPartnerVatsResponse : Response
   {
     public ArticleFamilyPartnerVatsResponse()
     {

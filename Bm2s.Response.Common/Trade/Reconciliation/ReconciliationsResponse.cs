@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Bm2s.Response.Common.Trade.Reconciliation
 {
-  public class ReconciliationsResponse
+  public class ReconciliationsResponse : Response
   {
     public ReconciliationsResponse()
     {

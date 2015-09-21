@@ -2,7 +2,7 @@
 
 namespace Bm2s.Response.Common.Parameter.AffairFile
 {
-  public class AffairFilesResponse
+  public class AffairFilesResponse : Response
   {
     public AffairFilesResponse()
     {

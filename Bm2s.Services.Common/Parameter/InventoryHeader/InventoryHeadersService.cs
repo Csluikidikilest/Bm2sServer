@@ -24,13 +24,24 @@ namespace Bm2s.Services.Common.Parameter.InventoryHeader
         items.AddRange(Datas.Instance.DataStorage.InventoryHeaders.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.InventoryHeaders.AddRange((from item in items
-                                         select new Bm2s.Poco.Common.Parameter.InventoryHeader()
-                                         {
-                                           Date = item.Date,
-                                           Id = item.Id,
-                                           Type = item.Type
-                                         }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      var collection = (from item in items
+                        select new Bm2s.Poco.Common.Parameter.InventoryHeader()
+                        {
+                          Date = item.Date,
+                          Id = item.Id,
+                          Type = item.Type
+                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+
+      response.ItemsCount = collection.Count();
+      if (request.PageSize > 0)
+      {
+        response.InventoryHeaders.AddRange(collection.Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      }
+      else
+      {
+        response.InventoryHeaders.AddRange(collection);
+      }
+      response.PagesCount = collection.Count() / response.InventoryHeaders.Count + (collection.Count() % response.InventoryHeaders.Count > 0 ? 1 : 0);
 
       return response;
     }

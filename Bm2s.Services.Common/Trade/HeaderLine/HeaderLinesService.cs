@@ -46,30 +46,41 @@ namespace Bm2s.Services.Common.Trade.HeaderLine
         items.AddRange(Datas.Instance.DataStorage.HeaderLines.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.HeaderLines.AddRange((from item in items
-                                    select new Bm2s.Poco.Common.Trade.HeaderLine()
-                                    {
-                                      Article = new ArticlesService().Get(new Articles() { Ids = new List<int>() { item.ArticleId } }).Articles.FirstOrDefault(),
-                                      ArticleFamily = new ArticleFamiliesService().Get(new ArticleFamilies() { Ids = new List<int>() { item.ArticleFamilyId } }).ArticleFamilies.FirstOrDefault(),
-                                      ArticleSubFamily = new ArticleSubFamiliesService().Get(new ArticleSubFamilies() { Ids = new List<int>() { item.ArticleSubFamilyId } }).ArticleSubFamilies.FirstOrDefault(),
-                                      Brand = new BrandsService().Get(new Brands() { Ids = new List<int>() { item.BrandId } }).Brands.FirstOrDefault(),
-                                      BuyPrice = item.BuyPrice,
-                                      Code = item.Code,
-                                      DeliveryObservation = item.DeliveryObservation,
-                                      Description = item.Description,
-                                      Designation = item.Designation,
-                                      Header = new HeadersService().Get(new Headers() { Ids = new List<int>() { item.HeaderId } }).Headers.FirstOrDefault(),
-                                      HeaderLineType = new HeaderLineTypesService().Get(new HeaderLineTypes() { Ids = new List<int>() { item.HeaderLineTypeId } }).HeaderLineTypes.FirstOrDefault(),
-                                      Id = item.Id,
-                                      IsPrintable = item.IsPrintable,
-                                      LineNumber = item.LineNumber,
-                                      PreparationObservation = item.PreparationObservation,
-                                      Quantity = item.Quantity,
-                                      SellPrice = item.SellPrice,
-                                      SupplierCompanyName = item.SupplierCompanyName,
-                                      Unit = new UnitsService().Get(new Units() { Ids = new List<int>() { item.UnitId } }).Units.FirstOrDefault(),
-                                      VatRate = item.VatRate
-                                    }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      var collection = (from item in items
+                        select new Bm2s.Poco.Common.Trade.HeaderLine()
+                        {
+                          Article = new ArticlesService().Get(new Articles() { Ids = new List<int>() { item.ArticleId } }).Articles.FirstOrDefault(),
+                          ArticleFamily = new ArticleFamiliesService().Get(new ArticleFamilies() { Ids = new List<int>() { item.ArticleFamilyId } }).ArticleFamilies.FirstOrDefault(),
+                          ArticleSubFamily = new ArticleSubFamiliesService().Get(new ArticleSubFamilies() { Ids = new List<int>() { item.ArticleSubFamilyId } }).ArticleSubFamilies.FirstOrDefault(),
+                          Brand = new BrandsService().Get(new Brands() { Ids = new List<int>() { item.BrandId } }).Brands.FirstOrDefault(),
+                          BuyPrice = item.BuyPrice,
+                          Code = item.Code,
+                          DeliveryObservation = item.DeliveryObservation,
+                          Description = item.Description,
+                          Designation = item.Designation,
+                          Header = new HeadersService().Get(new Headers() { Ids = new List<int>() { item.HeaderId } }).Headers.FirstOrDefault(),
+                          HeaderLineType = new HeaderLineTypesService().Get(new HeaderLineTypes() { Ids = new List<int>() { item.HeaderLineTypeId } }).HeaderLineTypes.FirstOrDefault(),
+                          Id = item.Id,
+                          IsPrintable = item.IsPrintable,
+                          LineNumber = item.LineNumber,
+                          PreparationObservation = item.PreparationObservation,
+                          Quantity = item.Quantity,
+                          SellPrice = item.SellPrice,
+                          SupplierCompanyName = item.SupplierCompanyName,
+                          Unit = new UnitsService().Get(new Units() { Ids = new List<int>() { item.UnitId } }).Units.FirstOrDefault(),
+                          VatRate = item.VatRate
+                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+
+      response.ItemsCount = collection.Count();
+      if (request.PageSize > 0)
+      {
+        response.HeaderLines.AddRange(collection.Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      }
+      else
+      {
+        response.HeaderLines.AddRange(collection);
+      }
+      response.PagesCount = collection.Count() / response.HeaderLines.Count + (collection.Count() % response.HeaderLines.Count > 0 ? 1 : 0);
 
       return response;
     }

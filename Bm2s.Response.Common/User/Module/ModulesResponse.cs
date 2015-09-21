@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Bm2s.Response.Common.User.Module
 {
-  public class ModulesResponse
+  public class ModulesResponse : Response
   {
     public ModulesResponse()
     {

@@ -31,16 +31,27 @@ namespace Bm2s.Services.Common.Parameter.Translation
         items.AddRange(Datas.Instance.DataStorage.Translations.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.Translations.AddRange((from item in items
-                                      select new Bm2s.Poco.Common.Parameter.Translation()
-                                   {
-                                     Application = item.Application,
-                                     Id = item.Id,
-                                     Key = item.Key,
-                                     Language = new LanguagesService().Get(new Languages() { Ids = new List<int>() { item.LanguageId } }).Languages.FirstOrDefault(),
-                                     Screen = item.Screen,
-                                     Value = item.Value
-                                   }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      var collection = (from item in items
+                        select new Bm2s.Poco.Common.Parameter.Translation()
+                     {
+                       Application = item.Application,
+                       Id = item.Id,
+                       Key = item.Key,
+                       Language = new LanguagesService().Get(new Languages() { Ids = new List<int>() { item.LanguageId } }).Languages.FirstOrDefault(),
+                       Screen = item.Screen,
+                       Value = item.Value
+                     }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+
+      response.ItemsCount = collection.Count();
+      if (request.PageSize > 0)
+      {
+        response.Translations.AddRange(collection.Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      }
+      else
+      {
+        response.Translations.AddRange(collection);
+      }
+      response.PagesCount = collection.Count() / response.Translations.Count + (collection.Count() % response.Translations.Count > 0 ? 1 : 0);
 
       return response;
     }

@@ -27,14 +27,25 @@ namespace Bm2s.Services.Common.Trade.HeaderOrigin
         items.AddRange(Datas.Instance.DataStorage.HeaderOrigins.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.HeaderOrigins.AddRange((from item in items
-                                      select new Bm2s.Poco.Common.Trade.HeaderOrigin()
-                                      {
-                                        Date = item.Date,
-                                        HeaderChild = new HeadersService().Get(new Headers() { Ids = new List<int>() { item.HeaderChildId} }).Headers.FirstOrDefault(),
-                                        HeaderParent = new HeadersService().Get(new Headers() { Ids = new List<int>() { item.HeaderParentId } }).Headers.FirstOrDefault(),
-                                        Id = item.Id
-                                      }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      var collection = (from item in items
+                        select new Bm2s.Poco.Common.Trade.HeaderOrigin()
+                        {
+                          Date = item.Date,
+                          HeaderChild = new HeadersService().Get(new Headers() { Ids = new List<int>() { item.HeaderChildId } }).Headers.FirstOrDefault(),
+                          HeaderParent = new HeadersService().Get(new Headers() { Ids = new List<int>() { item.HeaderParentId } }).Headers.FirstOrDefault(),
+                          Id = item.Id
+                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+
+      response.ItemsCount = collection.Count();
+      if (request.PageSize > 0)
+      {
+        response.HeaderOrigins.AddRange(collection.Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      }
+      else
+      {
+        response.HeaderOrigins.AddRange(collection);
+      }
+      response.PagesCount = collection.Count() / response.HeaderOrigins.Count + (collection.Count() % response.HeaderOrigins.Count > 0 ? 1 : 0);
 
       return response;
     }

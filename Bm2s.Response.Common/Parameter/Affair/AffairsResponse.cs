@@ -2,7 +2,7 @@
 
 namespace Bm2s.Response.Common.Parameter.Affair
 {
-  public class AffairsResponse
+  public class AffairsResponse : Response
   {
     public AffairsResponse()
     {

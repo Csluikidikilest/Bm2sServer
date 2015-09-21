@@ -2,7 +2,7 @@
 
 namespace Bm2s.Response.Common.Article.Nomenclature
 {
-  public class NomenclaturesResponse
+  public class NomenclaturesResponse : Response
   {
     public NomenclaturesResponse()
     {

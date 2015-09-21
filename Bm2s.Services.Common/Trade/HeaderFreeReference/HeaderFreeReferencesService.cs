@@ -25,13 +25,24 @@ namespace Bm2s.Services.Common.Trade.HeaderFreeReference
         items.AddRange(Datas.Instance.DataStorage.HeaderFreeReferences.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.HeaderFreeReferences.AddRange((from item in items
-                                             select new Bm2s.Poco.Common.Trade.HeaderFreeReference()
-                                             {
-                                               HeaderStatus = new HeaderStatusesService().Get(new HeaderStatuses() { Ids = new List<int>() { item.HeaderStatusId} }).HeaderStatuses.FirstOrDefault(),
-                                               Id = item.Id,
-                                               Reference = item.Reference
-                                             }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      var collection = (from item in items
+                        select new Bm2s.Poco.Common.Trade.HeaderFreeReference()
+                        {
+                          HeaderStatus = new HeaderStatusesService().Get(new HeaderStatuses() { Ids = new List<int>() { item.HeaderStatusId } }).HeaderStatuses.FirstOrDefault(),
+                          Id = item.Id,
+                          Reference = item.Reference
+                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+
+      response.ItemsCount = collection.Count();
+      if (request.PageSize > 0)
+      {
+        response.HeaderFreeReferences.AddRange(collection.Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      }
+      else
+      {
+        response.HeaderFreeReferences.AddRange(collection);
+      }
+      response.PagesCount = collection.Count() / response.HeaderFreeReferences.Count + (collection.Count() % response.HeaderFreeReferences.Count > 0 ? 1 : 0);
 
       return response;
     }

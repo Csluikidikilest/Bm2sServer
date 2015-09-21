@@ -24,14 +24,25 @@ namespace Bm2s.Services.Common.Trade.HeaderLineType
         items.AddRange(Datas.Instance.DataStorage.HeaderLineTypes.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.HeaderLineTypes.AddRange((from item in items
-                                        select new Bm2s.Poco.Common.Trade.HeaderLineType()
-                                        {
-                                          EndingDate = item.EndingDate,
-                                          Id = item.Id,
-                                          Name = item.Name,
-                                          StartingDate = item.StartingDate
-                                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      var collection = (from item in items
+                        select new Bm2s.Poco.Common.Trade.HeaderLineType()
+                        {
+                          EndingDate = item.EndingDate,
+                          Id = item.Id,
+                          Name = item.Name,
+                          StartingDate = item.StartingDate
+                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+
+      response.ItemsCount = collection.Count();
+      if (request.PageSize > 0)
+      {
+        response.HeaderLineTypes.AddRange(collection.Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      }
+      else
+      {
+        response.HeaderLineTypes.AddRange(collection);
+      }
+      response.PagesCount = collection.Count() / response.HeaderLineTypes.Count + (collection.Count() % response.HeaderLineTypes.Count > 0 ? 1 : 0);
 
       return response;
     }

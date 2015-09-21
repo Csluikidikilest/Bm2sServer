@@ -2,7 +2,7 @@
 
 namespace Bm2s.Response.Common.Article.ArticleFamily
 {
-  public class ArticleFamiliesResponse
+  public class ArticleFamiliesResponse : Response
   {
     public ArticleFamiliesResponse()
     {

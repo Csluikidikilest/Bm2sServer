@@ -26,13 +26,24 @@ namespace Bm2s.Services.Common.Trade.HeaderStatusStep
         items.AddRange(Datas.Instance.DataStorage.HeaderStatusSteps.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.HeaderStatusSteps.AddRange((from item in items
-                                          select new Bm2s.Poco.Common.Trade.HeaderStatusStep()
-                                          {
-                                            HeaderStatusChild = new HeaderStatusesService().Get(new HeaderStatuses() { Ids = new List<int>() { item.HeaderStatusChildId } }).HeaderStatuses.FirstOrDefault(),
-                                            HeaderStatusParent = new HeaderStatusesService().Get(new HeaderStatuses() { Ids = new List<int>() { item.HeaderStatusParentId } }).HeaderStatuses.FirstOrDefault(),
-                                            Id = item.Id
-                                          }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      var collection = (from item in items
+                        select new Bm2s.Poco.Common.Trade.HeaderStatusStep()
+                        {
+                          HeaderStatusChild = new HeaderStatusesService().Get(new HeaderStatuses() { Ids = new List<int>() { item.HeaderStatusChildId } }).HeaderStatuses.FirstOrDefault(),
+                          HeaderStatusParent = new HeaderStatusesService().Get(new HeaderStatuses() { Ids = new List<int>() { item.HeaderStatusParentId } }).HeaderStatuses.FirstOrDefault(),
+                          Id = item.Id
+                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+
+      response.ItemsCount = collection.Count();
+      if (request.PageSize > 0)
+      {
+        response.HeaderStatusSteps.AddRange(collection.Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      }
+      else
+      {
+        response.HeaderStatusSteps.AddRange(collection);
+      }
+      response.PagesCount = collection.Count() / response.HeaderStatusSteps.Count + (collection.Count() % response.HeaderStatusSteps.Count > 0 ? 1 : 0);
 
       return response;
     }

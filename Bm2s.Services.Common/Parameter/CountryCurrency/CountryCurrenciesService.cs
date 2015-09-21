@@ -29,15 +29,26 @@ namespace Bm2s.Services.Common.Parameter.CountryCurrency
         items.AddRange(Datas.Instance.DataStorage.CountryCurrencies.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.CountryCurrencies.AddRange((from item in items
-                                          select new Bm2s.Poco.Common.Parameter.CountryCurrency()
-                                          {
-                                            Country = new CountriesService().Get(new Countries() { Ids = new List<int>() { item.CountryId } }).Countries.FirstOrDefault(),
-                                            EndingDate = item.EndingDate,
-                                            Id = item.Id,
-                                            StartingDate = item.StartingDate,
-                                            Unit = new UnitsService().Get(new Units() { Ids = new List<int>() { item.UnitId } }).Units.FirstOrDefault()
-                                          }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      var collection = (from item in items
+                        select new Bm2s.Poco.Common.Parameter.CountryCurrency()
+                        {
+                          Country = new CountriesService().Get(new Countries() { Ids = new List<int>() { item.CountryId } }).Countries.FirstOrDefault(),
+                          EndingDate = item.EndingDate,
+                          Id = item.Id,
+                          StartingDate = item.StartingDate,
+                          Unit = new UnitsService().Get(new Units() { Ids = new List<int>() { item.UnitId } }).Units.FirstOrDefault()
+                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+
+      response.ItemsCount = collection.Count();
+      if (request.PageSize > 0)
+      {
+        response.CountryCurrencies.AddRange(collection.Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      }
+      else
+      {
+        response.CountryCurrencies.AddRange(collection);
+      }
+      response.PagesCount = collection.Count() / response.CountryCurrencies.Count + (collection.Count() % response.CountryCurrencies.Count > 0 ? 1 : 0);
 
       return response;
     }

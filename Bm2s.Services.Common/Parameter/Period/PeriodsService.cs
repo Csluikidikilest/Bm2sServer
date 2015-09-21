@@ -28,17 +28,28 @@ namespace Bm2s.Services.Common.Parameter.Period
         items.AddRange(Datas.Instance.DataStorage.Periods.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.Periods.AddRange((from item in items
-                                select new Bm2s.Poco.Common.Parameter.Period()
-                                {
-                                  Code = item.Code,
-                                  EndingDate = item.EndingDate,
-                                  Id = item.Id,
-                                  Interval = item.Interval,
-                                  Name = item.Name,
-                                  StartingDate = item.StartingDate,
-                                  Unit = new UnitsService().Get(new Units() { Ids = new List<int>() { item.UnitId } }).Units.FirstOrDefault()
-                                }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      var collection = (from item in items
+                        select new Bm2s.Poco.Common.Parameter.Period()
+                        {
+                          Code = item.Code,
+                          EndingDate = item.EndingDate,
+                          Id = item.Id,
+                          Interval = item.Interval,
+                          Name = item.Name,
+                          StartingDate = item.StartingDate,
+                          Unit = new UnitsService().Get(new Units() { Ids = new List<int>() { item.UnitId } }).Units.FirstOrDefault()
+                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+
+      response.ItemsCount = collection.Count();
+      if (request.PageSize > 0)
+      {
+        response.Periods.AddRange(collection.Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      }
+      else
+      {
+        response.Periods.AddRange(collection);
+      }
+      response.PagesCount = collection.Count() / response.Periods.Count + (collection.Count() % response.Periods.Count > 0 ? 1 : 0);
 
       return response;
     }

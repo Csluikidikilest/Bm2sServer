@@ -24,16 +24,27 @@ namespace Bm2s.Services.Common.Parameter.Vat
         items.AddRange(Datas.Instance.DataStorage.Vats.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.Vats.AddRange((from item in items
-                             select new Bm2s.Poco.Common.Parameter.Vat()
-                             {
-                               AccountingEntry = item.AccountingEntry,
-                               Code = item.Code,
-                               EndingDate = item.EndingDate,
-                               Id = item.Id,
-                               Rate = item.Rate,
-                               StartingDate = item.StartingDate
-                             }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      var collection = (from item in items
+                        select new Bm2s.Poco.Common.Parameter.Vat()
+                        {
+                          AccountingEntry = item.AccountingEntry,
+                          Code = item.Code,
+                          EndingDate = item.EndingDate,
+                          Id = item.Id,
+                          Rate = item.Rate,
+                          StartingDate = item.StartingDate
+                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+
+      response.ItemsCount = collection.Count();
+      if (request.PageSize > 0)
+      {
+        response.Vats.AddRange(collection.Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      }
+      else
+      {
+        response.Vats.AddRange(collection);
+      }
+      response.PagesCount = collection.Count() / response.Vats.Count + (collection.Count() % response.Vats.Count > 0 ? 1 : 0);
 
       return response;
     }

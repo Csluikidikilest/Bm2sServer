@@ -2,7 +2,7 @@
 
 namespace Bm2s.Response.Common.Parameter.Parameter
 {
-  public class ParametersResponse
+  public class ParametersResponse : Response
   {
     public ParametersResponse()
     {

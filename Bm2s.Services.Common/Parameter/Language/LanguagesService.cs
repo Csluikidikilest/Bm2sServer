@@ -24,13 +24,24 @@ namespace Bm2s.Services.Common.Parameter.Language
         items.AddRange(Datas.Instance.DataStorage.Languages.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.Languages.AddRange((from item in items
-                                  select new Bm2s.Poco.Common.Parameter.Language()
-                                  {
-                                     Code = item.Code,
-                                     Id = item.Id,
-                                     Name = item.Name
-                                  }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      var collection = (from item in items
+                        select new Bm2s.Poco.Common.Parameter.Language()
+                        {
+                          Code = item.Code,
+                          Id = item.Id,
+                          Name = item.Name
+                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+
+      response.ItemsCount = collection.Count();
+      if (request.PageSize > 0)
+      {
+        response.Languages.AddRange(collection.Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      }
+      else
+      {
+        response.Languages.AddRange(collection);
+      }
+      response.PagesCount = collection.Count() / response.Languages.Count + (collection.Count() % response.Languages.Count > 0 ? 1 : 0);
 
       return response;
     }

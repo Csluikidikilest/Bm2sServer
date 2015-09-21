@@ -2,7 +2,7 @@
 
 namespace Bm2s.Response.Common.Parameter.Vat
 {
-  public class VatsResponse
+  public class VatsResponse : Response
   {
     public VatsResponse()
     {

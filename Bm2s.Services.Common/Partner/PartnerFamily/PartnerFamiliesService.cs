@@ -25,16 +25,27 @@ namespace Bm2s.Services.Common.Partner.PartnerFamily
         items.AddRange(Datas.Instance.DataStorage.PartnerFamilies.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.PartnerFamilies.AddRange((from item in items
-                                        select new Bm2s.Poco.Common.Partner.PartnerFamily()
-                                        {
-                                          Code = item.Code,
-                                          Description = item.Description,
-                                          Designation = item.Designation,
-                                          EndingDate = item.EndingDate,
-                                          Id = item.Id,
-                                          StartingDate = item.StartingDate
-                                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      var collection = (from item in items
+                        select new Bm2s.Poco.Common.Partner.PartnerFamily()
+                        {
+                          Code = item.Code,
+                          Description = item.Description,
+                          Designation = item.Designation,
+                          EndingDate = item.EndingDate,
+                          Id = item.Id,
+                          StartingDate = item.StartingDate
+                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+
+      response.ItemsCount = collection.Count();
+      if (request.PageSize > 0)
+      {
+        response.PartnerFamilies.AddRange(collection.Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      }
+      else
+      {
+        response.PartnerFamilies.AddRange(collection);
+      }
+      response.PagesCount = collection.Count() / response.PartnerFamilies.Count + (collection.Count() % response.PartnerFamilies.Count > 0 ? 1 : 0);
 
       return response;
     }

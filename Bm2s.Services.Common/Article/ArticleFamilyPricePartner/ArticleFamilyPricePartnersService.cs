@@ -32,18 +32,30 @@ namespace Bm2s.Services.Common.Article.ArticleFamilyPricePartner
         items.AddRange(Datas.Instance.DataStorage.ArticleFamilyPricePartners.Where(item => request.Ids.Contains(item.Id)));
       }
 
-      response.ArticleFamilyPricePartners.AddRange((from item in items
-                                                   select new Bm2s.Poco.Common.Article.ArticleFamilyPricePartner()
-                                                   {
-                                                     AddPrice = item.AddPrice,
-                                                     ArticleFamily = new ArticleFamiliesService().Get(new ArticleFamilies() { Ids = new List<int>() { item.ArticleFamilyId } }).ArticleFamilies.FirstOrDefault(),
-                                                     EndingDate = item.EndingDate,
-                                                     Id = item.Id,
-                                                     Multiplier = item.Multiplier,
-                                                     Partner = new PartnersService().Get(new Partners() { Ids = new List<int>() { item.PartnerId } }).Partners.FirstOrDefault(),
-                                                     Price = item.Price,
-                                                     StartingDate = item.StartingDate
-                                                   }).AsQueryable().OrderBy(request.Order, request.AscendingOrder).Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      var collection = (from item in items
+                        select new Bm2s.Poco.Common.Article.ArticleFamilyPricePartner()
+                        {
+                          AddPrice = item.AddPrice,
+                          ArticleFamily = new ArticleFamiliesService().Get(new ArticleFamilies() { Ids = new List<int>() { item.ArticleFamilyId } }).ArticleFamilies.FirstOrDefault(),
+                          EndingDate = item.EndingDate,
+                          Id = item.Id,
+                          Multiplier = item.Multiplier,
+                          Partner = new PartnersService().Get(new Partners() { Ids = new List<int>() { item.PartnerId } }).Partners.FirstOrDefault(),
+                          Price = item.Price,
+                          StartingDate = item.StartingDate
+                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+
+      response.ItemsCount = collection.Count();
+      if (request.PageSize > 0)
+      {
+        response.ArticleFamilyPricePartners.AddRange(collection.Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      }
+      else
+      {
+        response.ArticleFamilyPricePartners.AddRange(collection);
+      }
+      response.PagesCount = collection.Count() / response.ArticleFamilyPricePartners.Count + (collection.Count() % response.ArticleFamilyPricePartners.Count > 0 ? 1 : 0);
+
       return response;
     }
 
