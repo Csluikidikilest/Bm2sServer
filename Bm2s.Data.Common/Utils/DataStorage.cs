@@ -74,6 +74,8 @@ namespace Bm2s.Data.Common.Utils
 
     public Tables<Group> Groups { get; set; }
     public Tables<GroupModule> GroupModules { get; set; }
+    public Tables<Message> Messages { get; set; }
+    public Tables<MessageRecipient> MessageRecipients { get; set; }
     public Tables<Module> Modules { get; set; }
     public Tables<User> Users { get; set; }
     public Tables<UserActivity> UserActivities { get; set; }
@@ -146,6 +148,8 @@ namespace Bm2s.Data.Common.Utils
 
       this.Groups = new Tables<Group>(this._ramStorage, this._dbConnection);
       this.GroupModules = new Tables<GroupModule>(this._ramStorage, this._dbConnection);
+      this.Messages = new Tables<Message>(this._ramStorage, this._dbConnection);
+      this.MessageRecipients = new Tables<MessageRecipient>(this._ramStorage, this._dbConnection);
       this.Modules = new Tables<Module>(this._ramStorage, this._dbConnection);
       this.Users = new Tables<User>(this._ramStorage, this._dbConnection);
       this.UserActivities = new Tables<UserActivity>(this._ramStorage, this._dbConnection);

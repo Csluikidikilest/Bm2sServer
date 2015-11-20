@@ -125,6 +125,8 @@ namespace Bm2s.Data.Common.Utils
         this.DbConnection.CreateTableIfNotExists<UserGroup>();
         this.DbConnection.CreateTableIfNotExists<UserModule>();
         this.DbConnection.CreateTableIfNotExists<Translation>();
+        this.DbConnection.CreateTableIfNotExists<Message>();
+        this.DbConnection.CreateTableIfNotExists<MessageRecipient>();
       }
       catch (Exception)
       {

@@ -136,6 +136,8 @@
     <Compile Include="BLL\Trade\Reconciliation.cs" />
     <Compile Include="BLL\User\Group.cs" />
     <Compile Include="BLL\User\GroupModule.cs" />
+    <Compile Include="BLL\User\Message.cs" />
+    <Compile Include="BLL\User\MessageRecipient.cs" />
     <Compile Include="BLL\User\Module.cs" />
     <Compile Include="BLL\User\User.cs" />
     <Compile Include="BLL\User\UserActivity.cs" />
