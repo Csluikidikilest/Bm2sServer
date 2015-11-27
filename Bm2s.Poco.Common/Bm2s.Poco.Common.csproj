@@ -99,6 +99,8 @@
     <Compile Include="Trade\Reconciliation.cs" />
     <Compile Include="User\Group.cs" />
     <Compile Include="User\GroupModule.cs" />
+    <Compile Include="User\Message.cs" />
+    <Compile Include="User\MessageRecipient.cs" />
     <Compile Include="User\Module.cs" />
     <Compile Include="User\User.cs" />
     <Compile Include="User\UserActivity.cs" />

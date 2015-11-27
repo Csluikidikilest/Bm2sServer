@@ -1,0 +1,84 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using ServiceStack.ServiceInterface;
+using Bm2s.Response.Common.User.MessageRecipient;
+using Bm2s.Data.Common.Utils;
+using Bm2s.Services.Common.User.Message;
+using Bm2s.Services.Common.User.User;
+using Bm2s.Response.Common.User.User;
+using Bm2s.Response.Common.User.Message;
+
+namespace Bm2s.Services.Common.User.MessageRecipient
+{
+  public class MessageRecipientsService : Service
+  {
+    public MessageRecipientsResponse Get(MessageRecipients request)
+    {
+      MessageRecipientsResponse response = new MessageRecipientsResponse();
+      List<Bm2s.Data.Common.BLL.User.MessageRecipient> items = new List<Data.Common.BLL.User.MessageRecipient>();
+      if (!request.Ids.Any())
+      {
+        items.AddRange(Datas.Instance.DataStorage.MessageRecipients.Where(item =>
+          (request.MessageId == 0 || item.MessageId == request.MessageId) &&
+          (request.UserId == 0 || item.UserId == request.UserId)
+          ));
+      }
+      else
+      {
+        items.AddRange(Datas.Instance.DataStorage.MessageRecipients.Where(item => request.Ids.Contains(item.Id)));
+      }
+
+      var collection = (from item in items
+                        select new Bm2s.Poco.Common.User.MessageRecipient()
+                        {
+                          Id = item.Id,
+                          Message = new MessagesService().Get(new Messages() { Ids = new List<int>() { item.MessageId } }).Messages.FirstOrDefault(),
+                          ReadingDate = item.ReadingDate,
+                          User = new UsersService().Get(new Users() { Ids = new List<int>() { item.UserId } }).Users.FirstOrDefault()
+                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+
+      response.ItemsCount = collection.Count();
+      if (request.PageSize > 0)
+      {
+        response.MessageRecipients.AddRange(collection.Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      }
+      else
+      {
+        response.MessageRecipients.AddRange(collection);
+      }
+      response.PagesCount = collection.Count() / response.MessageRecipients.Count + (collection.Count() % response.MessageRecipients.Count > 0 ? 1 : 0);
+
+      return response;
+    }
+
+    public MessageRecipientsResponse Post(MessageRecipients request)
+    {
+      if (request.MessageRecipient.Id > 0)
+      {
+        Bm2s.Data.Common.BLL.User.MessageRecipient item = Datas.Instance.DataStorage.MessageRecipients[request.MessageRecipient.Id];
+        item.MessageId = request.MessageRecipient.Message.Id;
+        item.ReadingDate = request.MessageRecipient.ReadingDate;
+        item.UserId = request.MessageRecipient.User.Id;
+      }
+      else
+      {
+        Bm2s.Data.Common.BLL.User.MessageRecipient item = new Data.Common.BLL.User.MessageRecipient()
+        {
+          MessageId = request.MessageRecipient.Message.Id,
+          ReadingDate = request.MessageRecipient.ReadingDate,
+          UserId = request.MessageRecipient.User.Id
+        };
+
+        Datas.Instance.DataStorage.MessageRecipients.Add(item);
+        request.MessageRecipient.Id = item.Id;
+      }
+
+      MessageRecipientsResponse response = new MessageRecipientsResponse();
+      response.MessageRecipients.Add(request.MessageRecipient);
+      return response;
+    }
+  }
+}

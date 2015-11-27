@@ -198,6 +198,10 @@
     <Compile Include="User\Group\GroupsResponse.cs" />
     <Compile Include="User\Login\Login.cs" />
     <Compile Include="User\Login\LoginResponse.cs" />
+    <Compile Include="User\MessageRecipient\MessageRecipients.cs" />
+    <Compile Include="User\MessageRecipient\MessageRecipientsResponse.cs" />
+    <Compile Include="User\Message\Messages.cs" />
+    <Compile Include="User\Message\MessagesResponse.cs" />
     <Compile Include="User\Module\Modules.cs" />
     <Compile Include="User\Module\ModulesResponse.cs" />
     <Compile Include="User\UserActivity\UserActivities.cs" />

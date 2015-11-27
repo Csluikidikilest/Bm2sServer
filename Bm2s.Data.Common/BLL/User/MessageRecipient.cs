@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 using Bm2s.Data.Utils.BLL;
 using ServiceStack.DataAnnotations;
 
