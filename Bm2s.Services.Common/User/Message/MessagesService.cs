@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Bm2s.Data.Common.Utils;
 using Bm2s.Response.Common.User.Message;
 using Bm2s.Response.Common.User.User;
 using Bm2s.Services.Common.User.User;
+using ServiceStack.ServiceInterface;
 
 namespace Bm2s.Services.Common.User.Message
 {
-  public class MessagesService
+  public class MessagesService : Service
   {
     public MessagesResponse Get(Messages request)
     {
