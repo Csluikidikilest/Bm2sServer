@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Bm2s.Data.Common.Utils;
 using Bm2s.Response.Common.User.Message;
+using Bm2s.Response.Common.User.User;
+using Bm2s.Services.Common.User.User;
 
 namespace Bm2s.Services.Common.User.Message
 {
@@ -29,6 +31,57 @@ namespace Bm2s.Services.Common.User.Message
         items.AddRange(Datas.Instance.DataStorage.Messages.Where(item => request.Ids.Contains(item.Id)));
       }
 
+      var collection = (from item in items
+                         select new Bm2s.Poco.Common.User.Message(){
+                           Body = item.Body,
+                           Id= item.Id,
+                           IsShortMessage = item.IsShortMessage,
+                           SendDate = item.SendDate,
+                           Subject = item.Subject,
+                           User = new UsersService().Get(new Users() { Ids = new List<int>() { item.UserId } }).Users.FirstOrDefault()
+                         }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+
+      response.ItemsCount = collection.Count();
+      if(request.PageSize>0)
+      {
+        response.Messages.AddRange(collection.Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize));
+      }
+      else
+      {
+        response.Messages.AddRange(collection);
+      }
+
+      return response;
+    }
+
+    public MessagesResponse Post(Messages request)
+    {
+      if (request.Message.Id > 0)
+      {
+        Bm2s.Data.Common.BLL.User.Message item = Datas.Instance.DataStorage.Messages[request.Message.Id];
+        item.Body = request.Message.Body;
+        item.IsShortMessage = request.Message.IsShortMessage;
+        item.SendDate = request.Message.SendDate;
+        item.Subject = request.Message.Subject;
+        item.UserId = request.Message.User.Id;
+      }
+      else
+      {
+        Bm2s.Data.Common.BLL.User.Message item = new Data.Common.BLL.User.Message()
+        {
+          Body = request.Message.Body,
+          IsShortMessage = request.Message.IsShortMessage,
+          SendDate = request.Message.SendDate,
+          Subject = request.Message.Subject,
+          UserId = request.Message.User.Id
+        };
+
+        Datas.Instance.DataStorage.Messages.Add(item);
+        request.Message.Id = item.Id;
+      }
+
+      MessagesResponse response = new MessagesResponse();
+      response.Messages.Add(request.Message);
       return response;
     }
   }
