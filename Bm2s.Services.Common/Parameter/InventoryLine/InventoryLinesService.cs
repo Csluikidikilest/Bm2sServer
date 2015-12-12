@@ -46,7 +46,15 @@ namespace Bm2s.Services.Common.Parameter.InventoryLine
       {
         response.InventoryLines.AddRange(collection);
       }
-      response.PagesCount = collection.Count() / response.InventoryLines.Count + (collection.Count() % response.InventoryLines.Count > 0 ? 1 : 0);
+
+      try
+      {
+        response.PagesCount = collection.Count() / response.InventoryLines.Count + (collection.Count() % response.InventoryLines.Count > 0 ? 1 : 0);
+      }
+      catch
+      {
+        response.PagesCount = 1;
+      }
 
       return response;
     }

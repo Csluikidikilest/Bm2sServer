@@ -50,7 +50,15 @@ namespace Bm2s.Services.Common.Parameter.Affair
       {
         response.Affairs.AddRange(collection);
       }
-      response.PagesCount = collection.Count() / response.Affairs.Count + (collection.Count() % response.Affairs.Count > 0 ? 1 : 0);
+
+      try
+      {
+        response.PagesCount = collection.Count() / response.Affairs.Count + (collection.Count() % response.Affairs.Count > 0 ? 1 : 0);
+      }
+      catch
+      {
+        response.PagesCount = 1;
+      }
 
       return response;
     }

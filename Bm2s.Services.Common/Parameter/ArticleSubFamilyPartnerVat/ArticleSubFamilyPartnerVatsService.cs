@@ -52,7 +52,15 @@ namespace Bm2s.Services.Common.Parameter.ArticleSubFamilyPartnerVat
       {
         response.ArticleSubFamilyPartnerVats.AddRange(collection);
       }
-      response.PagesCount = collection.Count() / response.ArticleSubFamilyPartnerVats.Count + (collection.Count() % response.ArticleSubFamilyPartnerVats.Count > 0 ? 1 : 0);
+
+      try
+      {
+        response.PagesCount = collection.Count() / response.ArticleSubFamilyPartnerVats.Count + (collection.Count() % response.ArticleSubFamilyPartnerVats.Count > 0 ? 1 : 0);
+      }
+      catch
+      {
+        response.PagesCount = 1;
+      }
 
       return response;
     }

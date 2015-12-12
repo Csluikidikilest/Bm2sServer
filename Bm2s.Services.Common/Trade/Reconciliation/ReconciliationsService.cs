@@ -46,7 +46,15 @@ namespace Bm2s.Services.Common.Trade.Reconciliation
       {
         response.Reconciliations.AddRange(collection);
       }
-      response.PagesCount = collection.Count() / response.Reconciliations.Count + (collection.Count() % response.Reconciliations.Count > 0 ? 1 : 0);
+
+      try
+      {
+        response.PagesCount = collection.Count() / response.Reconciliations.Count + (collection.Count() % response.Reconciliations.Count > 0 ? 1 : 0);
+      }
+      catch
+      {
+        response.PagesCount = 1;
+      }
 
       return response;
     }

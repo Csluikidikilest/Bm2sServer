@@ -44,7 +44,15 @@ namespace Bm2s.Services.Common.Article.Brand
       {
         response.Brands.AddRange(collection);
       }
-      response.PagesCount = collection.Count() / response.Brands.Count + (collection.Count() % response.Brands.Count > 0 ? 1 : 0);
+
+      try
+      {
+        response.PagesCount = collection.Count() / response.Brands.Count + (collection.Count() % response.Brands.Count > 0 ? 1 : 0);
+      }
+      catch
+      {
+        response.PagesCount = 1;
+      }
 
       return response;
     }

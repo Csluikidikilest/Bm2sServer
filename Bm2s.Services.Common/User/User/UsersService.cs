@@ -55,7 +55,15 @@ namespace Bm2s.Services.Common.User.User
       {
         response.Users.AddRange(collection);
       }
-      response.PagesCount = collection.Count() / response.Users.Count + (collection.Count() % response.Users.Count > 0 ? 1 : 0);
+
+      try
+      {
+        response.PagesCount = collection.Count() / response.Users.Count + (collection.Count() % response.Users.Count > 0 ? 1 : 0);
+      }
+      catch
+      {
+        response.PagesCount = 1;
+      }
 
       return response;
     }

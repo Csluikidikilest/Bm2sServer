@@ -45,7 +45,15 @@ namespace Bm2s.Services.Common.Article.SubscriptionPartner
       {
         response.SubscriptionPartners.AddRange(collection);
       }
-      response.PagesCount = collection.Count() / response.SubscriptionPartners.Count + (collection.Count() % response.SubscriptionPartners.Count > 0 ? 1 : 0);
+
+      try
+      {
+        response.PagesCount = collection.Count() / response.SubscriptionPartners.Count + (collection.Count() % response.SubscriptionPartners.Count > 0 ? 1 : 0);
+      }
+      catch
+      {
+        response.PagesCount = 1;
+      }
 
       return response;
     }

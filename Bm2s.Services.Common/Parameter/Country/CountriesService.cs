@@ -44,7 +44,15 @@ namespace Bm2s.Services.Common.Parameter.Country
       {
         response.Countries.AddRange(collection);
       }
-      response.PagesCount = collection.Count() / response.Countries.Count + (collection.Count() % response.Countries.Count > 0 ? 1 : 0);
+
+      try
+      {
+        response.PagesCount = collection.Count() / response.Countries.Count + (collection.Count() % response.Countries.Count > 0 ? 1 : 0);
+      }
+      catch
+      {
+        response.PagesCount = 1;
+      }
 
       return response;
     }

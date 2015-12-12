@@ -52,7 +52,15 @@ namespace Bm2s.Services.Common.Parameter.ArticleSubFamilyPartnerFamilyVat
       {
         response.ArticleSubFamilyPartnerFamilyVats.AddRange(collection);
       }
-      response.PagesCount = collection.Count() / response.ArticleSubFamilyPartnerFamilyVats.Count + (collection.Count() % response.ArticleSubFamilyPartnerFamilyVats.Count > 0 ? 1 : 0);
+
+      try
+      {
+        response.PagesCount = collection.Count() / response.ArticleSubFamilyPartnerFamilyVats.Count + (collection.Count() % response.ArticleSubFamilyPartnerFamilyVats.Count > 0 ? 1 : 0);
+      }
+      catch
+      {
+        response.PagesCount = 1;
+      }
 
       return response;
     }
@@ -72,13 +80,15 @@ namespace Bm2s.Services.Common.Parameter.ArticleSubFamilyPartnerFamilyVat
       }
       else
       {
-        Bm2s.Data.Common.BLL.Parameter.ArticleSubFamilyPartnerFamilyVat item = new Data.Common.BLL.Parameter.ArticleSubFamilyPartnerFamilyVat() {
-        AccountingEntry = request.ArticleSubFamilyPartnerFamilyVat.AccountingEntry,
-        ArticleSubFamilyId = request.ArticleSubFamilyPartnerFamilyVat.ArticleSubFamily.Id,
-        Multiplier = request.ArticleSubFamilyPartnerFamilyVat.Multiplier,
-        PartnerFamilyId = request.ArticleSubFamilyPartnerFamilyVat.PartnerFamily.Id,
-        Rate = request.ArticleSubFamilyPartnerFamilyVat.Rate,
-        VatId = request.ArticleSubFamilyPartnerFamilyVat.Vat.Id};
+        Bm2s.Data.Common.BLL.Parameter.ArticleSubFamilyPartnerFamilyVat item = new Data.Common.BLL.Parameter.ArticleSubFamilyPartnerFamilyVat()
+        {
+          AccountingEntry = request.ArticleSubFamilyPartnerFamilyVat.AccountingEntry,
+          ArticleSubFamilyId = request.ArticleSubFamilyPartnerFamilyVat.ArticleSubFamily.Id,
+          Multiplier = request.ArticleSubFamilyPartnerFamilyVat.Multiplier,
+          PartnerFamilyId = request.ArticleSubFamilyPartnerFamilyVat.PartnerFamily.Id,
+          Rate = request.ArticleSubFamilyPartnerFamilyVat.Rate,
+          VatId = request.ArticleSubFamilyPartnerFamilyVat.Vat.Id
+        };
 
         Datas.Instance.DataStorage.ArticleSubFamilyPartnerFamilyVats.Add(item);
         request.ArticleSubFamilyPartnerFamilyVat.Id = item.Id;

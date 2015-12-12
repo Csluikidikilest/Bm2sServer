@@ -45,7 +45,15 @@ namespace Bm2s.Services.Common.Article.Price
       {
         response.Prices.AddRange(collection);
       }
-      response.PagesCount = collection.Count() / response.Prices.Count + (collection.Count() % response.Prices.Count > 0 ? 1 : 0);
+
+      try
+      {
+        response.PagesCount = collection.Count() / response.Prices.Count + (collection.Count() % response.Prices.Count > 0 ? 1 : 0);
+      }
+      catch
+      {
+        response.PagesCount = 1;
+      }
 
       return response;
     }

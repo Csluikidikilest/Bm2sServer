@@ -44,7 +44,15 @@ namespace Bm2s.Services.Common.Trade.HeaderStatus
       {
         response.HeaderStatuses.AddRange(collection);
       }
-      response.PagesCount = collection.Count() / response.HeaderStatuses.Count + (collection.Count() % response.HeaderStatuses.Count > 0 ? 1 : 0);
+
+      try
+      {
+        response.PagesCount = collection.Count() / response.HeaderStatuses.Count + (collection.Count() % response.HeaderStatuses.Count > 0 ? 1 : 0);
+      }
+      catch
+      {
+        response.PagesCount = 1;
+      }
 
       return response;
     }

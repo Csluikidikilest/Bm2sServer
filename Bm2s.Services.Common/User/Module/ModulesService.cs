@@ -42,7 +42,15 @@ namespace Bm2s.Services.Common.User.Module
       {
         response.Modules.AddRange(collection);
       }
-      response.PagesCount = collection.Count() / response.Modules.Count + (collection.Count() % response.Modules.Count > 0 ? 1 : 0);
+
+      try
+      {
+        response.PagesCount = collection.Count() / response.Modules.Count + (collection.Count() % response.Modules.Count > 0 ? 1 : 0);
+      }
+      catch
+      {
+        response.PagesCount = 1;
+      }
 
       return response;
     }
