@@ -52,7 +52,15 @@ namespace Bm2s.Services.Common.Trade.Payment
       {
         response.Payments.AddRange(collection);
       }
-      response.PagesCount = collection.Count() / response.Payments.Count + (collection.Count() % response.Payments.Count > 0 ? 1 : 0);
+
+      try
+      {
+        response.PagesCount = collection.Count() / response.Payments.Count + (collection.Count() % response.Payments.Count > 0 ? 1 : 0);
+      }
+      catch
+      {
+        response.PagesCount = 1;
+      }
 
       return response;
     }

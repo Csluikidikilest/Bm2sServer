@@ -60,7 +60,15 @@ namespace Bm2s.Services.Common.Trade.Header
       {
         response.Headers.AddRange(collection);
       }
-      response.PagesCount = collection.Count() / response.Headers.Count + (collection.Count() % response.Headers.Count > 0 ? 1 : 0);
+
+      try
+      {
+        response.PagesCount = collection.Count() / response.Headers.Count + (collection.Count() % response.Headers.Count > 0 ? 1 : 0);
+      }
+      catch
+      {
+        response.PagesCount = 1;
+      }
 
       return response;
     }

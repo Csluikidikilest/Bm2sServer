@@ -50,7 +50,15 @@ namespace Bm2s.Services.Common.Trade.HeaderFile
       {
         response.HeaderFiles.AddRange(collection);
       }
-      response.PagesCount = collection.Count() / response.HeaderFiles.Count + (collection.Count() % response.HeaderFiles.Count > 0 ? 1 : 0);
+
+      try
+      {
+        response.PagesCount = collection.Count() / response.HeaderFiles.Count + (collection.Count() % response.HeaderFiles.Count > 0 ? 1 : 0);
+      }
+      catch
+      {
+        response.PagesCount = 1;
+      }
 
       return response;
     }

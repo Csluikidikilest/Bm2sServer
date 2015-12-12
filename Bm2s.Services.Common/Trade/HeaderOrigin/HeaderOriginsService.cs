@@ -45,7 +45,15 @@ namespace Bm2s.Services.Common.Trade.HeaderOrigin
       {
         response.HeaderOrigins.AddRange(collection);
       }
-      response.PagesCount = collection.Count() / response.HeaderOrigins.Count + (collection.Count() % response.HeaderOrigins.Count > 0 ? 1 : 0);
+
+      try
+      {
+        response.PagesCount = collection.Count() / response.HeaderOrigins.Count + (collection.Count() % response.HeaderOrigins.Count > 0 ? 1 : 0);
+      }
+      catch
+      {
+        response.PagesCount = 1;
+      }
 
       return response;
     }

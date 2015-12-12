@@ -45,7 +45,15 @@ namespace Bm2s.Services.Common.Parameter.UnitConversion
       {
         response.UnitConversions.AddRange(collection);
       }
-      response.PagesCount = collection.Count() / response.UnitConversions.Count + (collection.Count() % response.UnitConversions.Count > 0 ? 1 : 0);
+
+      try
+      {
+        response.PagesCount = collection.Count() / response.UnitConversions.Count + (collection.Count() % response.UnitConversions.Count > 0 ? 1 : 0);
+      }
+      catch
+      {
+        response.PagesCount = 1;
+      }
 
       return response;
     }

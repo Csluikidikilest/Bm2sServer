@@ -49,7 +49,15 @@ namespace Bm2s.Services.Common.Parameter.Period
       {
         response.Periods.AddRange(collection);
       }
-      response.PagesCount = collection.Count() / response.Periods.Count + (collection.Count() % response.Periods.Count > 0 ? 1 : 0);
+
+      try
+      {
+        response.PagesCount = collection.Count() / response.Periods.Count + (collection.Count() % response.Periods.Count > 0 ? 1 : 0);
+      }
+      catch
+      {
+        response.PagesCount = 1;
+      }
 
       return response;
     }

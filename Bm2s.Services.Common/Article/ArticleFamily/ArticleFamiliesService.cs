@@ -47,7 +47,15 @@ namespace Bm2s.Services.Common.Article.ArticleFamily
       {
         response.ArticleFamilies.AddRange(collection);
       }
-      response.PagesCount = collection.Count() / response.ArticleFamilies.Count + (collection.Count() % response.ArticleFamilies.Count > 0 ? 1 : 0);
+
+      try
+      {
+        response.PagesCount = collection.Count() / response.ArticleFamilies.Count + (collection.Count() % response.ArticleFamilies.Count > 0 ? 1 : 0);
+      }
+      catch
+      {
+        response.PagesCount = 1;
+      }
 
       return response;
     }

@@ -44,7 +44,15 @@ namespace Bm2s.Services.Common.Trade.PaymentMode
       {
         response.PaymentModes.AddRange(collection);
       }
-      response.PagesCount = collection.Count() / response.PaymentModes.Count + (collection.Count() % response.PaymentModes.Count > 0 ? 1 : 0);
+
+      try
+      {
+        response.PagesCount = collection.Count() / response.PaymentModes.Count + (collection.Count() % response.PaymentModes.Count > 0 ? 1 : 0);
+      }
+      catch
+      {
+        response.PagesCount = 1;
+      }
 
       return response;
     }

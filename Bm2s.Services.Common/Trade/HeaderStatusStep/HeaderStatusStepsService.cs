@@ -16,7 +16,7 @@ namespace Bm2s.Services.Common.Trade.HeaderStatusStep
       List<Bm2s.Data.Common.BLL.Trade.HeaderStatusStep> items = new List<Data.Common.BLL.Trade.HeaderStatusStep>();
       if (!request.Ids.Any())
       {
-        items.AddRange(Datas.Instance.DataStorage.HeaderStatusSteps.Where(item=>
+        items.AddRange(Datas.Instance.DataStorage.HeaderStatusSteps.Where(item =>
           (request.HeaderStatusChildId == 0 || item.HeaderStatusChildId == request.HeaderStatusChildId) &&
           (request.HeaderStatusParentId == 0 || item.HeaderStatusParentId == request.HeaderStatusParentId)
           ));
@@ -43,7 +43,15 @@ namespace Bm2s.Services.Common.Trade.HeaderStatusStep
       {
         response.HeaderStatusSteps.AddRange(collection);
       }
-      response.PagesCount = collection.Count() / response.HeaderStatusSteps.Count + (collection.Count() % response.HeaderStatusSteps.Count > 0 ? 1 : 0);
+
+      try
+      {
+        response.PagesCount = collection.Count() / response.HeaderStatusSteps.Count + (collection.Count() % response.HeaderStatusSteps.Count > 0 ? 1 : 0);
+      }
+      catch
+      {
+        response.PagesCount = 1;
+      }
 
       return response;
     }

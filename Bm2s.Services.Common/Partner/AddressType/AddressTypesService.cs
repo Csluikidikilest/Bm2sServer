@@ -43,7 +43,15 @@ namespace Bm2s.Services.Common.Partner.AddressType
       {
         response.AddressTypes.AddRange(collection);
       }
-      response.PagesCount = collection.Count() / response.AddressTypes.Count + (collection.Count() % response.AddressTypes.Count > 0 ? 1 : 0);
+
+      try
+      {
+        response.PagesCount = collection.Count() / response.AddressTypes.Count + (collection.Count() % response.AddressTypes.Count > 0 ? 1 : 0);
+      }
+      catch
+      {
+        response.PagesCount = 1;
+      }
 
       return response;
     }

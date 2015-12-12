@@ -80,7 +80,15 @@ namespace Bm2s.Services.Common.Trade.HeaderLine
       {
         response.HeaderLines.AddRange(collection);
       }
-      response.PagesCount = collection.Count() / response.HeaderLines.Count + (collection.Count() % response.HeaderLines.Count > 0 ? 1 : 0);
+
+      try
+      {
+        response.PagesCount = collection.Count() / response.HeaderLines.Count + (collection.Count() % response.HeaderLines.Count > 0 ? 1 : 0);
+      }
+      catch
+      {
+        response.PagesCount = 1;
+      }
 
       return response;
     }

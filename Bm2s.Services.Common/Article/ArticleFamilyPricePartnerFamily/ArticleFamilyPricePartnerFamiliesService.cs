@@ -53,7 +53,14 @@ namespace Bm2s.Services.Common.Article.ArticleFamilyPricePartnerFamily
       {
         response.ArticleFamilyPricePartnerFamilies.AddRange(collection);
       }
+
+      try { 
       response.PagesCount = collection.Count() / response.ArticleFamilyPricePartnerFamilies.Count + (collection.Count() % response.ArticleFamilyPricePartnerFamilies.Count > 0 ? 1 : 0);
+      }
+      catch
+      {
+        response.PagesCount = 1;
+      }
 
       return response;
     }

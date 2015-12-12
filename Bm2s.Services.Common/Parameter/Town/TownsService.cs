@@ -48,7 +48,15 @@ namespace Bm2s.Services.Common.Parameter.Town
       {
         response.Towns.AddRange(collection);
       }
-      response.PagesCount = collection.Count() / response.Towns.Count + (collection.Count() % response.Towns.Count > 0 ? 1 : 0);
+
+      try
+      {
+        response.PagesCount = collection.Count() / response.Towns.Count + (collection.Count() % response.Towns.Count > 0 ? 1 : 0);
+      }
+      catch
+      {
+        response.PagesCount = 1;
+      }
 
       return response;
     }
@@ -67,12 +75,13 @@ namespace Bm2s.Services.Common.Parameter.Town
       }
       else
       {
-        Bm2s.Data.Common.BLL.Parameter.Town item = new Data.Common.BLL.Parameter.Town() {
-        CountryId = request.Town.Country.Id,
-        EndingDate = request.Town.EndingDate,
-        Name = request.Town.Name,
-        StartingDate = request.Town.StartingDate,
-        ZipCode = request.Town.ZipCode
+        Bm2s.Data.Common.BLL.Parameter.Town item = new Data.Common.BLL.Parameter.Town()
+        {
+          CountryId = request.Town.Country.Id,
+          EndingDate = request.Town.EndingDate,
+          Name = request.Town.Name,
+          StartingDate = request.Town.StartingDate,
+          ZipCode = request.Town.ZipCode
         };
 
         Datas.Instance.DataStorage.Towns.Add(item);

@@ -53,7 +53,15 @@ namespace Bm2s.Services.Common.Trade.HeaderPartnerAddress
       {
         response.HeaderPartnerAddresses.AddRange(collection);
       }
-      response.PagesCount = collection.Count() / response.HeaderPartnerAddresses.Count + (collection.Count() % response.HeaderPartnerAddresses.Count > 0 ? 1 : 0);
+
+      try
+      {
+        response.PagesCount = collection.Count() / response.HeaderPartnerAddresses.Count + (collection.Count() % response.HeaderPartnerAddresses.Count > 0 ? 1 : 0);
+      }
+      catch
+      {
+        response.PagesCount = 1;
+      }
 
       return response;
     }

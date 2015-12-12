@@ -45,7 +45,15 @@ namespace Bm2s.Services.Common.Parameter.Activity
       {
         response.Activities.AddRange(collection);
       }
-      response.PagesCount = collection.Count() / response.Activities.Count + (collection.Count() % response.Activities.Count > 0 ? 1 : 0);
+
+      try
+      {
+        response.PagesCount = collection.Count() / response.Activities.Count + (collection.Count() % response.Activities.Count > 0 ? 1 : 0);
+      }
+      catch
+      {
+        response.PagesCount = 1;
+      }
 
       return response;
     }

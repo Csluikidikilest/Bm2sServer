@@ -41,7 +41,15 @@ namespace Bm2s.Services.Common.User.Group
       {
         response.Groups.AddRange(collection);
       }
-      response.PagesCount = collection.Count() / response.Groups.Count + (collection.Count() % response.Groups.Count > 0 ? 1 : 0);
+
+      try
+      {
+        response.PagesCount = collection.Count() / response.Groups.Count + (collection.Count() % response.Groups.Count > 0 ? 1 : 0);
+      }
+      catch
+      {
+        response.PagesCount = 1;
+      }
 
       return response;
     }

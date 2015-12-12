@@ -45,7 +45,15 @@ namespace Bm2s.Services.Common.Parameter.Parameter
       {
         response.Parameters.AddRange(collection);
       }
-      response.PagesCount = collection.Count() / response.Parameters.Count + (collection.Count() % response.Parameters.Count > 0 ? 1 : 0);
+
+      try
+      {
+        response.PagesCount = collection.Count() / response.Parameters.Count + (collection.Count() % response.Parameters.Count > 0 ? 1 : 0);
+      }
+      catch
+      {
+        response.PagesCount = 1;
+      }
 
       return response;
     }
@@ -66,14 +74,15 @@ namespace Bm2s.Services.Common.Parameter.Parameter
       }
       else
       {
-        Bm2s.Data.Common.BLL.Parameter.Parameter item = new Data.Common.BLL.Parameter.Parameter() {
-        bValue = request.Parameter.bValue,
-        Code = request.Parameter.Code,
-        dValue = request.Parameter.dValue,
-        fValue = request.Parameter.fValue,
-        iValue = request.Parameter.iValue,
-        sValue = request.Parameter.sValue,
-        ValueType = request.Parameter.ValueType
+        Bm2s.Data.Common.BLL.Parameter.Parameter item = new Data.Common.BLL.Parameter.Parameter()
+        {
+          bValue = request.Parameter.bValue,
+          Code = request.Parameter.Code,
+          dValue = request.Parameter.dValue,
+          fValue = request.Parameter.fValue,
+          iValue = request.Parameter.iValue,
+          sValue = request.Parameter.sValue,
+          ValueType = request.Parameter.ValueType
         };
 
         Datas.Instance.DataStorage.Parameters.Add(item);

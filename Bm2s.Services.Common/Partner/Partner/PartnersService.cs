@@ -59,7 +59,15 @@ namespace Bm2s.Services.Common.Partner.Partner
       {
         response.Partners.AddRange(collection);
       }
-      response.PagesCount = collection.Count() / response.Partners.Count + (collection.Count() % response.Partners.Count > 0 ? 1 : 0);
+
+      try
+      {
+        response.PagesCount = collection.Count() / response.Partners.Count + (collection.Count() % response.Partners.Count > 0 ? 1 : 0);
+      }
+      catch
+      {
+        response.PagesCount = 1;
+      }
 
       return response;
     }

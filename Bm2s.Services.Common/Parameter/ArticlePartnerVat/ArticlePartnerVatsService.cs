@@ -52,7 +52,15 @@ namespace Bm2s.Services.Common.Parameter.ArticlePartnerVat
       {
         response.ArticlePartnerVats.AddRange(collection);
       }
-      response.PagesCount = collection.Count() / response.ArticlePartnerVats.Count + (collection.Count() % response.ArticlePartnerVats.Count > 0 ? 1 : 0);
+
+      try
+      {
+        response.PagesCount = collection.Count() / response.ArticlePartnerVats.Count + (collection.Count() % response.ArticlePartnerVats.Count > 0 ? 1 : 0);
+      }
+      catch
+      {
+        response.PagesCount = 1;
+      }
 
       return response;
     }
@@ -77,7 +85,7 @@ namespace Bm2s.Services.Common.Parameter.ArticlePartnerVat
           AccountingEntry = request.ArticlePartnerVat.AccountingEntry,
           ArticleId = request.ArticlePartnerVat.Article.Id,
           Multiplier = request.ArticlePartnerVat.Multiplier,
-          PartnerId= request.ArticlePartnerVat.Partner.Id,
+          PartnerId = request.ArticlePartnerVat.Partner.Id,
           Rate = request.ArticlePartnerVat.Rate,
           VatId = request.ArticlePartnerVat.Vat.Id
         };

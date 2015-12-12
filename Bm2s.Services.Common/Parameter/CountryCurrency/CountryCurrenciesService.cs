@@ -48,7 +48,15 @@ namespace Bm2s.Services.Common.Parameter.CountryCurrency
       {
         response.CountryCurrencies.AddRange(collection);
       }
-      response.PagesCount = collection.Count() / response.CountryCurrencies.Count + (collection.Count() % response.CountryCurrencies.Count > 0 ? 1 : 0);
+
+      try
+      {
+        response.PagesCount = collection.Count() / response.CountryCurrencies.Count + (collection.Count() % response.CountryCurrencies.Count > 0 ? 1 : 0);
+      }
+      catch
+      {
+        response.PagesCount = 1;
+      }
 
       return response;
     }

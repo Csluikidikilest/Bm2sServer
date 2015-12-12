@@ -46,7 +46,15 @@ namespace Bm2s.Services.Common.User.MessageRecipient
       {
         response.MessageRecipients.AddRange(collection);
       }
-      response.PagesCount = collection.Count() / response.MessageRecipients.Count + (collection.Count() % response.MessageRecipients.Count > 0 ? 1 : 0);
+
+      try
+      {
+        response.PagesCount = collection.Count() / response.MessageRecipients.Count + (collection.Count() % response.MessageRecipients.Count > 0 ? 1 : 0);
+      }
+      catch
+      {
+        response.PagesCount = 1;
+      }
 
       return response;
     }

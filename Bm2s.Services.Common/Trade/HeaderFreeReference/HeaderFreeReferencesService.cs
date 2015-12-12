@@ -42,7 +42,15 @@ namespace Bm2s.Services.Common.Trade.HeaderFreeReference
       {
         response.HeaderFreeReferences.AddRange(collection);
       }
-      response.PagesCount = collection.Count() / response.HeaderFreeReferences.Count + (collection.Count() % response.HeaderFreeReferences.Count > 0 ? 1 : 0);
+
+      try
+      {
+        response.PagesCount = collection.Count() / response.HeaderFreeReferences.Count + (collection.Count() % response.HeaderFreeReferences.Count > 0 ? 1 : 0);
+      }
+      catch
+      {
+        response.PagesCount = 1;
+      }
 
       return response;
     }

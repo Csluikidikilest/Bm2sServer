@@ -51,7 +51,15 @@ namespace Bm2s.Services.Common.Parameter.Translation
       {
         response.Translations.AddRange(collection);
       }
-      response.PagesCount = collection.Count() / response.Translations.Count + (collection.Count() % response.Translations.Count > 0 ? 1 : 0);
+
+      try
+      {
+        response.PagesCount = collection.Count() / response.Translations.Count + (collection.Count() % response.Translations.Count > 0 ? 1 : 0);
+      }
+      catch
+      {
+        response.PagesCount = 1;
+      }
 
       return response;
     }

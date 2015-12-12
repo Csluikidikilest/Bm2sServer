@@ -50,7 +50,14 @@ namespace Bm2s.Services.Common.Article.ArticlePricePartnerFamily
       {
         response.ArticlePricePartnerFamilies.AddRange(collection);
       }
+
+      try {
       response.PagesCount = collection.Count() / response.ArticlePricePartnerFamilies.Count + (collection.Count() % response.ArticlePricePartnerFamilies.Count > 0 ? 1 : 0);
+      }
+      catch
+      {
+        response.PagesCount = 1;
+      }
 
       return response;
     }

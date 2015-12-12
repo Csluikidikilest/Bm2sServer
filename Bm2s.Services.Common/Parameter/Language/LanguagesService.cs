@@ -41,7 +41,15 @@ namespace Bm2s.Services.Common.Parameter.Language
       {
         response.Languages.AddRange(collection);
       }
-      response.PagesCount = collection.Count() / response.Languages.Count + (collection.Count() % response.Languages.Count > 0 ? 1 : 0);
+
+      try
+      {
+        response.PagesCount = collection.Count() / response.Languages.Count + (collection.Count() % response.Languages.Count > 0 ? 1 : 0);
+      }
+      catch
+      {
+        response.PagesCount = 1;
+      }
 
       return response;
     }

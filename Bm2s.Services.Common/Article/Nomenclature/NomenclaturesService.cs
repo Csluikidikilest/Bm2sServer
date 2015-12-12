@@ -45,7 +45,15 @@ namespace Bm2s.Services.Common.Article.Nomenclature
       {
         response.Nomenclatures.AddRange(collection);
       }
-      response.PagesCount = collection.Count() / response.Nomenclatures.Count + (collection.Count() % response.Nomenclatures.Count > 0 ? 1 : 0);
+
+      try
+      {
+        response.PagesCount = collection.Count() / response.Nomenclatures.Count + (collection.Count() % response.Nomenclatures.Count > 0 ? 1 : 0);
+      }
+      catch
+      {
+        response.PagesCount = 1;
+      }
 
       return response;
     }
