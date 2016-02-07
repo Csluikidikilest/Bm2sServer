@@ -22,9 +22,9 @@ namespace Bm2s.Server
       Url = string.Format("http://{0}:{1}/", ConfigurationManager.AppSettings["ListeningIp"], ConfigurationManager.AppSettings["ListeningPort"]);
       try
       {
-        Console.Write("Loading plugins : ");
-
         LoadPlugins(false);
+
+        System.Diagnostics.Process.Start(Url);
 
         Console.WriteLine("Listening on " + Url);
 
@@ -89,7 +89,6 @@ namespace Bm2s.Server
       Host = new AppHost(Assemblies.ToArray());
       Host.Init();
       Host.Start(Url);
-      Console.WriteLine("[OK]");
     }
 
     private static void Test()
