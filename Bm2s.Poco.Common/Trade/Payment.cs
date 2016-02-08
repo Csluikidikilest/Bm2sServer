@@ -11,6 +11,8 @@ namespace Bm2s.Poco.Common.Trade
 
     public DateTime Date { get; set; }
 
+    public string Reference { get; set; }
+
     public Partner.Partner Partner { get; set; }
 
     public PaymentMode PaymentMode { get; set; }

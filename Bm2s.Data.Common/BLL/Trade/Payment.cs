@@ -17,6 +17,8 @@ namespace Bm2s.Data.Common.BLL.Trade
 
     public DateTime Date { get; set; }
 
+    public string Reference { get; set; }
+
     [References(typeof(Partner.Partner))]
     public int PartnerId { get; set; }
 

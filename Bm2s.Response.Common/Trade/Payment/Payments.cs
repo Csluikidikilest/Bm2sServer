@@ -15,6 +15,8 @@ namespace Bm2s.Response.Common.Trade.Payment
 
     public DateTime? Date { get; set; }
 
+    public string Reference { get; set; }
+
     public int PartnerId { get; set; }
 
     public int PaymentModeId { get; set; }

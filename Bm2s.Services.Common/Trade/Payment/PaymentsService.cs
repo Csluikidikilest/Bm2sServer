@@ -38,6 +38,7 @@ namespace Bm2s.Services.Common.Trade.Payment
                           Amount = item.Amount,
                           Date = item.Date,
                           Id = item.Id,
+                          Reference = item.Reference,
                           Partner = new PartnersService().Get(new Partners() { Ids = new List<int>() { item.PartnerId } }).Partners.FirstOrDefault(),
                           PaymentMode = new PaymentModesService().Get(new PaymentModes() { Ids = new List<int>() { item.PaymentModeId } }).PaymentModes.FirstOrDefault(),
                           Unit = new UnitsService().Get(new Units() { Ids = new List<int>() { item.UnitId } }).Units.FirstOrDefault()
@@ -72,6 +73,7 @@ namespace Bm2s.Services.Common.Trade.Payment
         Bm2s.Data.Common.BLL.Trade.Payment item = Datas.Instance.DataStorage.Payments[request.Payment.Id];
         item.Amount = request.Payment.Amount;
         item.Date = request.Payment.Date;
+        item.Reference = request.Payment.Reference;
         item.PartnerId = request.Payment.Partner.Id;
         item.PaymentModeId = request.Payment.PaymentMode.Id;
         item.UnitId = request.Payment.Unit.Id;
@@ -83,6 +85,7 @@ namespace Bm2s.Services.Common.Trade.Payment
         {
           Amount = request.Payment.Amount,
           Date = request.Payment.Date,
+          Reference = request.Payment.Reference,
           PartnerId = request.Payment.Partner.Id,
           PaymentModeId = request.Payment.PaymentMode.Id,
           UnitId = request.Payment.Unit.Id
