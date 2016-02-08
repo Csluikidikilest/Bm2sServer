@@ -276,10 +276,10 @@ namespace Bm2s.Data.Common.Utils
       Console.Write("Initial datas english language: ");
 
       // Languages: ISO CODE 639-3: https://en.wikipedia.org/wiki/ISO_639
-      BLL.Parameter.Language english = this.DataStorage.Languages.FirstOrDefault(item => item.Code.ToLower() == "eng");
+      BLL.Parameter.Language english = this.DataStorage.Languages.FirstOrDefault(item => item.Code.ToLower() == "en-gb");
       if (english == null)
       {
-        english = new Language() { Code = "eng", Name = "English" };
+        english = new Language() { Code = "en-gb", Name = "English (Great Britain)" };
         this.DataStorage.Languages.Add(english);
       }
 

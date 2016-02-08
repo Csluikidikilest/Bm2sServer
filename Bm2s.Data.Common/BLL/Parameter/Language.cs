@@ -11,7 +11,7 @@ namespace Bm2s.Data.Common.BLL.Parameter
     public override int Id { get; set; }
 
     [Required]
-    [StringLength(3)]
+    [StringLength(5)]
     public string Code { get; set; }
 
     [Required]
