@@ -7,6 +7,8 @@ namespace Bm2s.Poco.Common.User
 
     public string Code { get; set; }
 
+    public bool IsSystem { get; set; }
+
     public string Name { get; set; }
   }
 }

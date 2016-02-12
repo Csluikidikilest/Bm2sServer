@@ -14,6 +14,8 @@ namespace Bm2s.Data.Common.BLL.User
     [StringLength(250)]
     public string Code { get; set; }
 
+    public bool IsSystem { get; set; }
+
     [Required]
     [StringLength(250)]
     public string Name { get; set; }

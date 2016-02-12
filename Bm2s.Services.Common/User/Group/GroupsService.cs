@@ -16,7 +16,8 @@ namespace Bm2s.Services.Common.User.Group
       {
         items.AddRange(Datas.Instance.DataStorage.Groups.Where(item =>
           (string.IsNullOrWhiteSpace(request.Code) || item.Code.ToLower().Contains(request.Code.ToLower())) &&
-          (string.IsNullOrWhiteSpace(request.Name) || item.Name.ToLower().Contains(request.Name.ToLower()))
+          (string.IsNullOrWhiteSpace(request.Name) || item.Name.ToLower().Contains(request.Name.ToLower())) &&
+          (!request.IsSystem || item.IsSystem)
           ));
       }
       else
@@ -29,6 +30,7 @@ namespace Bm2s.Services.Common.User.Group
                         {
                           Code = item.Code,
                           Id = item.Id,
+                          IsSystem = item.IsSystem,
                           Name = item.Name
                         }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
 
@@ -60,6 +62,7 @@ namespace Bm2s.Services.Common.User.Group
       {
         Bm2s.Data.Common.BLL.User.Group item = Datas.Instance.DataStorage.Groups[request.Group.Id];
         item.Code = request.Group.Code;
+        item.IsSystem = request.Group.IsSystem;
         item.Name = request.Group.Name;
         Datas.Instance.DataStorage.Groups[request.Group.Id] = item;
       }
@@ -68,6 +71,7 @@ namespace Bm2s.Services.Common.User.Group
         Bm2s.Data.Common.BLL.User.Group item = new Data.Common.BLL.User.Group()
         {
           Code = request.Group.Code,
+          IsSystem = request.Group.IsSystem,
           Name = request.Group.Name
         };
 

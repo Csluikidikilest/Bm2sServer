@@ -27,6 +27,8 @@ namespace Bm2s.Response.Common.User.User
 
     public bool IsAnonymous { get; set; }
 
+    public bool IsSystem { get; set; }
+
     public Bm2s.Poco.Common.User.User User { get; set; }
   }
 }

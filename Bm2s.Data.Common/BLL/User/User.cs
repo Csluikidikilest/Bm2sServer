@@ -31,6 +31,8 @@ namespace Bm2s.Data.Common.BLL.User
 
     public bool IsAnonymous { get; set; }
 
+    public bool IsSystem { get; set; }
+
     public DateTime StartingDate { get; set; }
 
     public DateTime? EndingDate { get; set; }

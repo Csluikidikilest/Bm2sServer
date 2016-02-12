@@ -26,6 +26,7 @@ namespace Bm2s.Services.Common.User.Login
           Id = user.Id,
           IsAdministrator = user.IsAdministrator,
           IsAnonymous = user.IsAnonymous,
+          IsSystem = user.IsSystem,
           LastName = user.LastName,
           Login = user.Login,
           Password = user.Password,

@@ -22,6 +22,7 @@ namespace Bm2s.Services.Common.User.User
           (string.IsNullOrWhiteSpace(request.Login) || item.Login.ToLower().Contains(request.Login.ToLower())) &&
           (!request.IsAdministrator || item.IsAdministrator) &&
           (!request.IsAnonymous || item.IsAnonymous) &&
+          (!request.IsSystem|| item.IsSystem) &&
           (request.DefaultLanguageId == 0 || item.DefaultLanguageId == request.DefaultLanguageId) &&
           (!request.Date.HasValue || (request.Date >= item.StartingDate && (!item.EndingDate.HasValue || request.Date < item.EndingDate.Value)))
           ));
@@ -40,6 +41,7 @@ namespace Bm2s.Services.Common.User.User
                           Id = item.Id,
                           IsAdministrator = item.IsAdministrator,
                           IsAnonymous = item.IsAnonymous,
+                          IsSystem = item.IsSystem,
                           LastName = item.LastName,
                           Login = item.Login,
                           Password = item.Password,
@@ -78,6 +80,7 @@ namespace Bm2s.Services.Common.User.User
         item.FirstName = request.User.FirstName;
         item.IsAdministrator = request.User.IsAdministrator;
         item.IsAnonymous = request.User.IsAnonymous;
+        item.IsSystem = request.User.IsSystem;
         item.LastName = request.User.LastName;
         item.Login = request.User.Login;
         item.Password = request.User.Password;
@@ -93,6 +96,7 @@ namespace Bm2s.Services.Common.User.User
           FirstName = request.User.FirstName,
           IsAdministrator = request.User.IsAdministrator,
           IsAnonymous = request.User.IsAnonymous,
+          IsSystem = request.User.IsSystem,
           LastName = request.User.LastName,
           Login = request.User.Login,
           Password = request.User.Password,
