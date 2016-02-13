@@ -283,6 +283,13 @@ namespace Bm2s.Data.Common.Utils
         this.DataStorage.Languages.Add(english);
       }
 
+      BLL.Parameter.Language french = this.DataStorage.Languages.FirstOrDefault(item => item.Code.ToLower() == "fr-fr");
+      if (french == null)
+      {
+        french = new Language() { Code = "fr-fr", Name = "Français (France)" };
+        this.DataStorage.Languages.Add(french);
+      }
+
       Console.WriteLine("[OK]");
       Console.Write("Initial datas administrators group: ");
 
