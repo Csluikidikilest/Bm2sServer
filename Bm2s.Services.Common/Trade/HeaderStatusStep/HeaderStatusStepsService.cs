@@ -32,7 +32,7 @@ namespace Bm2s.Services.Common.Trade.HeaderStatusStep
                           HeaderStatusChild = new HeaderStatusesService().Get(new HeaderStatuses() { Ids = new List<int>() { item.HeaderStatusChildId } }).HeaderStatuses.FirstOrDefault(),
                           HeaderStatusParent = new HeaderStatusesService().Get(new HeaderStatuses() { Ids = new List<int>() { item.HeaderStatusParentId } }).HeaderStatuses.FirstOrDefault(),
                           Id = item.Id
-                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+                        }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
       response.ItemsCount = collection.Count();
       if (request.PageSize > 0)

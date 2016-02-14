@@ -40,7 +40,7 @@ namespace Bm2s.Services.Common.Partner.PartnerFile
                           Name = item.Name,
                           Partner = new PartnersService().Get(new Partners() { Ids = new List<int>() { item.PartnerId } }).Partners.FirstOrDefault(),
                           User = new UsersService().Get(new Users() { Ids = new List<int>() { item.UserId } }).Users.FirstOrDefault()
-                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+                        }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
       response.ItemsCount = collection.Count();
       if (request.PageSize > 0)

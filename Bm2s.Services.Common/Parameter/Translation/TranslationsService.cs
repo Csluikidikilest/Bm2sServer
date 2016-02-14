@@ -40,7 +40,7 @@ namespace Bm2s.Services.Common.Parameter.Translation
                        Language = new LanguagesService().Get(new Languages() { Ids = new List<int>() { item.LanguageId } }).Languages.FirstOrDefault(),
                        Screen = item.Screen,
                        Value = item.Value
-                     }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+                     }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
       response.ItemsCount = collection.Count();
       if (request.PageSize > 0)

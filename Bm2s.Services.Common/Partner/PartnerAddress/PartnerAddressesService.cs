@@ -38,7 +38,7 @@ namespace Bm2s.Services.Common.Partner.PartnerAddress
                           AddressType = new AddressTypesService().Get(new AddressTypes() { Ids = new List<int>() { item.AddressTypeId } }).AddressTypes.FirstOrDefault(),
                           Id = item.Id,
                           Partner = new PartnersService().Get(new Partners() { Ids = new List<int>() { item.PartnerId } }).Partners.FirstOrDefault()
-                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+                        }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
       response.ItemsCount = collection.Count();
       if (request.PageSize > 0)

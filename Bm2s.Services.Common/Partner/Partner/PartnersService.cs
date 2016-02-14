@@ -48,7 +48,7 @@ namespace Bm2s.Services.Common.Partner.Partner
                           StartingDate = item.StartingDate,
                           User = new UsersService().Get(new Users() { Ids = new List<int>() { item.UserId } }).Users.FirstOrDefault(),
                           WebSite = item.WebSite
-                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+                        }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
       response.ItemsCount = collection.Count();
       if (request.PageSize > 0)

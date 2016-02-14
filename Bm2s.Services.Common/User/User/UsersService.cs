@@ -46,7 +46,7 @@ namespace Bm2s.Services.Common.User.User
                           Login = item.Login,
                           Password = item.Password,
                           StartingDate = item.StartingDate
-                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+                        }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
       response.ItemsCount = collection.Count();
       if (request.PageSize > 0)

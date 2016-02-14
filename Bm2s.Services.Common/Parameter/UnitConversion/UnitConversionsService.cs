@@ -34,7 +34,7 @@ namespace Bm2s.Services.Common.Parameter.UnitConversion
                           Multiplier = item.Multiplier,
                           Parent = new UnitsService().Get(new Units() { Ids = new List<int>() { item.ParentId } }).Units.FirstOrDefault(),
                           Quantity = item.Quantity
-                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+                        }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
       response.ItemsCount = collection.Count();
       if (request.PageSize > 0)

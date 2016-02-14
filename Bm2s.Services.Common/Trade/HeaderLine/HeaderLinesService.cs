@@ -69,7 +69,7 @@ namespace Bm2s.Services.Common.Trade.HeaderLine
                           SupplierCompanyName = item.SupplierCompanyName,
                           Unit = new UnitsService().Get(new Units() { Ids = new List<int>() { item.UnitId } }).Units.FirstOrDefault(),
                           VatRate = item.VatRate
-                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+                        }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
       response.ItemsCount = collection.Count();
       if (request.PageSize > 0)

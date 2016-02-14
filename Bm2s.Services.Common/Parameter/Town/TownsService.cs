@@ -37,7 +37,7 @@ namespace Bm2s.Services.Common.Parameter.Town
                           Name = item.Name,
                           StartingDate = item.StartingDate,
                           ZipCode = item.ZipCode
-                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+                        }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
       response.ItemsCount = collection.Count();
       if (request.PageSize > 0)

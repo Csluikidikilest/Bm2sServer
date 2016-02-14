@@ -49,7 +49,7 @@ namespace Bm2s.Services.Common.Trade.Header
                           IsSell = item.IsSell,
                           Reference = item.Reference,
                           User = new UsersService().Get(new Users() { Ids = new List<int>() { item.UserId } }).Users.FirstOrDefault()
-                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+                        }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
       response.ItemsCount = collection.Count();
       if (request.PageSize > 0)

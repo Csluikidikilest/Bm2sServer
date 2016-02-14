@@ -33,7 +33,7 @@ namespace Bm2s.Services.Common.Parameter.Vat
                           Id = item.Id,
                           Rate = item.Rate,
                           StartingDate = item.StartingDate
-                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+                        }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
       response.ItemsCount = collection.Count();
       if (request.PageSize > 0)

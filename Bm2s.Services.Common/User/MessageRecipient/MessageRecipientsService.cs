@@ -35,7 +35,7 @@ namespace Bm2s.Services.Common.User.MessageRecipient
                           Message = new MessagesService().Get(new Messages() { Ids = new List<int>() { item.MessageId } }).Messages.FirstOrDefault(),
                           ReadingDate = item.ReadingDate,
                           User = new UsersService().Get(new Users() { Ids = new List<int>() { item.UserId } }).Users.FirstOrDefault()
-                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+                        }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
       response.ItemsCount = collection.Count();
       if (request.PageSize > 0)

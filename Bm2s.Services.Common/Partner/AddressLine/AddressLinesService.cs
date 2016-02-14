@@ -32,7 +32,7 @@ namespace Bm2s.Services.Common.Partner.AddressLine
                           Id = item.Id,
                           Line = item.Line,
                           Order = item.Order
-                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+                        }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
       response.ItemsCount = collection.Count();
       if (request.PageSize > 0)

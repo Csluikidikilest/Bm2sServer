@@ -34,7 +34,7 @@ namespace Bm2s.Services.Common.Trade.HeaderOrigin
                           HeaderChild = new HeadersService().Get(new Headers() { Ids = new List<int>() { item.HeaderChildId } }).Headers.FirstOrDefault(),
                           HeaderParent = new HeadersService().Get(new Headers() { Ids = new List<int>() { item.HeaderParentId } }).Headers.FirstOrDefault(),
                           Id = item.Id
-                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+                        }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
       response.ItemsCount = collection.Count();
       if (request.PageSize > 0)

@@ -12,10 +12,10 @@ namespace Bm2s.Services
     public static IQueryable<T> OrderBy<T>(this IQueryable<T> source, string ordering, bool ascending, params object[] values)
     {
       var type = typeof(T);
-      var property = type.GetProperty(ordering);
-      if (property == null)
+      var property = type.GetProperty("Id");
+      if (!string.IsNullOrWhiteSpace(ordering))
       {
-        property = type.GetProperty("Id");
+        property = type.GetProperty(ordering); 
       }
 
       var parameter = Expression.Parameter(type, "p");

@@ -34,7 +34,7 @@ namespace Bm2s.Services.Common.Parameter.Activity
                           Id = item.Id,
                           TownName = item.TownName,
                           TownZipCode = item.TownZipCode
-                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+                        }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
       response.ItemsCount = collection.Count();
       if (request.PageSize > 0)

@@ -30,7 +30,7 @@ namespace Bm2s.Services.Common.Parameter.Language
                           Code = item.Code,
                           Id = item.Id,
                           Name = item.Name
-                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+                        }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
       response.ItemsCount = collection.Count();
       if (request.PageSize > 0)

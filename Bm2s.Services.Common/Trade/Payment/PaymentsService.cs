@@ -42,7 +42,7 @@ namespace Bm2s.Services.Common.Trade.Payment
                           Partner = new PartnersService().Get(new Partners() { Ids = new List<int>() { item.PartnerId } }).Partners.FirstOrDefault(),
                           PaymentMode = new PaymentModesService().Get(new PaymentModes() { Ids = new List<int>() { item.PaymentModeId } }).PaymentModes.FirstOrDefault(),
                           Unit = new UnitsService().Get(new Units() { Ids = new List<int>() { item.UnitId } }).Units.FirstOrDefault()
-                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+                        }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
       response.ItemsCount = collection.Count();
       if (request.PageSize > 0)

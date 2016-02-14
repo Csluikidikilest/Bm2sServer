@@ -34,7 +34,7 @@ namespace Bm2s.Services.Common.Article.Nomenclature
                           Id = item.Id,
                           Multiplier = item.Multiplier,
                           Quantity = item.Quantity
-                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+                        }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
       response.ItemsCount = collection.Count();
       if (request.PageSize > 0)

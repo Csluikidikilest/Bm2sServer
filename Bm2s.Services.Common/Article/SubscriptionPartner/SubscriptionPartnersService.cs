@@ -34,7 +34,7 @@ namespace Bm2s.Services.Common.Article.SubscriptionPartner
                           Id = item.Id,
                           Partner = new PartnersService().Get(new Partners() { Ids = new List<int>() { item.PartnerId } }).Partners.FirstOrDefault(),
                           Subscription = new SubscriptionsService().Get(new Subscriptions() { Ids = new List<int>() { item.SubscriptionId } }).Subscriptions.FirstOrDefault()
-                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+                        }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
       response.ItemsCount = collection.Count();
       if (request.PageSize > 0)

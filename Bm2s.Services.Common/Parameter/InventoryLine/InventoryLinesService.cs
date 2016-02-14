@@ -35,7 +35,7 @@ namespace Bm2s.Services.Common.Parameter.InventoryLine
                           Id = item.Id,
                           InventoryHeader = new InventoryHeadersService().Get(new InventoryHeaders() { Ids = new List<int>() { item.InventoryHeaderId } }).InventoryHeaders.FirstOrDefault(),
                           Quantity = item.Quantity
-                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+                        }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
       response.ItemsCount = collection.Count();
       if (request.PageSize > 0)

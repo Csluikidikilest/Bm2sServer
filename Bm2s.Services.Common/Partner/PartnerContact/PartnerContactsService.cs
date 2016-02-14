@@ -48,7 +48,7 @@ namespace Bm2s.Services.Common.Partner.PartnerContact
                           Partner = new PartnersService().Get(new Partners() { Ids = new List<int>() { item.PartnerId } }).Partners.FirstOrDefault(),
                           PhoneNumber = item.PhoneNumber,
                           StartingDate = item.StartingDate
-                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+                        }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
       response.ItemsCount = collection.Count();
       if (request.PageSize > 0)

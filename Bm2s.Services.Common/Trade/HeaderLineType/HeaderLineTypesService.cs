@@ -31,7 +31,7 @@ namespace Bm2s.Services.Common.Trade.HeaderLineType
                           Id = item.Id,
                           Name = item.Name,
                           StartingDate = item.StartingDate
-                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+                        }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
       response.ItemsCount = collection.Count();
       if (request.PageSize > 0)

@@ -37,7 +37,7 @@ namespace Bm2s.Services.Common.Parameter.CountryCurrency
                           Id = item.Id,
                           StartingDate = item.StartingDate,
                           Unit = new UnitsService().Get(new Units() { Ids = new List<int>() { item.UnitId } }).Units.FirstOrDefault()
-                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+                        }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
       response.ItemsCount = collection.Count();
       if (request.PageSize > 0)

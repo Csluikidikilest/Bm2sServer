@@ -40,7 +40,7 @@ namespace Bm2s.Services.Common.Article.Subscription
                           Id = item.Id,
                           Period = new PeriodsService().Get(new Periods() { Ids = new List<int>() { item.PeriodId } }).Periods.FirstOrDefault(),
                           StartingDate = item.StartingDate
-                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+                        }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
       response.ItemsCount = collection.Count();
       if (request.PageSize > 0)
