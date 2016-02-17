@@ -28,14 +28,7 @@ namespace Bm2s.Data.Utils.BLL
 
     public int IndexOf(T item)
     {
-      if (this._ramStorage)
-      {
-        return this._innerList.IndexOf(item);
-      }
-      else
-      {
-        return item.Id;
-      }
+      return item.Id;
     }
 
     public void Insert(int index, T item)
@@ -53,8 +46,8 @@ namespace Bm2s.Data.Utils.BLL
       T item = null;
       if (this._ramStorage)
       {
-        item = this._innerList[index];
-        this._innerList.RemoveAt(index);
+        item = this._innerList.FirstOrDefault(x => x.Id == index);
+        this._innerList.Remove(item);
       }
       else
       {
@@ -72,7 +65,7 @@ namespace Bm2s.Data.Utils.BLL
 
         if (this._ramStorage)
         {
-          result = this._innerList[index];
+          result = this._innerList.FirstOrDefault(x => x.Id == index);
         }
         else
         {
@@ -85,7 +78,8 @@ namespace Bm2s.Data.Utils.BLL
       {
         if (this._ramStorage)
         {
-          this._innerList[index] = value;
+          T item = this._innerList.FirstOrDefault(x =>x.Id == index);
+          item = value;
         }
 
         value.Save<T>(this._dbConnection);
@@ -114,7 +108,7 @@ namespace Bm2s.Data.Utils.BLL
     {
       if (this._ramStorage)
       {
-        return this._innerList.Contains(item);
+        return this._innerList.Any<T>(x => x.Id == item.Id);
       }
       else
       {
