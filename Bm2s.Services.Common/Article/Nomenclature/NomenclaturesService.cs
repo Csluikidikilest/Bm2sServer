@@ -32,8 +32,8 @@ namespace Bm2s.Services.Common.Article.Nomenclature
                           ArticleParent = new ArticlesService().Get(new Articles() { Ids = new List<int>() { item.ArticleParentId } }).Articles.FirstOrDefault(),
                           BuyPrice = item.BuyPrice,
                           Id = item.Id,
-                          Multiplier = item.Multiplier,
-                          Quantity = item.Quantity
+                          QuantityChild = item.QuantityChild,
+                          QuantityParent = item.QuantityParent
                         }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
       response.ItemsCount = collection.Count();
@@ -66,8 +66,8 @@ namespace Bm2s.Services.Common.Article.Nomenclature
         item.ArticleChildId = request.Nomenclature.ArticleChild.Id;
         item.ArticleParentId = request.Nomenclature.ArticleParent.Id;
         item.BuyPrice = request.Nomenclature.BuyPrice;
-        item.Multiplier = request.Nomenclature.Multiplier;
-        item.Quantity = request.Nomenclature.Quantity;
+        item.QuantityChild = request.Nomenclature.QuantityChild;
+        item.QuantityParent = request.Nomenclature.QuantityParent;
         Datas.Instance.DataStorage.Nomenclatures[request.Nomenclature.Id] = item;
       }
       else
@@ -77,8 +77,8 @@ namespace Bm2s.Services.Common.Article.Nomenclature
           ArticleChildId = request.Nomenclature.ArticleChild.Id,
           ArticleParentId = request.Nomenclature.ArticleParent.Id,
           BuyPrice = request.Nomenclature.BuyPrice,
-          Multiplier = request.Nomenclature.Multiplier,
-          Quantity = request.Nomenclature.Quantity
+          QuantityChild = request.Nomenclature.QuantityChild,
+          QuantityParent = request.Nomenclature.QuantityParent
         };
 
         Datas.Instance.DataStorage.Nomenclatures.Add(item);

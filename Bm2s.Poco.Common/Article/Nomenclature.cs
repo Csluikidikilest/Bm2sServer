@@ -5,9 +5,9 @@ namespace Bm2s.Poco.Common.Article
   {
     public int Id { get; set; }
 
-    public int? Quantity { get; set; }
+    public int QuantityParent { get; set; }
 
-    public double? Multiplier { get; set; }
+    public int QuantityChild { get; set; }
 
     public double BuyPrice { get; set; }
 

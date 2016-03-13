@@ -192,6 +192,9 @@ namespace Bm2s.Data.Common.Utils
       Activity activity = new Activity() { CompanyName = "Bm2s", CountryName = "FRANCE", TownName = "Toulon", TownZipCode = "83000", Address1 = "301 Litorral F MISTRAL", Address2 = string.Empty, Address3 = string.Empty };
       this.Activities.Add(activity);
 
+      Nomenclature nomenclature = new Nomenclature() { ArticleChildId = article2.Id, ArticleParentId = article1.Id, BuyPrice = 100, QuantityChild = 3, QuantityParent = 2 };
+      this.Nomenclatures.Add(nomenclature);
+
       HeaderStatus headerStatus = new HeaderStatus() { EndingDate = null, InterveneOnStock = true, Name = "HEADERSTATUS", StartingDate = new System.DateTime(2015, 1, 1) };
       this.HeaderStatuses.Add(headerStatus);
 
