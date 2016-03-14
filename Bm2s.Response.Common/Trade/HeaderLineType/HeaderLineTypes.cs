@@ -4,7 +4,7 @@ using ServiceStack.ServiceHost;
 
 namespace Bm2s.Response.Common.Trade.HeaderLineType
 {
-  [Route("/bm2s/headerlinetypes", Verbs = "GET, POST")]
+  [Route("/bm2s/headerlinetypes", Verbs = "GET, POST, DELETE")]
   [Route("/bm2s/headerlinetypes/{Ids}", Verbs = "GET")]
   public class HeaderLineTypes : Request, IReturn<HeaderLineTypesResponse>
   {

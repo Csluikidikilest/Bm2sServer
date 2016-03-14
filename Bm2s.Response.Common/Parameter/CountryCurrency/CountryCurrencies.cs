@@ -4,7 +4,7 @@ using ServiceStack.ServiceHost;
 
 namespace Bm2s.Response.Common.Parameter.CountryCurrency
 {
-  [Route("/bm2s/countrycurrency", Verbs = "GET, POST")]
+  [Route("/bm2s/countrycurrency", Verbs = "GET, POST, DELETE")]
   [Route("/bm2s/countrycurrency/{Ids}", Verbs = "GET")]
   public class CountryCurrencies : Request, IReturn<CountryCurrenciesResponse>
   {

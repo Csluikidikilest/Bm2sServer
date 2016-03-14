@@ -83,13 +83,13 @@ namespace Bm2s.Services.Common.Trade.HeaderLineType
       return response;
     }
 
-    public bool Delete(Articles request)
+    public bool Delete(HeaderLineTypes request)
     {
       bool result = true;
-      Bm2s.Data.Common.BLL.Article.Article item = Datas.Instance.DataStorage.Articles.FirstOrDefault(nomenclature => nomenclature.Id == request.Article.Id);
+      Bm2s.Data.Common.BLL.Trade.HeaderLineType item = Datas.Instance.DataStorage.HeaderLineTypes.FirstOrDefault(nomenclature => nomenclature.Id == request.HeaderLineType.Id);
       if (item != null)
       {
-        result = Datas.Instance.DataStorage.Articles.Remove(item);
+        result = Datas.Instance.DataStorage.HeaderLineTypes.Remove(item);
       }
 
       return result;

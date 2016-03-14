@@ -81,13 +81,13 @@ namespace Bm2s.Services.Common.Trade.HeaderFreeReference
       return response;
     }
 
-    public bool Delete(Articles request)
+    public bool Delete(HeaderFreeReferences request)
     {
       bool result = true;
-      Bm2s.Data.Common.BLL.Article.Article item = Datas.Instance.DataStorage.Articles.FirstOrDefault(nomenclature => nomenclature.Id == request.Article.Id);
+      Bm2s.Data.Common.BLL.Trade.HeaderFreeReference item = Datas.Instance.DataStorage.HeaderFreeReferences.FirstOrDefault(nomenclature => nomenclature.Id == request.HeaderFreeReference.Id);
       if (item != null)
       {
-        result = Datas.Instance.DataStorage.Articles.Remove(item);
+        result = Datas.Instance.DataStorage.HeaderFreeReferences.Remove(item);
       }
 
       return result;

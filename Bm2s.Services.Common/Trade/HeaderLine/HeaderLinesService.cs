@@ -153,13 +153,13 @@ namespace Bm2s.Services.Common.Trade.HeaderLine
       return response;
     }
 
-    public bool Delete(Articles request)
+    public bool Delete(HeaderLines request)
     {
       bool result = true;
-      Bm2s.Data.Common.BLL.Article.Article item = Datas.Instance.DataStorage.Articles.FirstOrDefault(nomenclature => nomenclature.Id == request.Article.Id);
+      Bm2s.Data.Common.BLL.Trade.HeaderLine item = Datas.Instance.DataStorage.HeaderLines.FirstOrDefault(nomenclature => nomenclature.Id == request.HeaderLine.Id);
       if (item != null)
       {
-        result = Datas.Instance.DataStorage.Articles.Remove(item);
+        result = Datas.Instance.DataStorage.HeaderLines.Remove(item);
       }
 
       return result;

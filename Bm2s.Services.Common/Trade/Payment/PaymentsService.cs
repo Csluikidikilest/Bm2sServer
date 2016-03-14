@@ -100,13 +100,13 @@ namespace Bm2s.Services.Common.Trade.Payment
       return response;
     }
 
-    public bool Delete(Articles request)
+    public bool Delete(Payments request)
     {
       bool result = true;
-      Bm2s.Data.Common.BLL.Article.Article item = Datas.Instance.DataStorage.Articles.FirstOrDefault(nomenclature => nomenclature.Id == request.Article.Id);
+      Bm2s.Data.Common.BLL.Trade.Payment item = Datas.Instance.DataStorage.Payments.FirstOrDefault(nomenclature => nomenclature.Id == request.Payment.Id);
       if (item != null)
       {
-        result = Datas.Instance.DataStorage.Articles.Remove(item);
+        result = Datas.Instance.DataStorage.Payments.Remove(item);
       }
 
       return result;

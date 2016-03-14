@@ -96,13 +96,13 @@ namespace Bm2s.Services.Common.Trade.HeaderPartnerAddress
       return response;
     }
 
-    public bool Delete(Articles request)
+    public bool Delete(HeaderPartnerAddresses request)
     {
       bool result = true;
-      Bm2s.Data.Common.BLL.Article.Article item = Datas.Instance.DataStorage.Articles.FirstOrDefault(nomenclature => nomenclature.Id == request.Article.Id);
+      Bm2s.Data.Common.BLL.Trade.HeaderPartnerAddress item = Datas.Instance.DataStorage.HeaderPartnerAddresses.FirstOrDefault(nomenclature => nomenclature.Id == request.HeaderPartnerAddress.Id);
       if (item != null)
       {
-        result = Datas.Instance.DataStorage.Articles.Remove(item);
+        result = Datas.Instance.DataStorage.HeaderPartnerAddresses.Remove(item);
       }
 
       return result;

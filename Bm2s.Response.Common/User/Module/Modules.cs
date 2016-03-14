@@ -3,7 +3,7 @@ using ServiceStack.ServiceHost;
 
 namespace Bm2s.Response.Common.User.Module
 {
-  [Route("/bm2s/modules", Verbs = "GET, POST")]
+  [Route("/bm2s/modules", Verbs = "GET, POST, DELETE")]
   [Route("/bm2s/modules/{Ids}", Verbs = "GET")]
   public class Modules : Request, IReturn<ModulesResponse>
   {

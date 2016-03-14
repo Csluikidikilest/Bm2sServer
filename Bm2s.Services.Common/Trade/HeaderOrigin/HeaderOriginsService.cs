@@ -86,13 +86,13 @@ namespace Bm2s.Services.Common.Trade.HeaderOrigin
       return response;
     }
 
-    public bool Delete(Articles request)
+    public bool Delete(HeaderOrigins request)
     {
       bool result = true;
-      Bm2s.Data.Common.BLL.Article.Article item = Datas.Instance.DataStorage.Articles.FirstOrDefault(nomenclature => nomenclature.Id == request.Article.Id);
+      Bm2s.Data.Common.BLL.Trade.HeaderOrigin item = Datas.Instance.DataStorage.HeaderOrigins.FirstOrDefault(nomenclature => nomenclature.Id == request.HeaderOrigin.Id);
       if (item != null)
       {
-        result = Datas.Instance.DataStorage.Articles.Remove(item);
+        result = Datas.Instance.DataStorage.HeaderOrigins.Remove(item);
       }
 
       return result;

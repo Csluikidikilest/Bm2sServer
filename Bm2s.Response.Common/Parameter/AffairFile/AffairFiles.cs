@@ -4,7 +4,7 @@ using ServiceStack.ServiceHost;
 
 namespace Bm2s.Response.Common.Parameter.AffairFile
 {
-  [Route("/bm2s/affairfiles", Verbs = "GET, POST")]
+  [Route("/bm2s/affairfiles", Verbs = "GET, POST, DELETE")]
   [Route("/bm2s/affairfiles/{Ids}", Verbs = "GET")]
   public class AffairFiles : Request, IReturn<AffairFilesResponse>
   {

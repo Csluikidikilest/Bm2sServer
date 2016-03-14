@@ -3,7 +3,7 @@ using ServiceStack.ServiceHost;
 
 namespace Bm2s.Response.Common.Trade.Reconciliation
 {
-  [Route("/bm2s/reconciliations", Verbs = "GET, POST")]
+  [Route("/bm2s/reconciliations", Verbs = "GET, POST, DELETE")]
   [Route("/bm2s/reconciliations/{Ids}", Verbs = "GET")]
   public class Reconciliations : Request, IReturn<ReconciliationsResponse>
   {

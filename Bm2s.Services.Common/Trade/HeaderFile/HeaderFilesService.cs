@@ -95,13 +95,13 @@ namespace Bm2s.Services.Common.Trade.HeaderFile
       return response;
     }
 
-    public bool Delete(Articles request)
+    public bool Delete(HeaderFiles request)
     {
       bool result = true;
-      Bm2s.Data.Common.BLL.Article.Article item = Datas.Instance.DataStorage.Articles.FirstOrDefault(nomenclature => nomenclature.Id == request.Article.Id);
+      Bm2s.Data.Common.BLL.Trade.HeaderFile item = Datas.Instance.DataStorage.HeaderFiles.FirstOrDefault(nomenclature => nomenclature.Id == request.HeaderFile.Id);
       if (item != null)
       {
-        result = Datas.Instance.DataStorage.Articles.Remove(item);
+        result = Datas.Instance.DataStorage.HeaderFiles.Remove(item);
       }
 
       return result;

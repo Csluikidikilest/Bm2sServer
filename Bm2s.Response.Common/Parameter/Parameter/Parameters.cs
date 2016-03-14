@@ -3,7 +3,7 @@ using ServiceStack.ServiceHost;
 
 namespace Bm2s.Response.Common.Parameter.Parameter
 {
-  [Route("/bm2s/parameters", Verbs = "GET, POST")]
+  [Route("/bm2s/parameters", Verbs = "GET, POST, DELETE")]
   [Route("/bm2s/parameters/{Ids}", Verbs = "GET")]
   public class Parameters : Request, IReturn<ParametersResponse>
   {

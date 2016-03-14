@@ -3,7 +3,7 @@ using ServiceStack.ServiceHost;
 
 namespace Bm2s.Response.Common.Parameter.UnitConversion
 {
-  [Route("/bm2s/unitconversions", Verbs = "GET, POST")]
+  [Route("/bm2s/unitconversions", Verbs = "GET, POST, DELETE")]
   [Route("/bm2s/unitconversions/{Ids}", Verbs = "GET")]
   public class UnitConversions : Request, IReturn<UnitConversionsResponse>
   {

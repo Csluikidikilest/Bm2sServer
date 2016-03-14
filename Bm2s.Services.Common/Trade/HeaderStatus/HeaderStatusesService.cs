@@ -87,13 +87,13 @@ namespace Bm2s.Services.Common.Trade.HeaderStatus
       return response;
     }
 
-    public bool Delete(Articles request)
+    public bool Delete(HeaderStatuses request)
     {
       bool result = true;
-      Bm2s.Data.Common.BLL.Article.Article item = Datas.Instance.DataStorage.Articles.FirstOrDefault(nomenclature => nomenclature.Id == request.Article.Id);
+      Bm2s.Data.Common.BLL.Trade.HeaderStatus item = Datas.Instance.DataStorage.HeaderStatuses.FirstOrDefault(nomenclature => nomenclature.Id == request.HeaderStatus.Id);
       if (item != null)
       {
-        result = Datas.Instance.DataStorage.Articles.Remove(item);
+        result = Datas.Instance.DataStorage.HeaderStatuses.Remove(item);
       }
 
       return result;

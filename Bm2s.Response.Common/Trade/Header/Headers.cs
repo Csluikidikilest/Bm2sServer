@@ -4,7 +4,7 @@ using ServiceStack.ServiceHost;
 
 namespace Bm2s.Response.Common.Trade.Header
 {
-  [Route("/bm2s/headers", Verbs = "GET, POST")]
+  [Route("/bm2s/headers", Verbs = "GET, POST, DELETE")]
   [Route("/bm2s/headers/{Ids}", Verbs = "GET")]
   public class Headers : Request, IReturn<HeadersResponse>
   {

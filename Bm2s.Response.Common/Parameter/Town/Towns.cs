@@ -4,7 +4,7 @@ using ServiceStack.ServiceHost;
 
 namespace Bm2s.Response.Common.Parameter.Town
 {
-  [Route("/bm2s/towns", Verbs = "GET, POST")]
+  [Route("/bm2s/towns", Verbs = "GET, POST, DELETE")]
   [Route("/bm2s/towns/{Ids}", Verbs = "GET")]
   public class Towns : Request, IReturn<TownsResponse>
   {

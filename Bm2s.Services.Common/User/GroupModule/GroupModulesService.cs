@@ -93,13 +93,13 @@ namespace Bm2s.Services.Common.User.GroupModule
       return response;
     }
 
-    public bool Delete(Articles request)
+    public bool Delete(GroupModules request)
     {
       bool result = true;
-      Bm2s.Data.Common.BLL.Article.Article item = Datas.Instance.DataStorage.Articles.FirstOrDefault(nomenclature => nomenclature.Id == request.Article.Id);
+      Bm2s.Data.Common.BLL.User.GroupModule item = Datas.Instance.DataStorage.GroupModules.FirstOrDefault(nomenclature => nomenclature.Id == request.GroupModule.Id);
       if (item != null)
       {
-        result = Datas.Instance.DataStorage.Articles.Remove(item);
+        result = Datas.Instance.DataStorage.GroupModules.Remove(item);
       }
 
       return result;

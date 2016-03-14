@@ -4,7 +4,7 @@ using ServiceStack.ServiceHost;
 
 namespace Bm2s.Response.Common.Parameter.Country
 {
-  [Route("/bm2s/country", Verbs = "GET, POST")]
+  [Route("/bm2s/country", Verbs = "GET, POST, DELETE")]
   [Route("/bm2s/country/{Ids}", Verbs = "GET")]
   public class Countries : Request, IReturn<CountriesResponse>
   {

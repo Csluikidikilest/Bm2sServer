@@ -85,13 +85,13 @@ namespace Bm2s.Services.Common.User.Module
       return response;
     }
 
-    public bool Delete(Articles request)
+    public bool Delete(Modules request)
     {
       bool result = true;
-      Bm2s.Data.Common.BLL.Article.Article item = Datas.Instance.DataStorage.Articles.FirstOrDefault(nomenclature => nomenclature.Id == request.Article.Id);
+      Bm2s.Data.Common.BLL.User.Module item = Datas.Instance.DataStorage.Modules.FirstOrDefault(nomenclature => nomenclature.Id == request.Module.Id);
       if (item != null)
       {
-        result = Datas.Instance.DataStorage.Articles.Remove(item);
+        result = Datas.Instance.DataStorage.Modules.Remove(item);
       }
 
       return result;

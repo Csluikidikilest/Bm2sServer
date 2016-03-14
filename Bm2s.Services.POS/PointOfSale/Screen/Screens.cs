@@ -3,7 +3,7 @@ using ServiceStack.ServiceHost;
 
 namespace Bm2s.Services.POS.PointOfSale.Screen
 {
-  [Route("/bm2s/screens", Verbs = "GET, POST")]
+  [Route("/bm2s/screens", Verbs = "GET, POST, DELETE")]
   [Route("/bm2s/screens/{Ids}", Verbs = "GET")]
   public class Screens
   {

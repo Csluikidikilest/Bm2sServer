@@ -87,13 +87,13 @@ namespace Bm2s.Services.Common.Trade.PaymentMode
       return response;
     }
 
-    public bool Delete(Articles request)
+    public bool Delete(PaymentModes request)
     {
       bool result = true;
-      Bm2s.Data.Common.BLL.Article.Article item = Datas.Instance.DataStorage.Articles.FirstOrDefault(nomenclature => nomenclature.Id == request.Article.Id);
+      Bm2s.Data.Common.BLL.Trade.PaymentMode item = Datas.Instance.DataStorage.PaymentModes.FirstOrDefault(nomenclature => nomenclature.Id == request.PaymentMode.Id);
       if (item != null)
       {
-        result = Datas.Instance.DataStorage.Articles.Remove(item);
+        result = Datas.Instance.DataStorage.PaymentModes.Remove(item);
       }
 
       return result;

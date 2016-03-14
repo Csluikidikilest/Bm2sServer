@@ -4,7 +4,7 @@ using ServiceStack.ServiceHost;
 
 namespace Bm2s.Response.Common.Article.Price
 {
-  [Route("/bm2s/prices", Verbs = "GET, POST")]
+  [Route("/bm2s/prices", Verbs = "GET, POST, DELETE")]
   [Route("/bm2s/prices/{Ids}", Verbs = "GET")]
   public class Prices : Request, IReturn<PricesResponse>
   {

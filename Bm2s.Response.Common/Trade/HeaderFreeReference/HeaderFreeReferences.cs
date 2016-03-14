@@ -3,7 +3,7 @@ using ServiceStack.ServiceHost;
 
 namespace Bm2s.Response.Common.Trade.HeaderFreeReference
 {
-  [Route("/bm2s/headerfreereferences", Verbs = "GET, POST")]
+  [Route("/bm2s/headerfreereferences", Verbs = "GET, POST, DELETE")]
   [Route("/bm2s/headerfreereferences/{Ids}", Verbs = "GET")]
   public class HeaderFreeReferences : Request, IReturn<HeaderFreeReferencesResponse>
   {

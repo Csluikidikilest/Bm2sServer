@@ -112,13 +112,13 @@ namespace Bm2s.Services.Common.User.User
       return response;
     }
 
-    public bool Delete(Articles request)
+    public bool Delete(Users request)
     {
       bool result = true;
-      Bm2s.Data.Common.BLL.Article.Article item = Datas.Instance.DataStorage.Articles.FirstOrDefault(nomenclature => nomenclature.Id == request.Article.Id);
+      Bm2s.Data.Common.BLL.User.User item = Datas.Instance.DataStorage.Users.FirstOrDefault(nomenclature => nomenclature.Id == request.User.Id);
       if (item != null)
       {
-        result = Datas.Instance.DataStorage.Articles.Remove(item);
+        result = Datas.Instance.DataStorage.Users.Remove(item);
       }
 
       return result;

@@ -4,7 +4,7 @@ using ServiceStack.ServiceHost;
 
 namespace Bm2s.Response.Common.Trade.Payment
 {
-  [Route("/bm2s/payments", Verbs = "GET, POST")]
+  [Route("/bm2s/payments", Verbs = "GET, POST, DELETE")]
   [Route("/bm2s/payments/{Ids}", Verbs = "GET")]
   public class Payments : Request, IReturn<PaymentsResponse>
   {

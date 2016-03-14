@@ -3,7 +3,7 @@ using ServiceStack.ServiceHost;
 
 namespace Bm2s.Response.Common.User.UserGroup
 {
-  [Route("/bm2s/usergroups", Verbs = "GET, POST")]
+  [Route("/bm2s/usergroups", Verbs = "GET, POST, DELETE")]
   [Route("/bm2s/usergroups/{Ids}", Verbs = "GET")]
   public class UserGroups : Request, IReturn<UserGroupsResponse>
   {

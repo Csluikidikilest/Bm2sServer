@@ -3,7 +3,7 @@ using ServiceStack.ServiceHost;
 
 namespace Bm2s.Response.Common.Parameter.Language
 {
-  [Route("/bm2s/languages", Verbs = "GET, POST")]
+  [Route("/bm2s/languages", Verbs = "GET, POST, DELETE")]
   [Route("/bm2s/languages/{Ids}", Verbs = "GET")]
   public class Languages : Request, IReturn<LanguagesResponse>
   {

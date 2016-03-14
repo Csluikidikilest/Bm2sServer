@@ -84,13 +84,13 @@ namespace Bm2s.Services.Common.User.UserGroup
       return response;
     }
 
-    public bool Delete(Articles request)
+    public bool Delete(UserGroups request)
     {
       bool result = true;
-      Bm2s.Data.Common.BLL.Article.Article item = Datas.Instance.DataStorage.Articles.FirstOrDefault(nomenclature => nomenclature.Id == request.Article.Id);
+      Bm2s.Data.Common.BLL.User.UserGroup item = Datas.Instance.DataStorage.UserGroups.FirstOrDefault(nomenclature => nomenclature.Id == request.UserGroup.Id);
       if (item != null)
       {
-        result = Datas.Instance.DataStorage.Articles.Remove(item);
+        result = Datas.Instance.DataStorage.UserGroups.Remove(item);
       }
 
       return result;
