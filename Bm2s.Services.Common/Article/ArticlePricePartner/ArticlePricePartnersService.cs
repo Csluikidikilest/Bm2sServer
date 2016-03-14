@@ -102,5 +102,17 @@ namespace Bm2s.Services.Common.Article.ArticlePriceParner
       response.ArticlePricePartners.Add(request.ArticlePriceParner);
       return response;
     }
+
+    public bool Delete(ArticlePricePartners request)
+    {
+      bool result = true;
+      Bm2s.Data.Common.BLL.Article.ArticlePricePartner item = Datas.Instance.DataStorage.ArticlePricePartners.FirstOrDefault(nomenclature => nomenclature.Id == request.ArticlePriceParner.Id);
+      if (item != null)
+      {
+        result = Datas.Instance.DataStorage.ArticlePricePartners.Remove(item);
+      }
+
+      return result;
+    }
   }
 }

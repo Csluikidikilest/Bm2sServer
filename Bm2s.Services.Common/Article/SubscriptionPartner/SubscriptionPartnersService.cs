@@ -82,5 +82,17 @@ namespace Bm2s.Services.Common.Article.SubscriptionPartner
       response.SubscriptionPartners.Add(request.SubscriptionPartner);
       return response;
     }
+
+    public bool Delete(SubscriptionPartners request)
+    {
+      bool result = true;
+      Bm2s.Data.Common.BLL.Article.SubscriptionPartner item = Datas.Instance.DataStorage.SubscriptionPartners.FirstOrDefault(nomenclature => nomenclature.Id == request.SubscriptionPartner.Id);
+      if (item != null)
+      {
+        result = Datas.Instance.DataStorage.SubscriptionPartners.Remove(item);
+      }
+
+      return result;
+    }
   }
 }

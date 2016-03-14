@@ -96,5 +96,17 @@ namespace Bm2s.Services.Common.Article.Subscription
       response.Subscriptions.Add(request.Subscription);
       return response;
     }
+
+    public bool Delete(Subscriptions request)
+    {
+      bool result = true;
+      Bm2s.Data.Common.BLL.Article.Subscription item = Datas.Instance.DataStorage.Subscriptions.FirstOrDefault(nomenclature => nomenclature.Id == request.Subscription.Id);
+      if (item != null)
+      {
+        result = Datas.Instance.DataStorage.Subscriptions.Remove(item);
+      }
+
+      return result;
+    }
   }
 }

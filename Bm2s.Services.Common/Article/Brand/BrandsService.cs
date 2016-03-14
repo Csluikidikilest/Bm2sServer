@@ -86,5 +86,17 @@ namespace Bm2s.Services.Common.Article.Brand
       response.Brands.Add(request.Brand);
       return response;
     }
+
+    public bool Delete(Brands request)
+    {
+      bool result = true;
+      Bm2s.Data.Common.BLL.Article.Brand item = Datas.Instance.DataStorage.Brands.FirstOrDefault(nomenclature => nomenclature.Id == request.Brand.Id);
+      if (item != null)
+      {
+        result = Datas.Instance.DataStorage.Brands.Remove(item);
+      }
+
+      return result;
+    }
   }
 }

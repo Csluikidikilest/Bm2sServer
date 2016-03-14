@@ -82,5 +82,17 @@ namespace Bm2s.Services.Common.Trade.HeaderLineType
       response.HeaderLineTypes.Add(request.HeaderLineType);
       return response;
     }
+
+    public bool Delete(Articles request)
+    {
+      bool result = true;
+      Bm2s.Data.Common.BLL.Article.Article item = Datas.Instance.DataStorage.Articles.FirstOrDefault(nomenclature => nomenclature.Id == request.Article.Id);
+      if (item != null)
+      {
+        result = Datas.Instance.DataStorage.Articles.Remove(item);
+      }
+
+      return result;
+    }
   }
 }

@@ -89,5 +89,17 @@ namespace Bm2s.Services.Common.Article.Nomenclature
       response.Nomenclatures.Add(request.Nomenclature);
       return response;
     }
+
+    public bool Delete(Nomenclatures request)
+    {
+      bool result = true;
+      Bm2s.Data.Common.BLL.Article.Nomenclature item = Datas.Instance.DataStorage.Nomenclatures.FirstOrDefault(nomenclature => nomenclature.Id == request.Nomenclature.Id);
+      if (item != null)
+      {
+        result = Datas.Instance.DataStorage.Nomenclatures.Remove(item);
+      }
+
+      return result;
+    }
   }
 }

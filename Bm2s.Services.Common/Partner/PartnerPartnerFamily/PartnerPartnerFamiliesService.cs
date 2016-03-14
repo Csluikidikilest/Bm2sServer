@@ -83,5 +83,17 @@ namespace Bm2s.Services.Common.Partner.PartnerPartnerFamily
       response.PartnerPartnerFamilies.Add(request.PartnerPartnerFamily);
       return response;
     }
+
+    public bool Delete(Articles request)
+    {
+      bool result = true;
+      Bm2s.Data.Common.BLL.Article.Article item = Datas.Instance.DataStorage.Articles.FirstOrDefault(nomenclature => nomenclature.Id == request.Article.Id);
+      if (item != null)
+      {
+        result = Datas.Instance.DataStorage.Articles.Remove(item);
+      }
+
+      return result;
+    }
   }
 }
