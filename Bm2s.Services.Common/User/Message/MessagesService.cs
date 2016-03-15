@@ -83,16 +83,17 @@ namespace Bm2s.Services.Common.User.Message
       return response;
     }
 
-    public bool Delete(Messages request)
+    public MessagesResponse Delete(Messages request)
     {
-      bool result = true;
       Bm2s.Data.Common.BLL.User.Message item = Datas.Instance.DataStorage.Messages.FirstOrDefault(nomenclature => nomenclature.Id == request.Message.Id);
       if (item != null)
       {
-        result = Datas.Instance.DataStorage.Messages.Remove(item);
+        Datas.Instance.DataStorage.Messages.Remove(item);
       }
 
-      return result;
+      MessagesResponse response = new MessagesResponse();
+      response.Messages.Add(request.Message);
+      return response;
     }
   }
 }

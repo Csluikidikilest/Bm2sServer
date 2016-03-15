@@ -84,16 +84,17 @@ namespace Bm2s.Services.Common.User.Group
       return response;
     }
 
-    public bool Delete(Groups request)
+    public GroupsResponse Delete(Groups request)
     {
-      bool result = true;
       Bm2s.Data.Common.BLL.User.Group item = Datas.Instance.DataStorage.Groups.FirstOrDefault(nomenclature => nomenclature.Id == request.Group.Id);
       if (item != null)
       {
-        result = Datas.Instance.DataStorage.Groups.Remove(item);
+        Datas.Instance.DataStorage.Groups.Remove(item);
       }
 
-      return result;
+      GroupsResponse response = new GroupsResponse();
+      response.Groups.Add(request.Group);
+      return response;
     }
   }
 }

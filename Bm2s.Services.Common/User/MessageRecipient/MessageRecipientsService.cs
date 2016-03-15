@@ -86,16 +86,17 @@ namespace Bm2s.Services.Common.User.MessageRecipient
       return response;
     }
 
-    public bool Delete(MessageRecipients request)
+    public MessageRecipientsResponse Delete(MessageRecipients request)
     {
-      bool result = true;
       Bm2s.Data.Common.BLL.User.MessageRecipient item = Datas.Instance.DataStorage.MessageRecipients.FirstOrDefault(nomenclature => nomenclature.Id == request.MessageRecipient.Id);
       if (item != null)
       {
-        result = Datas.Instance.DataStorage.MessageRecipients.Remove(item);
+        Datas.Instance.DataStorage.MessageRecipients.Remove(item);
       }
 
-      return result;
+      MessageRecipientsResponse response = new MessageRecipientsResponse();
+      response.MessageRecipients.Add(request.MessageRecipient);
+      return response;
     }
   }
 }

@@ -93,16 +93,17 @@ namespace Bm2s.Services.Common.User.GroupModule
       return response;
     }
 
-    public bool Delete(GroupModules request)
+    public GroupModulesResponse Delete(GroupModules request)
     {
-      bool result = true;
       Bm2s.Data.Common.BLL.User.GroupModule item = Datas.Instance.DataStorage.GroupModules.FirstOrDefault(nomenclature => nomenclature.Id == request.GroupModule.Id);
       if (item != null)
       {
-        result = Datas.Instance.DataStorage.GroupModules.Remove(item);
+        Datas.Instance.DataStorage.GroupModules.Remove(item);
       }
 
-      return result;
+      GroupModulesResponse response = new GroupModulesResponse();
+      response.GroupModules.Add(request.GroupModule);
+      return response;
     }
   }
 }

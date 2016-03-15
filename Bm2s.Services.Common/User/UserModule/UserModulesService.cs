@@ -91,16 +91,17 @@ namespace Bm2s.Services.Common.User.UserModule
       return response;
     }
 
-    public bool Delete(UserModules request)
+    public UserModulesResponse Delete(UserModules request)
     {
-      bool result = true;
       Bm2s.Data.Common.BLL.User.UserModule item = Datas.Instance.DataStorage.UserModules.FirstOrDefault(nomenclature => nomenclature.Id == request.UserModule.Id);
       if (item != null)
       {
-        result = Datas.Instance.DataStorage.UserModules.Remove(item);
+        Datas.Instance.DataStorage.UserModules.Remove(item);
       }
 
-      return result;
+      UserModulesResponse response = new UserModulesResponse();
+      response.UserModules.Add(request.UserModule);
+      return response;
     }
   }
 }

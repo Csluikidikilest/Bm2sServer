@@ -84,16 +84,17 @@ namespace Bm2s.Services.Common.User.UserGroup
       return response;
     }
 
-    public bool Delete(UserGroups request)
+    public UserGroupsResponse Delete(UserGroups request)
     {
-      bool result = true;
       Bm2s.Data.Common.BLL.User.UserGroup item = Datas.Instance.DataStorage.UserGroups.FirstOrDefault(nomenclature => nomenclature.Id == request.UserGroup.Id);
       if (item != null)
       {
-        result = Datas.Instance.DataStorage.UserGroups.Remove(item);
+        Datas.Instance.DataStorage.UserGroups.Remove(item);
       }
 
-      return result;
+      UserGroupsResponse response = new UserGroupsResponse();
+      response.UserGroups.Add(request.UserGroup);
+      return response;
     }
   }
 }
