@@ -95,11 +95,8 @@ namespace Bm2s.Services.Common.User.GroupModule
 
     public GroupModulesResponse Delete(GroupModules request)
     {
-      Bm2s.Data.Common.BLL.User.GroupModule item = Datas.Instance.DataStorage.GroupModules.FirstOrDefault(nomenclature => nomenclature.Id == request.GroupModule.Id);
-      if (item != null)
-      {
-        Datas.Instance.DataStorage.GroupModules.Remove(item);
-      }
+      Bm2s.Data.Common.BLL.User.GroupModule item = Datas.Instance.DataStorage.GroupModules[request.GroupModule.Id];
+      Datas.Instance.DataStorage.GroupModules.Remove(item);
 
       GroupModulesResponse response = new GroupModulesResponse();
       response.GroupModules.Add(request.GroupModule);

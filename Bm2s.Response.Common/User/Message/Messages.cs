@@ -21,6 +21,8 @@ namespace Bm2s.Response.Common.User.Message
 
     public int UserId { get; set; }
 
+    public DateTime? Date { get; set; }
+
     public Bm2s.Poco.Common.User.Message Message { get; set; }
   }
 }

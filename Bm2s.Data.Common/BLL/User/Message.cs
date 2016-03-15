@@ -24,5 +24,9 @@ namespace Bm2s.Data.Common.BLL.User
 
     [References(typeof(User))]
     public int UserId { get; set; }
+
+    public DateTime StartingDate { get; set; }
+
+    public DateTime? EndingDate { get; set; }
   }
 }

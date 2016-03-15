@@ -89,11 +89,8 @@ namespace Bm2s.Services.Common.User.UserActivity
 
     public UserActivitiesResponse Delete(UserActivities request)
     {
-      Bm2s.Data.Common.BLL.User.UserActivity item = Datas.Instance.DataStorage.UserActivities.FirstOrDefault(nomenclature => nomenclature.Id == request.UserActivity.Id);
-      if (item != null)
-      {
-        Datas.Instance.DataStorage.UserActivities.Remove(item);
-      }
+      Bm2s.Data.Common.BLL.User.UserActivity item = Datas.Instance.DataStorage.UserActivities[request.UserActivity.Id];
+      Datas.Instance.DataStorage.UserActivities.Remove(item);
 
       UserActivitiesResponse response = new UserActivitiesResponse();
       response.UserActivities.Add(request.UserActivity);

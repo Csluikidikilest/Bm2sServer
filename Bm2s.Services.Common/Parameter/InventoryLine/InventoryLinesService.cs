@@ -86,5 +86,15 @@ namespace Bm2s.Services.Common.Parameter.InventoryLine
       response.InventoryLines.Add(request.InventoryLine);
       return response;
     }
+
+    public InventoryLinesResponse Delete(InventoryLines request)
+    {
+      Bm2s.Data.Common.BLL.Parameter.InventoryLine item = Datas.Instance.DataStorage.InventoryLines[request.InventoryLine.Id];
+      Datas.Instance.DataStorage.InventoryLines.Remove(item);
+
+      InventoryLinesResponse response = new InventoryLinesResponse();
+      response.InventoryLines.Add(request.InventoryLine);
+      return response;
+    }
   }
 }

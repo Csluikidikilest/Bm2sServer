@@ -102,11 +102,8 @@ namespace Bm2s.Services.Common.Trade.Payment
 
     public PaymentsResponse Delete(Payments request)
     {
-      Bm2s.Data.Common.BLL.Trade.Payment item = Datas.Instance.DataStorage.Payments.FirstOrDefault(nomenclature => nomenclature.Id == request.Payment.Id);
-      if (item != null)
-      {
-        Datas.Instance.DataStorage.Payments.Remove(item);
-      }
+      Bm2s.Data.Common.BLL.Trade.Payment item = Datas.Instance.DataStorage.Payments[request.Payment.Id];
+      Datas.Instance.DataStorage.Payments.Remove(item);
 
       PaymentsResponse response = new PaymentsResponse();
       response.Payments.Add(request.Payment);

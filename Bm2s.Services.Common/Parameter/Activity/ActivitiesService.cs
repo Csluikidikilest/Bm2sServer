@@ -93,5 +93,15 @@ namespace Bm2s.Services.Common.Parameter.Activity
       response.Activities.Add(request.Activity);
       return response;
     }
+
+    public ActivitiesResponse Delete(Activities request)
+    {
+      Bm2s.Data.Common.BLL.Parameter.Activity item = Datas.Instance.DataStorage.Activities[request.Activity.Id];
+      Datas.Instance.DataStorage.Activities.Remove(item);
+
+      ActivitiesResponse response = new ActivitiesResponse();
+      response.Activities.Add(request.Activity);
+      return response;
+    }
   }
 }

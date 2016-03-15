@@ -97,11 +97,8 @@ namespace Bm2s.Services.Common.Trade.HeaderFile
 
     public HeaderFilesResponse Delete(HeaderFiles request)
     {
-      Bm2s.Data.Common.BLL.Trade.HeaderFile item = Datas.Instance.DataStorage.HeaderFiles.FirstOrDefault(nomenclature => nomenclature.Id == request.HeaderFile.Id);
-      if (item != null)
-      {
-        Datas.Instance.DataStorage.HeaderFiles.Remove(item);
-      }
+      Bm2s.Data.Common.BLL.Trade.HeaderFile item = Datas.Instance.DataStorage.HeaderFiles[request.HeaderFile.Id];
+      Datas.Instance.DataStorage.HeaderFiles.Remove(item);
 
       HeaderFilesResponse response = new HeaderFilesResponse();
       response.HeaderFiles.Add(request.HeaderFile);

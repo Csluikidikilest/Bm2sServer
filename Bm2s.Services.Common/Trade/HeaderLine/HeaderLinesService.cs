@@ -155,11 +155,8 @@ namespace Bm2s.Services.Common.Trade.HeaderLine
 
     public HeaderLinesResponse Delete(HeaderLines request)
     {
-      Bm2s.Data.Common.BLL.Trade.HeaderLine item = Datas.Instance.DataStorage.HeaderLines.FirstOrDefault(nomenclature => nomenclature.Id == request.HeaderLine.Id);
-      if (item != null)
-      {
-        Datas.Instance.DataStorage.HeaderLines.Remove(item);
-      }
+      Bm2s.Data.Common.BLL.Trade.HeaderLine item = Datas.Instance.DataStorage.HeaderLines[request.HeaderLine.Id];
+      Datas.Instance.DataStorage.HeaderLines.Remove(item);
 
       HeaderLinesResponse response = new HeaderLinesResponse();
       response.HeaderLines.Add(request.HeaderLine);

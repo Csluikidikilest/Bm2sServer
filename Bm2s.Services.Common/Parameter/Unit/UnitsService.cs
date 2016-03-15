@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Bm2s.Data.Common.Utils;
 using Bm2s.Response.Common.Parameter.Unit;
@@ -92,6 +93,16 @@ namespace Bm2s.Services.Common.Parameter.Unit
         Datas.Instance.DataStorage.Units.Add(item);
         request.Unit.Id = item.Id;
       }
+
+      UnitsResponse response = new UnitsResponse();
+      response.Units.Add(request.Unit);
+      return response;
+    }
+
+    public UnitsResponse Delete(Units request)
+    {
+      Bm2s.Data.Common.BLL.Parameter.Unit item = Datas.Instance.DataStorage.Units[request.Unit.Id];
+      item.EndingDate = DateTime.Now;
 
       UnitsResponse response = new UnitsResponse();
       response.Units.Add(request.Unit);

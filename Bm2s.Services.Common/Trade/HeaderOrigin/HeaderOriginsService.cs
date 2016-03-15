@@ -88,11 +88,8 @@ namespace Bm2s.Services.Common.Trade.HeaderOrigin
 
     public HeaderOriginsResponse Delete(HeaderOrigins request)
     {
-      Bm2s.Data.Common.BLL.Trade.HeaderOrigin item = Datas.Instance.DataStorage.HeaderOrigins.FirstOrDefault(nomenclature => nomenclature.Id == request.HeaderOrigin.Id);
-      if (item != null)
-      {
-        Datas.Instance.DataStorage.HeaderOrigins.Remove(item);
-      }
+      Bm2s.Data.Common.BLL.Trade.HeaderOrigin item = Datas.Instance.DataStorage.HeaderOrigins[request.HeaderOrigin.Id];
+      Datas.Instance.DataStorage.HeaderOrigins.Remove(item);
 
       HeaderOriginsResponse response = new HeaderOriginsResponse();
       response.HeaderOrigins.Add(request.HeaderOrigin);

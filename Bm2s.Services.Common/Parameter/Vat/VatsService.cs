@@ -88,5 +88,15 @@ namespace Bm2s.Services.Common.Parameter.Vat
       response.Vats.Add(request.Vat);
       return response;
     }
+
+    public VatsResponse Delete(Vats request)
+    {
+      Bm2s.Data.Common.BLL.Parameter.Vat item = Datas.Instance.DataStorage.Vats[request.Vat.Id];
+      Datas.Instance.DataStorage.Vats.Remove(item);
+
+      VatsResponse response = new VatsResponse();
+      response.Vats.Add(request.Vat);
+      return response;
+    }
   }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ServiceStack.ServiceHost;
 
 namespace Bm2s.Response.Common.User.Module
@@ -15,6 +16,8 @@ namespace Bm2s.Response.Common.User.Module
     public string Code { get; set; }
 
     public string Name { get; set; }
+
+    public DateTime? Date { get; set; }
 
     public Bm2s.Poco.Common.User.Module Module { get; set; }
   }

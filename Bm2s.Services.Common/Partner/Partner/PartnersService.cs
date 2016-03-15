@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Bm2s.Data.Common.Utils;
 using Bm2s.Response.Common.Partner.Partner;
@@ -116,6 +117,16 @@ namespace Bm2s.Services.Common.Partner.Partner
         Datas.Instance.DataStorage.Partners.Add(item);
         request.Partner.Id = item.Id;
       }
+
+      PartnersResponse response = new PartnersResponse();
+      response.Partners.Add(request.Partner);
+      return response;
+    }
+
+    public PartnersResponse Delete(Partners request)
+    {
+      Bm2s.Data.Common.BLL.Partner.Partner item = Datas.Instance.DataStorage.Partners[request.Partner.Id];
+      item.EndingDate = DateTime.Now;
 
       PartnersResponse response = new PartnersResponse();
       response.Partners.Add(request.Partner);

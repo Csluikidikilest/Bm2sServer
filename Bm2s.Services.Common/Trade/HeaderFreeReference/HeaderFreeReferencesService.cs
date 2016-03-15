@@ -83,11 +83,8 @@ namespace Bm2s.Services.Common.Trade.HeaderFreeReference
 
     public HeaderFreeReferencesResponse Delete(HeaderFreeReferences request)
     {
-      Bm2s.Data.Common.BLL.Trade.HeaderFreeReference item = Datas.Instance.DataStorage.HeaderFreeReferences.FirstOrDefault(nomenclature => nomenclature.Id == request.HeaderFreeReference.Id);
-      if (item != null)
-      {
-        Datas.Instance.DataStorage.HeaderFreeReferences.Remove(item);
-      }
+      Bm2s.Data.Common.BLL.Trade.HeaderFreeReference item = Datas.Instance.DataStorage.HeaderFreeReferences[request.HeaderFreeReference.Id];
+      Datas.Instance.DataStorage.HeaderFreeReferences.Remove(item);
 
       HeaderFreeReferencesResponse response = new HeaderFreeReferencesResponse();
       response.HeaderFreeReferences.Add(request.HeaderFreeReference);

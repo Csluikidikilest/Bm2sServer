@@ -1,4 +1,5 @@
-﻿
+﻿using System;
+
 namespace Bm2s.Poco.Common.User
 {
   public class Group
@@ -10,5 +11,9 @@ namespace Bm2s.Poco.Common.User
     public bool IsSystem { get; set; }
 
     public string Name { get; set; }
+
+    public DateTime StartingDate { get; set; }
+
+    public DateTime? EndingDate { get; set; }
   }
 }

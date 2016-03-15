@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Bm2s.Services.Common.Article.Article;
 using Bm2s.Response.Common.Article.Nomenclature;
 using Bm2s.Response.Common.Article.Article;
+using System;
 
 namespace Bm2s.Services.Common.Article.Nomenclature
 {
@@ -17,7 +18,8 @@ namespace Bm2s.Services.Common.Article.Nomenclature
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.Nomenclatures.Where(item =>
-          request.ArticleId == 0 || item.ArticleChildId == request.ArticleId || item.ArticleParentId == request.ArticleId
+          (request.ArticleId == 0 || item.ArticleChildId == request.ArticleId || item.ArticleParentId == request.ArticleId) &&
+          (!request.Date.HasValue || (request.Date >= item.StartingDate && (!item.EndingDate.HasValue || request.Date < item.EndingDate.Value)))
           ));
       }
       else
@@ -66,8 +68,10 @@ namespace Bm2s.Services.Common.Article.Nomenclature
         item.ArticleChildId = request.Nomenclature.ArticleChild.Id;
         item.ArticleParentId = request.Nomenclature.ArticleParent.Id;
         item.BuyPrice = request.Nomenclature.BuyPrice;
+        item.EndingDate = request.Nomenclature.EndingDate;
         item.QuantityChild = request.Nomenclature.QuantityChild;
         item.QuantityParent = request.Nomenclature.QuantityParent;
+        item.StartingDate = request.Nomenclature.StartingDate;
         Datas.Instance.DataStorage.Nomenclatures[request.Nomenclature.Id] = item;
       }
       else
@@ -77,8 +81,10 @@ namespace Bm2s.Services.Common.Article.Nomenclature
           ArticleChildId = request.Nomenclature.ArticleChild.Id,
           ArticleParentId = request.Nomenclature.ArticleParent.Id,
           BuyPrice = request.Nomenclature.BuyPrice,
+          EndingDate = request.Nomenclature.EndingDate,
           QuantityChild = request.Nomenclature.QuantityChild,
-          QuantityParent = request.Nomenclature.QuantityParent
+          QuantityParent = request.Nomenclature.QuantityParent,
+          StartingDate = request.Nomenclature.StartingDate
         };
 
         Datas.Instance.DataStorage.Nomenclatures.Add(item);
@@ -92,11 +98,8 @@ namespace Bm2s.Services.Common.Article.Nomenclature
 
     public NomenclaturesResponse Delete(Nomenclatures request)
     {
-      Bm2s.Data.Common.BLL.Article.Nomenclature item = Datas.Instance.DataStorage.Nomenclatures.FirstOrDefault(nomenclature => nomenclature.Id == request.Nomenclature.Id);
-      if (item != null)
-      {
-        Datas.Instance.DataStorage.Nomenclatures.Remove(item);
-      }
+      Bm2s.Data.Common.BLL.Article.Nomenclature item = Datas.Instance.DataStorage.Nomenclatures[request.Nomenclature.Id];
+      item.EndingDate = DateTime.Now;
 
       NomenclaturesResponse response = new NomenclaturesResponse();
       response.Nomenclatures.Add(request.Nomenclature);

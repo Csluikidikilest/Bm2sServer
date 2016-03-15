@@ -79,5 +79,15 @@ namespace Bm2s.Services.Common.Parameter.Language
       response.Languages.Add(request.Language);
       return response;
     }
+
+    public LanguagesResponse Delete(Languages request)
+    {
+      Bm2s.Data.Common.BLL.Parameter.Language item = Datas.Instance.DataStorage.Languages[request.Language.Id];
+      Datas.Instance.DataStorage.Languages.Remove(item);
+
+      LanguagesResponse response = new LanguagesResponse();
+      response.Languages.Add(request.Language);
+      return response;
+    }
   }
 }

@@ -85,11 +85,8 @@ namespace Bm2s.Services.Common.Article.SubscriptionPartner
 
     public SubscriptionPartnersResponse Delete(SubscriptionPartners request)
     {
-      Bm2s.Data.Common.BLL.Article.SubscriptionPartner item = Datas.Instance.DataStorage.SubscriptionPartners.FirstOrDefault(nomenclature => nomenclature.Id == request.SubscriptionPartner.Id);
-      if (item != null)
-      {
-        Datas.Instance.DataStorage.SubscriptionPartners.Remove(item);
-      }
+      Bm2s.Data.Common.BLL.Article.SubscriptionPartner item = Datas.Instance.DataStorage.SubscriptionPartners[request.SubscriptionPartner.Id];
+      Datas.Instance.DataStorage.SubscriptionPartners.Remove(item);
 
       SubscriptionPartnersResponse response = new SubscriptionPartnersResponse();
       response.SubscriptionPartners.Add(request.SubscriptionPartner);

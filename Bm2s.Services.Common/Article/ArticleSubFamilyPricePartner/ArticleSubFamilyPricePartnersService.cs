@@ -105,11 +105,8 @@ namespace Bm2s.Services.Common.Article.ArticleSubFamilyPricePartner
 
     public ArticleSubFamilyPricePartnersResponse Delete(ArticleSubFamilyPricePartners request)
     {
-      Bm2s.Data.Common.BLL.Article.ArticleSubFamilyPricePartner item = Datas.Instance.DataStorage.ArticleSubFamilyPricePartners.FirstOrDefault(nomenclature => nomenclature.Id == request.ArticleSubFamilyPricePartner.Id);
-      if (item != null)
-      {
-        Datas.Instance.DataStorage.ArticleSubFamilyPricePartners.Remove(item);
-      }
+      Bm2s.Data.Common.BLL.Article.ArticleSubFamilyPricePartner item = Datas.Instance.DataStorage.ArticleSubFamilyPricePartners[request.ArticleSubFamilyPricePartner.Id];
+      item.EndingDate = DateTime.Now;
 
       ArticleSubFamilyPricePartnersResponse response = new ArticleSubFamilyPricePartnersResponse();
       response.ArticleSubFamilyPricePartners.Add(request.ArticleSubFamilyPricePartner);

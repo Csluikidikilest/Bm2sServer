@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Bm2s.Data.Common.Utils;
 using Bm2s.Response.Common.User.Group;
@@ -17,7 +18,8 @@ namespace Bm2s.Services.Common.User.Group
         items.AddRange(Datas.Instance.DataStorage.Groups.Where(item =>
           (string.IsNullOrWhiteSpace(request.Code) || item.Code.ToLower().Contains(request.Code.ToLower())) &&
           (string.IsNullOrWhiteSpace(request.Name) || item.Name.ToLower().Contains(request.Name.ToLower())) &&
-          (!request.IsSystem || item.IsSystem)
+          (!request.IsSystem || item.IsSystem) &&
+          (!request.Date.HasValue || (request.Date >= item.StartingDate && (!item.EndingDate.HasValue || request.Date < item.EndingDate.Value)))
           ));
       }
       else
@@ -86,11 +88,8 @@ namespace Bm2s.Services.Common.User.Group
 
     public GroupsResponse Delete(Groups request)
     {
-      Bm2s.Data.Common.BLL.User.Group item = Datas.Instance.DataStorage.Groups.FirstOrDefault(nomenclature => nomenclature.Id == request.Group.Id);
-      if (item != null)
-      {
-        Datas.Instance.DataStorage.Groups.Remove(item);
-      }
+      Bm2s.Data.Common.BLL.User.Group item = Datas.Instance.DataStorage.Groups[request.Group.Id];
+      item.EndingDate = DateTime.Now;
 
       GroupsResponse response = new GroupsResponse();
       response.Groups.Add(request.Group);

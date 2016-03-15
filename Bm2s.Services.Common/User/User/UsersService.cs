@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Bm2s.Data.Common.Utils;
 using Bm2s.Response.Common.Parameter.Language;
@@ -114,11 +115,8 @@ namespace Bm2s.Services.Common.User.User
 
     public UsersResponse Delete(Users request)
     {
-      Bm2s.Data.Common.BLL.User.User item = Datas.Instance.DataStorage.Users.FirstOrDefault(nomenclature => nomenclature.Id == request.User.Id);
-      if (item != null)
-      {
-        Datas.Instance.DataStorage.Users.Remove(item);
-      }
+      Bm2s.Data.Common.BLL.User.User item = Datas.Instance.DataStorage.Users[request.User.Id];
+      item.EndingDate = DateTime.Now;
 
       UsersResponse response = new UsersResponse();
       response.Users.Add(request.User);

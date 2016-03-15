@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Bm2s.Data.Common.Utils;
 using Bm2s.Response.Common.Article.Article;
@@ -90,11 +91,8 @@ namespace Bm2s.Services.Common.Article.Price
 
     public PricesResponse Delete(Prices request)
     {
-      Bm2s.Data.Common.BLL.Article.Price item = Datas.Instance.DataStorage.Prices.FirstOrDefault(nomenclature => nomenclature.Id == request.Price.Id);
-      if (item != null)
-      {
-        Datas.Instance.DataStorage.Prices.Remove(item);
-      }
+      Bm2s.Data.Common.BLL.Article.Price item = Datas.Instance.DataStorage.Prices[request.Price.Id];
+      item.EndingDate = DateTime.Now;
 
       PricesResponse response = new PricesResponse();
       response.Prices.Add(request.Price);

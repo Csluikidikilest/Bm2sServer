@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Bm2s.Services.Common.Article.ArticleFamily;
 using Bm2s.Response.Common.Article.ArticleSubFamily;
 using Bm2s.Response.Common.Article.ArticleFamily;
+using System;
 
 namespace Bm2s.Services.Common.Article.ArticleSubFamily
 {
@@ -102,11 +103,8 @@ namespace Bm2s.Services.Common.Article.ArticleSubFamily
 
     public ArticleSubFamiliesResponse Delete(ArticleSubFamilies request)
     {
-      Bm2s.Data.Common.BLL.Article.ArticleSubFamily item = Datas.Instance.DataStorage.ArticleSubFamilies.FirstOrDefault(nomenclature => nomenclature.Id == request.ArticleSubFamily.Id);
-      if (item != null)
-      {
-        Datas.Instance.DataStorage.ArticleSubFamilies.Remove(item);
-      }
+      Bm2s.Data.Common.BLL.Article.ArticleSubFamily item = Datas.Instance.DataStorage.ArticleSubFamilies[request.ArticleSubFamily.Id];
+      item.EndingDate = DateTime.Now;
 
       ArticleSubFamiliesResponse response = new ArticleSubFamiliesResponse();
       response.ArticleSubFamilies.Add(request.ArticleSubFamily);

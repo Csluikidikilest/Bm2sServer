@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Bm2s.Data.Common.Utils;
 using Bm2s.Response.Common.Parameter.Period;
@@ -90,6 +91,16 @@ namespace Bm2s.Services.Common.Parameter.Period
         Datas.Instance.DataStorage.Periods.Add(item);
         request.Period.Id = item.Id;
       }
+
+      PeriodsResponse response = new PeriodsResponse();
+      response.Periods.Add(request.Period);
+      return response;
+    }
+
+    public PeriodsResponse Delete(Periods request)
+    {
+      Bm2s.Data.Common.BLL.Parameter.Period item = Datas.Instance.DataStorage.Periods[request.Period.Id];
+      item.EndingDate = DateTime.Now;
 
       PeriodsResponse response = new PeriodsResponse();
       response.Periods.Add(request.Period);

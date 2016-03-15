@@ -98,11 +98,8 @@ namespace Bm2s.Services.Common.Trade.HeaderPartnerAddress
 
     public HeaderPartnerAddressesResponse Delete(HeaderPartnerAddresses request)
     {
-      Bm2s.Data.Common.BLL.Trade.HeaderPartnerAddress item = Datas.Instance.DataStorage.HeaderPartnerAddresses.FirstOrDefault(nomenclature => nomenclature.Id == request.HeaderPartnerAddress.Id);
-      if (item != null)
-      {
-        Datas.Instance.DataStorage.HeaderPartnerAddresses.Remove(item);
-      }
+      Bm2s.Data.Common.BLL.Trade.HeaderPartnerAddress item = Datas.Instance.DataStorage.HeaderPartnerAddresses[request.HeaderPartnerAddress.Id];
+      Datas.Instance.DataStorage.HeaderPartnerAddresses.Remove(item);
 
       HeaderPartnerAddressesResponse response = new HeaderPartnerAddressesResponse();
       response.HeaderPartnerAddresses.Add(request.HeaderPartnerAddress);

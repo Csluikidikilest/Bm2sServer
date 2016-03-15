@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Bm2s.Data.Common.Utils;
 using Bm2s.Response.Common.Parameter.Country;
@@ -85,6 +86,16 @@ namespace Bm2s.Services.Common.Parameter.CountryCurrency
         Datas.Instance.DataStorage.CountryCurrencies.Add(item);
         request.CountryCurrency.Id = item.Id;
       }
+
+      CountryCurrenciesResponse response = new CountryCurrenciesResponse();
+      response.CountryCurrencies.Add(request.CountryCurrency);
+      return response;
+    }
+
+    public CountryCurrenciesResponse Delete(CountryCurrencies request)
+    {
+      Bm2s.Data.Common.BLL.Parameter.CountryCurrency item = Datas.Instance.DataStorage.CountryCurrencies[request.CountryCurrency.Id];
+      item.EndingDate = DateTime.Now;
 
       CountryCurrenciesResponse response = new CountryCurrenciesResponse();
       response.CountryCurrencies.Add(request.CountryCurrency);

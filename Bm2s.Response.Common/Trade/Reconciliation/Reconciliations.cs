@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ServiceStack.ServiceHost;
 
 namespace Bm2s.Response.Common.Trade.Reconciliation
@@ -11,6 +12,8 @@ namespace Bm2s.Response.Common.Trade.Reconciliation
     {
       this.Ids = new List<int>();
     }
+
+    public DateTime? Date { get; set; }
 
     public int HeaderLineId { get; set; }
 

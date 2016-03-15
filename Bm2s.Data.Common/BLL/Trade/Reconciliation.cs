@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Bm2s.Data.Common.Utils;
 using Bm2s.Data.Utils.BLL;
 using ServiceStack.DataAnnotations;
@@ -18,5 +19,9 @@ namespace Bm2s.Data.Common.BLL.Trade
 
     [References(typeof(HeaderLine))]
     public int HeaderLineId { get; set; }
+
+    public DateTime StartingDate { get; set; }
+
+    public DateTime? EndingDate { get; set; }
   }
 }

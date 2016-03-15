@@ -89,5 +89,15 @@ namespace Bm2s.Services.Common.Partner.PartnerAddress
       response.PartnerAddresses.Add(request.PartnerAddress);
       return response;
     }
+
+    public PartnerAddressesResponse Delete(PartnerAddresses request)
+    {
+      Bm2s.Data.Common.BLL.Partner.PartnerAddress item = Datas.Instance.DataStorage.PartnerAddresses[request.PartnerAddress.Id];
+      Datas.Instance.DataStorage.PartnerAddresses.Remove(item);
+
+      PartnerAddressesResponse response = new PartnerAddressesResponse();
+      response.PartnerAddresses.Add(request.PartnerAddress);
+      return response;
+    }
   }
 }

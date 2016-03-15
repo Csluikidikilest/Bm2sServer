@@ -1,5 +1,6 @@
-﻿using ServiceStack.ServiceHost;
+﻿using System;
 using System.Collections.Generic;
+using ServiceStack.ServiceHost;
 
 namespace Bm2s.Response.Common.Article.Nomenclature
 {
@@ -13,6 +14,8 @@ namespace Bm2s.Response.Common.Article.Nomenclature
     }
 
     public int ArticleId { get; set; }
+
+    public DateTime? Date { get; set; }
 
     public Bm2s.Poco.Common.Article.Nomenclature Nomenclature { get; set; }
   }

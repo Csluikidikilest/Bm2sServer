@@ -84,11 +84,8 @@ namespace Bm2s.Services.Common.Trade.HeaderStatusStep
 
     public HeaderStatusStepsResponse Delete(HeaderStatusSteps request)
     {
-      Bm2s.Data.Common.BLL.Trade.HeaderStatusStep item = Datas.Instance.DataStorage.HeaderStatusSteps.FirstOrDefault(nomenclature => nomenclature.Id == request.HeaderStatusStep.Id);
-      if (item != null)
-      {
-        Datas.Instance.DataStorage.HeaderStatusSteps.Remove(item);
-      }
+      Bm2s.Data.Common.BLL.Trade.HeaderStatusStep item = Datas.Instance.DataStorage.HeaderStatusSteps[request.HeaderStatusStep.Id];
+      Datas.Instance.DataStorage.HeaderStatusSteps.Remove(item);
 
       HeaderStatusStepsResponse response = new HeaderStatusStepsResponse();
       response.HeaderStatusSteps.Add(request.HeaderStatusStep);

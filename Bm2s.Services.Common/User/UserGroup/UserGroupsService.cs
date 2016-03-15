@@ -86,11 +86,8 @@ namespace Bm2s.Services.Common.User.UserGroup
 
     public UserGroupsResponse Delete(UserGroups request)
     {
-      Bm2s.Data.Common.BLL.User.UserGroup item = Datas.Instance.DataStorage.UserGroups.FirstOrDefault(nomenclature => nomenclature.Id == request.UserGroup.Id);
-      if (item != null)
-      {
-        Datas.Instance.DataStorage.UserGroups.Remove(item);
-      }
+      Bm2s.Data.Common.BLL.User.UserGroup item = Datas.Instance.DataStorage.UserGroups[request.UserGroup.Id];
+      Datas.Instance.DataStorage.UserGroups.Remove(item);
 
       UserGroupsResponse response = new UserGroupsResponse();
       response.UserGroups.Add(request.UserGroup);

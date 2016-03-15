@@ -54,8 +54,9 @@ namespace Bm2s.Services.Common.Article.ArticleFamilyPricePartnerFamily
         response.ArticleFamilyPricePartnerFamilies.AddRange(collection);
       }
 
-      try { 
-      response.PagesCount = collection.Count() / response.ArticleFamilyPricePartnerFamilies.Count + (collection.Count() % response.ArticleFamilyPricePartnerFamilies.Count > 0 ? 1 : 0);
+      try
+      {
+        response.PagesCount = collection.Count() / response.ArticleFamilyPricePartnerFamilies.Count + (collection.Count() % response.ArticleFamilyPricePartnerFamilies.Count > 0 ? 1 : 0);
       }
       catch
       {
@@ -101,11 +102,8 @@ namespace Bm2s.Services.Common.Article.ArticleFamilyPricePartnerFamily
 
     public ArticleFamilyPricePartnerFamiliesResponse Delete(ArticleFamilyPricePartnerFamilies request)
     {
-      Bm2s.Data.Common.BLL.Article.ArticleFamilyPricePartnerFamily item = Datas.Instance.DataStorage.ArticleFamilyPricePartnerFamilies.FirstOrDefault(nomenclature => nomenclature.Id == request.ArticleFamilyPricePartnerFamily.Id);
-      if (item != null)
-      {
-        Datas.Instance.DataStorage.ArticleFamilyPricePartnerFamilies.Remove(item);
-      }
+      Bm2s.Data.Common.BLL.Article.ArticleFamilyPricePartnerFamily item = Datas.Instance.DataStorage.ArticleFamilyPricePartnerFamilies[request.ArticleFamilyPricePartnerFamily.Id];
+      item.EndingDate = DateTime.Now;
 
       ArticleFamilyPricePartnerFamiliesResponse response = new ArticleFamilyPricePartnerFamiliesResponse();
       response.ArticleFamilyPricePartnerFamilies.Add(request.ArticleFamilyPricePartnerFamily);

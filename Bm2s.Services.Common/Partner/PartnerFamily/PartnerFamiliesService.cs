@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Bm2s.Data.Common.Utils;
 using Bm2s.Response.Common.Partner.PartnerFamily;
@@ -84,6 +85,16 @@ namespace Bm2s.Services.Common.Partner.PartnerFamily
         Datas.Instance.DataStorage.PartnerFamilies.Add(item);
         request.PartnerFamily.Id = item.Id;
       }
+
+      PartnerFamiliesResponse response = new PartnerFamiliesResponse();
+      response.PartnerFamilies.Add(request.PartnerFamily);
+      return response;
+    }
+
+    public PartnerFamiliesResponse Delete(PartnerFamilies request)
+    {
+      Bm2s.Data.Common.BLL.Partner.PartnerFamily item = Datas.Instance.DataStorage.PartnerFamilies[request.PartnerFamily.Id];
+      item.EndingDate = DateTime.Now;
 
       PartnerFamiliesResponse response = new PartnerFamiliesResponse();
       response.PartnerFamilies.Add(request.PartnerFamily);

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Bm2s.Data.Common.Utils;
 using Bm2s.Response.Common.User.Message;
@@ -21,7 +22,8 @@ namespace Bm2s.Services.Common.User.Message
           (!request.IsShortMessage || item.IsShortMessage) &&
           (request.SendDate.HasValue || item.SendDate >= request.SendDate) &&
           (string.IsNullOrWhiteSpace(request.Subject) || item.Subject.ToLower().Contains(request.Subject.ToLower())) &&
-          (request.UserId == 0 || item.UserId == request.UserId)
+          (request.UserId == 0 || item.UserId == request.UserId) &&
+          (!request.Date.HasValue || (request.Date >= item.StartingDate && (!item.EndingDate.HasValue || request.Date < item.EndingDate.Value)))
           ));
       }
       else
@@ -85,11 +87,8 @@ namespace Bm2s.Services.Common.User.Message
 
     public MessagesResponse Delete(Messages request)
     {
-      Bm2s.Data.Common.BLL.User.Message item = Datas.Instance.DataStorage.Messages.FirstOrDefault(nomenclature => nomenclature.Id == request.Message.Id);
-      if (item != null)
-      {
-        Datas.Instance.DataStorage.Messages.Remove(item);
-      }
+      Bm2s.Data.Common.BLL.User.Message item = Datas.Instance.DataStorage.Messages[request.Message.Id];
+      item.EndingDate = DateTime.Now;
 
       MessagesResponse response = new MessagesResponse();
       response.Messages.Add(request.Message);

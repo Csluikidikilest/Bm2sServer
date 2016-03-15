@@ -86,11 +86,8 @@ namespace Bm2s.Services.Common.Partner.PartnerPartnerFamily
 
     public PartnerPartnerFamiliesResponse Delete(PartnerPartnerFamilies request)
     {
-      Bm2s.Data.Common.BLL.Partner.PartnerPartnerFamily item = Datas.Instance.DataStorage.PartnerPartnerFamilies.FirstOrDefault(nomenclature => nomenclature.Id == request.PartnerPartnerFamily.Id);
-      if (item != null)
-      {
-        Datas.Instance.DataStorage.PartnerPartnerFamilies.Remove(item);
-      }
+      Bm2s.Data.Common.BLL.Partner.PartnerPartnerFamily item = Datas.Instance.DataStorage.PartnerPartnerFamilies[request.PartnerPartnerFamily.Id];
+      Datas.Instance.DataStorage.PartnerPartnerFamilies.Remove(item);
 
       PartnerPartnerFamiliesResponse response = new PartnerPartnerFamiliesResponse();
       response.PartnerPartnerFamilies.Add(request.PartnerPartnerFamily);

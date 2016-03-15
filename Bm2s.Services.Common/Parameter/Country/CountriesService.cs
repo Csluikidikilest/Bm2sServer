@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Bm2s.Data.Common.Utils;
 using Bm2s.Response.Common.Parameter.Country;
@@ -81,6 +82,16 @@ namespace Bm2s.Services.Common.Parameter.Country
         Datas.Instance.DataStorage.Countries.Add(item);
         request.Country.Id = item.Id;
       }
+
+      CountriesResponse response = new CountriesResponse();
+      response.Countries.Add(request.Country);
+      return response;
+    }
+
+    public CountriesResponse Delete(Countries request)
+    {
+      Bm2s.Data.Common.BLL.Parameter.Country item = Datas.Instance.DataStorage.Countries[request.Country.Id];
+      item.EndingDate = DateTime.Now;
 
       CountriesResponse response = new CountriesResponse();
       response.Countries.Add(request.Country);

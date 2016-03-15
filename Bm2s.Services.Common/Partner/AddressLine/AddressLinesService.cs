@@ -83,5 +83,15 @@ namespace Bm2s.Services.Common.Partner.AddressLine
       response.AddressLines.Add(request.AddressLine);
       return response;
     }
+
+    public AddressLinesResponse Delete(AddressLines request)
+    {
+      Bm2s.Data.Common.BLL.Partner.AddressLine item = Datas.Instance.DataStorage.AddressLines[request.AddressLine.Id];
+      Datas.Instance.DataStorage.AddressLines.Remove(item);
+
+      AddressLinesResponse response = new AddressLinesResponse();
+      response.AddressLines.Add(request.AddressLine);
+      return response;
+    }
   }
 }

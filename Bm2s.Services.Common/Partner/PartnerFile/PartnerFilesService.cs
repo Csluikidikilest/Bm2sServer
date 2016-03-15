@@ -98,11 +98,8 @@ namespace Bm2s.Services.Common.Partner.PartnerFile
 
     public PartnerFilesResponse Delete(PartnerFiles request)
     {
-      Bm2s.Data.Common.BLL.Partner.PartnerFile item = Datas.Instance.DataStorage.PartnerFiles.FirstOrDefault(nomenclature => nomenclature.Id == request.PartnerFile.Id);
-      if (item != null)
-      {
-        Datas.Instance.DataStorage.PartnerFiles.Remove(item);
-      }
+      Bm2s.Data.Common.BLL.Partner.PartnerFile item = Datas.Instance.DataStorage.PartnerFiles[request.PartnerFile.Id];
+      Datas.Instance.DataStorage.PartnerFiles.Remove(item);
 
       PartnerFilesResponse response = new PartnerFilesResponse();
       response.PartnerFiles.Add(request.PartnerFile);

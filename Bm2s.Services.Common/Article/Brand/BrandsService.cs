@@ -3,6 +3,7 @@ using ServiceStack.ServiceInterface;
 using System.Linq;
 using System.Collections.Generic;
 using Bm2s.Response.Common.Article.Brand;
+using System;
 
 namespace Bm2s.Services.Common.Article.Brand
 {
@@ -89,11 +90,8 @@ namespace Bm2s.Services.Common.Article.Brand
 
     public BrandsResponse Delete(Brands request)
     {
-      Bm2s.Data.Common.BLL.Article.Brand item = Datas.Instance.DataStorage.Brands.FirstOrDefault(nomenclature => nomenclature.Id == request.Brand.Id);
-      if (item != null)
-      {
-        Datas.Instance.DataStorage.Brands.Remove(item);
-      }
+      Bm2s.Data.Common.BLL.Article.Brand item = Datas.Instance.DataStorage.Brands[request.Brand.Id];
+      item.EndingDate = DateTime.Now;
 
       BrandsResponse response = new BrandsResponse();
       response.Brands.Add(request.Brand);

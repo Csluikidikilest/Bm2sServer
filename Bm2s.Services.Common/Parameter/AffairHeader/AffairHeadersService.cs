@@ -83,5 +83,15 @@ namespace Bm2s.Services.Common.Parameter.AffairHeader
       response.AffairHeaders.Add(request.AffairHeader);
       return response;
     }
+
+    public AffairHeadersResponse Delete(AffairHeaders request)
+    {
+      Bm2s.Data.Common.BLL.Parameter.AffairHeader item = Datas.Instance.DataStorage.AffairHeaders[request.AffairHeader.Id];
+      Datas.Instance.DataStorage.AffairHeaders.Remove(item);
+
+      AffairHeadersResponse response = new AffairHeadersResponse();
+      response.AffairHeaders.Add(request.AffairHeader);
+      return response;
+    }
   }
 }

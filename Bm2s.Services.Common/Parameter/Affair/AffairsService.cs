@@ -94,5 +94,15 @@ namespace Bm2s.Services.Common.Parameter.Affair
       response.Affairs.Add(request.Affair);
       return response;
     }
+
+    public AffairsResponse Delete(Affairs request)
+    {
+      Bm2s.Data.Common.BLL.Parameter.Affair item = Datas.Instance.DataStorage.Affairs[request.Affair.Id];
+      Datas.Instance.DataStorage.Affairs.Remove(item);
+
+      AffairsResponse response = new AffairsResponse();
+      response.Affairs.Add(request.Affair);
+      return response;
+    }
   }
 }

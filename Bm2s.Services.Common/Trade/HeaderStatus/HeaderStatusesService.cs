@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Bm2s.Data.Common.Utils;
 using Bm2s.Response.Common.Trade.HeaderStatus;
@@ -89,11 +90,8 @@ namespace Bm2s.Services.Common.Trade.HeaderStatus
 
     public HeaderStatusesResponse Delete(HeaderStatuses request)
     {
-      Bm2s.Data.Common.BLL.Trade.HeaderStatus item = Datas.Instance.DataStorage.HeaderStatuses.FirstOrDefault(nomenclature => nomenclature.Id == request.HeaderStatus.Id);
-      if (item != null)
-      {
-        Datas.Instance.DataStorage.HeaderStatuses.Remove(item);
-      }
+      Bm2s.Data.Common.BLL.Trade.HeaderStatus item = Datas.Instance.DataStorage.HeaderStatuses[request.HeaderStatus.Id];
+      item.EndingDate = DateTime.Now;
 
       HeaderStatusesResponse response = new HeaderStatusesResponse();
       response.HeaderStatuses.Add(request.HeaderStatus);

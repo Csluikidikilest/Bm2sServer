@@ -81,5 +81,15 @@ namespace Bm2s.Services.Common.Parameter.InventoryHeader
       response.InventoryHeaders.Add(request.InventoryHeader);
       return response;
     }
+
+    public InventoryHeadersResponse Delete(InventoryHeaders request)
+    {
+      Bm2s.Data.Common.BLL.Parameter.InventoryHeader item = Datas.Instance.DataStorage.InventoryHeaders[request.InventoryHeader.Id];
+      Datas.Instance.DataStorage.InventoryHeaders.Remove(item);
+
+      InventoryHeadersResponse response = new InventoryHeadersResponse();
+      response.InventoryHeaders.Add(request.InventoryHeader);
+      return response;
+    }
   }
 }

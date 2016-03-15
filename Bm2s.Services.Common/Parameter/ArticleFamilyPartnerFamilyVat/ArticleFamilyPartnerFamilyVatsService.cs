@@ -98,5 +98,15 @@ namespace Bm2s.Services.Common.Parameter.ArticleFamilyPartnerFamilyVat
       response.ArticleFamilyPartnerFamilyVats.Add(request.ArticleFamilyPartnerFamilyVat);
       return response;
     }
+
+    public ArticleFamilyPartnerFamilyVatsResponse Delete(ArticleFamilyPartnerFamilyVats request)
+    {
+      Bm2s.Data.Common.BLL.Parameter.ArticleFamilyPartnerFamilyVat item = Datas.Instance.DataStorage.ArticleFamilyPartnerFamilyVats[request.ArticleFamilyPartnerFamilyVat.Id];
+      Datas.Instance.DataStorage.ArticleFamilyPartnerFamilyVats.Remove(item);
+
+      ArticleFamilyPartnerFamilyVatsResponse response = new ArticleFamilyPartnerFamilyVatsResponse();
+      response.ArticleFamilyPartnerFamilyVats.Add(request.ArticleFamilyPartnerFamilyVat);
+      return response;
+    }
   }
 }

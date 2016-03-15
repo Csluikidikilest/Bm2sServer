@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ServiceStack.ServiceHost;
 
 namespace Bm2s.Response.Common.User.Group
@@ -17,6 +18,8 @@ namespace Bm2s.Response.Common.User.Group
     public bool IsSystem { get; set; }
 
     public string Name { get; set; }
+
+    public DateTime? Date { get; set; }
 
     public Bm2s.Poco.Common.User.Group Group { get; set; }
   }

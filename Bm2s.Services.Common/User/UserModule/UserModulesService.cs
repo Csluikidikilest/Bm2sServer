@@ -93,11 +93,8 @@ namespace Bm2s.Services.Common.User.UserModule
 
     public UserModulesResponse Delete(UserModules request)
     {
-      Bm2s.Data.Common.BLL.User.UserModule item = Datas.Instance.DataStorage.UserModules.FirstOrDefault(nomenclature => nomenclature.Id == request.UserModule.Id);
-      if (item != null)
-      {
-        Datas.Instance.DataStorage.UserModules.Remove(item);
-      }
+      Bm2s.Data.Common.BLL.User.UserModule item = Datas.Instance.DataStorage.UserModules[request.UserModule.Id];
+      Datas.Instance.DataStorage.UserModules.Remove(item);
 
       UserModulesResponse response = new UserModulesResponse();
       response.UserModules.Add(request.UserModule);

@@ -87,5 +87,15 @@ namespace Bm2s.Services.Common.Parameter.UnitConversion
       response.UnitConversions.Add(request.UnitConversion);
       return response;
     }
+
+    public UnitConversionsResponse Delete(UnitConversions request)
+    {
+      Bm2s.Data.Common.BLL.Parameter.UnitConversion item = Datas.Instance.DataStorage.UnitConversions[request.UnitConversion.Id];
+      Datas.Instance.DataStorage.UnitConversions.Remove(item);
+
+      UnitConversionsResponse response = new UnitConversionsResponse();
+      response.UnitConversions.Add(request.UnitConversion);
+      return response;
+    }
   }
 }

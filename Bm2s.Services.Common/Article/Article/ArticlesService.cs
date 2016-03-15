@@ -10,6 +10,7 @@ using Bm2s.Services.Common.Article.Brand;
 using Bm2s.Services.Common.Parameter.Unit;
 using ServiceStack.ServiceInterface;
 using Bm2s.Services;
+using System;
 
 namespace Bm2s.Services.Common.Article.Article
 {
@@ -118,11 +119,8 @@ namespace Bm2s.Services.Common.Article.Article
 
     public ArticlesResponse Delete(Articles request)
     {
-      Bm2s.Data.Common.BLL.Article.Article item = Datas.Instance.DataStorage.Articles.FirstOrDefault(nomenclature => nomenclature.Id == request.Article.Id);
-      if (item != null)
-      {
-        Datas.Instance.DataStorage.Articles.Remove(item);
-      }
+      Bm2s.Data.Common.BLL.Article.Article item = Datas.Instance.DataStorage.Articles[request.Article.Id];
+      item.EndingDate = DateTime.Now;
 
       ArticlesResponse response = new ArticlesResponse();
       response.Articles.Add(request.Article);

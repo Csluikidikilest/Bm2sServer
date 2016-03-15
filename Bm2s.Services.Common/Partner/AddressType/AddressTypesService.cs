@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Bm2s.Data.Common.Utils;
 using Bm2s.Response.Common.Partner.AddressType;
@@ -80,6 +81,16 @@ namespace Bm2s.Services.Common.Partner.AddressType
         Datas.Instance.DataStorage.AddressTypes.Add(item);
         request.AddressType.Id = item.Id;
       }
+
+      AddressTypesResponse response = new AddressTypesResponse();
+      response.AddressTypes.Add(request.AddressType);
+      return response;
+    }
+
+    public AddressTypesResponse Delete(AddressTypes request)
+    {
+      Bm2s.Data.Common.BLL.Partner.AddressType item = Datas.Instance.DataStorage.AddressTypes[request.AddressType.Id];
+      item.EndingDate = DateTime.Now;
 
       AddressTypesResponse response = new AddressTypesResponse();
       response.AddressTypes.Add(request.AddressType);

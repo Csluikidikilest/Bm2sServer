@@ -88,11 +88,8 @@ namespace Bm2s.Services.Common.User.MessageRecipient
 
     public MessageRecipientsResponse Delete(MessageRecipients request)
     {
-      Bm2s.Data.Common.BLL.User.MessageRecipient item = Datas.Instance.DataStorage.MessageRecipients.FirstOrDefault(nomenclature => nomenclature.Id == request.MessageRecipient.Id);
-      if (item != null)
-      {
-        Datas.Instance.DataStorage.MessageRecipients.Remove(item);
-      }
+      Bm2s.Data.Common.BLL.User.MessageRecipient item = Datas.Instance.DataStorage.MessageRecipients[request.MessageRecipient.Id];
+      Datas.Instance.DataStorage.MessageRecipients.Remove(item);
 
       MessageRecipientsResponse response = new MessageRecipientsResponse();
       response.MessageRecipients.Add(request.MessageRecipient);

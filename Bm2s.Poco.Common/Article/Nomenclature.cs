@@ -1,4 +1,5 @@
-﻿
+﻿using System;
+
 namespace Bm2s.Poco.Common.Article
 {
   public class Nomenclature
@@ -14,5 +15,9 @@ namespace Bm2s.Poco.Common.Article
     public Article ArticleParent { get; set; }
 
     public Article ArticleChild { get; set; }
+
+    public DateTime StartingDate { get; set; }
+
+    public DateTime? EndingDate { get; set; }
   }
 }

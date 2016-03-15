@@ -92,5 +92,15 @@ namespace Bm2s.Services.Common.Parameter.AffairFile
       response.AffairFiles.Add(request.AffairFile);
       return response;
     }
+
+    public AffairFilesResponse Delete(AffairFiles request)
+    {
+      Bm2s.Data.Common.BLL.Parameter.AffairFile item = Datas.Instance.DataStorage.AffairFiles[request.AffairFile.Id];
+      Datas.Instance.DataStorage.AffairFiles.Remove(item);
+
+      AffairFilesResponse response = new AffairFilesResponse();
+      response.AffairFiles.Add(request.AffairFile);
+      return response;
+    }
   }
 }

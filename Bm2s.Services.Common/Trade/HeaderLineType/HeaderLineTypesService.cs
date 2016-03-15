@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Bm2s.Data.Common.Utils;
 using Bm2s.Response.Common.Trade.HeaderLineType;
@@ -85,11 +86,8 @@ namespace Bm2s.Services.Common.Trade.HeaderLineType
 
     public HeaderLineTypesResponse Delete(HeaderLineTypes request)
     {
-      Bm2s.Data.Common.BLL.Trade.HeaderLineType item = Datas.Instance.DataStorage.HeaderLineTypes.FirstOrDefault(nomenclature => nomenclature.Id == request.HeaderLineType.Id);
-      if (item != null)
-      {
-        Datas.Instance.DataStorage.HeaderLineTypes.Remove(item);
-      }
+      Bm2s.Data.Common.BLL.Trade.HeaderLineType item = Datas.Instance.DataStorage.HeaderLineTypes[request.HeaderLineType.Id];
+      item.EndingDate = DateTime.Now;
 
       HeaderLineTypesResponse response = new HeaderLineTypesResponse();
       response.HeaderLineTypes.Add(request.HeaderLineType);

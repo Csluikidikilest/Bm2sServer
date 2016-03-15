@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Bm2s.Data.Common.Utils;
 using Bm2s.Response.Common.Trade.PaymentMode;
@@ -89,11 +90,8 @@ namespace Bm2s.Services.Common.Trade.PaymentMode
 
     public PaymentModesResponse Delete(PaymentModes request)
     {
-      Bm2s.Data.Common.BLL.Trade.PaymentMode item = Datas.Instance.DataStorage.PaymentModes.FirstOrDefault(nomenclature => nomenclature.Id == request.PaymentMode.Id);
-      if (item != null)
-      {
-        Datas.Instance.DataStorage.PaymentModes.Remove(item);
-      }
+      Bm2s.Data.Common.BLL.Trade.PaymentMode item = Datas.Instance.DataStorage.PaymentModes[request.PaymentMode.Id];
+      item.EndingDate = DateTime.Now;
 
       PaymentModesResponse response = new PaymentModesResponse();
       response.PaymentModes.Add(request.PaymentMode);

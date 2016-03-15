@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Bm2s.Data.Common.Utils;
 using Bm2s.Response.Common.Trade.HeaderLine;
@@ -20,7 +21,8 @@ namespace Bm2s.Services.Common.Trade.Reconciliation
       {
         items.AddRange(Datas.Instance.DataStorage.Reconciliations.Where(item =>
           (request.HeaderLineId == 0 || item.HeaderLineId == request.HeaderLineId) &&
-          (request.PaymentId == 0 || item.PaymentId == request.PaymentId)
+          (request.PaymentId == 0 || item.PaymentId == request.PaymentId) &&
+          (!request.Date.HasValue || (request.Date >= item.StartingDate && (!item.EndingDate.HasValue || request.Date < item.EndingDate.Value)))
           ));
       }
       else
@@ -32,9 +34,11 @@ namespace Bm2s.Services.Common.Trade.Reconciliation
                         select new Bm2s.Poco.Common.Trade.Reconciliation()
                         {
                           Amount = item.Amount,
+                          EndingDate = item.EndingDate,
                           HeaderLine = new HeaderLinesService().Get(new HeaderLines() { Ids = new List<int>() { item.HeaderLineId } }).HeaderLines.FirstOrDefault(),
                           Id = item.Id,
-                          Payment = new PaymentsService().Get(new Payments() { Ids = new List<int>() { item.PaymentId } }).Payments.FirstOrDefault()
+                          Payment = new PaymentsService().Get(new Payments() { Ids = new List<int>() { item.PaymentId } }).Payments.FirstOrDefault(),
+                          StartingDate = item.StartingDate
                         }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
       response.ItemsCount = collection.Count();
@@ -65,8 +69,10 @@ namespace Bm2s.Services.Common.Trade.Reconciliation
       {
         Bm2s.Data.Common.BLL.Trade.Reconciliation item = Datas.Instance.DataStorage.Reconciliations[request.Reconciliation.Id];
         item.Amount = request.Reconciliation.Amount;
+        item.EndingDate = request.Reconciliation.EndingDate;
         item.HeaderLineId = request.Reconciliation.HeaderLine.Id;
         item.PaymentId = request.Reconciliation.Payment.Id;
+        item.StartingDate = request.Reconciliation.StartingDate;
         Datas.Instance.DataStorage.Reconciliations[request.Reconciliation.Id] = item;
       }
       else
@@ -74,8 +80,10 @@ namespace Bm2s.Services.Common.Trade.Reconciliation
         Bm2s.Data.Common.BLL.Trade.Reconciliation item = new Data.Common.BLL.Trade.Reconciliation()
         {
           Amount = request.Reconciliation.Amount,
+          EndingDate = request.Reconciliation.EndingDate,
           HeaderLineId = request.Reconciliation.HeaderLine.Id,
-          PaymentId = request.Reconciliation.Payment.Id
+          PaymentId = request.Reconciliation.Payment.Id,
+          StartingDate = request.Reconciliation.StartingDate
         };
 
         Datas.Instance.DataStorage.Reconciliations.Add(item);
@@ -89,11 +97,8 @@ namespace Bm2s.Services.Common.Trade.Reconciliation
 
     public ReconciliationsResponse Delete(Reconciliations request)
     {
-      Bm2s.Data.Common.BLL.Trade.Reconciliation item = Datas.Instance.DataStorage.Reconciliations.FirstOrDefault(nomenclature => nomenclature.Id == request.Reconciliation.Id);
-      if (item != null)
-      {
-        Datas.Instance.DataStorage.Reconciliations.Remove(item);
-      }
+      Bm2s.Data.Common.BLL.Trade.Reconciliation item = Datas.Instance.DataStorage.Reconciliations[request.Reconciliation.Id];
+      item.EndingDate = DateTime.Now;
 
       ReconciliationsResponse response = new ReconciliationsResponse();
       response.Reconciliations.Add(request.Reconciliation);

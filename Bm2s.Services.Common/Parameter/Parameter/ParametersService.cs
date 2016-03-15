@@ -93,5 +93,15 @@ namespace Bm2s.Services.Common.Parameter.Parameter
       response.Parameters.Add(request.Parameter);
       return response;
     }
+
+    public ParametersResponse Delete(Parameters request)
+    {
+      Bm2s.Data.Common.BLL.Parameter.Parameter item = Datas.Instance.DataStorage.Parameters[request.Parameter.Id];
+      Datas.Instance.DataStorage.Parameters.Remove(item);
+
+      ParametersResponse response = new ParametersResponse();
+      response.Parameters.Add(request.Parameter);
+      return response;
+    }
   }
 }

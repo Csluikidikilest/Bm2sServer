@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Bm2s.Data.Common.Utils;
 using Bm2s.Response.Common.Article.Article;
@@ -98,11 +99,8 @@ namespace Bm2s.Services.Common.Article.ArticlePricePartnerFamily
 
     public ArticlePricePartnerFamiliesResponse Delete(ArticlePricePartnerFamilies request)
     {
-      Bm2s.Data.Common.BLL.Article.ArticlePricePartnerFamily item = Datas.Instance.DataStorage.ArticlePricePartnerFamilies.FirstOrDefault(nomenclature => nomenclature.Id == request.ArticlePricePartnerFamily.Id);
-      if (item != null)
-      {
-        Datas.Instance.DataStorage.ArticlePricePartnerFamilies.Remove(item);
-      }
+      Bm2s.Data.Common.BLL.Article.ArticlePricePartnerFamily item = Datas.Instance.DataStorage.ArticlePricePartnerFamilies[request.ArticlePricePartnerFamily.Id];
+      item.EndingDate = DateTime.Now;
 
       ArticlePricePartnerFamiliesResponse response = new ArticlePricePartnerFamiliesResponse();
       response.ArticlePricePartnerFamilies.Add(request.ArticlePricePartnerFamily);

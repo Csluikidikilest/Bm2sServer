@@ -95,5 +95,15 @@ namespace Bm2s.Services.Common.Parameter.Translation
       response.Translations.Add(request.Translation);
       return response;
     }
+
+    public TranslationsResponse Delete(Translations request)
+    {
+      Bm2s.Data.Common.BLL.Parameter.Translation item = Datas.Instance.DataStorage.Translations[request.Translation.Id];
+      Datas.Instance.DataStorage.Translations.Remove(item);
+
+      TranslationsResponse response = new TranslationsResponse();
+      response.Translations.Add(request.Translation);
+      return response;
+    }
   }
 }
