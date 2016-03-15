@@ -153,16 +153,17 @@ namespace Bm2s.Services.Common.Trade.HeaderLine
       return response;
     }
 
-    public bool Delete(HeaderLines request)
+    public HeaderLinesResponse Delete(HeaderLines request)
     {
-      bool result = true;
       Bm2s.Data.Common.BLL.Trade.HeaderLine item = Datas.Instance.DataStorage.HeaderLines.FirstOrDefault(nomenclature => nomenclature.Id == request.HeaderLine.Id);
       if (item != null)
       {
-        result = Datas.Instance.DataStorage.HeaderLines.Remove(item);
+        Datas.Instance.DataStorage.HeaderLines.Remove(item);
       }
 
-      return result;
+      HeaderLinesResponse response = new HeaderLinesResponse();
+      response.HeaderLines.Add(request.HeaderLine);
+      return response;
     }
   }
 }

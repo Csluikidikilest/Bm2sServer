@@ -84,16 +84,17 @@ namespace Bm2s.Services.Common.Partner.PartnerPartnerFamily
       return response;
     }
 
-    public bool Delete(PartnerPartnerFamilies request)
+    public PartnerPartnerFamiliesResponse Delete(PartnerPartnerFamilies request)
     {
-      bool result = true;
       Bm2s.Data.Common.BLL.Partner.PartnerPartnerFamily item = Datas.Instance.DataStorage.PartnerPartnerFamilies.FirstOrDefault(nomenclature => nomenclature.Id == request.PartnerPartnerFamily.Id);
       if (item != null)
       {
-        result = Datas.Instance.DataStorage.PartnerPartnerFamilies.Remove(item);
+        Datas.Instance.DataStorage.PartnerPartnerFamilies.Remove(item);
       }
 
-      return result;
+      PartnerPartnerFamiliesResponse response = new PartnerPartnerFamiliesResponse();
+      response.PartnerPartnerFamilies.Add(request.PartnerPartnerFamily);
+      return response;
     }
   }
 }

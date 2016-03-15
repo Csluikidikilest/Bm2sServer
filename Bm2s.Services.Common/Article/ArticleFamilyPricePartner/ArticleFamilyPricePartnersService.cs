@@ -103,16 +103,17 @@ namespace Bm2s.Services.Common.Article.ArticleFamilyPricePartner
       return response;
     }
 
-    public bool Delete(ArticleFamilyPricePartners request)
+    public ArticleFamilyPricePartnersResponse Delete(ArticleFamilyPricePartners request)
     {
-      bool result = true;
       Bm2s.Data.Common.BLL.Article.ArticleFamilyPricePartner item = Datas.Instance.DataStorage.ArticleFamilyPricePartners.FirstOrDefault(nomenclature => nomenclature.Id == request.ArticleFamilyPricePartner.Id);
       if (item != null)
       {
-        result = Datas.Instance.DataStorage.ArticleFamilyPricePartners.Remove(item);
+        Datas.Instance.DataStorage.ArticleFamilyPricePartners.Remove(item);
       }
 
-      return result;
+      ArticleFamilyPricePartnersResponse response = new ArticleFamilyPricePartnersResponse();
+      response.ArticleFamilyPricePartners.Add(request.ArticleFamilyPricePartner);
+      return response;
     }
   }
 }

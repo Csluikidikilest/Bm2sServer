@@ -88,16 +88,17 @@ namespace Bm2s.Services.Common.Article.Price
       return response;
     }
 
-    public bool Delete(Prices request)
+    public PricesResponse Delete(Prices request)
     {
-      bool result = true;
       Bm2s.Data.Common.BLL.Article.Price item = Datas.Instance.DataStorage.Prices.FirstOrDefault(nomenclature => nomenclature.Id == request.Price.Id);
       if (item != null)
       {
-        result = Datas.Instance.DataStorage.Prices.Remove(item);
+        Datas.Instance.DataStorage.Prices.Remove(item);
       }
 
-      return result;
+      PricesResponse response = new PricesResponse();
+      response.Prices.Add(request.Price);
+      return response;
     }
   }
 }

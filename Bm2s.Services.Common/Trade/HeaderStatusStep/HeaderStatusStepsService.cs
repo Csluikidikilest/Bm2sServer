@@ -82,16 +82,17 @@ namespace Bm2s.Services.Common.Trade.HeaderStatusStep
       return response;
     }
 
-    public bool Delete(HeaderStatusSteps request)
+    public HeaderStatusStepsResponse Delete(HeaderStatusSteps request)
     {
-      bool result = true;
       Bm2s.Data.Common.BLL.Trade.HeaderStatusStep item = Datas.Instance.DataStorage.HeaderStatusSteps.FirstOrDefault(nomenclature => nomenclature.Id == request.HeaderStatusStep.Id);
       if (item != null)
       {
-        result = Datas.Instance.DataStorage.HeaderStatusSteps.Remove(item);
+        Datas.Instance.DataStorage.HeaderStatusSteps.Remove(item);
       }
 
-      return result;
+      HeaderStatusStepsResponse response = new HeaderStatusStepsResponse();
+      response.HeaderStatusSteps.Add(request.HeaderStatusStep);
+      return response;
     }
   }
 }

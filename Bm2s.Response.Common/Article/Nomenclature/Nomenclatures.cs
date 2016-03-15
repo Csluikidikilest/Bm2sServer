@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Bm2s.Response.Common.Article.Nomenclature
 {
-  [Route("/bm2s/nomenclatures", Verbs = "GET, POST, DELETE")]
+  [Route("/bm2s/nomenclatures")]
   [Route("/bm2s/nomenclatures/{Ids}", Verbs = "GET")]
   public class Nomenclatures : Request, IReturn<NomenclaturesResponse>
   {

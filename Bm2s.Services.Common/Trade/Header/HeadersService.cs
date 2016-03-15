@@ -115,16 +115,17 @@ namespace Bm2s.Services.Common.Trade.Header
       return response;
     }
 
-    public bool Delete(Headers request)
+    public HeadersResponse Delete(Headers request)
     {
-      bool result = true;
       Bm2s.Data.Common.BLL.Trade.Header item = Datas.Instance.DataStorage.Headers.FirstOrDefault(nomenclature => nomenclature.Id == request.Header.Id);
       if (item != null)
       {
-        result = Datas.Instance.DataStorage.Headers.Remove(item);
+        Datas.Instance.DataStorage.Headers.Remove(item);
       }
 
-      return result;
+      HeadersResponse response = new HeadersResponse();
+      response.Headers.Add(request.Header);
+      return response;
     }
   }
 }

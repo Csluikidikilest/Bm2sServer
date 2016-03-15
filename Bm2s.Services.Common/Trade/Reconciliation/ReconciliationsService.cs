@@ -87,16 +87,17 @@ namespace Bm2s.Services.Common.Trade.Reconciliation
       return response;
     }
 
-    public bool Delete(Reconciliations request)
+    public ReconciliationsResponse Delete(Reconciliations request)
     {
-      bool result = true;
       Bm2s.Data.Common.BLL.Trade.Reconciliation item = Datas.Instance.DataStorage.Reconciliations.FirstOrDefault(nomenclature => nomenclature.Id == request.Reconciliation.Id);
       if (item != null)
       {
-        result = Datas.Instance.DataStorage.Reconciliations.Remove(item);
+        Datas.Instance.DataStorage.Reconciliations.Remove(item);
       }
 
-      return result;
+      ReconciliationsResponse response = new ReconciliationsResponse();
+      response.Reconciliations.Add(request.Reconciliation);
+      return response;
     }
   }
 }

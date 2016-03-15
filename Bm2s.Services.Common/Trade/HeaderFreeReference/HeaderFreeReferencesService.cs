@@ -81,16 +81,17 @@ namespace Bm2s.Services.Common.Trade.HeaderFreeReference
       return response;
     }
 
-    public bool Delete(HeaderFreeReferences request)
+    public HeaderFreeReferencesResponse Delete(HeaderFreeReferences request)
     {
-      bool result = true;
       Bm2s.Data.Common.BLL.Trade.HeaderFreeReference item = Datas.Instance.DataStorage.HeaderFreeReferences.FirstOrDefault(nomenclature => nomenclature.Id == request.HeaderFreeReference.Id);
       if (item != null)
       {
-        result = Datas.Instance.DataStorage.HeaderFreeReferences.Remove(item);
+        Datas.Instance.DataStorage.HeaderFreeReferences.Remove(item);
       }
 
-      return result;
+      HeaderFreeReferencesResponse response = new HeaderFreeReferencesResponse();
+      response.HeaderFreeReferences.Add(request.HeaderFreeReference);
+      return response;
     }
   }
 }

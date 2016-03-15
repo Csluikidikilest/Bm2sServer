@@ -100,16 +100,17 @@ namespace Bm2s.Services.Common.Article.ArticleSubFamily
       return response;
     }
 
-    public bool Delete(ArticleSubFamilies request)
+    public ArticleSubFamiliesResponse Delete(ArticleSubFamilies request)
     {
-      bool result = true;
       Bm2s.Data.Common.BLL.Article.ArticleSubFamily item = Datas.Instance.DataStorage.ArticleSubFamilies.FirstOrDefault(nomenclature => nomenclature.Id == request.ArticleSubFamily.Id);
       if (item != null)
       {
-        result = Datas.Instance.DataStorage.ArticleSubFamilies.Remove(item);
+        Datas.Instance.DataStorage.ArticleSubFamilies.Remove(item);
       }
 
-      return result;
+      ArticleSubFamiliesResponse response = new ArticleSubFamiliesResponse();
+      response.ArticleSubFamilies.Add(request.ArticleSubFamily);
+      return response;
     }
   }
 }

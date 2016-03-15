@@ -96,16 +96,17 @@ namespace Bm2s.Services.Common.Trade.HeaderPartnerAddress
       return response;
     }
 
-    public bool Delete(HeaderPartnerAddresses request)
+    public HeaderPartnerAddressesResponse Delete(HeaderPartnerAddresses request)
     {
-      bool result = true;
       Bm2s.Data.Common.BLL.Trade.HeaderPartnerAddress item = Datas.Instance.DataStorage.HeaderPartnerAddresses.FirstOrDefault(nomenclature => nomenclature.Id == request.HeaderPartnerAddress.Id);
       if (item != null)
       {
-        result = Datas.Instance.DataStorage.HeaderPartnerAddresses.Remove(item);
+        Datas.Instance.DataStorage.HeaderPartnerAddresses.Remove(item);
       }
 
-      return result;
+      HeaderPartnerAddressesResponse response = new HeaderPartnerAddressesResponse();
+      response.HeaderPartnerAddresses.Add(request.HeaderPartnerAddress);
+      return response;
     }
   }
 }

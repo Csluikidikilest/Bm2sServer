@@ -95,16 +95,17 @@ namespace Bm2s.Services.Common.Trade.HeaderFile
       return response;
     }
 
-    public bool Delete(HeaderFiles request)
+    public HeaderFilesResponse Delete(HeaderFiles request)
     {
-      bool result = true;
       Bm2s.Data.Common.BLL.Trade.HeaderFile item = Datas.Instance.DataStorage.HeaderFiles.FirstOrDefault(nomenclature => nomenclature.Id == request.HeaderFile.Id);
       if (item != null)
       {
-        result = Datas.Instance.DataStorage.HeaderFiles.Remove(item);
+        Datas.Instance.DataStorage.HeaderFiles.Remove(item);
       }
 
-      return result;
+      HeaderFilesResponse response = new HeaderFilesResponse();
+      response.HeaderFiles.Add(request.HeaderFile);
+      return response;
     }
   }
 }

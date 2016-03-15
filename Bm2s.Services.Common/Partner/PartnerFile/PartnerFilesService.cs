@@ -96,16 +96,17 @@ namespace Bm2s.Services.Common.Partner.PartnerFile
       return response;
     }
 
-    public bool Delete(PartnerFiles request)
+    public PartnerFilesResponse Delete(PartnerFiles request)
     {
-      bool result = true;
       Bm2s.Data.Common.BLL.Partner.PartnerFile item = Datas.Instance.DataStorage.PartnerFiles.FirstOrDefault(nomenclature => nomenclature.Id == request.PartnerFile.Id);
       if (item != null)
       {
-        result = Datas.Instance.DataStorage.PartnerFiles.Remove(item);
+        Datas.Instance.DataStorage.PartnerFiles.Remove(item);
       }
 
-      return result;
+      PartnerFilesResponse response = new PartnerFilesResponse();
+      response.PartnerFiles.Add(request.PartnerFile);
+      return response;
     }
   }
 }

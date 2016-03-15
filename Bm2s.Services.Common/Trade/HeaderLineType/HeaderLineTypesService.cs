@@ -83,16 +83,17 @@ namespace Bm2s.Services.Common.Trade.HeaderLineType
       return response;
     }
 
-    public bool Delete(HeaderLineTypes request)
+    public HeaderLineTypesResponse Delete(HeaderLineTypes request)
     {
-      bool result = true;
       Bm2s.Data.Common.BLL.Trade.HeaderLineType item = Datas.Instance.DataStorage.HeaderLineTypes.FirstOrDefault(nomenclature => nomenclature.Id == request.HeaderLineType.Id);
       if (item != null)
       {
-        result = Datas.Instance.DataStorage.HeaderLineTypes.Remove(item);
+        Datas.Instance.DataStorage.HeaderLineTypes.Remove(item);
       }
 
-      return result;
+      HeaderLineTypesResponse response = new HeaderLineTypesResponse();
+      response.HeaderLineTypes.Add(request.HeaderLineType);
+      return response;
     }
   }
 }

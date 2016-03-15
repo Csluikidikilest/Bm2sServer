@@ -116,16 +116,17 @@ namespace Bm2s.Services.Common.Article.Article
       return response;
     }
 
-    public bool Delete(Articles request)
+    public ArticlesResponse Delete(Articles request)
     {
-      bool result = true;
       Bm2s.Data.Common.BLL.Article.Article item = Datas.Instance.DataStorage.Articles.FirstOrDefault(nomenclature => nomenclature.Id == request.Article.Id);
       if (item != null)
       {
-        result = Datas.Instance.DataStorage.Articles.Remove(item);
+        Datas.Instance.DataStorage.Articles.Remove(item);
       }
 
-      return result;
+      ArticlesResponse response = new ArticlesResponse();
+      response.Articles.Add(request.Article);
+      return response;
     }
   }
 }
