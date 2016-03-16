@@ -92,6 +92,7 @@ namespace Bm2s.Services.Common.Parameter.Country
     {
       Bm2s.Data.Common.BLL.Parameter.Country item = Datas.Instance.DataStorage.Countries[request.Country.Id];
       item.EndingDate = DateTime.Now;
+      Datas.Instance.DataStorage.Countries[item.Id] = item;
 
       CountriesResponse response = new CountriesResponse();
       response.Countries.Add(request.Country);

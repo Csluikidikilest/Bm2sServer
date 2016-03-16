@@ -92,6 +92,7 @@ namespace Bm2s.Services.Common.Trade.HeaderStatus
     {
       Bm2s.Data.Common.BLL.Trade.HeaderStatus item = Datas.Instance.DataStorage.HeaderStatuses[request.HeaderStatus.Id];
       item.EndingDate = DateTime.Now;
+      Datas.Instance.DataStorage.HeaderStatuses[item.Id] = item;
 
       HeaderStatusesResponse response = new HeaderStatusesResponse();
       response.HeaderStatuses.Add(request.HeaderStatus);

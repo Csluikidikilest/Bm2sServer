@@ -99,6 +99,7 @@ namespace Bm2s.Services.Common.Trade.Reconciliation
     {
       Bm2s.Data.Common.BLL.Trade.Reconciliation item = Datas.Instance.DataStorage.Reconciliations[request.Reconciliation.Id];
       item.EndingDate = DateTime.Now;
+      Datas.Instance.DataStorage.Reconciliations[item.Id] = item;
 
       ReconciliationsResponse response = new ReconciliationsResponse();
       response.Reconciliations.Add(request.Reconciliation);

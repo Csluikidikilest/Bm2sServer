@@ -93,6 +93,7 @@ namespace Bm2s.Services.Common.Article.Price
     {
       Bm2s.Data.Common.BLL.Article.Price item = Datas.Instance.DataStorage.Prices[request.Price.Id];
       item.EndingDate = DateTime.Now;
+      Datas.Instance.DataStorage.Prices[item.Id] = item;
 
       PricesResponse response = new PricesResponse();
       response.Prices.Add(request.Price);

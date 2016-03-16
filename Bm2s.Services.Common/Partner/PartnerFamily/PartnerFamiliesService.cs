@@ -95,6 +95,7 @@ namespace Bm2s.Services.Common.Partner.PartnerFamily
     {
       Bm2s.Data.Common.BLL.Partner.PartnerFamily item = Datas.Instance.DataStorage.PartnerFamilies[request.PartnerFamily.Id];
       item.EndingDate = DateTime.Now;
+      Datas.Instance.DataStorage.PartnerFamilies[item.Id] = item;
 
       PartnerFamiliesResponse response = new PartnerFamiliesResponse();
       response.PartnerFamilies.Add(request.PartnerFamily);

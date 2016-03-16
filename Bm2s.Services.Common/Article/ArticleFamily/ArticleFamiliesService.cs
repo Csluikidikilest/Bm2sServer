@@ -99,6 +99,7 @@ namespace Bm2s.Services.Common.Article.ArticleFamily
     {
       Bm2s.Data.Common.BLL.Article.ArticleFamily item = Datas.Instance.DataStorage.ArticleFamilies[request.ArticleFamily.Id];
       item.EndingDate = DateTime.Now;
+      Datas.Instance.DataStorage.ArticleFamilies[item.Id] = item;
 
       ArticleFamiliesResponse response = new ArticleFamiliesResponse();
       response.ArticleFamilies.Add(request.ArticleFamily);

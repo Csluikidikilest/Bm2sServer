@@ -100,6 +100,7 @@ namespace Bm2s.Services.Common.Article.Nomenclature
     {
       Bm2s.Data.Common.BLL.Article.Nomenclature item = Datas.Instance.DataStorage.Nomenclatures[request.Nomenclature.Id];
       item.EndingDate = DateTime.Now;
+      Datas.Instance.DataStorage.Nomenclatures[item.Id] = item;
 
       NomenclaturesResponse response = new NomenclaturesResponse();
       response.Nomenclatures.Add(request.Nomenclature);

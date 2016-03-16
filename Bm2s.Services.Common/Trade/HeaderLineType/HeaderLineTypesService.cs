@@ -88,6 +88,7 @@ namespace Bm2s.Services.Common.Trade.HeaderLineType
     {
       Bm2s.Data.Common.BLL.Trade.HeaderLineType item = Datas.Instance.DataStorage.HeaderLineTypes[request.HeaderLineType.Id];
       item.EndingDate = DateTime.Now;
+      Datas.Instance.DataStorage.HeaderLineTypes[item.Id] = item;
 
       HeaderLineTypesResponse response = new HeaderLineTypesResponse();
       response.HeaderLineTypes.Add(request.HeaderLineType);

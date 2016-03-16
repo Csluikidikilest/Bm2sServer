@@ -107,6 +107,7 @@ namespace Bm2s.Services.Common.Article.ArticlePriceParner
     {
       Bm2s.Data.Common.BLL.Article.ArticlePricePartner item = Datas.Instance.DataStorage.ArticlePricePartners[request.ArticlePriceParner.Id];
       item.EndingDate = DateTime.Now;
+      Datas.Instance.DataStorage.ArticlePricePartners[item.Id] = item;
 
       ArticlePricePartnersResponse response = new ArticlePricePartnersResponse();
       response.ArticlePricePartners.Add(request.ArticlePriceParner);

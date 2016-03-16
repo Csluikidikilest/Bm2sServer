@@ -127,6 +127,7 @@ namespace Bm2s.Services.Common.Partner.Partner
     {
       Bm2s.Data.Common.BLL.Partner.Partner item = Datas.Instance.DataStorage.Partners[request.Partner.Id];
       item.EndingDate = DateTime.Now;
+      Datas.Instance.DataStorage.Partners[item.Id] = item;
 
       PartnersResponse response = new PartnersResponse();
       response.Partners.Add(request.Partner);

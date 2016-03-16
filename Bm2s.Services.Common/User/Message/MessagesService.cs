@@ -89,6 +89,7 @@ namespace Bm2s.Services.Common.User.Message
     {
       Bm2s.Data.Common.BLL.User.Message item = Datas.Instance.DataStorage.Messages[request.Message.Id];
       item.EndingDate = DateTime.Now;
+      Datas.Instance.DataStorage.Messages[item.Id] = item;
 
       MessagesResponse response = new MessagesResponse();
       response.Messages.Add(request.Message);

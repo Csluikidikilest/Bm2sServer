@@ -91,6 +91,7 @@ namespace Bm2s.Services.Common.Partner.AddressType
     {
       Bm2s.Data.Common.BLL.Partner.AddressType item = Datas.Instance.DataStorage.AddressTypes[request.AddressType.Id];
       item.EndingDate = DateTime.Now;
+      Datas.Instance.DataStorage.AddressTypes[item.Id] = item;
 
       AddressTypesResponse response = new AddressTypesResponse();
       response.AddressTypes.Add(request.AddressType);

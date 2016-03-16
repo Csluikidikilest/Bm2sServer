@@ -97,6 +97,7 @@ namespace Bm2s.Services.Common.User.Module
     {
       Bm2s.Data.Common.BLL.User.Module item = Datas.Instance.DataStorage.Modules[request.Module.Id];
       item.EndingDate = DateTime.Now;
+      Datas.Instance.DataStorage.Modules[item.Id] = item;
 
       ModulesResponse response = new ModulesResponse();
       response.Modules.Add(request.Module);

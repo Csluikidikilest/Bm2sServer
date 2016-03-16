@@ -117,6 +117,7 @@ namespace Bm2s.Services.Common.User.User
     {
       Bm2s.Data.Common.BLL.User.User item = Datas.Instance.DataStorage.Users[request.User.Id];
       item.EndingDate = DateTime.Now;
+      Datas.Instance.DataStorage.Users[item.Id] = item;
 
       UsersResponse response = new UsersResponse();
       response.Users.Add(request.User);

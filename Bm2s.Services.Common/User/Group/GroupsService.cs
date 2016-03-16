@@ -90,6 +90,7 @@ namespace Bm2s.Services.Common.User.Group
     {
       Bm2s.Data.Common.BLL.User.Group item = Datas.Instance.DataStorage.Groups[request.Group.Id];
       item.EndingDate = DateTime.Now;
+      Datas.Instance.DataStorage.Groups[item.Id] = item;
 
       GroupsResponse response = new GroupsResponse();
       response.Groups.Add(request.Group);

@@ -101,6 +101,7 @@ namespace Bm2s.Services.Common.Parameter.Period
     {
       Bm2s.Data.Common.BLL.Parameter.Period item = Datas.Instance.DataStorage.Periods[request.Period.Id];
       item.EndingDate = DateTime.Now;
+      Datas.Instance.DataStorage.Periods[item.Id] = item;
 
       PeriodsResponse response = new PeriodsResponse();
       response.Periods.Add(request.Period);

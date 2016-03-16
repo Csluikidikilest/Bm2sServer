@@ -103,6 +103,7 @@ namespace Bm2s.Services.Common.Parameter.Unit
     {
       Bm2s.Data.Common.BLL.Parameter.Unit item = Datas.Instance.DataStorage.Units[request.Unit.Id];
       item.EndingDate = DateTime.Now;
+      Datas.Instance.DataStorage.Units[item.Id] = item;
 
       UnitsResponse response = new UnitsResponse();
       response.Units.Add(request.Unit);

@@ -105,6 +105,7 @@ namespace Bm2s.Services.Common.Article.ArticleSubFamily
     {
       Bm2s.Data.Common.BLL.Article.ArticleSubFamily item = Datas.Instance.DataStorage.ArticleSubFamilies[request.ArticleSubFamily.Id];
       item.EndingDate = DateTime.Now;
+      Datas.Instance.DataStorage.ArticleSubFamilies[item.Id] = item;
 
       ArticleSubFamiliesResponse response = new ArticleSubFamiliesResponse();
       response.ArticleSubFamilies.Add(request.ArticleSubFamily);

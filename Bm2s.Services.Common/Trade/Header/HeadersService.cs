@@ -120,6 +120,7 @@ namespace Bm2s.Services.Common.Trade.Header
     {
       Bm2s.Data.Common.BLL.Trade.Header item = Datas.Instance.DataStorage.Headers[request.Header.Id];
       item.EndingDate = DateTime.Now;
+      Datas.Instance.DataStorage.Headers[item.Id] = item;
 
       HeadersResponse response = new HeadersResponse();
       response.Headers.Add(request.Header);

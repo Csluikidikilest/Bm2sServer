@@ -101,6 +101,7 @@ namespace Bm2s.Services.Common.Article.ArticlePricePartnerFamily
     {
       Bm2s.Data.Common.BLL.Article.ArticlePricePartnerFamily item = Datas.Instance.DataStorage.ArticlePricePartnerFamilies[request.ArticlePricePartnerFamily.Id];
       item.EndingDate = DateTime.Now;
+      Datas.Instance.DataStorage.ArticlePricePartnerFamilies[item.Id] = item;
 
       ArticlePricePartnerFamiliesResponse response = new ArticlePricePartnerFamiliesResponse();
       response.ArticlePricePartnerFamilies.Add(request.ArticlePricePartnerFamily);

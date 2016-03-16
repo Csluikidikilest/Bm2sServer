@@ -94,6 +94,7 @@ namespace Bm2s.Services.Common.Partner.PartnerAddress
     {
       Bm2s.Data.Common.BLL.Partner.PartnerAddress item = Datas.Instance.DataStorage.PartnerAddresses[request.PartnerAddress.Id];
       Datas.Instance.DataStorage.PartnerAddresses.Remove(item);
+      Datas.Instance.DataStorage.PartnerAddresses[item.Id] = item;
 
       PartnerAddressesResponse response = new PartnerAddressesResponse();
       response.PartnerAddresses.Add(request.PartnerAddress);

@@ -92,6 +92,7 @@ namespace Bm2s.Services.Common.Article.Brand
     {
       Bm2s.Data.Common.BLL.Article.Brand item = Datas.Instance.DataStorage.Brands[request.Brand.Id];
       item.EndingDate = DateTime.Now;
+      Datas.Instance.DataStorage.Brands[item.Id] = item;
 
       BrandsResponse response = new BrandsResponse();
       response.Brands.Add(request.Brand);

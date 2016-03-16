@@ -92,6 +92,7 @@ namespace Bm2s.Services.Common.Trade.PaymentMode
     {
       Bm2s.Data.Common.BLL.Trade.PaymentMode item = Datas.Instance.DataStorage.PaymentModes[request.PaymentMode.Id];
       item.EndingDate = DateTime.Now;
+      Datas.Instance.DataStorage.PaymentModes[item.Id] = item;
 
       PaymentModesResponse response = new PaymentModesResponse();
       response.PaymentModes.Add(request.PaymentMode);

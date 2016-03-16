@@ -28,6 +28,12 @@ namespace Bm2s.Connectivity.Common.Parameter
       this.IsFilled = true;
     }
 
+    public void Delete()
+    {
+      this.Response = this.ConnectorHelper.Delete(this.Request);
+      this.IsFilled = true;
+    }
+
     protected override void LoadFromNameValueCollection(System.Collections.Specialized.NameValueCollection parameters)
     {
       this.Request.LoadFromNameValueCollection(parameters);

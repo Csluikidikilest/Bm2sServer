@@ -121,6 +121,7 @@ namespace Bm2s.Services.Common.Article.Article
     {
       Bm2s.Data.Common.BLL.Article.Article item = Datas.Instance.DataStorage.Articles[request.Article.Id];
       item.EndingDate = DateTime.Now;
+      Datas.Instance.DataStorage.Articles[item.Id] = item;
 
       ArticlesResponse response = new ArticlesResponse();
       response.Articles.Add(request.Article);

@@ -90,6 +90,7 @@
     <Compile Include="Article\Brand.cs" />
     <Compile Include="Article\Nomenclature.cs" />
     <Compile Include="Article\Price.cs" />
+    <Compile Include="Article\PriceDetermination.cs" />
     <Compile Include="Article\Subscription.cs" />
     <Compile Include="Article\SubscriptionPartner.cs" />
     <Compile Include="Parameter\Activity.cs" />

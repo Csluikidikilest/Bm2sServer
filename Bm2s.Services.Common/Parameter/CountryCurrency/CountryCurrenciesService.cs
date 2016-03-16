@@ -96,6 +96,7 @@ namespace Bm2s.Services.Common.Parameter.CountryCurrency
     {
       Bm2s.Data.Common.BLL.Parameter.CountryCurrency item = Datas.Instance.DataStorage.CountryCurrencies[request.CountryCurrency.Id];
       item.EndingDate = DateTime.Now;
+      Datas.Instance.DataStorage.CountryCurrencies[item.Id] = item;
 
       CountryCurrenciesResponse response = new CountryCurrenciesResponse();
       response.CountryCurrencies.Add(request.CountryCurrency);

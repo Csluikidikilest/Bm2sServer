@@ -121,6 +121,7 @@ namespace Bm2s.Services.Common.Partner.PartnerContact
     {
       Bm2s.Data.Common.BLL.Partner.PartnerContact item = Datas.Instance.DataStorage.PartnerContacts[request.PartnerContact.Id];
       item.EndingDate = DateTime.Now;
+      Datas.Instance.DataStorage.PartnerContacts[item.Id] = item;
 
       PartnerContactsResponse response = new PartnerContactsResponse();
       response.PartnerContacts.Add(request.PartnerContact);

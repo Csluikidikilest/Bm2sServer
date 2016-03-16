@@ -297,7 +297,7 @@ namespace Bm2s.Data.Common.Utils
       BLL.User.Group administrators = this.DataStorage.Groups.FirstOrDefault(item => item.Code == "Administrators");
       if (administrators == null)
       {
-        administrators = new Group() { Code = "Administrators", Name = "System Administrator", IsSystem = true };
+        administrators = new Group() { Code = "Administrators", Name = "System Administrators", IsSystem = true };
         this.DataStorage.Groups.Add(administrators);
       }
 
@@ -321,6 +321,39 @@ namespace Bm2s.Data.Common.Utils
         this.DataStorage.Users.Add(administrator);
         BLL.User.UserGroup administratorGroups = new UserGroup() { GroupId = administrators.Id, UserId = administrator.Id };
         this.DataStorage.UserGroups.Add(administratorGroups);
+      }
+
+      Console.WriteLine("[OK]");
+      Console.Write("Initial datas classic group: ");
+
+      // Group: administrators
+      BLL.User.Group users = this.DataStorage.Groups.FirstOrDefault(item => item.Code == "Users");
+      if (users == null)
+      {
+        users = new Group() { Code = "Users", Name = "Classic User", IsSystem = false };
+        this.DataStorage.Groups.Add(users);
+      }
+
+      Console.WriteLine("[OK]");
+      Console.Write("Initial datas classic user: ");
+
+      // User: classic user
+      BLL.User.User user = this.DataStorage.Users.FirstOrDefault(item => item.Login == "User");
+      if (user == null)
+      {
+        SHA512 hash = SHA512.Create();
+        byte[] passwordBytes = hash.ComputeHash(Encoding.UTF8.GetBytes("User"));
+
+        StringBuilder password = new StringBuilder();
+        foreach (byte passwordByte in passwordBytes)
+        {
+          password.Append(passwordByte.ToString("X2"));
+        }
+
+        user = new User() { DefaultLanguageId = english.Id, FirstName = "User", IsAdministrator = false, IsAnonymous = false, IsSystem = false, LastName = string.Empty, Login = "User", Password = password.ToString(), StartingDate = new DateTime(2014, 11, 2) };
+        this.DataStorage.Users.Add(user);
+        BLL.User.UserGroup userGroups = new UserGroup() { GroupId = users.Id, UserId = user.Id };
+        this.DataStorage.UserGroups.Add(userGroups);
       }
 
       Console.WriteLine("[OK]");

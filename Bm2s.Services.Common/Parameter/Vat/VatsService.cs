@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Bm2s.Data.Common.Utils;
 using Bm2s.Response.Common.Parameter.Vat;
@@ -92,7 +93,8 @@ namespace Bm2s.Services.Common.Parameter.Vat
     public VatsResponse Delete(Vats request)
     {
       Bm2s.Data.Common.BLL.Parameter.Vat item = Datas.Instance.DataStorage.Vats[request.Vat.Id];
-      Datas.Instance.DataStorage.Vats.Remove(item);
+      item.EndingDate = DateTime.Now;
+      Datas.Instance.DataStorage.Vats[item.Id] = item;
 
       VatsResponse response = new VatsResponse();
       response.Vats.Add(request.Vat);

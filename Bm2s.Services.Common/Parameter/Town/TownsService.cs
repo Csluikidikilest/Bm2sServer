@@ -98,6 +98,7 @@ namespace Bm2s.Services.Common.Parameter.Town
     {
       Bm2s.Data.Common.BLL.Parameter.Town item = Datas.Instance.DataStorage.Towns[request.Town.Id];
       item.EndingDate = DateTime.Now;
+      Datas.Instance.DataStorage.Towns[item.Id] = item;
 
       TownsResponse response = new TownsResponse();
       response.Towns.Add(request.Town);
