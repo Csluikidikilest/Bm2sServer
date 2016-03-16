@@ -297,7 +297,7 @@ namespace Bm2s.Data.Common.Utils
       BLL.User.Group administrators = this.DataStorage.Groups.FirstOrDefault(item => item.Code == "Administrators");
       if (administrators == null)
       {
-        administrators = new Group() { Code = "Administrators", Name = "System Administrators", IsSystem = true };
+        administrators = new Group() { Code = "Administrators", Name = "System Administrators", IsSystem = true, StartingDate= new DateTime(2014, 11, 2) };
         this.DataStorage.Groups.Add(administrators);
       }
 
@@ -326,11 +326,11 @@ namespace Bm2s.Data.Common.Utils
       Console.WriteLine("[OK]");
       Console.Write("Initial datas classic group: ");
 
-      // Group: administrators
+      // Group: classic users
       BLL.User.Group users = this.DataStorage.Groups.FirstOrDefault(item => item.Code == "Users");
       if (users == null)
       {
-        users = new Group() { Code = "Users", Name = "Classic User", IsSystem = false };
+        users = new Group() { Code = "Users", Name = "Classic Users", IsSystem = false, StartingDate = new DateTime(2014, 11, 2) };
         this.DataStorage.Groups.Add(users);
       }
 
@@ -363,7 +363,7 @@ namespace Bm2s.Data.Common.Utils
       BLL.User.Group visitors = this.DataStorage.Groups.FirstOrDefault(item => item.Code == "Visitors");
       if (visitors == null)
       {
-        visitors = new Group() { Code = "Visitors", Name = "Visitors", IsSystem = true };
+        visitors = new Group() { Code = "Visitors", Name = "Visitors", IsSystem = true, StartingDate = new DateTime(2014, 11, 2) };
         this.DataStorage.Groups.Add(visitors);
       }
 

@@ -31,9 +31,11 @@ namespace Bm2s.Services.Common.User.Group
                         select new Bm2s.Poco.Common.User.Group()
                         {
                           Code = item.Code,
+                          EndingDate = item.EndingDate,
                           Id = item.Id,
                           IsSystem = item.IsSystem,
-                          Name = item.Name
+                          Name = item.Name,
+                          StartingDate = item.StartingDate
                         }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
       response.ItemsCount = collection.Count();
@@ -64,8 +66,10 @@ namespace Bm2s.Services.Common.User.Group
       {
         Bm2s.Data.Common.BLL.User.Group item = Datas.Instance.DataStorage.Groups[request.Group.Id];
         item.Code = request.Group.Code;
+        item.EndingDate = request.Group.EndingDate;
         item.IsSystem = request.Group.IsSystem;
         item.Name = request.Group.Name;
+        item.StartingDate = request.Group.StartingDate;
         Datas.Instance.DataStorage.Groups[request.Group.Id] = item;
       }
       else
@@ -73,8 +77,10 @@ namespace Bm2s.Services.Common.User.Group
         Bm2s.Data.Common.BLL.User.Group item = new Data.Common.BLL.User.Group()
         {
           Code = request.Group.Code,
+          EndingDate = request.Group.EndingDate,
           IsSystem = request.Group.IsSystem,
-          Name = request.Group.Name
+          Name = request.Group.Name,
+          StartingDate = request.Group.StartingDate
         };
 
         Datas.Instance.DataStorage.Groups.Add(item);
