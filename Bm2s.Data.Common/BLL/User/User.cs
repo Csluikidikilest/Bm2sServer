@@ -15,7 +15,6 @@ namespace Bm2s.Data.Common.BLL.User
     [StringLength(250)]
     public string LastName { get; set; }
 
-    [Required]
     [StringLength(250)]
     public string FirstName { get; set; }
 

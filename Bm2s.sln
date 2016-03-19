@@ -54,6 +54,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bm2s.Response", "Bm2s.Respo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bm2s.Services", "Bm2s.Services\Bm2s.Services.csproj", "{A3FB4471-C100-4B84-B104-19C025597322}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bm2s.Service", "Bm2s.Service\Bm2s.Service.csproj", "{586A1277-CDD9-46C0-92B7-BD22BD2912A5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -128,6 +130,10 @@ Global
 		{A3FB4471-C100-4B84-B104-19C025597322}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3FB4471-C100-4B84-B104-19C025597322}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A3FB4471-C100-4B84-B104-19C025597322}.Release|Any CPU.Build.0 = Release|Any CPU
+		{586A1277-CDD9-46C0-92B7-BD22BD2912A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{586A1277-CDD9-46C0-92B7-BD22BD2912A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{586A1277-CDD9-46C0-92B7-BD22BD2912A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{586A1277-CDD9-46C0-92B7-BD22BD2912A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

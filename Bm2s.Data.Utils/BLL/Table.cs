@@ -36,11 +36,18 @@ namespace Bm2s.Data.Utils.BLL
 
     protected virtual void Insert<T>(IDbConnection dbConnection) where T : Table
     {
-      dbConnection.Insert(this);
+      try
+      {
+        dbConnection.Insert(this);
 
-      int id = 0;
-      int.TryParse(dbConnection.GetLastInsertId().ToString(), out id);
-      this.Id = id;
+        int id = 0;
+        int.TryParse(dbConnection.GetLastInsertId().ToString(), out id);
+        this.Id = id;
+      }
+      catch (Exception e)
+      {
+        Console.WriteLine("Error when trying to insert " + this.GetType().ToString().ToLower());
+      }
     }
 
     public virtual void Save<T>(IDbConnection dbConnection) where T : Table
@@ -57,7 +64,14 @@ namespace Bm2s.Data.Utils.BLL
 
     protected virtual void Update<T>(IDbConnection dbConnection) where T : Table
     {
-      dbConnection.Update(this as T, f => f.Id == this.Id);
+      try
+      {
+        dbConnection.Update(this as T, f => f.Id == this.Id);
+      }
+      catch (Exception e)
+      {
+        Console.WriteLine("Error when trying to update " + this.GetType().ToString().ToLower());
+      }
     }
   }
 }

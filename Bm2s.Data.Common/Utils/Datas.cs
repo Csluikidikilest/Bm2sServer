@@ -297,7 +297,7 @@ namespace Bm2s.Data.Common.Utils
       BLL.User.Group administrators = this.DataStorage.Groups.FirstOrDefault(item => item.Code == "Administrators");
       if (administrators == null)
       {
-        administrators = new Group() { Code = "Administrators", Name = "System Administrators", IsSystem = true, StartingDate= new DateTime(2014, 11, 2) };
+        administrators = new Group() { Code = "Administrators", Name = "System Administrators", IsSystem = true, StartingDate = new DateTime(2014, 11, 2) };
         this.DataStorage.Groups.Add(administrators);
       }
 
@@ -317,7 +317,7 @@ namespace Bm2s.Data.Common.Utils
           password.Append(passwordByte.ToString("X2"));
         }
 
-        administrator = new User() { DefaultLanguageId = english.Id, FirstName = "Administrator", IsAdministrator = true, IsAnonymous = false, IsSystem = true, LastName = string.Empty, Login = "Administrator", Password = password.ToString(), StartingDate = new DateTime(2014, 11, 2) };
+        administrator = new User() { DefaultLanguageId = english.Id, LastName = "Administrator", IsAdministrator = true, IsAnonymous = false, IsSystem = true, FirstName = string.Empty, Login = "Administrator", Password = password.ToString(), StartingDate = new DateTime(2015, 1, 1) };
         this.DataStorage.Users.Add(administrator);
         BLL.User.UserGroup administratorGroups = new UserGroup() { GroupId = administrators.Id, UserId = administrator.Id };
         this.DataStorage.UserGroups.Add(administratorGroups);
@@ -350,7 +350,7 @@ namespace Bm2s.Data.Common.Utils
           password.Append(passwordByte.ToString("X2"));
         }
 
-        user = new User() { DefaultLanguageId = english.Id, FirstName = "User", IsAdministrator = false, IsAnonymous = false, IsSystem = false, LastName = string.Empty, Login = "User", Password = password.ToString(), StartingDate = new DateTime(2014, 11, 2) };
+        user = new User() { DefaultLanguageId = english.Id, LastName = "User", IsAdministrator = false, IsAnonymous = false, IsSystem = false, FirstName = string.Empty, Login = "User", Password = password.ToString(), StartingDate = new DateTime(2015, 1, 1) };
         this.DataStorage.Users.Add(user);
         BLL.User.UserGroup userGroups = new UserGroup() { GroupId = users.Id, UserId = user.Id };
         this.DataStorage.UserGroups.Add(userGroups);
@@ -374,7 +374,7 @@ namespace Bm2s.Data.Common.Utils
       BLL.User.User visitor = this.DataStorage.Users.FirstOrDefault(item => item.Login == "Visitor");
       if (visitor == null)
       {
-        visitor = new User() { DefaultLanguageId = english.Id, FirstName = "Visitor", IsAdministrator = false, IsAnonymous = true, IsSystem = true, LastName = string.Empty, Login = "Visitor", Password = string.Empty, StartingDate = new DateTime(2014, 11, 2) };
+        visitor = new User() { DefaultLanguageId = english.Id, LastName = "Visitor", IsAdministrator = false, IsAnonymous = true, IsSystem = true, FirstName = string.Empty, Login = "Visitor", Password = string.Empty, StartingDate = new DateTime(2015, 1, 1) };
         this.DataStorage.Users.Add(visitor);
 
         BLL.User.UserGroup visitorGroups = new UserGroup() { GroupId = visitors.Id, UserId = visitor.Id };
