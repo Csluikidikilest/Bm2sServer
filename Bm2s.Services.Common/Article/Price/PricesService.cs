@@ -31,7 +31,7 @@ namespace Bm2s.Services.Common.Article.Price
                         select new Bm2s.Poco.Common.Article.Price()
                         {
                           Article = new ArticlesService().Get(new Articles() { Ids = new List<int>() { item.ArticleId } }).Articles.FirstOrDefault(),
-                          BasePrice = item.BasePrice,
+                          BasePrice = Convert.ToDecimal(item.BasePrice),
                           EndingDate = item.EndingDate,
                           Id = item.Id,
                           StartingDate = item.StartingDate
@@ -65,7 +65,7 @@ namespace Bm2s.Services.Common.Article.Price
       {
         Bm2s.Data.Common.BLL.Article.Price item = Datas.Instance.DataStorage.Prices[request.Price.Id];
         item.ArticleId = request.Price.Article.Id;
-        item.BasePrice = request.Price.BasePrice;
+        item.BasePrice = Convert.ToDouble(request.Price.BasePrice);
         item.EndingDate = request.Price.EndingDate;
         item.StartingDate = request.Price.StartingDate;
         Datas.Instance.DataStorage.Prices[request.Price.Id] = item;
@@ -75,7 +75,7 @@ namespace Bm2s.Services.Common.Article.Price
         Bm2s.Data.Common.BLL.Article.Price item = new Data.Common.BLL.Article.Price()
         {
           ArticleId = request.Price.Article.Id,
-          BasePrice = request.Price.BasePrice,
+          BasePrice = Convert.ToDouble(request.Price.BasePrice),
           EndingDate = request.Price.EndingDate,
           StartingDate = request.Price.StartingDate
         };

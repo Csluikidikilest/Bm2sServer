@@ -78,17 +78,26 @@ namespace Bm2s.Data.Utils.BLL
       StringBuilder result = new StringBuilder();
       Type type = this.GetType();
 
-      result.Append("{");
+      result.Append("{ ");
       foreach (PropertyInfo propertyInfo in type.GetProperties())
       {
-        switch (propertyInfo.GetType().ToString().ToLower())
+        switch (propertyInfo.PropertyType.Name.ToLower())
         {
           case "string":
-          case "int":
+            if (propertyInfo.GetValue(this) == null)
+            {
+              result.Append(propertyInfo.Name + ": null");
+            }
+            else
+            {
+              result.Append(propertyInfo.Name + ": '" + propertyInfo.GetValue(this) + "'");
+            }
+            break;
+          case "int32":
           case "datetime":
           case "float":
           case "decimal":
-          case "bool":
+          case "boolean":
             result.Append(propertyInfo.Name + ": " + propertyInfo.GetValue(this));
             break;
         }

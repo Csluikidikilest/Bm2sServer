@@ -44,7 +44,7 @@ namespace Bm2s.Services.Common.Trade.Header
                           DeliveryObservation = item.DeliveryObservation,
                           Description = item.Description,
                           EndingDate = item.EndingDate,
-                          FooterDiscount = item.FooterDiscount,
+                          FooterDiscount = Convert.ToDecimal(item.FooterDiscount),
                           HeaderStatus = new HeaderStatusesService().Get(new HeaderStatuses() { Ids = new List<int>() { item.HeaderStatusId } }).HeaderStatuses.FirstOrDefault(),
                           Id = item.Id,
                           IsSell = item.IsSell,
@@ -84,7 +84,7 @@ namespace Bm2s.Services.Common.Trade.Header
         item.DeliveryObservation = request.Header.DeliveryObservation;
         item.Description = request.Header.Description;
         item.EndingDate = request.Header.EndingDate;
-        item.FooterDiscount = request.Header.FooterDiscount;
+        item.FooterDiscount = Convert.ToDouble(request.Header.FooterDiscount);
         item.HeaderStatusId = request.Header.HeaderStatus.Id;
         item.IsSell = request.Header.IsSell;
         item.Reference = request.Header.Reference;
@@ -100,7 +100,7 @@ namespace Bm2s.Services.Common.Trade.Header
           DeliveryObservation = request.Header.DeliveryObservation,
           Description = request.Header.Description,
           EndingDate = request.Header.EndingDate,
-          FooterDiscount = request.Header.FooterDiscount,
+          FooterDiscount = Convert.ToDouble(request.Header.FooterDiscount),
           HeaderStatusId = request.Header.HeaderStatus.Id,
           IsSell = request.Header.IsSell,
           Reference = request.Header.Reference,

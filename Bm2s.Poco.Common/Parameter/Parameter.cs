@@ -8,13 +8,15 @@ namespace Bm2s.Poco.Common.Parameter
 
     public string Code { get; set; }
 
+    public string Description { get; set; }
+
     public string ValueType { get; set; }
 
     public string sValue { get; set; }
 
     public int iValue { get; set; }
 
-    public double fValue { get; set; }
+    public decimal fValue { get; set; }
 
     public bool bValue { get; set; }
 

@@ -33,7 +33,7 @@ namespace Bm2s.Services.Common.Trade.Reconciliation
       var collection = (from item in items
                         select new Bm2s.Poco.Common.Trade.Reconciliation()
                         {
-                          Amount = item.Amount,
+                          Amount = Convert.ToDecimal(item.Amount),
                           EndingDate = item.EndingDate,
                           HeaderLine = new HeaderLinesService().Get(new HeaderLines() { Ids = new List<int>() { item.HeaderLineId } }).HeaderLines.FirstOrDefault(),
                           Id = item.Id,
@@ -68,7 +68,7 @@ namespace Bm2s.Services.Common.Trade.Reconciliation
       if (request.Reconciliation.Id > 0)
       {
         Bm2s.Data.Common.BLL.Trade.Reconciliation item = Datas.Instance.DataStorage.Reconciliations[request.Reconciliation.Id];
-        item.Amount = request.Reconciliation.Amount;
+        item.Amount = Convert.ToDouble(request.Reconciliation.Amount);
         item.EndingDate = request.Reconciliation.EndingDate;
         item.HeaderLineId = request.Reconciliation.HeaderLine.Id;
         item.PaymentId = request.Reconciliation.Payment.Id;
@@ -79,7 +79,7 @@ namespace Bm2s.Services.Common.Trade.Reconciliation
       {
         Bm2s.Data.Common.BLL.Trade.Reconciliation item = new Data.Common.BLL.Trade.Reconciliation()
         {
-          Amount = request.Reconciliation.Amount,
+          Amount = Convert.ToDouble(request.Reconciliation.Amount),
           EndingDate = request.Reconciliation.EndingDate,
           HeaderLineId = request.Reconciliation.HeaderLine.Id,
           PaymentId = request.Reconciliation.Payment.Id,

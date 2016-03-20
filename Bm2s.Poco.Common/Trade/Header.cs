@@ -17,7 +17,7 @@ namespace Bm2s.Poco.Common.Trade
 
     public string DeliveryObservation { get; set; }
 
-    public double FooterDiscount { get; set; }
+    public decimal FooterDiscount { get; set; }
 
     public bool IsSell { get; set; }
 

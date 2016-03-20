@@ -38,9 +38,9 @@ namespace Bm2s.Services.Common.Article.ArticleSubFamilyPricePartnerFamily
                           ArticleSubFamily = new ArticleSubFamiliesService().Get(new ArticleSubFamilies() { Ids = new List<int>() { item.ArticleSubFamilyId } }).ArticleSubFamilies.FirstOrDefault(),
                           EndingDate = item.EndingDate,
                           Id = item.Id,
-                          Multiplier = item.Multiplier,
+                          Multiplier = Convert.ToDecimal(item.Multiplier),
                           PartnerFamily = new PartnerFamiliesService().Get(new PartnerFamilies() { Ids = new List<int>() { item.PartnerFamilyId } }).PartnerFamilies.FirstOrDefault(),
-                          Price = item.Price,
+                          Price = Convert.ToDecimal(item.Price),
                           StartingDate = item.StartingDate
                         }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
@@ -73,9 +73,9 @@ namespace Bm2s.Services.Common.Article.ArticleSubFamilyPricePartnerFamily
         Bm2s.Data.Common.BLL.Article.ArticleSubFamilyPricePartnerFamily item = Datas.Instance.DataStorage.ArticleSubFamilyPricePartnerFamilies[request.ArticleSubFamilyPricePartnerFamily.Id];
         item.ArticleSubFamilyId = request.ArticleSubFamilyPricePartnerFamily.ArticleSubFamily.Id;
         item.EndingDate = request.ArticleSubFamilyPricePartnerFamily.EndingDate;
-        item.Multiplier = request.ArticleSubFamilyPricePartnerFamily.Multiplier;
+        item.Multiplier = Convert.ToDouble(request.ArticleSubFamilyPricePartnerFamily.Multiplier);
         item.PartnerFamilyId = request.ArticleSubFamilyPricePartnerFamily.PartnerFamily.Id;
-        item.Price = request.ArticleSubFamilyPricePartnerFamily.Price;
+        item.Price = Convert.ToDouble(request.ArticleSubFamilyPricePartnerFamily.Price);
         item.StartingDate = request.ArticleSubFamilyPricePartnerFamily.StartingDate;
         Datas.Instance.DataStorage.ArticleSubFamilyPricePartnerFamilies[request.ArticleSubFamilyPricePartnerFamily.Id] = item;
       }
@@ -85,9 +85,9 @@ namespace Bm2s.Services.Common.Article.ArticleSubFamilyPricePartnerFamily
         {
           ArticleSubFamilyId = request.ArticleSubFamilyPricePartnerFamily.ArticleSubFamily.Id,
           EndingDate = request.ArticleSubFamilyPricePartnerFamily.EndingDate,
-          Multiplier = request.ArticleSubFamilyPricePartnerFamily.Multiplier,
+          Multiplier = Convert.ToDouble(request.ArticleSubFamilyPricePartnerFamily.Multiplier),
           PartnerFamilyId = request.ArticleSubFamilyPricePartnerFamily.PartnerFamily.Id,
-          Price = request.ArticleSubFamilyPricePartnerFamily.Price,
+          Price = Convert.ToDouble(request.ArticleSubFamilyPricePartnerFamily.Price),
           StartingDate = request.ArticleSubFamilyPricePartnerFamily.StartingDate
         };
 

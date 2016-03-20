@@ -45,7 +45,7 @@ namespace Bm2s.Services.Common.Partner.Partner
                           IsSupplier = item.IsSupplier,
                           Observation = item.Observation,
                           PhoneNumber = item.PhoneNumber,
-                          PriceMultiplier = item.PriceMultiplier,
+                          PriceMultiplier = Convert.ToDecimal(item.PriceMultiplier),
                           StartingDate = item.StartingDate,
                           User = new UsersService().Get(new Users() { Ids = new List<int>() { item.UserId } }).Users.FirstOrDefault(),
                           WebSite = item.WebSite
@@ -88,7 +88,7 @@ namespace Bm2s.Services.Common.Partner.Partner
         item.IsSupplier = request.Partner.IsSupplier;
         item.Observation = request.Partner.Observation;
         item.PhoneNumber = request.Partner.PhoneNumber;
-        item.PriceMultiplier = request.Partner.PriceMultiplier;
+        item.PriceMultiplier = Convert.ToDouble(request.Partner.PriceMultiplier);
         item.StartingDate = request.Partner.StartingDate;
         item.UserId = request.Partner.User.Id;
         item.WebSite = request.Partner.WebSite;
@@ -108,7 +108,7 @@ namespace Bm2s.Services.Common.Partner.Partner
           IsSupplier = request.Partner.IsSupplier,
           Observation = request.Partner.Observation,
           PhoneNumber = request.Partner.PhoneNumber,
-          PriceMultiplier = request.Partner.PriceMultiplier,
+          PriceMultiplier = Convert.ToDouble(request.Partner.PriceMultiplier),
           StartingDate = request.Partner.StartingDate,
           UserId = request.Partner.User.Id,
           WebSite = request.Partner.WebSite

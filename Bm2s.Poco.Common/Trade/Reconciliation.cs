@@ -6,7 +6,7 @@ namespace Bm2s.Poco.Common.Trade
   {
     public int Id { get; set; }
 
-    public double Amount { get; set; }
+    public decimal Amount { get; set; }
 
     public DateTime StartingDate { get; set; }
 

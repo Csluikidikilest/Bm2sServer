@@ -9,6 +9,7 @@ using Bm2s.Services.Common.Parameter.Unit;
 using Bm2s.Services.Common.Partner.Partner;
 using Bm2s.Services.Common.Trade.PaymentMode;
 using ServiceStack.ServiceInterface;
+using System;
 
 namespace Bm2s.Services.Common.Trade.Payment
 {
@@ -35,7 +36,7 @@ namespace Bm2s.Services.Common.Trade.Payment
       var collection = (from item in items
                         select new Bm2s.Poco.Common.Trade.Payment()
                         {
-                          Amount = item.Amount,
+                          Amount = Convert.ToDecimal(item.Amount),
                           Date = item.Date,
                           Id = item.Id,
                           Reference = item.Reference,
@@ -71,7 +72,7 @@ namespace Bm2s.Services.Common.Trade.Payment
       if (request.Payment.Id > 0)
       {
         Bm2s.Data.Common.BLL.Trade.Payment item = Datas.Instance.DataStorage.Payments[request.Payment.Id];
-        item.Amount = request.Payment.Amount;
+        item.Amount = Convert.ToDouble(request.Payment.Amount);
         item.Date = request.Payment.Date;
         item.Reference = request.Payment.Reference;
         item.PartnerId = request.Payment.Partner.Id;
@@ -83,7 +84,7 @@ namespace Bm2s.Services.Common.Trade.Payment
       {
         Bm2s.Data.Common.BLL.Trade.Payment item = new Data.Common.BLL.Trade.Payment()
         {
-          Amount = request.Payment.Amount,
+          Amount = Convert.ToDouble(request.Payment.Amount),
           Date = request.Payment.Date,
           Reference = request.Payment.Reference,
           PartnerId = request.Payment.Partner.Id,

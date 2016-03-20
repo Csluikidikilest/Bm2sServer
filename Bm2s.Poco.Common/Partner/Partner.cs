@@ -22,7 +22,7 @@ namespace Bm2s.Poco.Common.Partner
 
     public string Observation { get; set; }
 
-    public double? PriceMultiplier { get; set; }
+    public decimal? PriceMultiplier { get; set; }
 
     public DateTime StartingDate { get; set; }
 

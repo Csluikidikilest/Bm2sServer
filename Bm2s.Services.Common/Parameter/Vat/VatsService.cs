@@ -32,7 +32,7 @@ namespace Bm2s.Services.Common.Parameter.Vat
                           Code = item.Code,
                           EndingDate = item.EndingDate,
                           Id = item.Id,
-                          Rate = item.Rate,
+                          Rate = Convert.ToDecimal(item.Rate),
                           StartingDate = item.StartingDate
                         }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
@@ -66,7 +66,7 @@ namespace Bm2s.Services.Common.Parameter.Vat
         item.AccountingEntry = request.Vat.AccountingEntry;
         item.Code = request.Vat.Code;
         item.EndingDate = request.Vat.EndingDate;
-        item.Rate = request.Vat.Rate;
+        item.Rate = Convert.ToDouble(request.Vat.Rate);
         item.StartingDate = request.Vat.StartingDate;
         Datas.Instance.DataStorage.Vats[request.Vat.Id] = item;
       }
@@ -77,7 +77,7 @@ namespace Bm2s.Services.Common.Parameter.Vat
           AccountingEntry = request.Vat.AccountingEntry,
           Code = request.Vat.Code,
           EndingDate = request.Vat.EndingDate,
-          Rate = request.Vat.Rate,
+          Rate = Convert.ToDouble(request.Vat.Rate),
           StartingDate = request.Vat.StartingDate
         };
 

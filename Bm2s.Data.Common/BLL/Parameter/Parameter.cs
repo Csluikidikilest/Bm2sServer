@@ -16,6 +16,10 @@ namespace Bm2s.Data.Common.BLL.Parameter
     public string Code { get; set; }
 
     [Required]
+    [StringLength(250)]
+    public string Description { get; set; }
+
+    [Required]
     [StringLength(1)]
     public string ValueType { get; set; }
 

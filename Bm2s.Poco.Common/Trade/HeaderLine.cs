@@ -15,9 +15,9 @@ namespace Bm2s.Poco.Common.Trade
 
     public string Description { get; set; }
 
-    public double BuyPrice { get; set; }
+    public decimal BuyPrice { get; set; }
 
-    public double SellPrice { get; set; }
+    public decimal SellPrice { get; set; }
 
     public int Quantity { get; set; }
 
@@ -27,7 +27,7 @@ namespace Bm2s.Poco.Common.Trade
 
     public string SupplierCompanyName { get; set; }
 
-    public double VatRate { get; set; }
+    public decimal VatRate { get; set; }
 
     public bool IsPrintable { get; set; }
 

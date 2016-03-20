@@ -9,6 +9,7 @@ using Bm2s.Services.Common.Article.Article;
 using Bm2s.Services.Common.Parameter.Vat;
 using Bm2s.Services.Common.Partner.Partner;
 using ServiceStack.ServiceInterface;
+using System;
 
 namespace Bm2s.Services.Common.Parameter.ArticlePartnerVat
 {
@@ -37,9 +38,9 @@ namespace Bm2s.Services.Common.Parameter.ArticlePartnerVat
                           AccountingEntry = item.AccountingEntry,
                           Article = new ArticlesService().Get(new Articles() { Ids = new List<int>() { item.ArticleId } }).Articles.FirstOrDefault(),
                           Id = item.Id,
-                          Multiplier = item.Multiplier,
+                          Multiplier = Convert.ToDecimal(item.Multiplier),
                           Partner = new PartnersService().Get(new Partners() { Ids = new List<int>() { item.PartnerId } }).Partners.FirstOrDefault(),
-                          Rate = item.Rate,
+                          Rate = Convert.ToDecimal(item.Rate),
                           Vat = new VatsService().Get(new Vats() { Ids = new List<int>() { item.VatId } }).Vats.FirstOrDefault()
                         }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
@@ -72,9 +73,9 @@ namespace Bm2s.Services.Common.Parameter.ArticlePartnerVat
         Bm2s.Data.Common.BLL.Parameter.ArticlePartnerVat item = Datas.Instance.DataStorage.ArticlePartnerVats[request.ArticlePartnerVat.Id];
         item.AccountingEntry = request.ArticlePartnerVat.AccountingEntry;
         item.ArticleId = request.ArticlePartnerVat.Article.Id;
-        item.Multiplier = request.ArticlePartnerVat.Multiplier;
+        item.Multiplier = Convert.ToDouble(request.ArticlePartnerVat.Multiplier);
         item.PartnerId = request.ArticlePartnerVat.Partner.Id;
-        item.Rate = request.ArticlePartnerVat.Rate;
+        item.Rate = Convert.ToDouble(request.ArticlePartnerVat.Rate);
         item.VatId = request.ArticlePartnerVat.Vat.Id;
         Datas.Instance.DataStorage.ArticlePartnerVats[request.ArticlePartnerVat.Id] = item;
       }
@@ -84,9 +85,9 @@ namespace Bm2s.Services.Common.Parameter.ArticlePartnerVat
         {
           AccountingEntry = request.ArticlePartnerVat.AccountingEntry,
           ArticleId = request.ArticlePartnerVat.Article.Id,
-          Multiplier = request.ArticlePartnerVat.Multiplier,
+          Multiplier = Convert.ToDouble(request.ArticlePartnerVat.Multiplier),
           PartnerId = request.ArticlePartnerVat.Partner.Id,
-          Rate = request.ArticlePartnerVat.Rate,
+          Rate = Convert.ToDouble(request.ArticlePartnerVat.Rate),
           VatId = request.ArticlePartnerVat.Vat.Id
         };
 

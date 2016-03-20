@@ -10,7 +10,7 @@ namespace Bm2s.Poco.Common.Article
 
     public int QuantityChild { get; set; }
 
-    public double BuyPrice { get; set; }
+    public decimal BuyPrice { get; set; }
 
     public Article ArticleParent { get; set; }
 

@@ -3,6 +3,7 @@ using System.Linq;
 using Bm2s.Data.Common.Utils;
 using Bm2s.Response.Common.Parameter.Parameter;
 using ServiceStack.ServiceInterface;
+using System;
 
 namespace Bm2s.Services.Common.Parameter.Parameter
 {
@@ -30,8 +31,9 @@ namespace Bm2s.Services.Common.Parameter.Parameter
                         {
                           bValue = item.bValue,
                           Code = item.Code,
+                          Description = item.Description,
                           dValue = item.dValue,
-                          fValue = item.fValue,
+                          fValue = Convert.ToDecimal(item.fValue),
                           Id = item.Id,
                           iValue = item.iValue,
                           sValue = item.sValue,
@@ -69,8 +71,9 @@ namespace Bm2s.Services.Common.Parameter.Parameter
         Bm2s.Data.Common.BLL.Parameter.Parameter item = Datas.Instance.DataStorage.Parameters[request.Parameter.Id];
         item.bValue = request.Parameter.bValue;
         item.Code = request.Parameter.Code;
+        item.Description = request.Parameter.Description;
         item.dValue = request.Parameter.dValue;
-        item.fValue = request.Parameter.fValue;
+        item.fValue = Convert.ToDouble(request.Parameter.fValue);
         item.iValue = request.Parameter.iValue;
         item.sValue = request.Parameter.sValue;
         item.ValueType = request.Parameter.ValueType;
@@ -84,8 +87,9 @@ namespace Bm2s.Services.Common.Parameter.Parameter
         {
           bValue = request.Parameter.bValue,
           Code = request.Parameter.Code,
+          Description = request.Parameter.Description,
           dValue = request.Parameter.dValue,
-          fValue = request.Parameter.fValue,
+          fValue = Convert.ToDouble(request.Parameter.fValue),
           iValue = request.Parameter.iValue,
           sValue = request.Parameter.sValue,
           ValueType = request.Parameter.ValueType,

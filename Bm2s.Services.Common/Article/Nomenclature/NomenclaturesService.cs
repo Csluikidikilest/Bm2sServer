@@ -32,7 +32,7 @@ namespace Bm2s.Services.Common.Article.Nomenclature
                         {
                           ArticleChild = new ArticlesService().Get(new Articles() { Ids = new List<int>() { item.ArticleChildId } }).Articles.FirstOrDefault(),
                           ArticleParent = new ArticlesService().Get(new Articles() { Ids = new List<int>() { item.ArticleParentId } }).Articles.FirstOrDefault(),
-                          BuyPrice = item.BuyPrice,
+                          BuyPrice = Convert.ToDecimal(item.BuyPrice),
                           Id = item.Id,
                           QuantityChild = item.QuantityChild,
                           QuantityParent = item.QuantityParent
@@ -67,7 +67,7 @@ namespace Bm2s.Services.Common.Article.Nomenclature
         Bm2s.Data.Common.BLL.Article.Nomenclature item = Datas.Instance.DataStorage.Nomenclatures[request.Nomenclature.Id];
         item.ArticleChildId = request.Nomenclature.ArticleChild.Id;
         item.ArticleParentId = request.Nomenclature.ArticleParent.Id;
-        item.BuyPrice = request.Nomenclature.BuyPrice;
+        item.BuyPrice = Convert.ToDouble(request.Nomenclature.BuyPrice);
         item.EndingDate = request.Nomenclature.EndingDate;
         item.QuantityChild = request.Nomenclature.QuantityChild;
         item.QuantityParent = request.Nomenclature.QuantityParent;
@@ -80,7 +80,7 @@ namespace Bm2s.Services.Common.Article.Nomenclature
         {
           ArticleChildId = request.Nomenclature.ArticleChild.Id,
           ArticleParentId = request.Nomenclature.ArticleParent.Id,
-          BuyPrice = request.Nomenclature.BuyPrice,
+          BuyPrice = Convert.ToDouble(request.Nomenclature.BuyPrice),
           EndingDate = request.Nomenclature.EndingDate,
           QuantityChild = request.Nomenclature.QuantityChild,
           QuantityParent = request.Nomenclature.QuantityParent,

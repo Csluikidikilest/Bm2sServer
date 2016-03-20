@@ -10,7 +10,7 @@ namespace Bm2s.Poco.Common.Parameter
 
     public int iValue { get; set; }
 
-    public double fValue { get; set; }
+    public decimal fValue { get; set; }
 
     public bool bValue { get; set; }
 

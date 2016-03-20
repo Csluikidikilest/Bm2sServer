@@ -39,9 +39,9 @@ namespace Bm2s.Services.Common.Article.ArticlePriceParner
                           Article = new ArticlesService().Get(new Articles() { Ids = new List<int>() { item.ArticleId } }).Articles.FirstOrDefault(),
                           EndingDate = item.EndingDate,
                           Id = item.Id,
-                          Multiplier = item.Multiplier,
+                          Multiplier = Convert.ToDecimal(item.Multiplier),
                           Partner = new PartnersService().Get(new Partners() { Ids = new List<int>() { item.PartnerId } }).Partners.FirstOrDefault(),
-                          Price = item.Price,
+                          Price = Convert.ToDecimal(item.Price),
                           StartingDate = item.StartingDate
                         }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
@@ -75,9 +75,9 @@ namespace Bm2s.Services.Common.Article.ArticlePriceParner
         item.AddPrice = request.ArticlePriceParner.AddPrice;
         item.ArticleId = request.ArticlePriceParner.Article.Id;
         item.EndingDate = request.ArticlePriceParner.EndingDate;
-        item.Multiplier = request.ArticlePriceParner.Multiplier;
+        item.Multiplier = Convert.ToDouble(request.ArticlePriceParner.Multiplier);
         item.PartnerId = request.ArticlePriceParner.Partner.Id;
-        item.Price = request.ArticlePriceParner.Price;
+        item.Price = Convert.ToDouble(request.ArticlePriceParner.Price);
         item.StartingDate = request.ArticlePriceParner.StartingDate;
         Datas.Instance.DataStorage.ArticlePricePartners[request.ArticlePriceParner.Id] = item;
       }
@@ -88,9 +88,9 @@ namespace Bm2s.Services.Common.Article.ArticlePriceParner
           AddPrice = request.ArticlePriceParner.AddPrice,
           ArticleId = request.ArticlePriceParner.Article.Id,
           EndingDate = request.ArticlePriceParner.EndingDate,
-          Multiplier = request.ArticlePriceParner.Multiplier,
+          Multiplier = Convert.ToDouble(request.ArticlePriceParner.Multiplier),
           PartnerId = request.ArticlePriceParner.Partner.Id,
-          Price = request.ArticlePriceParner.Price,
+          Price = Convert.ToDouble(request.ArticlePriceParner.Price),
           StartingDate = request.ArticlePriceParner.StartingDate
         };
 

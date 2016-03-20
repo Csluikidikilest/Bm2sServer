@@ -17,6 +17,7 @@ using Bm2s.Services.Common.Parameter.Unit;
 using Bm2s.Services.Common.Trade.Header;
 using Bm2s.Services.Common.Trade.HeaderLineType;
 using ServiceStack.ServiceInterface;
+using System;
 
 namespace Bm2s.Services.Common.Trade.HeaderLine
 {
@@ -53,7 +54,7 @@ namespace Bm2s.Services.Common.Trade.HeaderLine
                           ArticleFamily = new ArticleFamiliesService().Get(new ArticleFamilies() { Ids = new List<int>() { item.ArticleFamilyId } }).ArticleFamilies.FirstOrDefault(),
                           ArticleSubFamily = new ArticleSubFamiliesService().Get(new ArticleSubFamilies() { Ids = new List<int>() { item.ArticleSubFamilyId } }).ArticleSubFamilies.FirstOrDefault(),
                           Brand = new BrandsService().Get(new Brands() { Ids = new List<int>() { item.BrandId } }).Brands.FirstOrDefault(),
-                          BuyPrice = item.BuyPrice,
+                          BuyPrice = Convert.ToDecimal(item.BuyPrice),
                           Code = item.Code,
                           DeliveryObservation = item.DeliveryObservation,
                           Description = item.Description,
@@ -65,10 +66,10 @@ namespace Bm2s.Services.Common.Trade.HeaderLine
                           LineNumber = item.LineNumber,
                           PreparationObservation = item.PreparationObservation,
                           Quantity = item.Quantity,
-                          SellPrice = item.SellPrice,
+                          SellPrice = Convert.ToDecimal(item.SellPrice),
                           SupplierCompanyName = item.SupplierCompanyName,
                           Unit = new UnitsService().Get(new Units() { Ids = new List<int>() { item.UnitId } }).Units.FirstOrDefault(),
-                          VatRate = item.VatRate
+                          VatRate = Convert.ToDecimal(item.VatRate)
                         }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
       response.ItemsCount = collection.Count();
@@ -102,7 +103,7 @@ namespace Bm2s.Services.Common.Trade.HeaderLine
         item.ArticleId = request.HeaderLine.Article.Id;
         item.ArticleSubFamilyId = request.HeaderLine.ArticleSubFamily.Id;
         item.BrandId = request.HeaderLine.Brand.Id;
-        item.BuyPrice = request.HeaderLine.BuyPrice;
+        item.BuyPrice = Convert.ToDouble(request.HeaderLine.BuyPrice);
         item.Code = request.HeaderLine.Code;
         item.DeliveryObservation = request.HeaderLine.DeliveryObservation;
         item.Description = request.HeaderLine.Description;
@@ -113,10 +114,10 @@ namespace Bm2s.Services.Common.Trade.HeaderLine
         item.LineNumber = request.HeaderLine.LineNumber;
         item.PreparationObservation = request.HeaderLine.PreparationObservation;
         item.Quantity = request.HeaderLine.Quantity;
-        item.SellPrice = request.HeaderLine.SellPrice;
+        item.SellPrice = Convert.ToDouble(request.HeaderLine.SellPrice);
         item.SupplierCompanyName = request.HeaderLine.SupplierCompanyName;
         item.UnitId = request.HeaderLine.Unit.Id;
-        item.VatRate = request.HeaderLine.VatRate;
+        item.VatRate = Convert.ToDouble(request.HeaderLine.VatRate);
         Datas.Instance.DataStorage.HeaderLines[request.HeaderLine.Id] = item;
       }
       else
@@ -127,7 +128,7 @@ namespace Bm2s.Services.Common.Trade.HeaderLine
           ArticleId = request.HeaderLine.Article.Id,
           ArticleSubFamilyId = request.HeaderLine.ArticleSubFamily.Id,
           BrandId = request.HeaderLine.Brand.Id,
-          BuyPrice = request.HeaderLine.BuyPrice,
+          BuyPrice = Convert.ToDouble(request.HeaderLine.BuyPrice),
           Code = request.HeaderLine.Code,
           DeliveryObservation = request.HeaderLine.DeliveryObservation,
           Description = request.HeaderLine.Description,
@@ -138,10 +139,10 @@ namespace Bm2s.Services.Common.Trade.HeaderLine
           LineNumber = request.HeaderLine.LineNumber,
           PreparationObservation = request.HeaderLine.PreparationObservation,
           Quantity = request.HeaderLine.Quantity,
-          SellPrice = request.HeaderLine.SellPrice,
+          SellPrice = Convert.ToDouble(request.HeaderLine.SellPrice),
           SupplierCompanyName = request.HeaderLine.SupplierCompanyName,
           UnitId = request.HeaderLine.Unit.Id,
-          VatRate = request.HeaderLine.VatRate
+          VatRate = Convert.ToDouble(request.HeaderLine.VatRate)
         };
 
         Datas.Instance.DataStorage.HeaderLines.Add(item);

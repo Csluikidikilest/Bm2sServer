@@ -4,7 +4,7 @@ namespace Bm2s.Response.Common.Article.PriceDetermination
 {
   public class PriceDeterminationResponse
   {
-    private double? _totalPrice;
+    private decimal? _totalPrice;
 
     public PriceDeterminationResponse()
     {
@@ -27,7 +27,7 @@ namespace Bm2s.Response.Common.Article.PriceDetermination
 
     public Bm2s.Poco.Common.Article.ArticlePricePartner articlePricePartners { get; set; }
 
-    public double TotalPrice
+    public decimal TotalPrice
     {
       get
       {

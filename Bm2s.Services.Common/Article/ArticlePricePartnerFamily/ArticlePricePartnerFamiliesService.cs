@@ -36,9 +36,9 @@ namespace Bm2s.Services.Common.Article.ArticlePricePartnerFamily
                           Article = new ArticlesService().Get(new Articles() { Ids = new List<int>() { item.ArticleId } }).Articles.FirstOrDefault(),
                           EndingDate = item.EndingDate,
                           Id = item.Id,
-                          Multiplier = item.Multiplier,
+                          Multiplier = Convert.ToDecimal(item.Multiplier),
                           PartnerFamily = new PartnerFamiliesService().Get(new PartnerFamilies() { Ids = new List<int>() { item.PartnerFamilyId } }).PartnerFamilies.FirstOrDefault(),
-                          Price = item.Price,
+                          Price = Convert.ToDecimal(item.Price),
                           StartingDate = item.StartingDate
                         }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
@@ -70,9 +70,9 @@ namespace Bm2s.Services.Common.Article.ArticlePricePartnerFamily
         Bm2s.Data.Common.BLL.Article.ArticlePricePartnerFamily item = Datas.Instance.DataStorage.ArticlePricePartnerFamilies[request.ArticlePricePartnerFamily.Id];
         item.ArticleId = request.ArticlePricePartnerFamily.Article.Id;
         item.EndingDate = request.ArticlePricePartnerFamily.EndingDate;
-        item.Multiplier = request.ArticlePricePartnerFamily.Multiplier;
+        item.Multiplier = Convert.ToDouble(request.ArticlePricePartnerFamily.Multiplier);
         item.PartnerFamilyId = request.ArticlePricePartnerFamily.PartnerFamily.Id;
-        item.Price = request.ArticlePricePartnerFamily.Price;
+        item.Price = Convert.ToDouble(request.ArticlePricePartnerFamily.Price);
         item.StartingDate = request.ArticlePricePartnerFamily.StartingDate;
         Datas.Instance.DataStorage.ArticlePricePartnerFamilies[request.ArticlePricePartnerFamily.Id] = item;
       }
@@ -82,9 +82,9 @@ namespace Bm2s.Services.Common.Article.ArticlePricePartnerFamily
         {
           ArticleId = request.ArticlePricePartnerFamily.Article.Id,
           EndingDate = request.ArticlePricePartnerFamily.EndingDate,
-          Multiplier = request.ArticlePricePartnerFamily.Multiplier,
+          Multiplier = Convert.ToDouble(request.ArticlePricePartnerFamily.Multiplier),
           PartnerFamilyId = request.ArticlePricePartnerFamily.PartnerFamily.Id,
-          Price = request.ArticlePricePartnerFamily.Price,
+          Price = Convert.ToDouble(request.ArticlePricePartnerFamily.Price),
           StartingDate = request.ArticlePricePartnerFamily.StartingDate
         };
 

@@ -12,7 +12,7 @@ namespace Bm2s.Poco.Common.Parameter
 
     public DateTime? EndingDate { get; set; }
 
-    public double Rate { get; set; }
+    public decimal Rate { get; set; }
 
     public string AccountingEntry { get; set; }
   }

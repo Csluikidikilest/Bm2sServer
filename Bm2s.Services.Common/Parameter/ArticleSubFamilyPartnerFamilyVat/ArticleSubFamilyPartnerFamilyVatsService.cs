@@ -9,6 +9,7 @@ using Bm2s.Services.Common.Article.ArticleSubFamily;
 using Bm2s.Services.Common.Parameter.Vat;
 using Bm2s.Services.Common.Partner.PartnerFamily;
 using ServiceStack.ServiceInterface;
+using System;
 
 namespace Bm2s.Services.Common.Parameter.ArticleSubFamilyPartnerFamilyVat
 {
@@ -37,9 +38,9 @@ namespace Bm2s.Services.Common.Parameter.ArticleSubFamilyPartnerFamilyVat
                           AccountingEntry = item.AccountingEntry,
                           ArticleSubFamily = new ArticleSubFamiliesService().Get(new ArticleSubFamilies() { Ids = new List<int>() { item.ArticleSubFamilyId } }).ArticleSubFamilies.FirstOrDefault(),
                           Id = item.Id,
-                          Multiplier = item.Multiplier,
+                          Multiplier = Convert.ToDecimal(item.Multiplier),
                           PartnerFamily = new PartnerFamiliesService().Get(new PartnerFamilies() { Ids = new List<int>() { item.PartnerFamilyId } }).PartnerFamilies.FirstOrDefault(),
-                          Rate = item.Rate,
+                          Rate = Convert.ToDecimal(item.Rate),
                           Vat = new VatsService().Get(new Vats() { Ids = new List<int>() { item.VatId } }).Vats.FirstOrDefault()
                         }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
@@ -72,9 +73,9 @@ namespace Bm2s.Services.Common.Parameter.ArticleSubFamilyPartnerFamilyVat
         Bm2s.Data.Common.BLL.Parameter.ArticleSubFamilyPartnerFamilyVat item = Datas.Instance.DataStorage.ArticleSubFamilyPartnerFamilyVats[request.ArticleSubFamilyPartnerFamilyVat.Id];
         item.AccountingEntry = request.ArticleSubFamilyPartnerFamilyVat.AccountingEntry;
         item.ArticleSubFamilyId = request.ArticleSubFamilyPartnerFamilyVat.ArticleSubFamily.Id;
-        item.Multiplier = request.ArticleSubFamilyPartnerFamilyVat.Multiplier;
+        item.Multiplier = Convert.ToDouble(request.ArticleSubFamilyPartnerFamilyVat.Multiplier);
         item.PartnerFamilyId = request.ArticleSubFamilyPartnerFamilyVat.PartnerFamily.Id;
-        item.Rate = request.ArticleSubFamilyPartnerFamilyVat.Rate;
+        item.Rate = Convert.ToDouble(request.ArticleSubFamilyPartnerFamilyVat.Rate);
         item.VatId = request.ArticleSubFamilyPartnerFamilyVat.Vat.Id;
         Datas.Instance.DataStorage.ArticleSubFamilyPartnerFamilyVats[request.ArticleSubFamilyPartnerFamilyVat.Id] = item;
       }
@@ -84,9 +85,9 @@ namespace Bm2s.Services.Common.Parameter.ArticleSubFamilyPartnerFamilyVat
         {
           AccountingEntry = request.ArticleSubFamilyPartnerFamilyVat.AccountingEntry,
           ArticleSubFamilyId = request.ArticleSubFamilyPartnerFamilyVat.ArticleSubFamily.Id,
-          Multiplier = request.ArticleSubFamilyPartnerFamilyVat.Multiplier,
+          Multiplier = Convert.ToDouble(request.ArticleSubFamilyPartnerFamilyVat.Multiplier),
           PartnerFamilyId = request.ArticleSubFamilyPartnerFamilyVat.PartnerFamily.Id,
-          Rate = request.ArticleSubFamilyPartnerFamilyVat.Rate,
+          Rate = Convert.ToDouble(request.ArticleSubFamilyPartnerFamilyVat.Rate),
           VatId = request.ArticleSubFamilyPartnerFamilyVat.Vat.Id
         };
 

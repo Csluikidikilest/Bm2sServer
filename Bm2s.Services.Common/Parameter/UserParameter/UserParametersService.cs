@@ -3,6 +3,7 @@ using System.Linq;
 using Bm2s.Data.Common.Utils;
 using Bm2s.Response.Common.Parameter.UserParameter;
 using ServiceStack.ServiceInterface;
+using System;
 
 namespace Bm2s.Services.Common.Parameter.UserParameter
 {
@@ -28,7 +29,7 @@ namespace Bm2s.Services.Common.Parameter.UserParameter
                         {
                           bValue = item.bValue,
                           dValue = item.dValue,
-                          fValue = item.fValue,
+                          fValue = Convert.ToDecimal(item.fValue),
                           Id = item.Id,
                           iValue = item.iValue,
                           sValue = item.sValue
@@ -63,7 +64,7 @@ namespace Bm2s.Services.Common.Parameter.UserParameter
         Bm2s.Data.Common.BLL.Parameter.UserParameter item = Datas.Instance.DataStorage.UserParameters[request.UserParameter.Id];
         item.bValue = request.UserParameter.bValue;
         item.dValue = request.UserParameter.dValue;
-        item.fValue = request.UserParameter.fValue;
+        item.fValue = Convert.ToDouble(request.UserParameter.fValue);
         item.iValue = request.UserParameter.iValue;
         item.sValue = request.UserParameter.sValue;
         Datas.Instance.DataStorage.UserParameters[request.UserParameter.Id] = item;
@@ -74,7 +75,7 @@ namespace Bm2s.Services.Common.Parameter.UserParameter
         {
           bValue = request.UserParameter.bValue,
           dValue = request.UserParameter.dValue,
-          fValue = request.UserParameter.fValue,
+          fValue = Convert.ToDouble(request.UserParameter.fValue),
           iValue = request.UserParameter.iValue,
           sValue = request.UserParameter.sValue,
         };
