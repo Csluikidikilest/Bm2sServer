@@ -147,6 +147,8 @@
     <Compile Include="Parameter\UnitConversion\UnitConversionsResponse.cs" />
     <Compile Include="Parameter\Unit\Units.cs" />
     <Compile Include="Parameter\Unit\UnitsResponse.cs" />
+    <Compile Include="Parameter\UserParameter\UserParameters.cs" />
+    <Compile Include="Parameter\UserParameter\UserParametersResponse.cs" />
     <Compile Include="Parameter\Vat\Vats.cs" />
     <Compile Include="Parameter\Vat\VatsResponse.cs" />
     <Compile Include="Partner\AddressLine\AddressLines.cs" />

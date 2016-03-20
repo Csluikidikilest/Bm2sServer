@@ -111,6 +111,7 @@
     <Compile Include="Parameter\Translation\TranslationsService.cs" />
     <Compile Include="Parameter\UnitConversion\UnitConversionsService.cs" />
     <Compile Include="Parameter\Unit\UnitsService.cs" />
+    <Compile Include="Parameter\UserParameter\UserParametersService.cs" />
     <Compile Include="Parameter\Vat\VatsService.cs" />
     <Compile Include="Partner\AddressLine\AddressLinesService.cs" />
     <Compile Include="Partner\AddressType\AddressTypesService.cs" />

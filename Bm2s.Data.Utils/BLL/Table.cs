@@ -1,11 +1,10 @@
-﻿using System;
+﻿using ServiceStack.OrmLite;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
-using ServiceStack.OrmLite;
-using ServiceStack.DataAnnotations;
 
 namespace Bm2s.Data.Utils.BLL
 {
@@ -44,9 +43,9 @@ namespace Bm2s.Data.Utils.BLL
         int.TryParse(dbConnection.GetLastInsertId().ToString(), out id);
         this.Id = id;
       }
-      catch (Exception e)
+      catch
       {
-        Console.WriteLine("Error when trying to insert " + this.GetType().ToString().ToLower());
+        Console.WriteLine("Error when trying to insert " + this.GetType().ToString().ToLower() + ": " + this.ToString());
       }
     }
 
@@ -68,10 +67,38 @@ namespace Bm2s.Data.Utils.BLL
       {
         dbConnection.Update(this as T, f => f.Id == this.Id);
       }
-      catch (Exception e)
+      catch
       {
-        Console.WriteLine("Error when trying to update " + this.GetType().ToString().ToLower());
+        Console.WriteLine("Error when trying to update " + this.GetType().ToString().ToLower() + ": " + this.ToString());
       }
+    }
+
+    public override string ToString()
+    {
+      StringBuilder result = new StringBuilder();
+      Type type = this.GetType();
+
+      result.Append("{");
+      foreach (PropertyInfo propertyInfo in type.GetProperties())
+      {
+        switch (propertyInfo.GetType().ToString().ToLower())
+        {
+          case "string":
+          case "int":
+          case "datetime":
+          case "float":
+          case "decimal":
+          case "bool":
+            result.Append(propertyInfo.Name + ": " + propertyInfo.GetValue(this));
+            break;
+        }
+        result.Append(", ");
+      }
+
+      result = result.Remove(result.Length - 2, 2);
+      result.Append(" }");
+
+      return result.ToString();
     }
   }
 }

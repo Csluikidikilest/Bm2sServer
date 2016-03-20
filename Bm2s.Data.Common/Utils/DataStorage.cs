@@ -42,6 +42,7 @@ namespace Bm2s.Data.Common.Utils
     public Tables<InventoryLine> InventoryLines { get; set; }
     public Tables<Language> Languages { get; set; }
     public Tables<Parameter> Parameters { get; set; }
+    public Tables<UserParameter> UserParameters { get; set; }
     public Tables<Period> Periods { get; set; }
     public Tables<Town> Towns { get; set; }
     public Tables<Translation> Translations { get; set; }
@@ -116,6 +117,7 @@ namespace Bm2s.Data.Common.Utils
       this.InventoryLines = new Tables<InventoryLine>(this._ramStorage, this._dbConnection);
       this.Languages = new Tables<Language>(this._ramStorage, this._dbConnection);
       this.Parameters = new Tables<Parameter>(this._ramStorage, this._dbConnection);
+      this.UserParameters = new Tables<UserParameter>(this._ramStorage, this._dbConnection);
       this.Periods = new Tables<Period>(this._ramStorage, this._dbConnection);
       this.Towns = new Tables<Town>(this._ramStorage, this._dbConnection);
       this.Translations = new Tables<Translation>(this._ramStorage, this._dbConnection);

@@ -15,7 +15,9 @@ namespace Bm2s.Services.Common.Parameter.Parameter
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.Parameters.Where(item =>
-          (string.IsNullOrWhiteSpace(request.Code) || item.Code.ToLower().Contains(request.Code.ToLower()))
+          (string.IsNullOrWhiteSpace(request.Code) || item.Code.ToLower().Contains(request.Code.ToLower())) &&
+          (!request.IsSystem || item.IsSystem) &&
+          (!request.IsOverloadable || item.IsOverloadable)
           ));
       }
       else
@@ -33,7 +35,9 @@ namespace Bm2s.Services.Common.Parameter.Parameter
                           Id = item.Id,
                           iValue = item.iValue,
                           sValue = item.sValue,
-                          ValueType = item.ValueType
+                          ValueType = item.ValueType,
+                          IsSystem = item.IsSystem,
+                          IsOverloadable = item.IsOverloadable
                         }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
       response.ItemsCount = collection.Count();
@@ -70,6 +74,8 @@ namespace Bm2s.Services.Common.Parameter.Parameter
         item.iValue = request.Parameter.iValue;
         item.sValue = request.Parameter.sValue;
         item.ValueType = request.Parameter.ValueType;
+        item.IsSystem = request.Parameter.IsSystem;
+        item.IsOverloadable = request.Parameter.IsOverloadable;
         Datas.Instance.DataStorage.Parameters[request.Parameter.Id] = item;
       }
       else
@@ -82,7 +88,9 @@ namespace Bm2s.Services.Common.Parameter.Parameter
           fValue = request.Parameter.fValue,
           iValue = request.Parameter.iValue,
           sValue = request.Parameter.sValue,
-          ValueType = request.Parameter.ValueType
+          ValueType = request.Parameter.ValueType,
+          IsSystem = request.Parameter.IsSystem,
+          IsOverloadable = request.Parameter.IsOverloadable
         };
 
         Datas.Instance.DataStorage.Parameters.Add(item);

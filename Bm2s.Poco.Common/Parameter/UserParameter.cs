@@ -2,13 +2,9 @@
 
 namespace Bm2s.Poco.Common.Parameter
 {
-  public class Parameter
+  public class UserParameter
   {
     public int Id { get; set; }
-
-    public string Code { get; set; }
-
-    public string ValueType { get; set; }
 
     public string sValue { get; set; }
 
@@ -20,8 +16,8 @@ namespace Bm2s.Poco.Common.Parameter
 
     public DateTime dValue { get; set; }
 
-    public bool IsSystem { get; set; }
+    public Parameter Parameter { get; set; }
 
-    public bool IsOverloadable { get; set; }
+    public User.User User { get; set; }
   }
 }

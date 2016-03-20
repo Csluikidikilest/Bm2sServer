@@ -106,6 +106,7 @@
     <Compile Include="BLL\Parameter\InventoryHeader.cs" />
     <Compile Include="BLL\Parameter\InventoryLine.cs" />
     <Compile Include="BLL\Parameter\Language.cs" />
+    <Compile Include="BLL\Parameter\UserParameter.cs" />
     <Compile Include="BLL\Parameter\Parameter.cs" />
     <Compile Include="BLL\Parameter\Period.cs" />
     <Compile Include="BLL\Parameter\Town.cs" />

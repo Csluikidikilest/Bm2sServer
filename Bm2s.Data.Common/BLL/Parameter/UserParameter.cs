@@ -5,19 +5,11 @@ using ServiceStack.DataAnnotations;
 
 namespace Bm2s.Data.Common.BLL.Parameter
 {
-  public class Parameter : Table
+  public class UserParameter : Table
   {
     [AutoIncrement]
     [PrimaryKey]
     public override int Id { get; set; }
-
-    [Required]
-    [StringLength(250)]
-    public string Code { get; set; }
-
-    [Required]
-    [StringLength(1)]
-    public string ValueType { get; set; }
 
     public string sValue { get; set; }
 
@@ -29,8 +21,10 @@ namespace Bm2s.Data.Common.BLL.Parameter
 
     public DateTime dValue { get; set; }
 
-    public bool IsSystem { get; set; }
+    [References(typeof(Parameter))]
+    public int ParameterId { get; set; }
 
-    public bool IsOverloadable { get; set; }
+    [References(typeof(User.User))]
+    public int UserId { get; set; }
   }
 }

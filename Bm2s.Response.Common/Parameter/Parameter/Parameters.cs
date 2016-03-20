@@ -14,6 +14,10 @@ namespace Bm2s.Response.Common.Parameter.Parameter
 
     public string Code { get; set; }
 
+    public bool IsSystem { get; set; }
+
+    public bool IsOverloadable { get; set; }
+
     public Bm2s.Poco.Common.Parameter.Parameter Parameter { get; set; }
   }
 }

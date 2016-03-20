@@ -68,6 +68,7 @@
     <Compile Include="Parameter\InventoryHeader.cs" />
     <Compile Include="Parameter\InventoryLine.cs" />
     <Compile Include="Parameter\Language.cs" />
+    <Compile Include="Parameter\UserParameter.cs" />
     <Compile Include="Parameter\Parameter.cs" />
     <Compile Include="Parameter\Period.cs" />
     <Compile Include="Parameter\Town.cs" />

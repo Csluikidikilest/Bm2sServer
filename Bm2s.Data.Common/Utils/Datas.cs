@@ -166,6 +166,9 @@ namespace Bm2s.Data.Common.Utils
         Console.Write("Table creation Parameter: ");
         this.DbConnection.CreateTableIfNotExists<Parameter>();
         Console.WriteLine("[OK]");
+        Console.Write("Table creation User Parameter: ");
+        this.DbConnection.CreateTableIfNotExists<UserParameter>();
+        Console.WriteLine("[OK]");
         Console.Write("Table creation Period: ");
         this.DbConnection.CreateTableIfNotExists<Period>();
         Console.WriteLine("[OK]");
