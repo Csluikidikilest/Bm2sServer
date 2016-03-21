@@ -21,6 +21,8 @@ namespace Bm2s.Response.Common.Trade.Header
 
     public int HeaderStatusId { get; set; }
 
+    public bool IsPurchase { get; set; }
+
     public bool IsSell { get; set; }
 
     public string Reference { get; set; }

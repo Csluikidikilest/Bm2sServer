@@ -28,6 +28,8 @@ namespace Bm2s.Data.Common.BLL.Trade
 
     public double FooterDiscount { get; set; }
 
+    public bool IsPurchase { get; set; }
+
     public bool IsSell { get; set; }
 
     [References(typeof(Activity))]

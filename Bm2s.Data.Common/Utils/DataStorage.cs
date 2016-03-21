@@ -200,7 +200,7 @@ namespace Bm2s.Data.Common.Utils
       HeaderStatus headerStatus = new HeaderStatus() { EndingDate = null, InterveneOnStock = true, Name = "HEADERSTATUS", StartingDate = new System.DateTime(2015, 1, 1) };
       this.HeaderStatuses.Add(headerStatus);
 
-      Header header = new Header() { ActivityId = activity.Id, Date = System.DateTime.Now, DeliveryObservation = string.Empty, Description = string.Empty, FooterDiscount = 0, HeaderStatusId = headerStatus.Id, IsSell = true, Reference = "HEADER1", UserId = user.Id };
+      Header header = new Header() { ActivityId = activity.Id, Date = System.DateTime.Now, DeliveryObservation = string.Empty, Description = string.Empty, FooterDiscount = 0, HeaderStatusId = headerStatus.Id, IsPurchase = false, IsSell = true, Reference = "HEADER1", UserId = user.Id };
       this.Headers.Add(header);
 
       HeaderLineType headerLineType = new HeaderLineType() { EndingDate = null, Name = "HEADERLINETYPE1", StartingDate = new System.DateTime(2015, 1, 1) };

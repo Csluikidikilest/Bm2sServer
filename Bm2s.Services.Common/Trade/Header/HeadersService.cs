@@ -27,6 +27,7 @@ namespace Bm2s.Services.Common.Trade.Header
           (string.IsNullOrWhiteSpace(request.Description) || item.Description.ToLower().Contains(request.Description.ToLower())) &&
           (request.HeaderStatusId == 0 || item.HeaderStatusId == request.HeaderStatusId) &&
           (!request.IsSell || item.IsSell) &&
+          (!request.IsPurchase || item.IsPurchase) &&
           (string.IsNullOrWhiteSpace(request.Reference) || item.Reference.ToLower().Contains(request.Reference.ToLower())) &&
           (request.UserId == 0 || item.UserId == request.UserId)
           ));
@@ -47,6 +48,7 @@ namespace Bm2s.Services.Common.Trade.Header
                           FooterDiscount = Convert.ToDecimal(item.FooterDiscount),
                           HeaderStatus = new HeaderStatusesService().Get(new HeaderStatuses() { Ids = new List<int>() { item.HeaderStatusId } }).HeaderStatuses.FirstOrDefault(),
                           Id = item.Id,
+                          IsPurchase = item.IsPurchase,
                           IsSell = item.IsSell,
                           Reference = item.Reference,
                           User = new UsersService().Get(new Users() { Ids = new List<int>() { item.UserId } }).Users.FirstOrDefault()
@@ -86,6 +88,7 @@ namespace Bm2s.Services.Common.Trade.Header
         item.EndingDate = request.Header.EndingDate;
         item.FooterDiscount = Convert.ToDouble(request.Header.FooterDiscount);
         item.HeaderStatusId = request.Header.HeaderStatus.Id;
+        item.IsPurchase = request.Header.IsPurchase;
         item.IsSell = request.Header.IsSell;
         item.Reference = request.Header.Reference;
         item.UserId = request.Header.User.Id;
@@ -102,6 +105,7 @@ namespace Bm2s.Services.Common.Trade.Header
           EndingDate = request.Header.EndingDate,
           FooterDiscount = Convert.ToDouble(request.Header.FooterDiscount),
           HeaderStatusId = request.Header.HeaderStatus.Id,
+          IsPurchase = request.Header.IsPurchase,
           IsSell = request.Header.IsSell,
           Reference = request.Header.Reference,
           UserId = request.Header.User.Id

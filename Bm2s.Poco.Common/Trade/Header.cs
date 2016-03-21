@@ -19,6 +19,8 @@ namespace Bm2s.Poco.Common.Trade
 
     public decimal FooterDiscount { get; set; }
 
+    public bool IsPurchase { get; set; }
+
     public bool IsSell { get; set; }
 
     public Activity Activity { get; set; }
