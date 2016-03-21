@@ -300,7 +300,7 @@ namespace Bm2s.Data.Common.Utils
       BLL.User.Group administrators = this.DataStorage.Groups.FirstOrDefault(item => item.Code == "Administrators");
       if (administrators == null)
       {
-        administrators = new Group() { Code = "Administrators", Name = "System Administrators", IsSystem = true, StartingDate = new DateTime(2014, 11, 2) };
+        administrators = new Group() { Code = "Administrators", Name = "System Administrators", IsSystem = true, StartingDate = new DateTime(2015, 1, 1) };
         this.DataStorage.Groups.Add(administrators);
       }
 
@@ -327,13 +327,38 @@ namespace Bm2s.Data.Common.Utils
       }
 
       Console.WriteLine("[OK]");
+      Console.Write("Initial datas visitors group: ");
+
+      // Group: visitors
+      BLL.User.Group visitors = this.DataStorage.Groups.FirstOrDefault(item => item.Code == "Visitors");
+      if (visitors == null)
+      {
+        visitors = new Group() { Code = "Visitors", Name = "Visitors", IsSystem = true, StartingDate = new DateTime(2015, 1, 1) };
+        this.DataStorage.Groups.Add(visitors);
+      }
+
+      Console.WriteLine("[OK]");
+      Console.Write("Initial datas visitor user: ");
+
+      // User: visitor
+      BLL.User.User visitor = this.DataStorage.Users.FirstOrDefault(item => item.Login == "Visitor");
+      if (visitor == null)
+      {
+        visitor = new User() { DefaultLanguageId = english.Id, LastName = "Visitor", IsAdministrator = false, IsAnonymous = true, IsSystem = true, FirstName = string.Empty, Login = "Visitor", Password = string.Empty, StartingDate = new DateTime(2015, 1, 1) };
+        this.DataStorage.Users.Add(visitor);
+
+        BLL.User.UserGroup visitorGroups = new UserGroup() { GroupId = visitors.Id, UserId = visitor.Id };
+        this.DataStorage.UserGroups.Add(visitorGroups);
+      }
+
+      Console.WriteLine("[OK]");
       Console.Write("Initial datas classic group: ");
 
       // Group: classic users
       BLL.User.Group users = this.DataStorage.Groups.FirstOrDefault(item => item.Code == "Users");
       if (users == null)
       {
-        users = new Group() { Code = "Users", Name = "Classic Users", IsSystem = false, StartingDate = new DateTime(2014, 11, 2) };
+        users = new Group() { Code = "Users", Name = "Classic Users", IsSystem = false, StartingDate = new DateTime(2015, 1, 1) };
         this.DataStorage.Groups.Add(users);
       }
 
@@ -357,31 +382,6 @@ namespace Bm2s.Data.Common.Utils
         this.DataStorage.Users.Add(user);
         BLL.User.UserGroup userGroups = new UserGroup() { GroupId = users.Id, UserId = user.Id };
         this.DataStorage.UserGroups.Add(userGroups);
-      }
-
-      Console.WriteLine("[OK]");
-      Console.Write("Initial datas visitors group: ");
-
-      // Group: visitors
-      BLL.User.Group visitors = this.DataStorage.Groups.FirstOrDefault(item => item.Code == "Visitors");
-      if (visitors == null)
-      {
-        visitors = new Group() { Code = "Visitors", Name = "Visitors", IsSystem = true, StartingDate = new DateTime(2014, 11, 2) };
-        this.DataStorage.Groups.Add(visitors);
-      }
-
-      Console.WriteLine("[OK]");
-      Console.Write("Initial datas visitor user: ");
-
-      // User: visitor
-      BLL.User.User visitor = this.DataStorage.Users.FirstOrDefault(item => item.Login == "Visitor");
-      if (visitor == null)
-      {
-        visitor = new User() { DefaultLanguageId = english.Id, LastName = "Visitor", IsAdministrator = false, IsAnonymous = true, IsSystem = true, FirstName = string.Empty, Login = "Visitor", Password = string.Empty, StartingDate = new DateTime(2015, 1, 1) };
-        this.DataStorage.Users.Add(visitor);
-
-        BLL.User.UserGroup visitorGroups = new UserGroup() { GroupId = visitors.Id, UserId = visitor.Id };
-        this.DataStorage.UserGroups.Add(visitorGroups);
       }
 
       Console.WriteLine("[OK]");
