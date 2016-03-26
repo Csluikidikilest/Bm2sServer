@@ -5,7 +5,7 @@ using ServiceStack.DataAnnotations;
 
 namespace Bm2s.Data.Common.BLL.Partner
 {
-  public class AddressType : Table
+  public class AddressType : DataRow
   {
     [AutoIncrement]
     [PrimaryKey]

@@ -11,152 +11,152 @@ namespace Bm2s.Data.Common.Utils
 {
   public class DataStorage : Bm2s.Data.Utils.DataStorage
   {
-    public Tables<Article> Articles { get; set; }
-    public Tables<ArticleFamily> ArticleFamilies { get; set; }
-    public Tables<ArticleFamilyPricePartner> ArticleFamilyPricePartners { get; set; }
-    public Tables<ArticleFamilyPricePartnerFamily> ArticleFamilyPricePartnerFamilies { get; set; }
-    public Tables<ArticlePricePartner> ArticlePricePartners { get; set; }
-    public Tables<ArticlePricePartnerFamily> ArticlePricePartnerFamilies { get; set; }
-    public Tables<ArticleSubFamily> ArticleSubFamilies { get; set; }
-    public Tables<ArticleSubFamilyPricePartner> ArticleSubFamilyPricePartners { get; set; }
-    public Tables<ArticleSubFamilyPricePartnerFamily> ArticleSubFamilyPricePartnerFamilies { get; set; }
-    public Tables<Brand> Brands { get; set; }
-    public Tables<Nomenclature> Nomenclatures { get; set; }
-    public Tables<Price> Prices { get; set; }
-    public Tables<Subscription> Subscriptions { get; set; }
-    public Tables<SubscriptionPartner> SubscriptionPartners { get; set; }
+    public Table<Article> Articles { get; set; }
+    public Table<ArticleFamily> ArticleFamilies { get; set; }
+    public Table<ArticleFamilyPricePartner> ArticleFamilyPricePartners { get; set; }
+    public Table<ArticleFamilyPricePartnerFamily> ArticleFamilyPricePartnerFamilies { get; set; }
+    public Table<ArticlePricePartner> ArticlePricePartners { get; set; }
+    public Table<ArticlePricePartnerFamily> ArticlePricePartnerFamilies { get; set; }
+    public Table<ArticleSubFamily> ArticleSubFamilies { get; set; }
+    public Table<ArticleSubFamilyPricePartner> ArticleSubFamilyPricePartners { get; set; }
+    public Table<ArticleSubFamilyPricePartnerFamily> ArticleSubFamilyPricePartnerFamilies { get; set; }
+    public Table<Brand> Brands { get; set; }
+    public Table<Nomenclature> Nomenclatures { get; set; }
+    public Table<Price> Prices { get; set; }
+    public Table<Subscription> Subscriptions { get; set; }
+    public Table<SubscriptionPartner> SubscriptionPartners { get; set; }
 
-    public Tables<Activity> Activities { get; set; }
-    public Tables<Affair> Affairs { get; set; }
-    public Tables<AffairFile> AffairFiles { get; set; }
-    public Tables<AffairHeader> AffairHeaders { get; set; }
-    public Tables<ArticleFamilyPartnerFamilyVat> ArticleFamilyPartnerFamilyVats { get; set; }
-    public Tables<ArticleFamilyPartnerVat> ArticleFamilyPartnerVats { get; set; }
-    public Tables<ArticlePartnerFamilyVat> ArticlePartnerFamilyVats { get; set; }
-    public Tables<ArticlePartnerVat> ArticlePartnerVats { get; set; }
-    public Tables<ArticleSubFamilyPartnerFamilyVat> ArticleSubFamilyPartnerFamilyVats { get; set; }
-    public Tables<ArticleSubFamilyPartnerVat> ArticleSubFamilyPartnerVats { get; set; }
-    public Tables<Country> Countries { get; set; }
-    public Tables<CountryCurrency> CountryCurrencies { get; set; }
-    public Tables<InventoryHeader> InventoryHeaders { get; set; }
-    public Tables<InventoryLine> InventoryLines { get; set; }
-    public Tables<Language> Languages { get; set; }
-    public Tables<Parameter> Parameters { get; set; }
-    public Tables<UserParameter> UserParameters { get; set; }
-    public Tables<Period> Periods { get; set; }
-    public Tables<Town> Towns { get; set; }
-    public Tables<Translation> Translations { get; set; }
-    public Tables<Unit> Units { get; set; }
-    public Tables<UnitConversion> UnitConversions { get; set; }
-    public Tables<Vat> Vats { get; set; }
+    public Table<Activity> Activities { get; set; }
+    public Table<Affair> Affairs { get; set; }
+    public Table<AffairFile> AffairFiles { get; set; }
+    public Table<AffairHeader> AffairHeaders { get; set; }
+    public Table<ArticleFamilyPartnerFamilyVat> ArticleFamilyPartnerFamilyVats { get; set; }
+    public Table<ArticleFamilyPartnerVat> ArticleFamilyPartnerVats { get; set; }
+    public Table<ArticlePartnerFamilyVat> ArticlePartnerFamilyVats { get; set; }
+    public Table<ArticlePartnerVat> ArticlePartnerVats { get; set; }
+    public Table<ArticleSubFamilyPartnerFamilyVat> ArticleSubFamilyPartnerFamilyVats { get; set; }
+    public Table<ArticleSubFamilyPartnerVat> ArticleSubFamilyPartnerVats { get; set; }
+    public Table<Country> Countries { get; set; }
+    public Table<CountryCurrency> CountryCurrencies { get; set; }
+    public Table<InventoryHeader> InventoryHeaders { get; set; }
+    public Table<InventoryLine> InventoryLines { get; set; }
+    public Table<Language> Languages { get; set; }
+    public Table<Parameter> Parameters { get; set; }
+    public Table<UserParameter> UserParameters { get; set; }
+    public Table<Period> Periods { get; set; }
+    public Table<Town> Towns { get; set; }
+    public Table<Translation> Translations { get; set; }
+    public Table<Unit> Units { get; set; }
+    public Table<UnitConversion> UnitConversions { get; set; }
+    public Table<Vat> Vats { get; set; }
 
-    public Tables<Address> Addresses { get; set; }
-    public Tables<AddressLine> AddressLines { get; set; }
-    public Tables<AddressType> AddressTypes { get; set; }
-    public Tables<Partner> Partners { get; set; }
-    public Tables<PartnerAddress> PartnerAddresses { get; set; }
-    public Tables<PartnerContact> PartnerContacts { get; set; }
-    public Tables<PartnerFamily> PartnerFamilies { get; set; }
-    public Tables<PartnerFile> PartnerFiles { get; set; }
-    public Tables<PartnerPartnerFamily> PartnerPartnerFamilies { get; set; }
+    public Table<Address> Addresses { get; set; }
+    public Table<AddressLine> AddressLines { get; set; }
+    public Table<AddressType> AddressTypes { get; set; }
+    public Table<Partner> Partners { get; set; }
+    public Table<PartnerAddress> PartnerAddresses { get; set; }
+    public Table<PartnerContact> PartnerContacts { get; set; }
+    public Table<PartnerFamily> PartnerFamilies { get; set; }
+    public Table<PartnerFile> PartnerFiles { get; set; }
+    public Table<PartnerPartnerFamily> PartnerPartnerFamilies { get; set; }
 
-    public Tables<Header> Headers { get; set; }
-    public Tables<HeaderFile> HeaderFiles { get; set; }
-    public Tables<HeaderFreeReference> HeaderFreeReferences { get; set; }
-    public Tables<HeaderLine> HeaderLines { get; set; }
-    public Tables<HeaderLineType> HeaderLineTypes { get; set; }
-    public Tables<HeaderOrigin> HeaderOrigins { get; set; }
-    public Tables<HeaderPartnerAddress> HeaderPartnerAddresses { get; set; }
-    public Tables<HeaderStatus> HeaderStatuses { get; set; }
-    public Tables<HeaderStatusStep> HeaderStatusSteps { get; set; }
-    public Tables<Payment> Payments { get; set; }
-    public Tables<PaymentMode> PaymentModes { get; set; }
-    public Tables<Reconciliation> Reconciliations { get; set; }
+    public Table<Header> Headers { get; set; }
+    public Table<HeaderFile> HeaderFiles { get; set; }
+    public Table<HeaderFreeReference> HeaderFreeReferences { get; set; }
+    public Table<HeaderLine> HeaderLines { get; set; }
+    public Table<HeaderLineType> HeaderLineTypes { get; set; }
+    public Table<HeaderOrigin> HeaderOrigins { get; set; }
+    public Table<HeaderPartnerAddress> HeaderPartnerAddresses { get; set; }
+    public Table<HeaderStatus> HeaderStatuses { get; set; }
+    public Table<HeaderStatusStep> HeaderStatusSteps { get; set; }
+    public Table<Payment> Payments { get; set; }
+    public Table<PaymentMode> PaymentModes { get; set; }
+    public Table<Reconciliation> Reconciliations { get; set; }
 
-    public Tables<Group> Groups { get; set; }
-    public Tables<GroupModule> GroupModules { get; set; }
-    public Tables<Message> Messages { get; set; }
-    public Tables<MessageRecipient> MessageRecipients { get; set; }
-    public Tables<Module> Modules { get; set; }
-    public Tables<User> Users { get; set; }
-    public Tables<UserActivity> UserActivities { get; set; }
-    public Tables<UserGroup> UserGroups { get; set; }
-    public Tables<UserModule> UserModules { get; set; }
+    public Table<Group> Groups { get; set; }
+    public Table<GroupModule> GroupModules { get; set; }
+    public Table<Message> Messages { get; set; }
+    public Table<MessageRecipient> MessageRecipients { get; set; }
+    public Table<Module> Modules { get; set; }
+    public Table<User> Users { get; set; }
+    public Table<UserActivity> UserActivities { get; set; }
+    public Table<UserGroup> UserGroups { get; set; }
+    public Table<UserModule> UserModules { get; set; }
 
     public DataStorage(bool ramStorage, IDbConnection dbConnection)
       : base(ramStorage, dbConnection)
     {
-      this.Articles = new Tables<Article>(this._ramStorage, this._dbConnection);
-      this.ArticleFamilies = new Tables<ArticleFamily>(this._ramStorage, this._dbConnection);
-      this.ArticleFamilyPricePartners = new Tables<ArticleFamilyPricePartner>(this._ramStorage, this._dbConnection);
-      this.ArticleFamilyPricePartnerFamilies = new Tables<ArticleFamilyPricePartnerFamily>(this._ramStorage, this._dbConnection);
-      this.ArticlePricePartners = new Tables<ArticlePricePartner>(this._ramStorage, this._dbConnection);
-      this.ArticlePricePartnerFamilies = new Tables<ArticlePricePartnerFamily>(this._ramStorage, this._dbConnection);
-      this.ArticleSubFamilies = new Tables<ArticleSubFamily>(this._ramStorage, this._dbConnection);
-      this.ArticleSubFamilyPricePartners = new Tables<ArticleSubFamilyPricePartner>(this._ramStorage, this._dbConnection);
-      this.ArticleSubFamilyPricePartnerFamilies = new Tables<ArticleSubFamilyPricePartnerFamily>(this._ramStorage, this._dbConnection);
-      this.Brands = new Tables<Brand>(this._ramStorage, this._dbConnection);
-      this.Nomenclatures = new Tables<Nomenclature>(this._ramStorage, this._dbConnection);
-      this.Prices = new Tables<Price>(this._ramStorage, this._dbConnection);
-      this.Subscriptions = new Tables<Subscription>(this._ramStorage, this._dbConnection);
-      this.SubscriptionPartners = new Tables<SubscriptionPartner>(this._ramStorage, this._dbConnection);
+      this.Articles = new Table<Article>(this._ramStorage, this._dbConnection);
+      this.ArticleFamilies = new Table<ArticleFamily>(this._ramStorage, this._dbConnection);
+      this.ArticleFamilyPricePartners = new Table<ArticleFamilyPricePartner>(this._ramStorage, this._dbConnection);
+      this.ArticleFamilyPricePartnerFamilies = new Table<ArticleFamilyPricePartnerFamily>(this._ramStorage, this._dbConnection);
+      this.ArticlePricePartners = new Table<ArticlePricePartner>(this._ramStorage, this._dbConnection);
+      this.ArticlePricePartnerFamilies = new Table<ArticlePricePartnerFamily>(this._ramStorage, this._dbConnection);
+      this.ArticleSubFamilies = new Table<ArticleSubFamily>(this._ramStorage, this._dbConnection);
+      this.ArticleSubFamilyPricePartners = new Table<ArticleSubFamilyPricePartner>(this._ramStorage, this._dbConnection);
+      this.ArticleSubFamilyPricePartnerFamilies = new Table<ArticleSubFamilyPricePartnerFamily>(this._ramStorage, this._dbConnection);
+      this.Brands = new Table<Brand>(this._ramStorage, this._dbConnection);
+      this.Nomenclatures = new Table<Nomenclature>(this._ramStorage, this._dbConnection);
+      this.Prices = new Table<Price>(this._ramStorage, this._dbConnection);
+      this.Subscriptions = new Table<Subscription>(this._ramStorage, this._dbConnection);
+      this.SubscriptionPartners = new Table<SubscriptionPartner>(this._ramStorage, this._dbConnection);
 
-      this.Activities = new Tables<Activity>(this._ramStorage, this._dbConnection);
-      this.Affairs = new Tables<Affair>(this._ramStorage, this._dbConnection);
-      this.AffairFiles = new Tables<AffairFile>(this._ramStorage, this._dbConnection);
-      this.AffairHeaders = new Tables<AffairHeader>(this._ramStorage, this._dbConnection);
-      this.ArticleFamilyPartnerFamilyVats = new Tables<ArticleFamilyPartnerFamilyVat>(this._ramStorage, this._dbConnection);
-      this.ArticleFamilyPartnerVats = new Tables<ArticleFamilyPartnerVat>(this._ramStorage, this._dbConnection);
-      this.ArticlePartnerFamilyVats = new Tables<ArticlePartnerFamilyVat>(this._ramStorage, this._dbConnection);
-      this.ArticlePartnerVats = new Tables<ArticlePartnerVat>(this._ramStorage, this._dbConnection);
-      this.ArticleSubFamilyPartnerFamilyVats = new Tables<ArticleSubFamilyPartnerFamilyVat>(this._ramStorage, this._dbConnection);
-      this.ArticleSubFamilyPartnerVats = new Tables<ArticleSubFamilyPartnerVat>(this._ramStorage, this._dbConnection);
-      this.Countries = new Tables<Country>(this._ramStorage, this._dbConnection);
-      this.CountryCurrencies = new Tables<CountryCurrency>(this._ramStorage, this._dbConnection);
-      this.InventoryHeaders = new Tables<InventoryHeader>(this._ramStorage, this._dbConnection);
-      this.InventoryLines = new Tables<InventoryLine>(this._ramStorage, this._dbConnection);
-      this.Languages = new Tables<Language>(this._ramStorage, this._dbConnection);
-      this.Parameters = new Tables<Parameter>(this._ramStorage, this._dbConnection);
-      this.UserParameters = new Tables<UserParameter>(this._ramStorage, this._dbConnection);
-      this.Periods = new Tables<Period>(this._ramStorage, this._dbConnection);
-      this.Towns = new Tables<Town>(this._ramStorage, this._dbConnection);
-      this.Translations = new Tables<Translation>(this._ramStorage, this._dbConnection);
-      this.Units = new Tables<Unit>(this._ramStorage, this._dbConnection);
-      this.UnitConversions = new Tables<UnitConversion>(this._ramStorage, this._dbConnection);
-      this.Vats = new Tables<Vat>(this._ramStorage, this._dbConnection);
+      this.Activities = new Table<Activity>(this._ramStorage, this._dbConnection);
+      this.Affairs = new Table<Affair>(this._ramStorage, this._dbConnection);
+      this.AffairFiles = new Table<AffairFile>(this._ramStorage, this._dbConnection);
+      this.AffairHeaders = new Table<AffairHeader>(this._ramStorage, this._dbConnection);
+      this.ArticleFamilyPartnerFamilyVats = new Table<ArticleFamilyPartnerFamilyVat>(this._ramStorage, this._dbConnection);
+      this.ArticleFamilyPartnerVats = new Table<ArticleFamilyPartnerVat>(this._ramStorage, this._dbConnection);
+      this.ArticlePartnerFamilyVats = new Table<ArticlePartnerFamilyVat>(this._ramStorage, this._dbConnection);
+      this.ArticlePartnerVats = new Table<ArticlePartnerVat>(this._ramStorage, this._dbConnection);
+      this.ArticleSubFamilyPartnerFamilyVats = new Table<ArticleSubFamilyPartnerFamilyVat>(this._ramStorage, this._dbConnection);
+      this.ArticleSubFamilyPartnerVats = new Table<ArticleSubFamilyPartnerVat>(this._ramStorage, this._dbConnection);
+      this.Countries = new Table<Country>(this._ramStorage, this._dbConnection);
+      this.CountryCurrencies = new Table<CountryCurrency>(this._ramStorage, this._dbConnection);
+      this.InventoryHeaders = new Table<InventoryHeader>(this._ramStorage, this._dbConnection);
+      this.InventoryLines = new Table<InventoryLine>(this._ramStorage, this._dbConnection);
+      this.Languages = new Table<Language>(this._ramStorage, this._dbConnection);
+      this.Parameters = new Table<Parameter>(this._ramStorage, this._dbConnection);
+      this.UserParameters = new Table<UserParameter>(this._ramStorage, this._dbConnection);
+      this.Periods = new Table<Period>(this._ramStorage, this._dbConnection);
+      this.Towns = new Table<Town>(this._ramStorage, this._dbConnection);
+      this.Translations = new Table<Translation>(this._ramStorage, this._dbConnection);
+      this.Units = new Table<Unit>(this._ramStorage, this._dbConnection);
+      this.UnitConversions = new Table<UnitConversion>(this._ramStorage, this._dbConnection);
+      this.Vats = new Table<Vat>(this._ramStorage, this._dbConnection);
 
-      this.Addresses = new Tables<Address>(this._ramStorage, this._dbConnection);
-      this.AddressLines = new Tables<AddressLine>(this._ramStorage, this._dbConnection);
-      this.AddressTypes = new Tables<AddressType>(this._ramStorage, this._dbConnection);
-      this.Partners = new Tables<Partner>(this._ramStorage, this._dbConnection);
-      this.PartnerAddresses = new Tables<PartnerAddress>(this._ramStorage, this._dbConnection);
-      this.PartnerContacts = new Tables<PartnerContact>(this._ramStorage, this._dbConnection);
-      this.PartnerFamilies = new Tables<PartnerFamily>(this._ramStorage, this._dbConnection);
-      this.PartnerFiles = new Tables<PartnerFile>(this._ramStorage, this._dbConnection);
-      this.PartnerPartnerFamilies = new Tables<PartnerPartnerFamily>(this._ramStorage, this._dbConnection);
+      this.Addresses = new Table<Address>(this._ramStorage, this._dbConnection);
+      this.AddressLines = new Table<AddressLine>(this._ramStorage, this._dbConnection);
+      this.AddressTypes = new Table<AddressType>(this._ramStorage, this._dbConnection);
+      this.Partners = new Table<Partner>(this._ramStorage, this._dbConnection);
+      this.PartnerAddresses = new Table<PartnerAddress>(this._ramStorage, this._dbConnection);
+      this.PartnerContacts = new Table<PartnerContact>(this._ramStorage, this._dbConnection);
+      this.PartnerFamilies = new Table<PartnerFamily>(this._ramStorage, this._dbConnection);
+      this.PartnerFiles = new Table<PartnerFile>(this._ramStorage, this._dbConnection);
+      this.PartnerPartnerFamilies = new Table<PartnerPartnerFamily>(this._ramStorage, this._dbConnection);
 
-      this.Headers = new Tables<Header>(this._ramStorage, this._dbConnection);
-      this.HeaderFiles = new Tables<HeaderFile>(this._ramStorage, this._dbConnection);
-      this.HeaderFreeReferences = new Tables<HeaderFreeReference>(this._ramStorage, this._dbConnection);
-      this.HeaderLines = new Tables<HeaderLine>(this._ramStorage, this._dbConnection);
-      this.HeaderLineTypes = new Tables<HeaderLineType>(this._ramStorage, this._dbConnection);
-      this.HeaderOrigins = new Tables<HeaderOrigin>(this._ramStorage, this._dbConnection);
-      this.HeaderPartnerAddresses = new Tables<HeaderPartnerAddress>(this._ramStorage, this._dbConnection);
-      this.HeaderStatuses = new Tables<HeaderStatus>(this._ramStorage, this._dbConnection);
-      this.HeaderStatusSteps = new Tables<HeaderStatusStep>(this._ramStorage, this._dbConnection);
-      this.Payments = new Tables<Payment>(this._ramStorage, this._dbConnection);
-      this.PaymentModes = new Tables<PaymentMode>(this._ramStorage, this._dbConnection);
-      this.Reconciliations = new Tables<Reconciliation>(this._ramStorage, this._dbConnection);
+      this.Headers = new Table<Header>(this._ramStorage, this._dbConnection);
+      this.HeaderFiles = new Table<HeaderFile>(this._ramStorage, this._dbConnection);
+      this.HeaderFreeReferences = new Table<HeaderFreeReference>(this._ramStorage, this._dbConnection);
+      this.HeaderLines = new Table<HeaderLine>(this._ramStorage, this._dbConnection);
+      this.HeaderLineTypes = new Table<HeaderLineType>(this._ramStorage, this._dbConnection);
+      this.HeaderOrigins = new Table<HeaderOrigin>(this._ramStorage, this._dbConnection);
+      this.HeaderPartnerAddresses = new Table<HeaderPartnerAddress>(this._ramStorage, this._dbConnection);
+      this.HeaderStatuses = new Table<HeaderStatus>(this._ramStorage, this._dbConnection);
+      this.HeaderStatusSteps = new Table<HeaderStatusStep>(this._ramStorage, this._dbConnection);
+      this.Payments = new Table<Payment>(this._ramStorage, this._dbConnection);
+      this.PaymentModes = new Table<PaymentMode>(this._ramStorage, this._dbConnection);
+      this.Reconciliations = new Table<Reconciliation>(this._ramStorage, this._dbConnection);
 
-      this.Groups = new Tables<Group>(this._ramStorage, this._dbConnection);
-      this.GroupModules = new Tables<GroupModule>(this._ramStorage, this._dbConnection);
-      this.Messages = new Tables<Message>(this._ramStorage, this._dbConnection);
-      this.MessageRecipients = new Tables<MessageRecipient>(this._ramStorage, this._dbConnection);
-      this.Modules = new Tables<Module>(this._ramStorage, this._dbConnection);
-      this.Users = new Tables<User>(this._ramStorage, this._dbConnection);
-      this.UserActivities = new Tables<UserActivity>(this._ramStorage, this._dbConnection);
-      this.UserGroups = new Tables<UserGroup>(this._ramStorage, this._dbConnection);
-      this.UserModules = new Tables<UserModule>(this._ramStorage, this._dbConnection);
+      this.Groups = new Table<Group>(this._ramStorage, this._dbConnection);
+      this.GroupModules = new Table<GroupModule>(this._ramStorage, this._dbConnection);
+      this.Messages = new Table<Message>(this._ramStorage, this._dbConnection);
+      this.MessageRecipients = new Table<MessageRecipient>(this._ramStorage, this._dbConnection);
+      this.Modules = new Table<Module>(this._ramStorage, this._dbConnection);
+      this.Users = new Table<User>(this._ramStorage, this._dbConnection);
+      this.UserActivities = new Table<UserActivity>(this._ramStorage, this._dbConnection);
+      this.UserGroups = new Table<UserGroup>(this._ramStorage, this._dbConnection);
+      this.UserModules = new Table<UserModule>(this._ramStorage, this._dbConnection);
     }
 
     public void CreateDatasForTest()
@@ -212,6 +212,81 @@ namespace Bm2s.Data.Common.Utils
       this.HeaderLines.Add(headerLine2);
       HeaderLine headerLine3 = new HeaderLine() { ArticleId = article3.Id, ArticleFamilyId = article3.ArticleFamilyId, ArticleSubFamilyId = article3.ArticleSubFamilyId, BrandId = article3.BrandId, Code = article3.Code, Description = string.Empty, Designation = string.Empty, HeaderId = header.Id, BuyPrice = 0, HeaderLineTypeId = headerLineType.Id, IsPrintable = true, LineNumber = 1, Quantity = 4, SellPrice = 20.30, UnitId = article3.UnitId, VatRate = 19.6 };
       this.HeaderLines.Add(headerLine3);
+    }
+
+    public void ReloadDatas()
+    {
+      this.Articles.ReloadData();
+      this.ArticleFamilies.ReloadData();
+      this.ArticleFamilyPricePartners.ReloadData();
+      this.ArticleFamilyPricePartnerFamilies.ReloadData();
+      this.ArticlePricePartners.ReloadData();
+      this.ArticlePricePartnerFamilies.ReloadData();
+      this.ArticleSubFamilies.ReloadData();
+      this.ArticleSubFamilyPricePartners.ReloadData();
+      this.ArticleSubFamilyPricePartnerFamilies.ReloadData();
+      this.Brands.ReloadData();
+      this.Nomenclatures.ReloadData();
+      this.Prices.ReloadData();
+      this.Subscriptions.ReloadData();
+      this.SubscriptionPartners.ReloadData();
+
+      this.Activities.ReloadData();
+      this.Affairs.ReloadData();
+      this.AffairFiles.ReloadData();
+      this.AffairHeaders.ReloadData();
+      this.ArticleFamilyPartnerFamilyVats.ReloadData();
+      this.ArticleFamilyPartnerVats.ReloadData();
+      this.ArticlePartnerFamilyVats.ReloadData();
+      this.ArticlePartnerVats.ReloadData();
+      this.ArticleSubFamilyPartnerFamilyVats.ReloadData();
+      this.ArticleSubFamilyPartnerVats.ReloadData();
+      this.Countries.ReloadData();
+      this.CountryCurrencies.ReloadData();
+      this.InventoryHeaders.ReloadData();
+      this.InventoryLines.ReloadData();
+      this.Languages.ReloadData();
+      this.Parameters.ReloadData();
+      this.UserParameters.ReloadData();
+      this.Periods.ReloadData();
+      this.Towns.ReloadData();
+      this.Translations.ReloadData();
+      this.Units.ReloadData();
+      this.UnitConversions.ReloadData();
+      this.Vats.ReloadData();
+
+      this.Addresses.ReloadData();
+      this.AddressLines.ReloadData();
+      this.AddressTypes.ReloadData();
+      this.Partners.ReloadData();
+      this.PartnerAddresses.ReloadData();
+      this.PartnerContacts.ReloadData();
+      this.PartnerFamilies.ReloadData();
+      this.PartnerFiles.ReloadData();
+      this.PartnerPartnerFamilies.ReloadData();
+
+      this.Headers.ReloadData();
+      this.HeaderFiles.ReloadData();
+      this.HeaderFreeReferences.ReloadData();
+      this.HeaderLines.ReloadData();
+      this.HeaderLineTypes.ReloadData();
+      this.HeaderOrigins.ReloadData();
+      this.HeaderPartnerAddresses.ReloadData();
+      this.HeaderStatuses.ReloadData();
+      this.HeaderStatusSteps.ReloadData();
+      this.Payments.ReloadData();
+      this.PaymentModes.ReloadData();
+      this.Reconciliations.ReloadData();
+
+      this.Groups.ReloadData();
+      this.GroupModules.ReloadData();
+      this.Messages.ReloadData();
+      this.MessageRecipients.ReloadData();
+      this.Modules.ReloadData();
+      this.Users.ReloadData();
+      this.UserActivities.ReloadData();
+      this.UserGroups.ReloadData();
+      this.UserModules.ReloadData();
     }
   }
 }

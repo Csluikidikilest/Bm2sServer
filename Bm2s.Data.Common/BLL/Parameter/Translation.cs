@@ -4,7 +4,7 @@ using ServiceStack.DataAnnotations;
 
 namespace Bm2s.Data.Common.BLL.Parameter
 {
-  public class Translation : Table
+  public class Translation : DataRow
   {
     [AutoIncrement]
     [PrimaryKey]

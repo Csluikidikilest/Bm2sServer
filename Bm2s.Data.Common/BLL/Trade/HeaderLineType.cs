@@ -5,7 +5,7 @@ using ServiceStack.DataAnnotations;
 
 namespace Bm2s.Data.Common.BLL.Trade
 {
-  public class HeaderLineType : Table
+  public class HeaderLineType : DataRow
   {
     [AutoIncrement]
     [PrimaryKey]

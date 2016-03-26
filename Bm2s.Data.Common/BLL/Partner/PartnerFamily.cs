@@ -5,7 +5,7 @@ using ServiceStack.DataAnnotations;
 
 namespace Bm2s.Data.Common.BLL.Partner
 {
-  public class PartnerFamily : Table
+  public class PartnerFamily : DataRow
   {
     [AutoIncrement]
     [PrimaryKey]

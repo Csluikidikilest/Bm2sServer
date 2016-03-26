@@ -6,7 +6,7 @@ using ServiceStack.DataAnnotations;
 
 namespace Bm2s.Data.Common.BLL.Trade
 {
-  public class HeaderPartnerAddress : Table
+  public class HeaderPartnerAddress : DataRow
   {
     [AutoIncrement]
     [PrimaryKey]

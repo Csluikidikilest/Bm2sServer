@@ -6,7 +6,7 @@ using ServiceStack.DataAnnotations;
 
 namespace Bm2s.Data.Common.BLL.User
 {
-  public class UserActivity : Table
+  public class UserActivity : DataRow
   {
     [AutoIncrement]
     [PrimaryKey]

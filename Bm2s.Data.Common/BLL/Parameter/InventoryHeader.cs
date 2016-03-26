@@ -4,7 +4,7 @@ using ServiceStack.DataAnnotations;
 
 namespace Bm2s.Data.Common.BLL.Parameter
 {
-  public class InventoryHeader : Table
+  public class InventoryHeader : DataRow
   {
     [AutoIncrement]
     [PrimaryKey]

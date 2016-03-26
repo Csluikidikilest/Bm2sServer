@@ -5,7 +5,7 @@ using ServiceStack.DataAnnotations;
 
 namespace Bm2s.Data.Common.BLL.User
 {
-  public class Message : Table
+  public class Message : DataRow
   {
     [AutoIncrement]
     [PrimaryKey]

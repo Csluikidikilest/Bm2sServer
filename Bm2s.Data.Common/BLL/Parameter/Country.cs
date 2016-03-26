@@ -5,7 +5,7 @@ using ServiceStack.DataAnnotations;
 
 namespace Bm2s.Data.Common.BLL.Parameter
 {
-  public class Country : Table
+  public class Country : DataRow
   {
     [AutoIncrement]
     [PrimaryKey]

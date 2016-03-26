@@ -7,7 +7,7 @@ using ServiceStack.DataAnnotations;
 
 namespace Bm2s.Data.Common.BLL.Parameter
 {
-  public class Period : Table
+  public class Period : DataRow
   {
     [AutoIncrement]
     [PrimaryKey]

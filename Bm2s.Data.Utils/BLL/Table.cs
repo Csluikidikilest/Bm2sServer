@@ -8,11 +8,11 @@ using System.Text;
 
 namespace Bm2s.Data.Utils.BLL
 {
-  public class Table
+  public class DataRow
   {
     public virtual int Id { get; set; }
 
-    public static T Load<T>(IDbConnection dbConnection, int id, bool lazyLoad) where T : Table
+    public static T Load<T>(IDbConnection dbConnection, int id, bool lazyLoad) where T : DataRow
     {
       OrmLiteConfig.DialectProvider = dbConnection.GetDialectProvider();
       SqlExpressionVisitor<T> ev = OrmLiteConfig.DialectProvider.ExpressionVisitor<T>();
@@ -23,17 +23,17 @@ namespace Bm2s.Data.Utils.BLL
       return result;
     }
 
-    public static List<T> LoadAll<T>(IDbConnection dbConnection) where T : Table
+    public static List<T> LoadAll<T>(IDbConnection dbConnection) where T : DataRow
     {
       return dbConnection.Select<T>();
     }
 
-    public virtual void Delete<T>(IDbConnection dbConnection) where T : Table
+    public virtual void Delete<T>(IDbConnection dbConnection) where T : DataRow
     {
       dbConnection.Delete<T>(ev => ev.Where(x => x.Id == this.Id));
     }
 
-    protected virtual void Insert<T>(IDbConnection dbConnection) where T : Table
+    protected virtual void Insert<T>(IDbConnection dbConnection) where T : DataRow
     {
       try
       {
@@ -49,7 +49,7 @@ namespace Bm2s.Data.Utils.BLL
       }
     }
 
-    public virtual void Save<T>(IDbConnection dbConnection) where T : Table
+    public virtual void Save<T>(IDbConnection dbConnection) where T : DataRow
     {
       if (this.Id > 0)
       {
@@ -61,7 +61,7 @@ namespace Bm2s.Data.Utils.BLL
       }
     }
 
-    protected virtual void Update<T>(IDbConnection dbConnection) where T : Table
+    protected virtual void Update<T>(IDbConnection dbConnection) where T : DataRow
     {
       try
       {

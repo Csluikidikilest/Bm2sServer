@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace Bm2s.Data.Utils.BLL
 {
-  public class Tables<T> : IList<T> where T : Table
+  public class Table<T> : IList<T> where T : DataRow
   {
     private IDbConnection _dbConnection;
 
@@ -15,7 +15,7 @@ namespace Bm2s.Data.Utils.BLL
 
     private List<T> _innerList;
 
-    public Tables(bool ramStorage, IDbConnection dbConnection)
+    public Table(bool ramStorage, IDbConnection dbConnection)
     {
       this._dbConnection = dbConnection;
       this._ramStorage = ramStorage;
@@ -145,6 +145,12 @@ namespace Bm2s.Data.Utils.BLL
     public bool IsReadOnly
     {
       get { return false; }
+    }
+
+    public void ReloadData()
+    {
+      List<T> tempList = DataRow.LoadAll<T>(this._dbConnection);
+      this._innerList = tempList;
     }
 
     public bool Remove(T item)

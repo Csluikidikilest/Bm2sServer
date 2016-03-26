@@ -8,7 +8,7 @@ using ServiceStack.DataAnnotations;
 
 namespace Bm2s.Data.Common.BLL.Parameter
 {
-  public class ArticleFamilyPartnerFamilyVat : Table
+  public class ArticleFamilyPartnerFamilyVat : DataRow
   {
     [AutoIncrement]
     [PrimaryKey]

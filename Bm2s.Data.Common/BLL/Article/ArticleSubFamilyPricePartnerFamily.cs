@@ -7,7 +7,7 @@ using ServiceStack.DataAnnotations;
 
 namespace Bm2s.Data.Common.BLL.Article
 {
-  public class ArticleSubFamilyPricePartnerFamily : Table
+  public class ArticleSubFamilyPricePartnerFamily : DataRow
   {
     [AutoIncrement]
     [PrimaryKey]
