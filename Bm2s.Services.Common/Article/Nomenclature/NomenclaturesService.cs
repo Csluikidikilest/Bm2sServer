@@ -35,7 +35,6 @@ namespace Bm2s.Services.Common.Article.Nomenclature
                           BuyPrice = Convert.ToDecimal(item.BuyPrice),
                           Id = item.Id,
                           QuantityChild = item.QuantityChild,
-                          QuantityParent = item.QuantityParent
                         }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
       response.ItemsCount = collection.Count();
@@ -70,7 +69,6 @@ namespace Bm2s.Services.Common.Article.Nomenclature
         item.BuyPrice = Convert.ToDouble(request.Nomenclature.BuyPrice);
         item.EndingDate = request.Nomenclature.EndingDate;
         item.QuantityChild = request.Nomenclature.QuantityChild;
-        item.QuantityParent = request.Nomenclature.QuantityParent;
         item.StartingDate = request.Nomenclature.StartingDate;
         Datas.Instance.DataStorage.Nomenclatures[request.Nomenclature.Id] = item;
       }
@@ -83,7 +81,6 @@ namespace Bm2s.Services.Common.Article.Nomenclature
           BuyPrice = Convert.ToDouble(request.Nomenclature.BuyPrice),
           EndingDate = request.Nomenclature.EndingDate,
           QuantityChild = request.Nomenclature.QuantityChild,
-          QuantityParent = request.Nomenclature.QuantityParent,
           StartingDate = request.Nomenclature.StartingDate
         };
 

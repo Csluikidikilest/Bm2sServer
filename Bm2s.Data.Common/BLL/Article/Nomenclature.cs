@@ -13,10 +13,7 @@ namespace Bm2s.Data.Common.BLL.Article
     public override int Id { get; set; }
 
     [Default(1)]
-    public int QuantityParent { get; set; }
-
-    [Default(1)]
-    public int QuantityChild { get; set; }
+    public double QuantityChild { get; set; }
 
     public double BuyPrice { get; set; }
 
