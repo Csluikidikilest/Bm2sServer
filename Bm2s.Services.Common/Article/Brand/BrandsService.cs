@@ -12,7 +12,7 @@ namespace Bm2s.Services.Common.Article.Brand
     public BrandsResponse Get(Brands request)
     {
       BrandsResponse response = new BrandsResponse();
-      List<Bm2s.Data.Common.BLL.Article.Brand> items = new List<Data.Common.BLL.Article.Brand>();
+      List<Bm2s.Data.Common.BLL.Article.Bran> items = new List<Data.Common.BLL.Article.Bran>();
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.Brands.Where(item =>
@@ -62,7 +62,7 @@ namespace Bm2s.Services.Common.Article.Brand
     {
       if (request.Brand.Id > 0)
       {
-        Bm2s.Data.Common.BLL.Article.Brand item = Datas.Instance.DataStorage.Brands[request.Brand.Id];
+        Bm2s.Data.Common.BLL.Article.Bran item = Datas.Instance.DataStorage.Brands[request.Brand.Id];
         item.Code = request.Brand.Code;
         item.EndingDate = request.Brand.EndingDate;
         item.Name = request.Brand.Name;
@@ -71,7 +71,7 @@ namespace Bm2s.Services.Common.Article.Brand
       }
       else
       {
-        Bm2s.Data.Common.BLL.Article.Brand item = new Data.Common.BLL.Article.Brand()
+        Bm2s.Data.Common.BLL.Article.Bran item = new Data.Common.BLL.Article.Bran()
         {
           Code = request.Brand.Code,
           EndingDate = request.Brand.EndingDate,
@@ -90,7 +90,7 @@ namespace Bm2s.Services.Common.Article.Brand
 
     public BrandsResponse Delete(Brands request)
     {
-      Bm2s.Data.Common.BLL.Article.Brand item = Datas.Instance.DataStorage.Brands[request.Brand.Id];
+      Bm2s.Data.Common.BLL.Article.Bran item = Datas.Instance.DataStorage.Brands[request.Brand.Id];
       item.EndingDate = DateTime.Now;
       Datas.Instance.DataStorage.Brands[item.Id] = item;
 

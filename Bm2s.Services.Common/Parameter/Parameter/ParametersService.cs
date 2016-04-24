@@ -12,7 +12,7 @@ namespace Bm2s.Services.Common.Parameter.Parameter
     public ParametersResponse Get(Parameters request)
     {
       ParametersResponse response = new ParametersResponse();
-      List<Bm2s.Data.Common.BLL.Parameter.Parameter> items = new List<Data.Common.BLL.Parameter.Parameter>();
+      List<Bm2s.Data.Common.BLL.Parameter.Para> items = new List<Data.Common.BLL.Parameter.Para>();
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.Parameters.Where(item =>
@@ -68,7 +68,7 @@ namespace Bm2s.Services.Common.Parameter.Parameter
     {
       if (request.Parameter.Id > 0)
       {
-        Bm2s.Data.Common.BLL.Parameter.Parameter item = Datas.Instance.DataStorage.Parameters[request.Parameter.Id];
+        Bm2s.Data.Common.BLL.Parameter.Para item = Datas.Instance.DataStorage.Parameters[request.Parameter.Id];
         item.bValue = request.Parameter.bValue;
         item.Code = request.Parameter.Code;
         item.Description = request.Parameter.Description;
@@ -83,7 +83,7 @@ namespace Bm2s.Services.Common.Parameter.Parameter
       }
       else
       {
-        Bm2s.Data.Common.BLL.Parameter.Parameter item = new Data.Common.BLL.Parameter.Parameter()
+        Bm2s.Data.Common.BLL.Parameter.Para item = new Data.Common.BLL.Parameter.Para()
         {
           bValue = request.Parameter.bValue,
           Code = request.Parameter.Code,
@@ -108,7 +108,7 @@ namespace Bm2s.Services.Common.Parameter.Parameter
 
     public ParametersResponse Delete(Parameters request)
     {
-      Bm2s.Data.Common.BLL.Parameter.Parameter item = Datas.Instance.DataStorage.Parameters[request.Parameter.Id];
+      Bm2s.Data.Common.BLL.Parameter.Para item = Datas.Instance.DataStorage.Parameters[request.Parameter.Id];
       Datas.Instance.DataStorage.Parameters.Remove(item);
 
       ParametersResponse response = new ParametersResponse();

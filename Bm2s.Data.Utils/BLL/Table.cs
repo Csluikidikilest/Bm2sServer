@@ -43,9 +43,10 @@ namespace Bm2s.Data.Utils.BLL
         int.TryParse(dbConnection.GetLastInsertId().ToString(), out id);
         this.Id = id;
       }
-      catch
+      catch(Exception ex)
       {
         Console.WriteLine("Error when trying to insert " + this.GetType().ToString().ToLower() + ": " + this.ToString());
+        Console.WriteLine("Reason: " + ex.Message);
       }
     }
 
@@ -67,9 +68,10 @@ namespace Bm2s.Data.Utils.BLL
       {
         dbConnection.Update(this as T, f => f.Id == this.Id);
       }
-      catch
+      catch (Exception ex)
       {
         Console.WriteLine("Error when trying to update " + this.GetType().ToString().ToLower() + ": " + this.ToString());
+        Console.WriteLine("Reason: " + ex.Message);
       }
     }
 

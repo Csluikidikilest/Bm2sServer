@@ -18,14 +18,14 @@ namespace Bm2s.Services.Common.Trade.Header
     public HeadersResponse Get(Headers request)
     {
       HeadersResponse response = new HeadersResponse();
-      List<Bm2s.Data.Common.BLL.Trade.Header> items = new List<Data.Common.BLL.Trade.Header>();
+      List<Bm2s.Data.Common.BLL.Trade.Head> items = new List<Data.Common.BLL.Trade.Head>();
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.Headers.Where(item =>
-          (request.ActivityId == 0 || item.ActivityId == request.ActivityId) &&
+          (request.ActivityId == 0 || item.ActiId == request.ActivityId) &&
           (!request.Date.HasValue || (request.Date >= item.Date && (!item.EndingDate.HasValue || request.Date < item.EndingDate.Value))) &&
           (string.IsNullOrWhiteSpace(request.Description) || item.Description.ToLower().Contains(request.Description.ToLower())) &&
-          (request.HeaderStatusId == 0 || item.HeaderStatusId == request.HeaderStatusId) &&
+          (request.HeaderStatusId == 0 || item.HestId == request.HeaderStatusId) &&
           (!request.IsSell || item.IsSell) &&
           (!request.IsPurchase || item.IsPurchase) &&
           (string.IsNullOrWhiteSpace(request.Reference) || item.Reference.ToLower().Contains(request.Reference.ToLower())) &&
@@ -40,13 +40,13 @@ namespace Bm2s.Services.Common.Trade.Header
       var collection = (from item in items
                         select new Bm2s.Poco.Common.Trade.Header()
                         {
-                          Activity = new ActivitiesService().Get(new Activities() { Ids = new List<int>() { item.ActivityId } }).Activities.FirstOrDefault(),
+                          Activity = new ActivitiesService().Get(new Activities() { Ids = new List<int>() { item.ActiId } }).Activities.FirstOrDefault(),
                           Date = item.Date,
                           DeliveryObservation = item.DeliveryObservation,
                           Description = item.Description,
                           EndingDate = item.EndingDate,
                           FooterDiscount = Convert.ToDecimal(item.FooterDiscount),
-                          HeaderStatus = new HeaderStatusesService().Get(new HeaderStatuses() { Ids = new List<int>() { item.HeaderStatusId } }).HeaderStatuses.FirstOrDefault(),
+                          HeaderStatus = new HeaderStatusesService().Get(new HeaderStatuses() { Ids = new List<int>() { item.HestId } }).HeaderStatuses.FirstOrDefault(),
                           Id = item.Id,
                           IsPurchase = item.IsPurchase,
                           IsSell = item.IsSell,
@@ -80,14 +80,14 @@ namespace Bm2s.Services.Common.Trade.Header
     {
       if (request.Header.Id > 0)
       {
-        Bm2s.Data.Common.BLL.Trade.Header item = Datas.Instance.DataStorage.Headers[request.Header.Id];
-        item.ActivityId = request.Header.Activity.Id;
+        Bm2s.Data.Common.BLL.Trade.Head item = Datas.Instance.DataStorage.Headers[request.Header.Id];
+        item.ActiId = request.Header.Activity.Id;
         item.Date = request.Header.Date;
         item.DeliveryObservation = request.Header.DeliveryObservation;
         item.Description = request.Header.Description;
         item.EndingDate = request.Header.EndingDate;
         item.FooterDiscount = Convert.ToDouble(request.Header.FooterDiscount);
-        item.HeaderStatusId = request.Header.HeaderStatus.Id;
+        item.HestId = request.Header.HeaderStatus.Id;
         item.IsPurchase = request.Header.IsPurchase;
         item.IsSell = request.Header.IsSell;
         item.Reference = request.Header.Reference;
@@ -96,15 +96,15 @@ namespace Bm2s.Services.Common.Trade.Header
       }
       else
       {
-        Bm2s.Data.Common.BLL.Trade.Header item = new Data.Common.BLL.Trade.Header()
+        Bm2s.Data.Common.BLL.Trade.Head item = new Data.Common.BLL.Trade.Head()
         {
-          ActivityId = request.Header.Activity.Id,
+          ActiId = request.Header.Activity.Id,
           Date = request.Header.Date,
           DeliveryObservation = request.Header.DeliveryObservation,
           Description = request.Header.Description,
           EndingDate = request.Header.EndingDate,
           FooterDiscount = Convert.ToDouble(request.Header.FooterDiscount),
-          HeaderStatusId = request.Header.HeaderStatus.Id,
+          HestId = request.Header.HeaderStatus.Id,
           IsPurchase = request.Header.IsPurchase,
           IsSell = request.Header.IsSell,
           Reference = request.Header.Reference,
@@ -122,7 +122,7 @@ namespace Bm2s.Services.Common.Trade.Header
 
     public HeadersResponse Delete(Headers request)
     {
-      Bm2s.Data.Common.BLL.Trade.Header item = Datas.Instance.DataStorage.Headers[request.Header.Id];
+      Bm2s.Data.Common.BLL.Trade.Head item = Datas.Instance.DataStorage.Headers[request.Header.Id];
       item.EndingDate = DateTime.Now;
       Datas.Instance.DataStorage.Headers[item.Id] = item;
 

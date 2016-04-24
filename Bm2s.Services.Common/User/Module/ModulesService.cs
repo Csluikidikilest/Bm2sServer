@@ -12,7 +12,7 @@ namespace Bm2s.Services.Common.User.Module
     public ModulesResponse Get(Modules request)
     {
       ModulesResponse response = new ModulesResponse();
-      List<Bm2s.Data.Common.BLL.User.Module> items = new List<Data.Common.BLL.User.Module>();
+      List<Bm2s.Data.Common.BLL.User.Modu> items = new List<Data.Common.BLL.User.Modu>();
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.Modules.Where(item =>
@@ -63,7 +63,7 @@ namespace Bm2s.Services.Common.User.Module
     {
       if (request.Module.Id > 0)
       {
-        Bm2s.Data.Common.BLL.User.Module item = Datas.Instance.DataStorage.Modules[request.Module.Id];
+        Bm2s.Data.Common.BLL.User.Modu item = Datas.Instance.DataStorage.Modules[request.Module.Id];
         item.Code = request.Module.Code;
         item.Description = request.Module.Description;
         item.EndingDate = request.Module.EndingDate;
@@ -74,7 +74,7 @@ namespace Bm2s.Services.Common.User.Module
       }
       else
       {
-        Bm2s.Data.Common.BLL.User.Module item = new Data.Common.BLL.User.Module()
+        Bm2s.Data.Common.BLL.User.Modu item = new Data.Common.BLL.User.Modu()
         {
           Code = request.Module.Code,
           Description = request.Module.Description,
@@ -95,7 +95,7 @@ namespace Bm2s.Services.Common.User.Module
 
     public ModulesResponse Delete(Modules request)
     {
-      Bm2s.Data.Common.BLL.User.Module item = Datas.Instance.DataStorage.Modules[request.Module.Id];
+      Bm2s.Data.Common.BLL.User.Modu item = Datas.Instance.DataStorage.Modules[request.Module.Id];
       item.EndingDate = DateTime.Now;
       Datas.Instance.DataStorage.Modules[item.Id] = item;
 

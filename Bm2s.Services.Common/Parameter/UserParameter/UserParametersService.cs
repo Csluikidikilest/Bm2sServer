@@ -12,11 +12,11 @@ namespace Bm2s.Services.Common.Parameter.UserParameter
     public UserParametersResponse Get(UserParameters request)
     {
       UserParametersResponse response = new UserParametersResponse();
-      List<Bm2s.Data.Common.BLL.Parameter.UserParameter> items = new List<Data.Common.BLL.Parameter.UserParameter>();
+      List<Bm2s.Data.Common.BLL.Parameter.Uspa> items = new List<Data.Common.BLL.Parameter.Uspa>();
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.UserParameters.Where(item =>
-          (request.ParameterId == 0 || item.ParameterId == request.ParameterId)
+          (request.ParameterId == 0 || item.ParaId == request.ParameterId)
           ));
       }
       else
@@ -61,7 +61,7 @@ namespace Bm2s.Services.Common.Parameter.UserParameter
     {
       if (request.UserParameter.Id > 0)
       {
-        Bm2s.Data.Common.BLL.Parameter.UserParameter item = Datas.Instance.DataStorage.UserParameters[request.UserParameter.Id];
+        Bm2s.Data.Common.BLL.Parameter.Uspa item = Datas.Instance.DataStorage.UserParameters[request.UserParameter.Id];
         item.bValue = request.UserParameter.bValue;
         item.dValue = request.UserParameter.dValue;
         item.fValue = Convert.ToDouble(request.UserParameter.fValue);
@@ -71,7 +71,7 @@ namespace Bm2s.Services.Common.Parameter.UserParameter
       }
       else
       {
-        Bm2s.Data.Common.BLL.Parameter.UserParameter item = new Data.Common.BLL.Parameter.UserParameter()
+        Bm2s.Data.Common.BLL.Parameter.Uspa item = new Data.Common.BLL.Parameter.Uspa()
         {
           bValue = request.UserParameter.bValue,
           dValue = request.UserParameter.dValue,
@@ -91,7 +91,7 @@ namespace Bm2s.Services.Common.Parameter.UserParameter
 
     public UserParametersResponse Delete(UserParameters request)
     {
-      Bm2s.Data.Common.BLL.Parameter.Parameter item = Datas.Instance.DataStorage.Parameters[request.UserParameter.Id];
+      Bm2s.Data.Common.BLL.Parameter.Para item = Datas.Instance.DataStorage.Parameters[request.UserParameter.Id];
       Datas.Instance.DataStorage.Parameters.Remove(item);
 
       UserParametersResponse response = new UserParametersResponse();

@@ -18,12 +18,12 @@ namespace Bm2s.Services.Common.Parameter.ArticleFamilyPartnerFamilyVat
     public ArticleFamilyPartnerFamilyVatsResponse Get(ArticleFamilyPartnerFamilyVats request)
     {
       ArticleFamilyPartnerFamilyVatsResponse response = new ArticleFamilyPartnerFamilyVatsResponse();
-      List<Bm2s.Data.Common.BLL.Parameter.ArticleFamilyPartnerFamilyVat> items = new List<Data.Common.BLL.Parameter.ArticleFamilyPartnerFamilyVat>();
+      List<Bm2s.Data.Common.BLL.Parameter.Affv> items = new List<Data.Common.BLL.Parameter.Affv>();
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.ArticleFamilyPartnerFamilyVats.Where(item =>
-          (request.ArticleFamilyId == 0 || item.ArticleFamilyId == request.ArticleFamilyId) &&
-          (request.PartnerFamilyId == 0 || item.PartnerFamilyId == request.PartnerFamilyId) &&
+          (request.ArticleFamilyId == 0 || item.ArfaId == request.ArticleFamilyId) &&
+          (request.PartnerFamilyId == 0 || item.PafaId == request.PartnerFamilyId) &&
           (request.VatId == 0 || item.VatId == request.VatId)
           ));
       }
@@ -36,10 +36,10 @@ namespace Bm2s.Services.Common.Parameter.ArticleFamilyPartnerFamilyVat
                         select new Bm2s.Poco.Common.Parameter.ArticleFamilyPartnerFamilyVat()
                         {
                           AccountingEntry = item.AccountingEntry,
-                          ArticleFamily = new ArticleFamiliesService().Get(new ArticleFamilies() { Ids = new List<int>() { item.ArticleFamilyId } }).ArticleFamilies.FirstOrDefault(),
+                          ArticleFamily = new ArticleFamiliesService().Get(new ArticleFamilies() { Ids = new List<int>() { item.ArfaId } }).ArticleFamilies.FirstOrDefault(),
                           Id = item.Id,
                           Multiplier = Convert.ToDecimal(item.Multiplier),
-                          PartnerFamily = new PartnerFamiliesService().Get(new PartnerFamilies() { Ids = new List<int>() { item.PartnerFamilyId } }).PartnerFamilies.FirstOrDefault(),
+                          PartnerFamily = new PartnerFamiliesService().Get(new PartnerFamilies() { Ids = new List<int>() { item.PafaId } }).PartnerFamilies.FirstOrDefault(),
                           Rate = Convert.ToDecimal(item.Rate),
                           Vat = new VatsService().Get(new Vats() { Ids = new List<int>() { item.VatId } }).Vats.FirstOrDefault()
                         }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
@@ -70,23 +70,23 @@ namespace Bm2s.Services.Common.Parameter.ArticleFamilyPartnerFamilyVat
     {
       if (request.ArticleFamilyPartnerFamilyVat.Id > 0)
       {
-        Bm2s.Data.Common.BLL.Parameter.ArticleFamilyPartnerFamilyVat item = Datas.Instance.DataStorage.ArticleFamilyPartnerFamilyVats[request.ArticleFamilyPartnerFamilyVat.Id];
+        Bm2s.Data.Common.BLL.Parameter.Affv item = Datas.Instance.DataStorage.ArticleFamilyPartnerFamilyVats[request.ArticleFamilyPartnerFamilyVat.Id];
         item.AccountingEntry = request.ArticleFamilyPartnerFamilyVat.AccountingEntry;
-        item.ArticleFamilyId = request.ArticleFamilyPartnerFamilyVat.ArticleFamily.Id;
+        item.ArfaId = request.ArticleFamilyPartnerFamilyVat.ArticleFamily.Id;
         item.Multiplier = Convert.ToDouble(request.ArticleFamilyPartnerFamilyVat.Multiplier);
-        item.PartnerFamilyId = request.ArticleFamilyPartnerFamilyVat.PartnerFamily.Id;
+        item.PafaId = request.ArticleFamilyPartnerFamilyVat.PartnerFamily.Id;
         item.Rate = Convert.ToDouble(request.ArticleFamilyPartnerFamilyVat.Rate);
         item.VatId = request.ArticleFamilyPartnerFamilyVat.Vat.Id;
         Datas.Instance.DataStorage.ArticleFamilyPartnerFamilyVats[request.ArticleFamilyPartnerFamilyVat.Id] = item;
       }
       else
       {
-        Bm2s.Data.Common.BLL.Parameter.ArticleFamilyPartnerFamilyVat item = new Data.Common.BLL.Parameter.ArticleFamilyPartnerFamilyVat()
+        Bm2s.Data.Common.BLL.Parameter.Affv item = new Data.Common.BLL.Parameter.Affv()
         {
           AccountingEntry = request.ArticleFamilyPartnerFamilyVat.AccountingEntry,
-          ArticleFamilyId = request.ArticleFamilyPartnerFamilyVat.ArticleFamily.Id,
+          ArfaId = request.ArticleFamilyPartnerFamilyVat.ArticleFamily.Id,
           Multiplier = Convert.ToDouble(request.ArticleFamilyPartnerFamilyVat.Multiplier),
-          PartnerFamilyId = request.ArticleFamilyPartnerFamilyVat.PartnerFamily.Id,
+          PafaId = request.ArticleFamilyPartnerFamilyVat.PartnerFamily.Id,
           Rate = Convert.ToDouble(request.ArticleFamilyPartnerFamilyVat.Rate),
           VatId = request.ArticleFamilyPartnerFamilyVat.Vat.Id,
         };
@@ -102,7 +102,7 @@ namespace Bm2s.Services.Common.Parameter.ArticleFamilyPartnerFamilyVat
 
     public ArticleFamilyPartnerFamilyVatsResponse Delete(ArticleFamilyPartnerFamilyVats request)
     {
-      Bm2s.Data.Common.BLL.Parameter.ArticleFamilyPartnerFamilyVat item = Datas.Instance.DataStorage.ArticleFamilyPartnerFamilyVats[request.ArticleFamilyPartnerFamilyVat.Id];
+      Bm2s.Data.Common.BLL.Parameter.Affv item = Datas.Instance.DataStorage.ArticleFamilyPartnerFamilyVats[request.ArticleFamilyPartnerFamilyVat.Id];
       Datas.Instance.DataStorage.ArticleFamilyPartnerFamilyVats.Remove(item);
 
       ArticleFamilyPartnerFamilyVatsResponse response = new ArticleFamilyPartnerFamilyVatsResponse();

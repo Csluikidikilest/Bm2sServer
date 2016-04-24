@@ -12,7 +12,7 @@ namespace Bm2s.Services.Common.User.Group
     public GroupsResponse Get(Groups request)
     {
       GroupsResponse response = new GroupsResponse();
-      List<Bm2s.Data.Common.BLL.User.Group> items = new List<Data.Common.BLL.User.Group>();
+      List<Bm2s.Data.Common.BLL.User.Grou> items = new List<Data.Common.BLL.User.Grou>();
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.Groups.Where(item =>
@@ -64,7 +64,7 @@ namespace Bm2s.Services.Common.User.Group
     {
       if (request.Group.Id > 0)
       {
-        Bm2s.Data.Common.BLL.User.Group item = Datas.Instance.DataStorage.Groups[request.Group.Id];
+        Bm2s.Data.Common.BLL.User.Grou item = Datas.Instance.DataStorage.Groups[request.Group.Id];
         item.Code = request.Group.Code;
         item.EndingDate = request.Group.EndingDate;
         item.IsSystem = request.Group.IsSystem;
@@ -74,7 +74,7 @@ namespace Bm2s.Services.Common.User.Group
       }
       else
       {
-        Bm2s.Data.Common.BLL.User.Group item = new Data.Common.BLL.User.Group()
+        Bm2s.Data.Common.BLL.User.Grou item = new Data.Common.BLL.User.Grou()
         {
           Code = request.Group.Code,
           EndingDate = request.Group.EndingDate,
@@ -94,7 +94,7 @@ namespace Bm2s.Services.Common.User.Group
 
     public GroupsResponse Delete(Groups request)
     {
-      Bm2s.Data.Common.BLL.User.Group item = Datas.Instance.DataStorage.Groups[request.Group.Id];
+      Bm2s.Data.Common.BLL.User.Grou item = Datas.Instance.DataStorage.Groups[request.Group.Id];
       item.EndingDate = DateTime.Now;
       Datas.Instance.DataStorage.Groups[item.Id] = item;
 

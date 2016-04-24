@@ -36,7 +36,7 @@ namespace Bm2s.Data.Common.BLL.User
 
     public DateTime? EndingDate { get; set; }
 
-    [References(typeof(Parameter.Language))]
-    public int DefaultLanguageId { get; set; }
+    [References(typeof(Parameter.Lang))]
+    public int DelaId { get; set; }
   }
 }

@@ -16,12 +16,12 @@ namespace Bm2s.Services.Common.Trade.Reconciliation
     public ReconciliationsResponse Get(Reconciliations request)
     {
       ReconciliationsResponse response = new ReconciliationsResponse();
-      List<Bm2s.Data.Common.BLL.Trade.Reconciliation> items = new List<Data.Common.BLL.Trade.Reconciliation>();
+      List<Bm2s.Data.Common.BLL.Trade.Reco> items = new List<Data.Common.BLL.Trade.Reco>();
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.Reconciliations.Where(item =>
-          (request.HeaderLineId == 0 || item.HeaderLineId == request.HeaderLineId) &&
-          (request.PaymentId == 0 || item.PaymentId == request.PaymentId) &&
+          (request.HeaderLineId == 0 || item.HeliId == request.HeaderLineId) &&
+          (request.PaymentId == 0 || item.PaymId == request.PaymentId) &&
           (!request.Date.HasValue || (request.Date >= item.StartingDate && (!item.EndingDate.HasValue || request.Date < item.EndingDate.Value)))
           ));
       }
@@ -35,9 +35,9 @@ namespace Bm2s.Services.Common.Trade.Reconciliation
                         {
                           Amount = Convert.ToDecimal(item.Amount),
                           EndingDate = item.EndingDate,
-                          HeaderLine = new HeaderLinesService().Get(new HeaderLines() { Ids = new List<int>() { item.HeaderLineId } }).HeaderLines.FirstOrDefault(),
+                          HeaderLine = new HeaderLinesService().Get(new HeaderLines() { Ids = new List<int>() { item.HeliId } }).HeaderLines.FirstOrDefault(),
                           Id = item.Id,
-                          Payment = new PaymentsService().Get(new Payments() { Ids = new List<int>() { item.PaymentId } }).Payments.FirstOrDefault(),
+                          Payment = new PaymentsService().Get(new Payments() { Ids = new List<int>() { item.PaymId } }).Payments.FirstOrDefault(),
                           StartingDate = item.StartingDate
                         }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
@@ -67,22 +67,22 @@ namespace Bm2s.Services.Common.Trade.Reconciliation
     {
       if (request.Reconciliation.Id > 0)
       {
-        Bm2s.Data.Common.BLL.Trade.Reconciliation item = Datas.Instance.DataStorage.Reconciliations[request.Reconciliation.Id];
+        Bm2s.Data.Common.BLL.Trade.Reco item = Datas.Instance.DataStorage.Reconciliations[request.Reconciliation.Id];
         item.Amount = Convert.ToDouble(request.Reconciliation.Amount);
         item.EndingDate = request.Reconciliation.EndingDate;
-        item.HeaderLineId = request.Reconciliation.HeaderLine.Id;
-        item.PaymentId = request.Reconciliation.Payment.Id;
+        item.HeliId = request.Reconciliation.HeaderLine.Id;
+        item.PaymId = request.Reconciliation.Payment.Id;
         item.StartingDate = request.Reconciliation.StartingDate;
         Datas.Instance.DataStorage.Reconciliations[request.Reconciliation.Id] = item;
       }
       else
       {
-        Bm2s.Data.Common.BLL.Trade.Reconciliation item = new Data.Common.BLL.Trade.Reconciliation()
+        Bm2s.Data.Common.BLL.Trade.Reco item = new Data.Common.BLL.Trade.Reco()
         {
           Amount = Convert.ToDouble(request.Reconciliation.Amount),
           EndingDate = request.Reconciliation.EndingDate,
-          HeaderLineId = request.Reconciliation.HeaderLine.Id,
-          PaymentId = request.Reconciliation.Payment.Id,
+          HeliId = request.Reconciliation.HeaderLine.Id,
+          PaymId = request.Reconciliation.Payment.Id,
           StartingDate = request.Reconciliation.StartingDate
         };
 
@@ -97,7 +97,7 @@ namespace Bm2s.Services.Common.Trade.Reconciliation
 
     public ReconciliationsResponse Delete(Reconciliations request)
     {
-      Bm2s.Data.Common.BLL.Trade.Reconciliation item = Datas.Instance.DataStorage.Reconciliations[request.Reconciliation.Id];
+      Bm2s.Data.Common.BLL.Trade.Reco item = Datas.Instance.DataStorage.Reconciliations[request.Reconciliation.Id];
       item.EndingDate = DateTime.Now;
       Datas.Instance.DataStorage.Reconciliations[item.Id] = item;
 

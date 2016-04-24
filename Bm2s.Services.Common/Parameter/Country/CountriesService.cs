@@ -12,7 +12,7 @@ namespace Bm2s.Services.Common.Parameter.Country
     public CountriesResponse Get(Countries request)
     {
       CountriesResponse response = new CountriesResponse();
-      List<Bm2s.Data.Common.BLL.Parameter.Country> items = new List<Data.Common.BLL.Parameter.Country>();
+      List<Bm2s.Data.Common.BLL.Parameter.Coun> items = new List<Data.Common.BLL.Parameter.Coun>();
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.Countries.Where(item =>
@@ -62,7 +62,7 @@ namespace Bm2s.Services.Common.Parameter.Country
     {
       if (request.Country.Id > 0)
       {
-        Bm2s.Data.Common.BLL.Parameter.Country item = Datas.Instance.DataStorage.Countries[request.Country.Id];
+        Bm2s.Data.Common.BLL.Parameter.Coun item = Datas.Instance.DataStorage.Countries[request.Country.Id];
         item.Code = request.Country.Code;
         item.EndingDate = request.Country.EndingDate;
         item.Name = request.Country.Name;
@@ -71,7 +71,7 @@ namespace Bm2s.Services.Common.Parameter.Country
       }
       else
       {
-        Bm2s.Data.Common.BLL.Parameter.Country item = new Data.Common.BLL.Parameter.Country()
+        Bm2s.Data.Common.BLL.Parameter.Coun item = new Data.Common.BLL.Parameter.Coun()
         {
           Code = request.Country.Code,
           EndingDate = request.Country.EndingDate,
@@ -90,7 +90,7 @@ namespace Bm2s.Services.Common.Parameter.Country
 
     public CountriesResponse Delete(Countries request)
     {
-      Bm2s.Data.Common.BLL.Parameter.Country item = Datas.Instance.DataStorage.Countries[request.Country.Id];
+      Bm2s.Data.Common.BLL.Parameter.Coun item = Datas.Instance.DataStorage.Countries[request.Country.Id];
       item.EndingDate = DateTime.Now;
       Datas.Instance.DataStorage.Countries[item.Id] = item;
 

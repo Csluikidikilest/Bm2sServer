@@ -24,7 +24,7 @@ namespace Bm2s.Services.Common.User.User
           (!request.IsAdministrator || item.IsAdministrator) &&
           (!request.IsAnonymous || item.IsAnonymous) &&
           (!request.IsSystem|| item.IsSystem) &&
-          (request.DefaultLanguageId == 0 || item.DefaultLanguageId == request.DefaultLanguageId) &&
+          (request.DefaultLanguageId == 0 || item.DelaId == request.DefaultLanguageId) &&
           (!request.Date.HasValue || (request.Date >= item.StartingDate && (!item.EndingDate.HasValue || request.Date < item.EndingDate.Value)))
           ));
       }
@@ -36,7 +36,7 @@ namespace Bm2s.Services.Common.User.User
       var collection = (from item in items
                         select new Bm2s.Poco.Common.User.User()
                         {
-                          DefaultLanguage = new LanguagesService().Get(new Languages() { Ids = new List<int>() { item.DefaultLanguageId } }).Languages.FirstOrDefault(),
+                          DefaultLanguage = new LanguagesService().Get(new Languages() { Ids = new List<int>() { item.DelaId } }).Languages.FirstOrDefault(),
                           EndingDate = item.EndingDate,
                           FirstName = item.FirstName,
                           Id = item.Id,
@@ -76,7 +76,7 @@ namespace Bm2s.Services.Common.User.User
       if (request.User.Id > 0)
       {
         Bm2s.Data.Common.BLL.User.User item = Datas.Instance.DataStorage.Users[request.User.Id];
-        item.DefaultLanguageId = request.User.DefaultLanguage.Id;
+        item.DelaId = request.User.DefaultLanguage.Id;
         item.EndingDate = request.User.EndingDate;
         item.FirstName = request.User.FirstName;
         item.IsAdministrator = request.User.IsAdministrator;
@@ -92,7 +92,7 @@ namespace Bm2s.Services.Common.User.User
       {
         Bm2s.Data.Common.BLL.User.User item = new Data.Common.BLL.User.User()
         {
-          DefaultLanguageId = request.User.DefaultLanguage.Id,
+          DelaId = request.User.DefaultLanguage.Id,
           EndingDate = request.User.EndingDate,
           FirstName = request.User.FirstName,
           IsAdministrator = request.User.IsAdministrator,

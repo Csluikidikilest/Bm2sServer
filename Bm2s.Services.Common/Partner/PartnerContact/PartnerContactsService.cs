@@ -14,7 +14,7 @@ namespace Bm2s.Services.Common.Partner.PartnerContact
     public PartnerContactsResponse Get(PartnerContacts request)
     {
       PartnerContactsResponse response = new PartnerContactsResponse();
-      List<Bm2s.Data.Common.BLL.Partner.PartnerContact> items = new List<Data.Common.BLL.Partner.PartnerContact>();
+      List<Bm2s.Data.Common.BLL.Partner.Paco> items = new List<Data.Common.BLL.Partner.Paco>();
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.PartnerContacts.Where(item =>
@@ -25,7 +25,7 @@ namespace Bm2s.Services.Common.Partner.PartnerContact
           (string.IsNullOrWhiteSpace(request.LastName) || item.LastName.ToLower().Contains(request.LastName.ToLower())) &&
           (string.IsNullOrWhiteSpace(request.MobilePhoneNumber) || item.MobilePhoneNumber.ToLower().Contains(request.MobilePhoneNumber.ToLower())) &&
           (string.IsNullOrWhiteSpace(request.PhoneNumber) || item.PhoneNumber.ToLower().Contains(request.PhoneNumber.ToLower())) &&
-          (request.PartnerId == 0 || item.PartnerId == request.PartnerId) &&
+          (request.PartnerId == 0 || item.PartId == request.PartnerId) &&
           (!request.Date.HasValue || (request.Date >= item.StartingDate && (!item.EndingDate.HasValue || request.Date < item.EndingDate.Value)))
           ));
       }
@@ -46,7 +46,7 @@ namespace Bm2s.Services.Common.Partner.PartnerContact
                           LastName = item.LastName,
                           MobilePhoneNumber = item.MobilePhoneNumber,
                           Observation = item.Observation,
-                          Partner = new PartnersService().Get(new Partners() { Ids = new List<int>() { item.PartnerId } }).Partners.FirstOrDefault(),
+                          Partner = new PartnersService().Get(new Partners() { Ids = new List<int>() { item.PartId } }).Partners.FirstOrDefault(),
                           PhoneNumber = item.PhoneNumber,
                           StartingDate = item.StartingDate
                         }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
@@ -77,7 +77,7 @@ namespace Bm2s.Services.Common.Partner.PartnerContact
     {
       if (request.PartnerContact.Id > 0)
       {
-        Bm2s.Data.Common.BLL.Partner.PartnerContact item = Datas.Instance.DataStorage.PartnerContacts[request.PartnerContact.Id];
+        Bm2s.Data.Common.BLL.Partner.Paco item = Datas.Instance.DataStorage.PartnerContacts[request.PartnerContact.Id];
         item.Email = request.PartnerContact.Email;
         item.EndingDate = request.PartnerContact.EndingDate;
         item.FaxNumber = request.PartnerContact.FaxNumber;
@@ -86,14 +86,14 @@ namespace Bm2s.Services.Common.Partner.PartnerContact
         item.LastName = request.PartnerContact.LastName;
         item.MobilePhoneNumber = request.PartnerContact.MobilePhoneNumber;
         item.Observation = request.PartnerContact.Observation;
-        item.PartnerId = request.PartnerContact.Partner.Id;
+        item.PartId = request.PartnerContact.Partner.Id;
         item.PhoneNumber = request.PartnerContact.PhoneNumber;
         item.StartingDate = request.PartnerContact.StartingDate;
         Datas.Instance.DataStorage.PartnerContacts[request.PartnerContact.Id] = item;
       }
       else
       {
-        Bm2s.Data.Common.BLL.Partner.PartnerContact item = new Data.Common.BLL.Partner.PartnerContact()
+        Bm2s.Data.Common.BLL.Partner.Paco item = new Data.Common.BLL.Partner.Paco()
         {
           Email = request.PartnerContact.Email,
           EndingDate = request.PartnerContact.EndingDate,
@@ -103,7 +103,7 @@ namespace Bm2s.Services.Common.Partner.PartnerContact
           LastName = request.PartnerContact.LastName,
           MobilePhoneNumber = request.PartnerContact.MobilePhoneNumber,
           Observation = request.PartnerContact.Observation,
-          PartnerId = request.PartnerContact.Partner.Id,
+          PartId = request.PartnerContact.Partner.Id,
           PhoneNumber = request.PartnerContact.PhoneNumber,
           StartingDate = request.PartnerContact.StartingDate
         };
@@ -119,7 +119,7 @@ namespace Bm2s.Services.Common.Partner.PartnerContact
 
     public PartnerContactsResponse Delete(PartnerContacts request)
     {
-      Bm2s.Data.Common.BLL.Partner.PartnerContact item = Datas.Instance.DataStorage.PartnerContacts[request.PartnerContact.Id];
+      Bm2s.Data.Common.BLL.Partner.Paco item = Datas.Instance.DataStorage.PartnerContacts[request.PartnerContact.Id];
       item.EndingDate = DateTime.Now;
       Datas.Instance.DataStorage.PartnerContacts[item.Id] = item;
 

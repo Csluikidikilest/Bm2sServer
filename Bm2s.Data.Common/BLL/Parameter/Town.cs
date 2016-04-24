@@ -24,7 +24,7 @@ namespace Bm2s.Data.Common.BLL.Parameter
 
     public DateTime? EndingDate { get; set; }
 
-    [References(typeof(Country))]
-    public int CountryId { get; set; }
+    [References(typeof(Coun))]
+    public int CounId { get; set; }
   }
 }

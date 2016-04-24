@@ -16,11 +16,11 @@ namespace Bm2s.Services.Common.Partner.PartnerFile
     public PartnerFilesResponse Get(PartnerFiles request)
     {
       PartnerFilesResponse response = new PartnerFilesResponse();
-      List<Bm2s.Data.Common.BLL.Partner.PartnerFile> items = new List<Data.Common.BLL.Partner.PartnerFile>();
+      List<Bm2s.Data.Common.BLL.Partner.Pafi> items = new List<Data.Common.BLL.Partner.Pafi>();
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.PartnerFiles.Where(item =>
-          (request.PartnerId == 0 || item.PartnerId == request.PartnerId) &&
+          (request.PartnerId == 0 || item.PartId == request.PartnerId) &&
           (string.IsNullOrWhiteSpace(request.Name) || item.Name.ToLower().Contains(request.Name.ToLower())) &&
           (request.UserId == 0 || item.UserId == request.UserId) &&
           (!request.AddingDate.HasValue || request.AddingDate >= item.AddingDate)
@@ -35,10 +35,10 @@ namespace Bm2s.Services.Common.Partner.PartnerFile
                         select new Bm2s.Poco.Common.Partner.PartnerFile()
                         {
                           AddingDate = item.AddingDate,
-                          File = item.File,
+                          Content = item.Content,
                           Id = item.Id,
                           Name = item.Name,
-                          Partner = new PartnersService().Get(new Partners() { Ids = new List<int>() { item.PartnerId } }).Partners.FirstOrDefault(),
+                          Partner = new PartnersService().Get(new Partners() { Ids = new List<int>() { item.PartId } }).Partners.FirstOrDefault(),
                           User = new UsersService().Get(new Users() { Ids = new List<int>() { item.UserId } }).Users.FirstOrDefault()
                         }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
@@ -68,22 +68,22 @@ namespace Bm2s.Services.Common.Partner.PartnerFile
     {
       if (request.PartnerFile.Id > 0)
       {
-        Bm2s.Data.Common.BLL.Partner.PartnerFile item = Datas.Instance.DataStorage.PartnerFiles[request.PartnerFile.Id];
+        Bm2s.Data.Common.BLL.Partner.Pafi item = Datas.Instance.DataStorage.PartnerFiles[request.PartnerFile.Id];
         item.AddingDate = request.PartnerFile.AddingDate;
-        item.File = request.PartnerFile.File;
+        item.Content = request.PartnerFile.Content;
         item.Name = request.PartnerFile.Name;
-        item.PartnerId = request.PartnerFile.Partner.Id;
+        item.PartId = request.PartnerFile.Partner.Id;
         item.UserId = request.PartnerFile.User.Id;
         Datas.Instance.DataStorage.PartnerFiles[request.PartnerFile.Id] = item;
       }
       else
       {
-        Bm2s.Data.Common.BLL.Partner.PartnerFile item = new Data.Common.BLL.Partner.PartnerFile()
+        Bm2s.Data.Common.BLL.Partner.Pafi item = new Data.Common.BLL.Partner.Pafi()
         {
           AddingDate = request.PartnerFile.AddingDate,
-          File = request.PartnerFile.File,
+          Content = request.PartnerFile.Content,
           Name = request.PartnerFile.Name,
-          PartnerId = request.PartnerFile.Partner.Id,
+          PartId = request.PartnerFile.Partner.Id,
           UserId = request.PartnerFile.User.Id
         };
 
@@ -98,7 +98,7 @@ namespace Bm2s.Services.Common.Partner.PartnerFile
 
     public PartnerFilesResponse Delete(PartnerFiles request)
     {
-      Bm2s.Data.Common.BLL.Partner.PartnerFile item = Datas.Instance.DataStorage.PartnerFiles[request.PartnerFile.Id];
+      Bm2s.Data.Common.BLL.Partner.Pafi item = Datas.Instance.DataStorage.PartnerFiles[request.PartnerFile.Id];
       Datas.Instance.DataStorage.PartnerFiles.Remove(item);
 
       PartnerFilesResponse response = new PartnerFilesResponse();

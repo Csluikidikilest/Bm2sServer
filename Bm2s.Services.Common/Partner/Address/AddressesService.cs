@@ -11,7 +11,7 @@ namespace Bm2s.Services.Common.Partner.Address
     public AddressesResponse Get(Addresses request)
     {
       AddressesResponse response = new AddressesResponse();
-      List<Bm2s.Data.Common.BLL.Partner.Address> items = new List<Data.Common.BLL.Partner.Address>();
+      List<Bm2s.Data.Common.BLL.Partner.Addr> items = new List<Data.Common.BLL.Partner.Addr>();
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.Addresses);
@@ -56,7 +56,7 @@ namespace Bm2s.Services.Common.Partner.Address
     {
       if (request.Address.Id > 0)
       {
-        Bm2s.Data.Common.BLL.Partner.Address item = Datas.Instance.DataStorage.Addresses[request.Address.Id];
+        Bm2s.Data.Common.BLL.Partner.Addr item = Datas.Instance.DataStorage.Addresses[request.Address.Id];
         item.CountryName = request.Address.CountryName;
         item.TownName = request.Address.TownName;
         item.TownZipCode = request.Address.TownZipCode;
@@ -64,7 +64,7 @@ namespace Bm2s.Services.Common.Partner.Address
       }
       else
       {
-        Bm2s.Data.Common.BLL.Partner.Address item = new Data.Common.BLL.Partner.Address()
+        Bm2s.Data.Common.BLL.Partner.Addr item = new Data.Common.BLL.Partner.Addr()
         {
           CountryName = request.Address.CountryName,
           TownName = request.Address.TownName,
@@ -82,7 +82,7 @@ namespace Bm2s.Services.Common.Partner.Address
 
     public AddressesResponse Delete(Addresses request)
     {
-      Bm2s.Data.Common.BLL.Partner.Address item = Datas.Instance.DataStorage.Addresses[request.Address.Id];
+      Bm2s.Data.Common.BLL.Partner.Addr item = Datas.Instance.DataStorage.Addresses[request.Address.Id];
       Datas.Instance.DataStorage.Addresses.Remove(item);
 
       AddressesResponse response = new AddressesResponse();

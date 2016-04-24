@@ -12,7 +12,7 @@ namespace Bm2s.Services.Common.Partner.AddressType
     public AddressTypesResponse Get(AddressTypes request)
     {
       AddressTypesResponse response = new AddressTypesResponse();
-      List<Bm2s.Data.Common.BLL.Partner.AddressType> items = new List<Data.Common.BLL.Partner.AddressType>();
+      List<Bm2s.Data.Common.BLL.Partner.Adty> items = new List<Data.Common.BLL.Partner.Adty>();
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.AddressTypes.Where(item =>
@@ -61,7 +61,7 @@ namespace Bm2s.Services.Common.Partner.AddressType
     {
       if (request.AddressType.Id > 0)
       {
-        Bm2s.Data.Common.BLL.Partner.AddressType item = Datas.Instance.DataStorage.AddressTypes[request.AddressType.Id];
+        Bm2s.Data.Common.BLL.Partner.Adty item = Datas.Instance.DataStorage.AddressTypes[request.AddressType.Id];
         item.Code = request.AddressType.Code;
         item.EndingDate = request.AddressType.EndingDate;
         item.Name = request.AddressType.Name;
@@ -70,7 +70,7 @@ namespace Bm2s.Services.Common.Partner.AddressType
       }
       else
       {
-        Bm2s.Data.Common.BLL.Partner.AddressType item = new Data.Common.BLL.Partner.AddressType()
+        Bm2s.Data.Common.BLL.Partner.Adty item = new Data.Common.BLL.Partner.Adty()
         {
           Code = request.AddressType.Code,
           EndingDate = request.AddressType.EndingDate,
@@ -89,7 +89,7 @@ namespace Bm2s.Services.Common.Partner.AddressType
 
     public AddressTypesResponse Delete(AddressTypes request)
     {
-      Bm2s.Data.Common.BLL.Partner.AddressType item = Datas.Instance.DataStorage.AddressTypes[request.AddressType.Id];
+      Bm2s.Data.Common.BLL.Partner.Adty item = Datas.Instance.DataStorage.AddressTypes[request.AddressType.Id];
       item.EndingDate = DateTime.Now;
       Datas.Instance.DataStorage.AddressTypes[item.Id] = item;
 
