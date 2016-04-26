@@ -39,7 +39,9 @@
       // 
       // serviceInstaller
       // 
+      this.serviceInstaller.Description = "Business Management System Server";
       this.serviceInstaller.ServiceName = "Bm2s Server";
+      this.serviceInstaller.StartType = System.ServiceProcess.ServiceStartMode.Automatic;
       // 
       // ProjectInstaller
       // 
