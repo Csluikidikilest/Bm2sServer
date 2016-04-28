@@ -11,7 +11,7 @@ namespace Bm2s.Services.Common.Parameter.InventoryHeader
     public InventoryHeadersResponse Get(InventoryHeaders request)
     {
       InventoryHeadersResponse response = new InventoryHeadersResponse();
-      List<Bm2s.Data.Common.BLL.Parameter.InventoryHeader> items = new List<Data.Common.BLL.Parameter.InventoryHeader>();
+      List<Bm2s.Data.Common.BLL.Parameter.Inhe> items = new List<Data.Common.BLL.Parameter.Inhe>();
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.InventoryHeaders.Where(item =>
@@ -30,7 +30,7 @@ namespace Bm2s.Services.Common.Parameter.InventoryHeader
                           Date = item.Date,
                           Id = item.Id,
                           Type = item.Type
-                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+                        }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
       response.ItemsCount = collection.Count();
       if (request.PageSize > 0)
@@ -58,7 +58,7 @@ namespace Bm2s.Services.Common.Parameter.InventoryHeader
     {
       if (request.InventoryHeader.Id > 0)
       {
-        Bm2s.Data.Common.BLL.Parameter.InventoryHeader item = Datas.Instance.DataStorage.InventoryHeaders[request.InventoryHeader.Id];
+        Bm2s.Data.Common.BLL.Parameter.Inhe item = Datas.Instance.DataStorage.InventoryHeaders[request.InventoryHeader.Id];
         item.Date = request.InventoryHeader.Date;
         item.Id = request.InventoryHeader.Id;
         item.Type = request.InventoryHeader.Type;
@@ -66,7 +66,7 @@ namespace Bm2s.Services.Common.Parameter.InventoryHeader
       }
       else
       {
-        Bm2s.Data.Common.BLL.Parameter.InventoryHeader item = new Data.Common.BLL.Parameter.InventoryHeader()
+        Bm2s.Data.Common.BLL.Parameter.Inhe item = new Data.Common.BLL.Parameter.Inhe()
         {
           Date = request.InventoryHeader.Date,
           Id = request.InventoryHeader.Id,
@@ -76,6 +76,16 @@ namespace Bm2s.Services.Common.Parameter.InventoryHeader
         Datas.Instance.DataStorage.InventoryHeaders.Add(item);
         request.InventoryHeader.Id = item.Id;
       }
+
+      InventoryHeadersResponse response = new InventoryHeadersResponse();
+      response.InventoryHeaders.Add(request.InventoryHeader);
+      return response;
+    }
+
+    public InventoryHeadersResponse Delete(InventoryHeaders request)
+    {
+      Bm2s.Data.Common.BLL.Parameter.Inhe item = Datas.Instance.DataStorage.InventoryHeaders[request.InventoryHeader.Id];
+      Datas.Instance.DataStorage.InventoryHeaders.Remove(item);
 
       InventoryHeadersResponse response = new InventoryHeadersResponse();
       response.InventoryHeaders.Add(request.InventoryHeader);

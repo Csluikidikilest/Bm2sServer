@@ -4,7 +4,7 @@ using ServiceStack.ServiceHost;
 
 namespace Bm2s.Response.Common.Trade.HeaderOrigin
 {
-  [Route("/bm2s/headerorigins", Verbs = "GET, POST")]
+  [Route("/bm2s/headerorigins", Verbs = "GET, POST, DELETE")]
   [Route("/bm2s/headerorigins/{Ids}", Verbs = "GET")]
   public class HeaderOrigins : Request, IReturn<HeaderOriginsResponse>
   {

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Bm2s.Data.Common.Utils;
 using Bm2s.Response.Common.User.Message;
@@ -13,7 +14,7 @@ namespace Bm2s.Services.Common.User.Message
     public MessagesResponse Get(Messages request)
     {
       MessagesResponse response = new MessagesResponse();
-      List<Bm2s.Data.Common.BLL.User.Message> items = new List<Data.Common.BLL.User.Message>();
+      List<Bm2s.Data.Common.BLL.User.Mess> items = new List<Data.Common.BLL.User.Mess>();
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.Messages.Where(item =>
@@ -21,7 +22,8 @@ namespace Bm2s.Services.Common.User.Message
           (!request.IsShortMessage || item.IsShortMessage) &&
           (request.SendDate.HasValue || item.SendDate >= request.SendDate) &&
           (string.IsNullOrWhiteSpace(request.Subject) || item.Subject.ToLower().Contains(request.Subject.ToLower())) &&
-          (request.UserId == 0 || item.UserId == request.UserId)
+          (request.UserId == 0 || item.UserId == request.UserId) &&
+          (!request.Date.HasValue || (request.Date >= item.StartingDate && (!item.EndingDate.HasValue || request.Date < item.EndingDate.Value)))
           ));
       }
       else
@@ -37,7 +39,7 @@ namespace Bm2s.Services.Common.User.Message
                            SendDate = item.SendDate,
                            Subject = item.Subject,
                            User = new UsersService().Get(new Users() { Ids = new List<int>() { item.UserId } }).Users.FirstOrDefault()
-                         }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+                         }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
       response.ItemsCount = collection.Count();
       if(request.PageSize>0)
@@ -56,7 +58,7 @@ namespace Bm2s.Services.Common.User.Message
     {
       if (request.Message.Id > 0)
       {
-        Bm2s.Data.Common.BLL.User.Message item = Datas.Instance.DataStorage.Messages[request.Message.Id];
+        Bm2s.Data.Common.BLL.User.Mess item = Datas.Instance.DataStorage.Messages[request.Message.Id];
         item.Body = request.Message.Body;
         item.IsShortMessage = request.Message.IsShortMessage;
         item.SendDate = request.Message.SendDate;
@@ -65,7 +67,7 @@ namespace Bm2s.Services.Common.User.Message
       }
       else
       {
-        Bm2s.Data.Common.BLL.User.Message item = new Data.Common.BLL.User.Message()
+        Bm2s.Data.Common.BLL.User.Mess item = new Data.Common.BLL.User.Mess()
         {
           Body = request.Message.Body,
           IsShortMessage = request.Message.IsShortMessage,
@@ -77,6 +79,17 @@ namespace Bm2s.Services.Common.User.Message
         Datas.Instance.DataStorage.Messages.Add(item);
         request.Message.Id = item.Id;
       }
+
+      MessagesResponse response = new MessagesResponse();
+      response.Messages.Add(request.Message);
+      return response;
+    }
+
+    public MessagesResponse Delete(Messages request)
+    {
+      Bm2s.Data.Common.BLL.User.Mess item = Datas.Instance.DataStorage.Messages[request.Message.Id];
+      item.EndingDate = DateTime.Now;
+      Datas.Instance.DataStorage.Messages[item.Id] = item;
 
       MessagesResponse response = new MessagesResponse();
       response.Messages.Add(request.Message);

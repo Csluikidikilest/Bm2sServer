@@ -3,7 +3,7 @@ using ServiceStack.ServiceHost;
 
 namespace Bm2s.Response.Common.Trade.HeaderStatusStep
 {
-  [Route("/bm2s/headerstatussteps", Verbs = "GET, POST")]
+  [Route("/bm2s/headerstatussteps", Verbs = "GET, POST, DELETE")]
   [Route("/bm2s/headerstatussteps/{Ids}", Verbs = "GET")]
   public class HeaderStatusSteps : Request, IReturn<HeaderStatusStepsResponse>
   {

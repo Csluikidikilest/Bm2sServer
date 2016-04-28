@@ -9,6 +9,7 @@ using Bm2s.Services.Common.Article.Article;
 using Bm2s.Services.Common.Parameter.Vat;
 using Bm2s.Services.Common.Partner.Partner;
 using ServiceStack.ServiceInterface;
+using System;
 
 namespace Bm2s.Services.Common.Parameter.ArticlePartnerVat
 {
@@ -17,12 +18,12 @@ namespace Bm2s.Services.Common.Parameter.ArticlePartnerVat
     public ArticlePartnerVatsResponse Get(ArticlePartnerVats request)
     {
       ArticlePartnerVatsResponse response = new ArticlePartnerVatsResponse();
-      List<Bm2s.Data.Common.BLL.Parameter.ArticlePartnerVat> items = new List<Data.Common.BLL.Parameter.ArticlePartnerVat>();
+      List<Bm2s.Data.Common.BLL.Parameter.Arpv> items = new List<Data.Common.BLL.Parameter.Arpv>();
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.ArticlePartnerVats.Where(item =>
-          (request.ArticleId == 0 || item.ArticleId == request.ArticleId) &&
-          (request.PartnerId == 0 || item.PartnerId == request.PartnerId) &&
+          (request.ArticleId == 0 || item.ArtiId == request.ArticleId) &&
+          (request.PartnerId == 0 || item.PartId == request.PartnerId) &&
           (request.VatId == 0 || item.VatId == request.VatId)
           ));
       }
@@ -35,13 +36,13 @@ namespace Bm2s.Services.Common.Parameter.ArticlePartnerVat
                         select new Bm2s.Poco.Common.Parameter.ArticlePartnerVat()
                         {
                           AccountingEntry = item.AccountingEntry,
-                          Article = new ArticlesService().Get(new Articles() { Ids = new List<int>() { item.ArticleId } }).Articles.FirstOrDefault(),
+                          Article = new ArticlesService().Get(new Articles() { Ids = new List<int>() { item.ArtiId } }).Articles.FirstOrDefault(),
                           Id = item.Id,
-                          Multiplier = item.Multiplier,
-                          Partner = new PartnersService().Get(new Partners() { Ids = new List<int>() { item.PartnerId } }).Partners.FirstOrDefault(),
-                          Rate = item.Rate,
+                          Multiplier = Convert.ToDecimal(item.Multiplier),
+                          Partner = new PartnersService().Get(new Partners() { Ids = new List<int>() { item.PartId } }).Partners.FirstOrDefault(),
+                          Rate = Convert.ToDecimal(item.Rate),
                           Vat = new VatsService().Get(new Vats() { Ids = new List<int>() { item.VatId } }).Vats.FirstOrDefault()
-                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+                        }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
       response.ItemsCount = collection.Count();
       if (request.PageSize > 0)
@@ -69,30 +70,40 @@ namespace Bm2s.Services.Common.Parameter.ArticlePartnerVat
     {
       if (request.ArticlePartnerVat.Id > 0)
       {
-        Bm2s.Data.Common.BLL.Parameter.ArticlePartnerVat item = Datas.Instance.DataStorage.ArticlePartnerVats[request.ArticlePartnerVat.Id];
+        Bm2s.Data.Common.BLL.Parameter.Arpv item = Datas.Instance.DataStorage.ArticlePartnerVats[request.ArticlePartnerVat.Id];
         item.AccountingEntry = request.ArticlePartnerVat.AccountingEntry;
-        item.ArticleId = request.ArticlePartnerVat.Article.Id;
-        item.Multiplier = request.ArticlePartnerVat.Multiplier;
-        item.PartnerId = request.ArticlePartnerVat.Partner.Id;
-        item.Rate = request.ArticlePartnerVat.Rate;
+        item.ArtiId = request.ArticlePartnerVat.Article.Id;
+        item.Multiplier = Convert.ToDouble(request.ArticlePartnerVat.Multiplier);
+        item.PartId = request.ArticlePartnerVat.Partner.Id;
+        item.Rate = Convert.ToDouble(request.ArticlePartnerVat.Rate);
         item.VatId = request.ArticlePartnerVat.Vat.Id;
         Datas.Instance.DataStorage.ArticlePartnerVats[request.ArticlePartnerVat.Id] = item;
       }
       else
       {
-        Bm2s.Data.Common.BLL.Parameter.ArticlePartnerVat item = new Data.Common.BLL.Parameter.ArticlePartnerVat()
+        Bm2s.Data.Common.BLL.Parameter.Arpv item = new Data.Common.BLL.Parameter.Arpv()
         {
           AccountingEntry = request.ArticlePartnerVat.AccountingEntry,
-          ArticleId = request.ArticlePartnerVat.Article.Id,
-          Multiplier = request.ArticlePartnerVat.Multiplier,
-          PartnerId = request.ArticlePartnerVat.Partner.Id,
-          Rate = request.ArticlePartnerVat.Rate,
+          ArtiId = request.ArticlePartnerVat.Article.Id,
+          Multiplier = Convert.ToDouble(request.ArticlePartnerVat.Multiplier),
+          PartId = request.ArticlePartnerVat.Partner.Id,
+          Rate = Convert.ToDouble(request.ArticlePartnerVat.Rate),
           VatId = request.ArticlePartnerVat.Vat.Id
         };
 
         Datas.Instance.DataStorage.ArticlePartnerVats.Add(item);
         request.ArticlePartnerVat.Id = item.Id;
       }
+
+      ArticlePartnerVatsResponse response = new ArticlePartnerVatsResponse();
+      response.ArticlePartnerVats.Add(request.ArticlePartnerVat);
+      return response;
+    }
+
+    public ArticlePartnerVatsResponse Delete(ArticlePartnerVats request)
+    {
+      Bm2s.Data.Common.BLL.Parameter.Arpv item = Datas.Instance.DataStorage.ArticlePartnerVats[request.ArticlePartnerVat.Id];
+      Datas.Instance.DataStorage.ArticlePartnerVats.Remove(item);
 
       ArticlePartnerVatsResponse response = new ArticlePartnerVatsResponse();
       response.ArticlePartnerVats.Add(request.ArticlePartnerVat);

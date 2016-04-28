@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Bm2s.Data.Common.Utils;
 using Bm2s.Response.Common.Article.Article;
@@ -13,11 +14,11 @@ namespace Bm2s.Services.Common.Article.Price
     public PricesResponse Get(Prices request)
     {
       PricesResponse response = new PricesResponse();
-      List<Bm2s.Data.Common.BLL.Article.Price> items = new List<Data.Common.BLL.Article.Price>();
+      List<Bm2s.Data.Common.BLL.Article.Pric> items = new List<Data.Common.BLL.Article.Pric>();
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.Prices.Where(item =>
-          (request.ArticleId == 0 || item.ArticleId == request.ArticleId) &&
+          (request.ArticleId == 0 || item.ArtId == request.ArticleId) &&
           (!request.Date.HasValue || (request.Date >= item.StartingDate && (!item.EndingDate.HasValue || request.Date < item.EndingDate.Value)))
           ));
       }
@@ -29,12 +30,12 @@ namespace Bm2s.Services.Common.Article.Price
       var collection = (from item in items
                         select new Bm2s.Poco.Common.Article.Price()
                         {
-                          Article = new ArticlesService().Get(new Articles() { Ids = new List<int>() { item.ArticleId } }).Articles.FirstOrDefault(),
-                          BasePrice = item.BasePrice,
+                          Article = new ArticlesService().Get(new Articles() { Ids = new List<int>() { item.ArtId } }).Articles.FirstOrDefault(),
+                          BasePrice = Convert.ToDecimal(item.BasePrice),
                           EndingDate = item.EndingDate,
                           Id = item.Id,
                           StartingDate = item.StartingDate
-                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+                        }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
       response.ItemsCount = collection.Count();
       if (request.PageSize > 0)
@@ -62,19 +63,19 @@ namespace Bm2s.Services.Common.Article.Price
     {
       if (request.Price.Id > 0)
       {
-        Bm2s.Data.Common.BLL.Article.Price item = Datas.Instance.DataStorage.Prices[request.Price.Id];
-        item.ArticleId = request.Price.Article.Id;
-        item.BasePrice = request.Price.BasePrice;
+        Bm2s.Data.Common.BLL.Article.Pric item = Datas.Instance.DataStorage.Prices[request.Price.Id];
+        item.ArtId = request.Price.Article.Id;
+        item.BasePrice = Convert.ToDouble(request.Price.BasePrice);
         item.EndingDate = request.Price.EndingDate;
         item.StartingDate = request.Price.StartingDate;
         Datas.Instance.DataStorage.Prices[request.Price.Id] = item;
       }
       else
       {
-        Bm2s.Data.Common.BLL.Article.Price item = new Data.Common.BLL.Article.Price()
+        Bm2s.Data.Common.BLL.Article.Pric item = new Data.Common.BLL.Article.Pric()
         {
-          ArticleId = request.Price.Article.Id,
-          BasePrice = request.Price.BasePrice,
+          ArtId = request.Price.Article.Id,
+          BasePrice = Convert.ToDouble(request.Price.BasePrice),
           EndingDate = request.Price.EndingDate,
           StartingDate = request.Price.StartingDate
         };
@@ -82,6 +83,17 @@ namespace Bm2s.Services.Common.Article.Price
         Datas.Instance.DataStorage.Prices.Add(item);
         request.Price.Id = item.Id;
       }
+
+      PricesResponse response = new PricesResponse();
+      response.Prices.Add(request.Price);
+      return response;
+    }
+
+    public PricesResponse Delete(Prices request)
+    {
+      Bm2s.Data.Common.BLL.Article.Pric item = Datas.Instance.DataStorage.Prices[request.Price.Id];
+      item.EndingDate = DateTime.Now;
+      Datas.Instance.DataStorage.Prices[item.Id] = item;
 
       PricesResponse response = new PricesResponse();
       response.Prices.Add(request.Price);

@@ -3,7 +3,7 @@ using ServiceStack.ServiceHost;
 
 namespace Bm2s.Response.Common.Partner.Address
 {
-  [Route("/bm2s/addresses", Verbs = "GET, POST")]
+  [Route("/bm2s/addresses", Verbs = "GET, POST, DELETE")]
   [Route("/bm2s/addresses/{Ids}", Verbs = "GET")]
   public class Addresses : Request, IReturn<AddressesResponse>
   {

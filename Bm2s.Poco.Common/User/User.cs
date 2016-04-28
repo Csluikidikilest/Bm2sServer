@@ -18,6 +18,8 @@ namespace Bm2s.Poco.Common.User
 
     public bool IsAnonymous { get; set; }
 
+    public bool IsSystem { get; set; }
+
     public DateTime StartingDate { get; set; }
 
     public DateTime? EndingDate { get; set; }

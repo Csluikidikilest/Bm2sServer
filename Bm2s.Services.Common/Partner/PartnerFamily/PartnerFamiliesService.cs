@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Bm2s.Data.Common.Utils;
 using Bm2s.Response.Common.Partner.PartnerFamily;
@@ -11,7 +12,7 @@ namespace Bm2s.Services.Common.Partner.PartnerFamily
     public PartnerFamiliesResponse Get(PartnerFamilies request)
     {
       PartnerFamiliesResponse response = new PartnerFamiliesResponse();
-      List<Bm2s.Data.Common.BLL.Partner.PartnerFamily> items = new List<Data.Common.BLL.Partner.PartnerFamily>();
+      List<Bm2s.Data.Common.BLL.Partner.Pafa> items = new List<Data.Common.BLL.Partner.Pafa>();
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.PartnerFamilies.Where(item =>
@@ -34,7 +35,7 @@ namespace Bm2s.Services.Common.Partner.PartnerFamily
                           EndingDate = item.EndingDate,
                           Id = item.Id,
                           StartingDate = item.StartingDate
-                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+                        }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
       response.ItemsCount = collection.Count();
       if (request.PageSize > 0)
@@ -62,7 +63,7 @@ namespace Bm2s.Services.Common.Partner.PartnerFamily
     {
       if (request.PartnerFamily.Id > 0)
       {
-        Bm2s.Data.Common.BLL.Partner.PartnerFamily item = Datas.Instance.DataStorage.PartnerFamilies[request.PartnerFamily.Id];
+        Bm2s.Data.Common.BLL.Partner.Pafa item = Datas.Instance.DataStorage.PartnerFamilies[request.PartnerFamily.Id];
         item.Code = request.PartnerFamily.Code;
         item.Description = request.PartnerFamily.Description;
         item.Designation = request.PartnerFamily.Designation;
@@ -72,7 +73,7 @@ namespace Bm2s.Services.Common.Partner.PartnerFamily
       }
       else
       {
-        Bm2s.Data.Common.BLL.Partner.PartnerFamily item = new Data.Common.BLL.Partner.PartnerFamily()
+        Bm2s.Data.Common.BLL.Partner.Pafa item = new Data.Common.BLL.Partner.Pafa()
         {
           Code = request.PartnerFamily.Code,
           Description = request.PartnerFamily.Description,
@@ -84,6 +85,17 @@ namespace Bm2s.Services.Common.Partner.PartnerFamily
         Datas.Instance.DataStorage.PartnerFamilies.Add(item);
         request.PartnerFamily.Id = item.Id;
       }
+
+      PartnerFamiliesResponse response = new PartnerFamiliesResponse();
+      response.PartnerFamilies.Add(request.PartnerFamily);
+      return response;
+    }
+
+    public PartnerFamiliesResponse Delete(PartnerFamilies request)
+    {
+      Bm2s.Data.Common.BLL.Partner.Pafa item = Datas.Instance.DataStorage.PartnerFamilies[request.PartnerFamily.Id];
+      item.EndingDate = DateTime.Now;
+      Datas.Instance.DataStorage.PartnerFamilies[item.Id] = item;
 
       PartnerFamiliesResponse response = new PartnerFamiliesResponse();
       response.PartnerFamilies.Add(request.PartnerFamily);

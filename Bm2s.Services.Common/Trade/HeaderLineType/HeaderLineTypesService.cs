@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Bm2s.Data.Common.Utils;
 using Bm2s.Response.Common.Trade.HeaderLineType;
@@ -11,7 +12,7 @@ namespace Bm2s.Services.Common.Trade.HeaderLineType
     public HeaderLineTypesResponse Get(HeaderLineTypes request)
     {
       HeaderLineTypesResponse response = new HeaderLineTypesResponse();
-      List<Bm2s.Data.Common.BLL.Trade.HeaderLineType> items = new List<Data.Common.BLL.Trade.HeaderLineType>();
+      List<Bm2s.Data.Common.BLL.Trade.Helt> items = new List<Data.Common.BLL.Trade.Helt>();
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.HeaderLineTypes.Where(item =>
@@ -31,7 +32,7 @@ namespace Bm2s.Services.Common.Trade.HeaderLineType
                           Id = item.Id,
                           Name = item.Name,
                           StartingDate = item.StartingDate
-                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+                        }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
       response.ItemsCount = collection.Count();
       if (request.PageSize > 0)
@@ -59,7 +60,7 @@ namespace Bm2s.Services.Common.Trade.HeaderLineType
     {
       if (request.HeaderLineType.Id > 0)
       {
-        Bm2s.Data.Common.BLL.Trade.HeaderLineType item = Datas.Instance.DataStorage.HeaderLineTypes[request.HeaderLineType.Id];
+        Bm2s.Data.Common.BLL.Trade.Helt item = Datas.Instance.DataStorage.HeaderLineTypes[request.HeaderLineType.Id];
         item.EndingDate = request.HeaderLineType.EndingDate;
         item.Name = request.HeaderLineType.Name;
         item.StartingDate = request.HeaderLineType.StartingDate;
@@ -67,7 +68,7 @@ namespace Bm2s.Services.Common.Trade.HeaderLineType
       }
       else
       {
-        Bm2s.Data.Common.BLL.Trade.HeaderLineType item = new Data.Common.BLL.Trade.HeaderLineType()
+        Bm2s.Data.Common.BLL.Trade.Helt item = new Data.Common.BLL.Trade.Helt()
         {
           EndingDate = request.HeaderLineType.EndingDate,
           Name = request.HeaderLineType.Name,
@@ -77,6 +78,17 @@ namespace Bm2s.Services.Common.Trade.HeaderLineType
         Datas.Instance.DataStorage.HeaderLineTypes.Add(item);
         request.HeaderLineType.Id = item.Id;
       }
+
+      HeaderLineTypesResponse response = new HeaderLineTypesResponse();
+      response.HeaderLineTypes.Add(request.HeaderLineType);
+      return response;
+    }
+
+    public HeaderLineTypesResponse Delete(HeaderLineTypes request)
+    {
+      Bm2s.Data.Common.BLL.Trade.Helt item = Datas.Instance.DataStorage.HeaderLineTypes[request.HeaderLineType.Id];
+      item.EndingDate = DateTime.Now;
+      Datas.Instance.DataStorage.HeaderLineTypes[item.Id] = item;
 
       HeaderLineTypesResponse response = new HeaderLineTypesResponse();
       response.HeaderLineTypes.Add(request.HeaderLineType);

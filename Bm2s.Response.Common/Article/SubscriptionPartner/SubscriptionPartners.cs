@@ -4,7 +4,7 @@ using ServiceStack.ServiceHost;
 
 namespace Bm2s.Response.Common.Article.SubscriptionPartner
 {
-  [Route("/bm2s/subscriptionpartners", Verbs = "GET, POST")]
+  [Route("/bm2s/subscriptionpartners", Verbs = "GET, POST, DELETE")]
   [Route("/bm2s/subscriptionpartners/{Ids}", Verbs = "GET")]
   public class SubscriptionPartners : Request, IReturn<SubscriptionPartnersResponse>
   {

@@ -9,7 +9,7 @@ using ServiceStack.DataAnnotations;
 
 namespace Bm2s.Data.POS.BLL.PointOfSale
 {
-  public class Screen : Table
+  public class Screen : DataRow
   {
     [AutoIncrement]
     [PrimaryKey]

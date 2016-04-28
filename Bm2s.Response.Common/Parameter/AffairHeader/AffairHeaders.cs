@@ -3,7 +3,7 @@ using ServiceStack.ServiceHost;
 
 namespace Bm2s.Response.Common.Parameter.AffairHeader
 {
-  [Route("/bm2s/affairheaders", Verbs = "GET, POST")]
+  [Route("/bm2s/affairheaders", Verbs = "GET, POST, DELETE")]
   [Route("/bm2s/affairheaders/{Ids}", Verbs = "GET")]
   public class AffairHeaders : Request, IReturn<AffairHeadersResponse>
   {

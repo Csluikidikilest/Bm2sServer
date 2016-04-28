@@ -15,12 +15,12 @@ namespace Bm2s.Services.Common.Partner.PartnerPartnerFamily
     public PartnerPartnerFamiliesResponse Get(PartnerPartnerFamilies request)
     {
       PartnerPartnerFamiliesResponse response = new PartnerPartnerFamiliesResponse();
-      List<Bm2s.Data.Common.BLL.Partner.PartnerPartnerFamily> items = new List<Data.Common.BLL.Partner.PartnerPartnerFamily>();
+      List<Bm2s.Data.Common.BLL.Partner.Papf> items = new List<Data.Common.BLL.Partner.Papf>();
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.PartnerPartnerFamilies.Where(item =>
-          (request.PartnerId == 0 || item.PartnerId == request.PartnerId) &&
-          (request.PartnerFamilyId == 0 || item.PartnerFamilyId == request.PartnerFamilyId)
+          (request.PartnerId == 0 || item.PartId == request.PartnerId) &&
+          (request.PartnerFamilyId == 0 || item.PafaId == request.PartnerFamilyId)
           ));
       }
       else
@@ -32,9 +32,9 @@ namespace Bm2s.Services.Common.Partner.PartnerPartnerFamily
                         select new Bm2s.Poco.Common.Partner.PartnerPartnerFamily()
                         {
                           Id = item.Id,
-                          Partner = new PartnersService().Get(new Partners() { Ids = new List<int>() { item.PartnerId } }).Partners.FirstOrDefault(),
-                          PartnerFamily = new PartnerFamiliesService().Get(new PartnerFamilies() { Ids = new List<int>() { item.PartnerFamilyId } }).PartnerFamilies.FirstOrDefault()
-                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+                          Partner = new PartnersService().Get(new Partners() { Ids = new List<int>() { item.PartId } }).Partners.FirstOrDefault(),
+                          PartnerFamily = new PartnerFamiliesService().Get(new PartnerFamilies() { Ids = new List<int>() { item.PafaId } }).PartnerFamilies.FirstOrDefault()
+                        }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
       response.ItemsCount = collection.Count();
       if (request.PageSize > 0)
@@ -62,22 +62,32 @@ namespace Bm2s.Services.Common.Partner.PartnerPartnerFamily
     {
       if (request.PartnerPartnerFamily.Id > 0)
       {
-        Bm2s.Data.Common.BLL.Partner.PartnerPartnerFamily item = Datas.Instance.DataStorage.PartnerPartnerFamilies[request.PartnerPartnerFamily.Id];
-        item.PartnerFamilyId = request.PartnerPartnerFamily.PartnerFamily.Id;
-        item.PartnerId = request.PartnerPartnerFamily.Partner.Id;
+        Bm2s.Data.Common.BLL.Partner.Papf item = Datas.Instance.DataStorage.PartnerPartnerFamilies[request.PartnerPartnerFamily.Id];
+        item.PafaId = request.PartnerPartnerFamily.PartnerFamily.Id;
+        item.PartId = request.PartnerPartnerFamily.Partner.Id;
         Datas.Instance.DataStorage.PartnerPartnerFamilies[request.PartnerPartnerFamily.Id] = item;
       }
       else
       {
-        Bm2s.Data.Common.BLL.Partner.PartnerPartnerFamily item = new Data.Common.BLL.Partner.PartnerPartnerFamily()
+        Bm2s.Data.Common.BLL.Partner.Papf item = new Data.Common.BLL.Partner.Papf()
         {
-          PartnerFamilyId = request.PartnerPartnerFamily.PartnerFamily.Id,
-          PartnerId = request.PartnerPartnerFamily.Partner.Id
+          PafaId = request.PartnerPartnerFamily.PartnerFamily.Id,
+          PartId = request.PartnerPartnerFamily.Partner.Id
         };
 
         Datas.Instance.DataStorage.PartnerPartnerFamilies.Add(item);
         request.PartnerPartnerFamily.Id = item.Id;
       }
+
+      PartnerPartnerFamiliesResponse response = new PartnerPartnerFamiliesResponse();
+      response.PartnerPartnerFamilies.Add(request.PartnerPartnerFamily);
+      return response;
+    }
+
+    public PartnerPartnerFamiliesResponse Delete(PartnerPartnerFamilies request)
+    {
+      Bm2s.Data.Common.BLL.Partner.Papf item = Datas.Instance.DataStorage.PartnerPartnerFamilies[request.PartnerPartnerFamily.Id];
+      Datas.Instance.DataStorage.PartnerPartnerFamilies.Remove(item);
 
       PartnerPartnerFamiliesResponse response = new PartnerPartnerFamiliesResponse();
       response.PartnerPartnerFamilies.Add(request.PartnerPartnerFamily);

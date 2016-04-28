@@ -4,7 +4,7 @@ using System;
 
 namespace Bm2s.Response.Common.Article.ArticleFamily
 {
-  [Route("/bm2s/articlefamilies", Verbs = "GET, POST")]
+  [Route("/bm2s/articlefamilies", Verbs = "GET, POST, DELETE")]
   [Route("/bm2s/articlefamilies/{Ids}", Verbs = "GET")]
   public class ArticleFamilies : Request, IReturn<ArticleFamiliesResponse>
   {

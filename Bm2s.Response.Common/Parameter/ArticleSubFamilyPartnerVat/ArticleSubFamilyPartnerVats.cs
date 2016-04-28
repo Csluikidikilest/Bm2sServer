@@ -3,7 +3,7 @@ using ServiceStack.ServiceHost;
 
 namespace Bm2s.Response.Common.Parameter.ArticleSubFamilyPartnerVat
 {
-  [Route("/bm2s/articlesubfamilypartnervats", Verbs = "GET, POST")]
+  [Route("/bm2s/articlesubfamilypartnervats", Verbs = "GET, POST, DELETE")]
   [Route("/bm2s/articlesubfamilypartnervats/{Ids}", Verbs = "GET")]
   public class ArticleSubFamilyPartnerVats : Request, IReturn<ArticleSubFamilyPartnerVatsResponse>
   {

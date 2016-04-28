@@ -15,11 +15,11 @@ namespace Bm2s.Services.Common.Article.Subscription
     public SubscriptionsResponse Get(Subscriptions request)
     {
       SubscriptionsResponse response = new SubscriptionsResponse();
-      List<Bm2s.Data.Common.BLL.Article.Subscription> items = new List<Data.Common.BLL.Article.Subscription>();
+      List<Bm2s.Data.Common.BLL.Article.Subs> items = new List<Data.Common.BLL.Article.Subs>();
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.Subscriptions.Where(item =>
-          (request.ArticleId == 0 || item.ArticleId == request.ArticleId) &&
+          (request.ArticleId == 0 || item.ArtId == request.ArticleId) &&
           (string.IsNullOrWhiteSpace(request.Code) || item.Code.ToLower().Contains(request.Code.ToLower())) &&
           (string.IsNullOrWhiteSpace(request.Designation) || item.Code.ToLower().Contains(request.Designation.ToLower())) &&
           (!request.Date.HasValue || (request.Date >= item.StartingDate && (!item.EndingDate.HasValue || request.Date < item.EndingDate.Value)))
@@ -33,14 +33,14 @@ namespace Bm2s.Services.Common.Article.Subscription
       var collection = (from item in items
                         select new Bm2s.Poco.Common.Article.Subscription()
                         {
-                          Article = new ArticlesService().Get(new Articles() { Ids = new List<int>() { item.ArticleId } }).Articles.FirstOrDefault(),
+                          Article = new ArticlesService().Get(new Articles() { Ids = new List<int>() { item.ArtId } }).Articles.FirstOrDefault(),
                           Code = item.Code,
                           Designation = item.Designation,
                           EndingDate = item.EndingDate,
                           Id = item.Id,
-                          Period = new PeriodsService().Get(new Periods() { Ids = new List<int>() { item.PeriodId } }).Periods.FirstOrDefault(),
+                          Period = new PeriodsService().Get(new Periods() { Ids = new List<int>() { item.PeriId } }).Periods.FirstOrDefault(),
                           StartingDate = item.StartingDate
-                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+                        }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
       response.ItemsCount = collection.Count();
       if (request.PageSize > 0)
@@ -68,29 +68,39 @@ namespace Bm2s.Services.Common.Article.Subscription
     {
       if (request.Subscription.Id > 0)
       {
-        Bm2s.Data.Common.BLL.Article.Subscription item = Datas.Instance.DataStorage.Subscriptions[request.Subscription.Id];
-        item.ArticleId = request.Subscription.Article.Id;
+        Bm2s.Data.Common.BLL.Article.Subs item = Datas.Instance.DataStorage.Subscriptions[request.Subscription.Id];
+        item.ArtId = request.Subscription.Article.Id;
         item.Code = request.Subscription.Code;
         item.Designation = request.Subscription.Designation;
         item.EndingDate = request.Subscription.EndingDate;
-        item.PeriodId = request.Subscription.Period.Id;
+        item.PeriId = request.Subscription.Period.Id;
         item.StartingDate = request.Subscription.StartingDate;
       }
       else
       {
-        Bm2s.Data.Common.BLL.Article.Subscription item = new Data.Common.BLL.Article.Subscription()
+        Bm2s.Data.Common.BLL.Article.Subs item = new Data.Common.BLL.Article.Subs()
         {
-          ArticleId = request.Subscription.Article.Id,
+          ArtId = request.Subscription.Article.Id,
           Code = request.Subscription.Code,
           Designation = request.Subscription.Designation,
           EndingDate = request.Subscription.EndingDate,
-          PeriodId = request.Subscription.Period.Id,
+          PeriId = request.Subscription.Period.Id,
           StartingDate = request.Subscription.StartingDate
         };
 
         Datas.Instance.DataStorage.Subscriptions.Add(item);
         request.Subscription.Id = item.Id;
       }
+
+      SubscriptionsResponse response = new SubscriptionsResponse();
+      response.Subscriptions.Add(request.Subscription);
+      return response;
+    }
+
+    public SubscriptionsResponse Delete(Subscriptions request)
+    {
+      Bm2s.Data.Common.BLL.Article.Subs item = Datas.Instance.DataStorage.Subscriptions[request.Subscription.Id];
+      Datas.Instance.DataStorage.Subscriptions.Remove(item);
 
       SubscriptionsResponse response = new SubscriptionsResponse();
       response.Subscriptions.Add(request.Subscription);

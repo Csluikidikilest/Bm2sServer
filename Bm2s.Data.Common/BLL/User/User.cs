@@ -5,7 +5,7 @@ using ServiceStack.DataAnnotations;
 
 namespace Bm2s.Data.Common.BLL.User
 {
-  public class User : Table
+  public class User : DataRow
   {
     [AutoIncrement]
     [PrimaryKey]
@@ -15,7 +15,6 @@ namespace Bm2s.Data.Common.BLL.User
     [StringLength(250)]
     public string LastName { get; set; }
 
-    [Required]
     [StringLength(250)]
     public string FirstName { get; set; }
 
@@ -31,11 +30,13 @@ namespace Bm2s.Data.Common.BLL.User
 
     public bool IsAnonymous { get; set; }
 
+    public bool IsSystem { get; set; }
+
     public DateTime StartingDate { get; set; }
 
     public DateTime? EndingDate { get; set; }
 
-    [References(typeof(Parameter.Language))]
-    public int DefaultLanguageId { get; set; }
+    [References(typeof(Parameter.Lang))]
+    public int DelaId { get; set; }
   }
 }

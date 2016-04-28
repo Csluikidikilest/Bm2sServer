@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Bm2s.Data.Common.Utils;
 using Bm2s.Response.Common.Parameter.Country;
@@ -17,7 +18,7 @@ namespace Bm2s.Services.Common.Parameter.Town
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.Towns.Where(item =>
-          (request.CountryId == 0 || item.CountryId == request.CountryId) &&
+          (request.CountryId == 0 || item.CounId == request.CountryId) &&
           (string.IsNullOrWhiteSpace(request.Name) || item.Name.ToLower().Contains(request.Name.ToLower())) &&
           (string.IsNullOrWhiteSpace(request.ZipCode) || item.ZipCode.ToLower().Contains(request.ZipCode.ToLower())) &&
           (!request.Date.HasValue || (request.Date >= item.StartingDate && (!item.EndingDate.HasValue || request.Date < item.EndingDate.Value)))
@@ -31,13 +32,13 @@ namespace Bm2s.Services.Common.Parameter.Town
       var collection = (from item in items
                         select new Bm2s.Poco.Common.Parameter.Town()
                         {
-                          Country = new CountriesService().Get(new Countries() { Ids = new List<int>() { item.CountryId } }).Countries.FirstOrDefault(),
+                          Country = new CountriesService().Get(new Countries() { Ids = new List<int>() { item.CounId } }).Countries.FirstOrDefault(),
                           EndingDate = item.EndingDate,
                           Id = item.Id,
                           Name = item.Name,
                           StartingDate = item.StartingDate,
                           ZipCode = item.ZipCode
-                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+                        }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
       response.ItemsCount = collection.Count();
       if (request.PageSize > 0)
@@ -66,7 +67,7 @@ namespace Bm2s.Services.Common.Parameter.Town
       if (request.Town.Id > 0)
       {
         Bm2s.Data.Common.BLL.Parameter.Town item = Datas.Instance.DataStorage.Towns[request.Town.Id];
-        item.CountryId = request.Town.Country.Id;
+        item.CounId = request.Town.Country.Id;
         item.EndingDate = request.Town.EndingDate;
         item.Name = request.Town.Name;
         item.StartingDate = request.Town.StartingDate;
@@ -77,7 +78,7 @@ namespace Bm2s.Services.Common.Parameter.Town
       {
         Bm2s.Data.Common.BLL.Parameter.Town item = new Data.Common.BLL.Parameter.Town()
         {
-          CountryId = request.Town.Country.Id,
+          CounId = request.Town.Country.Id,
           EndingDate = request.Town.EndingDate,
           Name = request.Town.Name,
           StartingDate = request.Town.StartingDate,
@@ -87,6 +88,17 @@ namespace Bm2s.Services.Common.Parameter.Town
         Datas.Instance.DataStorage.Towns.Add(item);
         request.Town.Id = item.Id;
       }
+
+      TownsResponse response = new TownsResponse();
+      response.Towns.Add(request.Town);
+      return response;
+    }
+
+    public TownsResponse Delete(Towns request)
+    {
+      Bm2s.Data.Common.BLL.Parameter.Town item = Datas.Instance.DataStorage.Towns[request.Town.Id];
+      item.EndingDate = DateTime.Now;
+      Datas.Instance.DataStorage.Towns[item.Id] = item;
 
       TownsResponse response = new TownsResponse();
       response.Towns.Add(request.Town);

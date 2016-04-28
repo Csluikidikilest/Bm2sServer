@@ -4,7 +4,7 @@ using ServiceStack.ServiceHost;
 
 namespace Bm2s.Response.Common.Partner.PartnerContact
 {
-  [Route("/bm2s/partnercontacts", Verbs = "GET, POST")]
+  [Route("/bm2s/partnercontacts", Verbs = "GET, POST, DELETE")]
   [Route("/bm2s/partnercontacts/{Ids}", Verbs = "GET")]
   public class PartnerContacts : Request, IReturn<PartnerContactsResponse>
   {

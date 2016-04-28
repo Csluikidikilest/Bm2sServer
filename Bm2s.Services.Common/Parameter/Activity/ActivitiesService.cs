@@ -11,7 +11,7 @@ namespace Bm2s.Services.Common.Parameter.Activity
     public ActivitiesResponse Get(Activities request)
     {
       ActivitiesResponse response = new ActivitiesResponse();
-      List<Bm2s.Data.Common.BLL.Parameter.Activity> items = new List<Data.Common.BLL.Parameter.Activity>();
+      List<Bm2s.Data.Common.BLL.Parameter.Acti> items = new List<Data.Common.BLL.Parameter.Acti>();
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.Activities.Where(item =>
@@ -34,7 +34,7 @@ namespace Bm2s.Services.Common.Parameter.Activity
                           Id = item.Id,
                           TownName = item.TownName,
                           TownZipCode = item.TownZipCode
-                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+                        }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
       response.ItemsCount = collection.Count();
       if (request.PageSize > 0)
@@ -62,7 +62,7 @@ namespace Bm2s.Services.Common.Parameter.Activity
     {
       if (request.Activity.Id > 0)
       {
-        Bm2s.Data.Common.BLL.Parameter.Activity item = Datas.Instance.DataStorage.Activities[request.Activity.Id];
+        Bm2s.Data.Common.BLL.Parameter.Acti item = Datas.Instance.DataStorage.Activities[request.Activity.Id];
         item.Address1 = request.Activity.Address1;
         item.Address2 = request.Activity.Address2;
         item.Address3 = request.Activity.Address3;
@@ -74,7 +74,7 @@ namespace Bm2s.Services.Common.Parameter.Activity
       }
       else
       {
-        Bm2s.Data.Common.BLL.Parameter.Activity item = new Data.Common.BLL.Parameter.Activity()
+        Bm2s.Data.Common.BLL.Parameter.Acti item = new Data.Common.BLL.Parameter.Acti()
         {
           Address1 = request.Activity.Address1,
           Address2 = request.Activity.Address2,
@@ -88,6 +88,16 @@ namespace Bm2s.Services.Common.Parameter.Activity
         Datas.Instance.DataStorage.Activities.Add(item);
         request.Activity.Id = item.Id;
       }
+
+      ActivitiesResponse response = new ActivitiesResponse();
+      response.Activities.Add(request.Activity);
+      return response;
+    }
+
+    public ActivitiesResponse Delete(Activities request)
+    {
+      Bm2s.Data.Common.BLL.Parameter.Acti item = Datas.Instance.DataStorage.Activities[request.Activity.Id];
+      Datas.Instance.DataStorage.Activities.Remove(item);
 
       ActivitiesResponse response = new ActivitiesResponse();
       response.Activities.Add(request.Activity);

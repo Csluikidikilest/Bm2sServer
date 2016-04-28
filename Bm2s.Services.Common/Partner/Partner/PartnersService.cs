@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Bm2s.Data.Common.Utils;
 using Bm2s.Response.Common.Partner.Partner;
@@ -13,7 +14,7 @@ namespace Bm2s.Services.Common.Partner.Partner
     public PartnersResponse Get(Partners request)
     {
       PartnersResponse response = new PartnersResponse();
-      List<Bm2s.Data.Common.BLL.Partner.Partner> items = new List<Data.Common.BLL.Partner.Partner>();
+      List<Bm2s.Data.Common.BLL.Partner.Part> items = new List<Data.Common.BLL.Partner.Part>();
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.Partners.Where(item =>
@@ -44,11 +45,11 @@ namespace Bm2s.Services.Common.Partner.Partner
                           IsSupplier = item.IsSupplier,
                           Observation = item.Observation,
                           PhoneNumber = item.PhoneNumber,
-                          PriceMultiplier = item.PriceMultiplier,
+                          PriceMultiplier = Convert.ToDecimal(item.PriceMultiplier),
                           StartingDate = item.StartingDate,
                           User = new UsersService().Get(new Users() { Ids = new List<int>() { item.UserId } }).Users.FirstOrDefault(),
                           WebSite = item.WebSite
-                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+                        }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
       response.ItemsCount = collection.Count();
       if (request.PageSize > 0)
@@ -76,7 +77,7 @@ namespace Bm2s.Services.Common.Partner.Partner
     {
       if (request.Partner.Id > 0)
       {
-        Bm2s.Data.Common.BLL.Partner.Partner item = Datas.Instance.DataStorage.Partners[request.Partner.Id];
+        Bm2s.Data.Common.BLL.Partner.Part item = Datas.Instance.DataStorage.Partners[request.Partner.Id];
         item.Code = request.Partner.Code;
         item.CompanyIdentifier = request.Partner.CompanyIdentifier;
         item.CompanyName = request.Partner.CompanyName;
@@ -87,7 +88,7 @@ namespace Bm2s.Services.Common.Partner.Partner
         item.IsSupplier = request.Partner.IsSupplier;
         item.Observation = request.Partner.Observation;
         item.PhoneNumber = request.Partner.PhoneNumber;
-        item.PriceMultiplier = request.Partner.PriceMultiplier;
+        item.PriceMultiplier = Convert.ToDouble(request.Partner.PriceMultiplier);
         item.StartingDate = request.Partner.StartingDate;
         item.UserId = request.Partner.User.Id;
         item.WebSite = request.Partner.WebSite;
@@ -95,7 +96,7 @@ namespace Bm2s.Services.Common.Partner.Partner
       }
       else
       {
-        Bm2s.Data.Common.BLL.Partner.Partner item = new Data.Common.BLL.Partner.Partner()
+        Bm2s.Data.Common.BLL.Partner.Part item = new Data.Common.BLL.Partner.Part()
         {
           Code = request.Partner.Code,
           CompanyIdentifier = request.Partner.CompanyIdentifier,
@@ -107,7 +108,7 @@ namespace Bm2s.Services.Common.Partner.Partner
           IsSupplier = request.Partner.IsSupplier,
           Observation = request.Partner.Observation,
           PhoneNumber = request.Partner.PhoneNumber,
-          PriceMultiplier = request.Partner.PriceMultiplier,
+          PriceMultiplier = Convert.ToDouble(request.Partner.PriceMultiplier),
           StartingDate = request.Partner.StartingDate,
           UserId = request.Partner.User.Id,
           WebSite = request.Partner.WebSite
@@ -116,6 +117,17 @@ namespace Bm2s.Services.Common.Partner.Partner
         Datas.Instance.DataStorage.Partners.Add(item);
         request.Partner.Id = item.Id;
       }
+
+      PartnersResponse response = new PartnersResponse();
+      response.Partners.Add(request.Partner);
+      return response;
+    }
+
+    public PartnersResponse Delete(Partners request)
+    {
+      Bm2s.Data.Common.BLL.Partner.Part item = Datas.Instance.DataStorage.Partners[request.Partner.Id];
+      item.EndingDate = DateTime.Now;
+      Datas.Instance.DataStorage.Partners[item.Id] = item;
 
       PartnersResponse response = new PartnersResponse();
       response.Partners.Add(request.Partner);

@@ -16,8 +16,11 @@ namespace Bm2s.Server
 
     public override void Configure(Container container)
     {
-      JsConfig.EmitCamelCaseNames = true;
-      JsConfig.DateHandler = JsonDateHandler.DCJSCompatible;
+      using (JsConfig.BeginScope())
+      {
+        JsConfig.EmitCamelCaseNames = true;
+        JsConfig.DateHandler = JsonDateHandler.ISO8601;
+      }
     }
   }
 }

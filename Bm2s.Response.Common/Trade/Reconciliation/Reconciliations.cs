@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ServiceStack.ServiceHost;
 
 namespace Bm2s.Response.Common.Trade.Reconciliation
 {
-  [Route("/bm2s/reconciliations", Verbs = "GET, POST")]
+  [Route("/bm2s/reconciliations", Verbs = "GET, POST, DELETE")]
   [Route("/bm2s/reconciliations/{Ids}", Verbs = "GET")]
   public class Reconciliations : Request, IReturn<ReconciliationsResponse>
   {
@@ -11,6 +12,8 @@ namespace Bm2s.Response.Common.Trade.Reconciliation
     {
       this.Ids = new List<int>();
     }
+
+    public DateTime? Date { get; set; }
 
     public int HeaderLineId { get; set; }
 

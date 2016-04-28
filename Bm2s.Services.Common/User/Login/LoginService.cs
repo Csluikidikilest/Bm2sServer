@@ -20,12 +20,13 @@ namespace Bm2s.Services.Common.User.Login
       {
         response.User = new Poco.Common.User.User()
         {
-          DefaultLanguage = new LanguagesService().Get(new Languages() { Ids = new List<int>() { user.DefaultLanguageId } }).Languages.FirstOrDefault(),
+          DefaultLanguage = new LanguagesService().Get(new Languages() { Ids = new List<int>() { user.DelaId } }).Languages.FirstOrDefault(),
           EndingDate = user.EndingDate,
           FirstName = user.FirstName,
           Id = user.Id,
           IsAdministrator = user.IsAdministrator,
           IsAnonymous = user.IsAnonymous,
+          IsSystem = user.IsSystem,
           LastName = user.LastName,
           Login = user.Login,
           Password = user.Password,

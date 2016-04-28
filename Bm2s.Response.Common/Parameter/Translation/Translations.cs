@@ -3,7 +3,7 @@ using ServiceStack.ServiceHost;
 
 namespace Bm2s.Response.Common.Parameter.Translation
 {
-  [Route("/bm2s/translations", Verbs = "GET, POST")]
+  [Route("/bm2s/translations", Verbs = "GET, POST, DELETE")]
   [Route("/bm2s/translations/{Ids}", Verbs = "GET")]
   public class Translations : Request, IReturn<TranslationsResponse>
   {

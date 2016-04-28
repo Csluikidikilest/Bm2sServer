@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Bm2s.Data.Common.Utils;
 using Bm2s.Response.Common.Parameter.Period;
@@ -13,7 +14,7 @@ namespace Bm2s.Services.Common.Parameter.Period
     public PeriodsResponse Get(Periods request)
     {
       PeriodsResponse response = new PeriodsResponse();
-      List<Bm2s.Data.Common.BLL.Parameter.Period> items = new List<Data.Common.BLL.Parameter.Period>();
+      List<Bm2s.Data.Common.BLL.Parameter.Peri> items = new List<Data.Common.BLL.Parameter.Peri>();
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.Periods.Where(item =>
@@ -38,7 +39,7 @@ namespace Bm2s.Services.Common.Parameter.Period
                           Name = item.Name,
                           StartingDate = item.StartingDate,
                           Unit = new UnitsService().Get(new Units() { Ids = new List<int>() { item.UnitId } }).Units.FirstOrDefault()
-                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+                        }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
       response.ItemsCount = collection.Count();
       if (request.PageSize > 0)
@@ -66,7 +67,7 @@ namespace Bm2s.Services.Common.Parameter.Period
     {
       if (request.Period.Id > 0)
       {
-        Bm2s.Data.Common.BLL.Parameter.Period item = Datas.Instance.DataStorage.Periods[request.Period.Id];
+        Bm2s.Data.Common.BLL.Parameter.Peri item = Datas.Instance.DataStorage.Periods[request.Period.Id];
         item.Code = request.Period.Code;
         item.EndingDate = request.Period.EndingDate;
         item.Interval = request.Period.Interval;
@@ -77,7 +78,7 @@ namespace Bm2s.Services.Common.Parameter.Period
       }
       else
       {
-        Bm2s.Data.Common.BLL.Parameter.Period item = new Data.Common.BLL.Parameter.Period()
+        Bm2s.Data.Common.BLL.Parameter.Peri item = new Data.Common.BLL.Parameter.Peri()
         {
           Code = request.Period.Code,
           EndingDate = request.Period.EndingDate,
@@ -90,6 +91,17 @@ namespace Bm2s.Services.Common.Parameter.Period
         Datas.Instance.DataStorage.Periods.Add(item);
         request.Period.Id = item.Id;
       }
+
+      PeriodsResponse response = new PeriodsResponse();
+      response.Periods.Add(request.Period);
+      return response;
+    }
+
+    public PeriodsResponse Delete(Periods request)
+    {
+      Bm2s.Data.Common.BLL.Parameter.Peri item = Datas.Instance.DataStorage.Periods[request.Period.Id];
+      item.EndingDate = DateTime.Now;
+      Datas.Instance.DataStorage.Periods[item.Id] = item;
 
       PeriodsResponse response = new PeriodsResponse();
       response.Periods.Add(request.Period);

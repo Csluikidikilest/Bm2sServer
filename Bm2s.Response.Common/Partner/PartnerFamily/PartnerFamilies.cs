@@ -4,7 +4,7 @@ using ServiceStack.ServiceHost;
 
 namespace Bm2s.Response.Common.Partner.PartnerFamily
 {
-  [Route("/bm2s/partnerfamilies", Verbs = "GET, POST")]
+  [Route("/bm2s/partnerfamilies", Verbs = "GET, POST, DELETE")]
   [Route("/bm2s/partnerfamilies/{Ids}", Verbs = "GET")]
   public class PartnerFamilies : Request, IReturn<PartnerFamiliesResponse>
   {

@@ -5,7 +5,7 @@ using ServiceStack.DataAnnotations;
 
 namespace Bm2s.Data.Common.BLL.Parameter
 {
-  public class Vat : Table
+  public class Vat : DataRow
   {
     [AutoIncrement]
     [PrimaryKey]

@@ -4,7 +4,7 @@ using ServiceStack.ServiceHost;
 
 namespace Bm2s.Response.Common.Parameter.InventoryHeader
 {
-  [Route("/bm2s/inventoryheaders", Verbs = "GET, POST")]
+  [Route("/bm2s/inventoryheaders", Verbs = "GET, POST, DELETE")]
   [Route("/bm2s/inventoryheaders/{Ids}", Verbs = "GET")]
   public class InventoryHeaders : Request, IReturn<InventoryHeadersResponse>
   {

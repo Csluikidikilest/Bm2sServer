@@ -17,13 +17,13 @@ namespace Bm2s.Services.Common.User.GroupModule
     public GroupModulesResponse Get(GroupModules request)
     {
       GroupModulesResponse response = new GroupModulesResponse();
-      List<Bm2s.Data.Common.BLL.User.GroupModule> items = new List<Data.Common.BLL.User.GroupModule>();
+      List<Bm2s.Data.Common.BLL.User.Grmo> items = new List<Data.Common.BLL.User.Grmo>();
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.GroupModules.Where(item =>
-          (request.GrantorId == 0 || item.GrantorId == request.GrantorId) &&
-          (request.GroupId == 0 || item.GroupId == request.GroupId) &&
-          (request.ModuleId == 0 || item.ModuleId == request.ModuleId)
+          (request.GrantorId == 0 || item.GranId == request.GrantorId) &&
+          (request.GroupId == 0 || item.GrouId == request.GroupId) &&
+          (request.ModuleId == 0 || item.ModuId == request.ModuleId)
           ));
       }
       else
@@ -35,11 +35,11 @@ namespace Bm2s.Services.Common.User.GroupModule
                         select new Bm2s.Poco.Common.User.GroupModule()
                         {
                           Granted = item.Granted,
-                          Grantor = new UsersService().Get(new Users() { Ids = new List<int>() { item.GrantorId } }).Users.FirstOrDefault(),
-                          Group = new GroupsService().Get(new Groups() { Ids = new List<int>() { item.GroupId } }).Groups.FirstOrDefault(),
+                          Grantor = new UsersService().Get(new Users() { Ids = new List<int>() { item.GranId } }).Users.FirstOrDefault(),
+                          Group = new GroupsService().Get(new Groups() { Ids = new List<int>() { item.GrouId } }).Groups.FirstOrDefault(),
                           Id = item.Id,
-                          Module = new ModulesService().Get(new Modules() { Ids = new List<int>() { item.ModuleId } }).Modules.FirstOrDefault()
-                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+                          Module = new ModulesService().Get(new Modules() { Ids = new List<int>() { item.ModuId } }).Modules.FirstOrDefault()
+                        }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
       response.ItemsCount = collection.Count();
       if (request.PageSize > 0)
@@ -67,26 +67,36 @@ namespace Bm2s.Services.Common.User.GroupModule
     {
       if (request.GroupModule.Id > 0)
       {
-        Bm2s.Data.Common.BLL.User.GroupModule item = Datas.Instance.DataStorage.GroupModules[request.GroupModule.Id];
+        Bm2s.Data.Common.BLL.User.Grmo item = Datas.Instance.DataStorage.GroupModules[request.GroupModule.Id];
         item.Granted = request.GroupModule.Granted;
-        item.GrantorId = request.GroupModule.Grantor.Id;
-        item.GroupId = request.GroupModule.Group.Id;
-        item.ModuleId = request.GroupModule.Module.Id;
+        item.GranId = request.GroupModule.Grantor.Id;
+        item.GrouId = request.GroupModule.Group.Id;
+        item.ModuId = request.GroupModule.Module.Id;
         Datas.Instance.DataStorage.GroupModules[request.GroupModule.Id] = item;
       }
       else
       {
-        Bm2s.Data.Common.BLL.User.GroupModule item = new Data.Common.BLL.User.GroupModule()
+        Bm2s.Data.Common.BLL.User.Grmo item = new Data.Common.BLL.User.Grmo()
         {
           Granted = request.GroupModule.Granted,
-          GrantorId = request.GroupModule.Grantor.Id,
-          GroupId = request.GroupModule.Group.Id,
-          ModuleId = request.GroupModule.Module.Id
+          GranId = request.GroupModule.Grantor.Id,
+          GrouId = request.GroupModule.Group.Id,
+          ModuId = request.GroupModule.Module.Id
         };
 
         Datas.Instance.DataStorage.GroupModules.Add(item);
         request.GroupModule.Id = item.Id;
       }
+
+      GroupModulesResponse response = new GroupModulesResponse();
+      response.GroupModules.Add(request.GroupModule);
+      return response;
+    }
+
+    public GroupModulesResponse Delete(GroupModules request)
+    {
+      Bm2s.Data.Common.BLL.User.Grmo item = Datas.Instance.DataStorage.GroupModules[request.GroupModule.Id];
+      Datas.Instance.DataStorage.GroupModules.Remove(item);
 
       GroupModulesResponse response = new GroupModulesResponse();
       response.GroupModules.Add(request.GroupModule);

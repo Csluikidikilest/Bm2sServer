@@ -17,13 +17,13 @@ namespace Bm2s.Services.Common.Partner.PartnerAddress
     public PartnerAddressesResponse Get(PartnerAddresses request)
     {
       PartnerAddressesResponse response = new PartnerAddressesResponse();
-      List<Bm2s.Data.Common.BLL.Partner.PartnerAddress> items = new List<Data.Common.BLL.Partner.PartnerAddress>();
+      List<Bm2s.Data.Common.BLL.Partner.Paad> items = new List<Data.Common.BLL.Partner.Paad>();
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.PartnerAddresses.Where(item =>
-          (request.AddressId == 0 || item.AddressId == request.AddressId) &&
-          (request.AddressTypeId == 0 || item.AddressTypeId == request.AddressTypeId) &&
-          (request.PartnerId == 0 || item.PartnerId == request.PartnerId)
+          (request.AddressId == 0 || item.AddrId == request.AddressId) &&
+          (request.AddressTypeId == 0 || item.AdtyId == request.AddressTypeId) &&
+          (request.PartnerId == 0 || item.PartId == request.PartnerId)
           ));
       }
       else
@@ -34,11 +34,11 @@ namespace Bm2s.Services.Common.Partner.PartnerAddress
       var collection = (from item in items
                         select new Bm2s.Poco.Common.Partner.PartnerAddress()
                         {
-                          Address = new AddressesService().Get(new Addresses() { Ids = new List<int>() { item.AddressId } }).Addresses.FirstOrDefault(),
-                          AddressType = new AddressTypesService().Get(new AddressTypes() { Ids = new List<int>() { item.AddressTypeId } }).AddressTypes.FirstOrDefault(),
+                          Address = new AddressesService().Get(new Addresses() { Ids = new List<int>() { item.AddrId } }).Addresses.FirstOrDefault(),
+                          AddressType = new AddressTypesService().Get(new AddressTypes() { Ids = new List<int>() { item.AdtyId } }).AddressTypes.FirstOrDefault(),
                           Id = item.Id,
-                          Partner = new PartnersService().Get(new Partners() { Ids = new List<int>() { item.PartnerId } }).Partners.FirstOrDefault()
-                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+                          Partner = new PartnersService().Get(new Partners() { Ids = new List<int>() { item.PartId } }).Partners.FirstOrDefault()
+                        }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
       response.ItemsCount = collection.Count();
       if (request.PageSize > 0)
@@ -66,24 +66,35 @@ namespace Bm2s.Services.Common.Partner.PartnerAddress
     {
       if (request.PartnerAddress.Id > 0)
       {
-        Bm2s.Data.Common.BLL.Partner.PartnerAddress item = Datas.Instance.DataStorage.PartnerAddresses[request.PartnerAddress.Id];
-        item.AddressId = request.PartnerAddress.Address.Id;
-        item.AddressTypeId = request.PartnerAddress.AddressType.Id;
-        item.PartnerId = request.PartnerAddress.Partner.Id;
+        Bm2s.Data.Common.BLL.Partner.Paad item = Datas.Instance.DataStorage.PartnerAddresses[request.PartnerAddress.Id];
+        item.AddrId = request.PartnerAddress.Address.Id;
+        item.AdtyId = request.PartnerAddress.AddressType.Id;
+        item.PartId = request.PartnerAddress.Partner.Id;
         Datas.Instance.DataStorage.PartnerAddresses[request.PartnerAddress.Id] = item;
       }
       else
       {
-        Bm2s.Data.Common.BLL.Partner.PartnerAddress item = new Data.Common.BLL.Partner.PartnerAddress()
+        Bm2s.Data.Common.BLL.Partner.Paad item = new Data.Common.BLL.Partner.Paad()
         {
-          AddressId = request.PartnerAddress.Address.Id,
-          AddressTypeId = request.PartnerAddress.AddressType.Id,
-          PartnerId = request.PartnerAddress.Partner.Id
+          AddrId = request.PartnerAddress.Address.Id,
+          AdtyId = request.PartnerAddress.AddressType.Id,
+          PartId = request.PartnerAddress.Partner.Id
         };
 
         Datas.Instance.DataStorage.PartnerAddresses.Add(item);
         request.PartnerAddress.Id = item.Id;
       }
+
+      PartnerAddressesResponse response = new PartnerAddressesResponse();
+      response.PartnerAddresses.Add(request.PartnerAddress);
+      return response;
+    }
+
+    public PartnerAddressesResponse Delete(PartnerAddresses request)
+    {
+      Bm2s.Data.Common.BLL.Partner.Paad item = Datas.Instance.DataStorage.PartnerAddresses[request.PartnerAddress.Id];
+      Datas.Instance.DataStorage.PartnerAddresses.Remove(item);
+      Datas.Instance.DataStorage.PartnerAddresses[item.Id] = item;
 
       PartnerAddressesResponse response = new PartnerAddressesResponse();
       response.PartnerAddresses.Add(request.PartnerAddress);

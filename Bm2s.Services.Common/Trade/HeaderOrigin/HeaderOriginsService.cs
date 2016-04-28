@@ -13,12 +13,12 @@ namespace Bm2s.Services.Common.Trade.HeaderOrigin
     public HeaderOriginsResponse Get(HeaderOrigins request)
     {
       HeaderOriginsResponse response = new HeaderOriginsResponse();
-      List<Bm2s.Data.Common.BLL.Trade.HeaderOrigin> items = new List<Data.Common.BLL.Trade.HeaderOrigin>();
+      List<Bm2s.Data.Common.BLL.Trade.Heor> items = new List<Data.Common.BLL.Trade.Heor>();
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.HeaderOrigins.Where(item =>
-          (request.HeaderChildId == 0 || item.HeaderChildId == request.HeaderChildId) &&
-          (request.HeaderParentId == 0 || item.HeaderParentId == request.HeaderParentId) &&
+          (request.HeaderChildId == 0 || item.HechId == request.HeaderChildId) &&
+          (request.HeaderParentId == 0 || item.HepaId == request.HeaderParentId) &&
           (!request.Date.HasValue || request.Date >= item.Date)
           ));
       }
@@ -31,10 +31,10 @@ namespace Bm2s.Services.Common.Trade.HeaderOrigin
                         select new Bm2s.Poco.Common.Trade.HeaderOrigin()
                         {
                           Date = item.Date,
-                          HeaderChild = new HeadersService().Get(new Headers() { Ids = new List<int>() { item.HeaderChildId } }).Headers.FirstOrDefault(),
-                          HeaderParent = new HeadersService().Get(new Headers() { Ids = new List<int>() { item.HeaderParentId } }).Headers.FirstOrDefault(),
+                          HeaderChild = new HeadersService().Get(new Headers() { Ids = new List<int>() { item.HechId } }).Headers.FirstOrDefault(),
+                          HeaderParent = new HeadersService().Get(new Headers() { Ids = new List<int>() { item.HepaId } }).Headers.FirstOrDefault(),
                           Id = item.Id
-                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+                        }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
       response.ItemsCount = collection.Count();
       if (request.PageSize > 0)
@@ -62,24 +62,34 @@ namespace Bm2s.Services.Common.Trade.HeaderOrigin
     {
       if (request.HeaderOrigin.Id > 0)
       {
-        Bm2s.Data.Common.BLL.Trade.HeaderOrigin item = Datas.Instance.DataStorage.HeaderOrigins[request.HeaderOrigin.Id];
+        Bm2s.Data.Common.BLL.Trade.Heor item = Datas.Instance.DataStorage.HeaderOrigins[request.HeaderOrigin.Id];
         item.Date = request.HeaderOrigin.Date;
-        item.HeaderChildId = request.HeaderOrigin.HeaderChild.Id;
-        item.HeaderParentId = request.HeaderOrigin.HeaderParent.Id;
+        item.HechId = request.HeaderOrigin.HeaderChild.Id;
+        item.HepaId = request.HeaderOrigin.HeaderParent.Id;
         Datas.Instance.DataStorage.HeaderOrigins[request.HeaderOrigin.Id] = item;
       }
       else
       {
-        Bm2s.Data.Common.BLL.Trade.HeaderOrigin item = new Data.Common.BLL.Trade.HeaderOrigin()
+        Bm2s.Data.Common.BLL.Trade.Heor item = new Data.Common.BLL.Trade.Heor()
         {
           Date = request.HeaderOrigin.Date,
-          HeaderChildId = request.HeaderOrigin.HeaderChild.Id,
-          HeaderParentId = request.HeaderOrigin.HeaderParent.Id
+          HechId = request.HeaderOrigin.HeaderChild.Id,
+          HepaId = request.HeaderOrigin.HeaderParent.Id
         };
 
         Datas.Instance.DataStorage.HeaderOrigins.Add(item);
         request.HeaderOrigin.Id = item.Id;
       }
+
+      HeaderOriginsResponse response = new HeaderOriginsResponse();
+      response.HeaderOrigins.Add(request.HeaderOrigin);
+      return response;
+    }
+
+    public HeaderOriginsResponse Delete(HeaderOrigins request)
+    {
+      Bm2s.Data.Common.BLL.Trade.Heor item = Datas.Instance.DataStorage.HeaderOrigins[request.HeaderOrigin.Id];
+      Datas.Instance.DataStorage.HeaderOrigins.Remove(item);
 
       HeaderOriginsResponse response = new HeaderOriginsResponse();
       response.HeaderOrigins.Add(request.HeaderOrigin);

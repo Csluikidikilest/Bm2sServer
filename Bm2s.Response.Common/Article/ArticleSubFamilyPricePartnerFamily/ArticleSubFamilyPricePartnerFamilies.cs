@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Bm2s.Response.Common.Article.ArticleSubFamilyPricePartnerFamily
 {
-  [Route("/bm2s/articlesubfamilypricepartnerfamilies", Verbs = "GET, POST")]
+  [Route("/bm2s/articlesubfamilypricepartnerfamilies", Verbs = "GET, POST, DELETE")]
   [Route("/bm2s/articlesubfamilypricepartnerfamilies/{Ids}", Verbs = "GET")]
   public class ArticleSubFamilyPricePartnerFamilies : Request, IReturn<ArticleSubFamilyPricePartnerFamiliesResponse>
   {

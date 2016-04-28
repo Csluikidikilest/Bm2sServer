@@ -4,7 +4,7 @@ using ServiceStack.ServiceHost;
 
 namespace Bm2s.Response.Common.Article.Brand
 {
-  [Route("/bm2s/brands", Verbs = "GET, POST")]
+  [Route("/bm2s/brands", Verbs = "GET, POST, DELETE")]
   [Route("/bm2s/brands/{Ids}", Verbs = "GET")]
   public class Brands : Request, IReturn<BrandsResponse>
   {

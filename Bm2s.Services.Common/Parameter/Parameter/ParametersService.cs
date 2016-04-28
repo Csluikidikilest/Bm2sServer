@@ -3,6 +3,7 @@ using System.Linq;
 using Bm2s.Data.Common.Utils;
 using Bm2s.Response.Common.Parameter.Parameter;
 using ServiceStack.ServiceInterface;
+using System;
 
 namespace Bm2s.Services.Common.Parameter.Parameter
 {
@@ -11,11 +12,13 @@ namespace Bm2s.Services.Common.Parameter.Parameter
     public ParametersResponse Get(Parameters request)
     {
       ParametersResponse response = new ParametersResponse();
-      List<Bm2s.Data.Common.BLL.Parameter.Parameter> items = new List<Data.Common.BLL.Parameter.Parameter>();
+      List<Bm2s.Data.Common.BLL.Parameter.Para> items = new List<Data.Common.BLL.Parameter.Para>();
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.Parameters.Where(item =>
-          (string.IsNullOrWhiteSpace(request.Code) || item.Code.ToLower().Contains(request.Code.ToLower()))
+          (string.IsNullOrWhiteSpace(request.Code) || item.Code.ToLower().Contains(request.Code.ToLower())) &&
+          (!request.IsSystem || item.IsSystem) &&
+          (!request.IsOverloadable || item.IsOverloadable)
           ));
       }
       else
@@ -28,13 +31,16 @@ namespace Bm2s.Services.Common.Parameter.Parameter
                         {
                           bValue = item.bValue,
                           Code = item.Code,
+                          Description = item.Description,
                           dValue = item.dValue,
-                          fValue = item.fValue,
+                          fValue = Convert.ToDecimal(item.fValue),
                           Id = item.Id,
                           iValue = item.iValue,
                           sValue = item.sValue,
-                          ValueType = item.ValueType
-                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+                          ValueType = item.ValueType,
+                          IsSystem = item.IsSystem,
+                          IsOverloadable = item.IsOverloadable
+                        }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
       response.ItemsCount = collection.Count();
       if (request.PageSize > 0)
@@ -62,32 +68,48 @@ namespace Bm2s.Services.Common.Parameter.Parameter
     {
       if (request.Parameter.Id > 0)
       {
-        Bm2s.Data.Common.BLL.Parameter.Parameter item = Datas.Instance.DataStorage.Parameters[request.Parameter.Id];
+        Bm2s.Data.Common.BLL.Parameter.Para item = Datas.Instance.DataStorage.Parameters[request.Parameter.Id];
         item.bValue = request.Parameter.bValue;
         item.Code = request.Parameter.Code;
+        item.Description = request.Parameter.Description;
         item.dValue = request.Parameter.dValue;
-        item.fValue = request.Parameter.fValue;
+        item.fValue = Convert.ToDouble(request.Parameter.fValue);
         item.iValue = request.Parameter.iValue;
         item.sValue = request.Parameter.sValue;
         item.ValueType = request.Parameter.ValueType;
+        item.IsSystem = request.Parameter.IsSystem;
+        item.IsOverloadable = request.Parameter.IsOverloadable;
         Datas.Instance.DataStorage.Parameters[request.Parameter.Id] = item;
       }
       else
       {
-        Bm2s.Data.Common.BLL.Parameter.Parameter item = new Data.Common.BLL.Parameter.Parameter()
+        Bm2s.Data.Common.BLL.Parameter.Para item = new Data.Common.BLL.Parameter.Para()
         {
           bValue = request.Parameter.bValue,
           Code = request.Parameter.Code,
+          Description = request.Parameter.Description,
           dValue = request.Parameter.dValue,
-          fValue = request.Parameter.fValue,
+          fValue = Convert.ToDouble(request.Parameter.fValue),
           iValue = request.Parameter.iValue,
           sValue = request.Parameter.sValue,
-          ValueType = request.Parameter.ValueType
+          ValueType = request.Parameter.ValueType,
+          IsSystem = request.Parameter.IsSystem,
+          IsOverloadable = request.Parameter.IsOverloadable
         };
 
         Datas.Instance.DataStorage.Parameters.Add(item);
         request.Parameter.Id = item.Id;
       }
+
+      ParametersResponse response = new ParametersResponse();
+      response.Parameters.Add(request.Parameter);
+      return response;
+    }
+
+    public ParametersResponse Delete(Parameters request)
+    {
+      Bm2s.Data.Common.BLL.Parameter.Para item = Datas.Instance.DataStorage.Parameters[request.Parameter.Id];
+      Datas.Instance.DataStorage.Parameters.Remove(item);
 
       ParametersResponse response = new ParametersResponse();
       response.Parameters.Add(request.Parameter);

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Bm2s.Data.Common.Utils;
 using Bm2s.Response.Common.Parameter.Country;
@@ -15,11 +16,11 @@ namespace Bm2s.Services.Common.Parameter.CountryCurrency
     public CountryCurrenciesResponse Get(CountryCurrencies request)
     {
       CountryCurrenciesResponse response = new CountryCurrenciesResponse();
-      List<Bm2s.Data.Common.BLL.Parameter.CountryCurrency> items = new List<Data.Common.BLL.Parameter.CountryCurrency>();
+      List<Bm2s.Data.Common.BLL.Parameter.Cocu> items = new List<Data.Common.BLL.Parameter.Cocu>();
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.CountryCurrencies.Where(item =>
-          (request.CountryId == 0 || item.CountryId == request.CountryId) &&
+          (request.CountryId == 0 || item.CounId == request.CountryId) &&
           (request.UnitId == 0 || item.UnitId == request.UnitId) &&
           (!request.Date.HasValue || (request.Date >= item.StartingDate && (!item.EndingDate.HasValue || request.Date < item.EndingDate.Value)))
           ));
@@ -32,12 +33,12 @@ namespace Bm2s.Services.Common.Parameter.CountryCurrency
       var collection = (from item in items
                         select new Bm2s.Poco.Common.Parameter.CountryCurrency()
                         {
-                          Country = new CountriesService().Get(new Countries() { Ids = new List<int>() { item.CountryId } }).Countries.FirstOrDefault(),
+                          Country = new CountriesService().Get(new Countries() { Ids = new List<int>() { item.CounId } }).Countries.FirstOrDefault(),
                           EndingDate = item.EndingDate,
                           Id = item.Id,
                           StartingDate = item.StartingDate,
                           Unit = new UnitsService().Get(new Units() { Ids = new List<int>() { item.UnitId } }).Units.FirstOrDefault()
-                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+                        }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
       response.ItemsCount = collection.Count();
       if (request.PageSize > 0)
@@ -65,8 +66,8 @@ namespace Bm2s.Services.Common.Parameter.CountryCurrency
     {
       if (request.CountryCurrency.Id > 0)
       {
-        Bm2s.Data.Common.BLL.Parameter.CountryCurrency item = Datas.Instance.DataStorage.CountryCurrencies[request.CountryCurrency.Id];
-        item.CountryId = request.CountryCurrency.Country.Id;
+        Bm2s.Data.Common.BLL.Parameter.Cocu item = Datas.Instance.DataStorage.CountryCurrencies[request.CountryCurrency.Id];
+        item.CounId = request.CountryCurrency.Country.Id;
         item.EndingDate = request.CountryCurrency.EndingDate;
         item.StartingDate = request.CountryCurrency.StartingDate;
         item.UnitId = request.CountryCurrency.Unit.Id;
@@ -74,9 +75,9 @@ namespace Bm2s.Services.Common.Parameter.CountryCurrency
       }
       else
       {
-        Bm2s.Data.Common.BLL.Parameter.CountryCurrency item = new Data.Common.BLL.Parameter.CountryCurrency()
+        Bm2s.Data.Common.BLL.Parameter.Cocu item = new Data.Common.BLL.Parameter.Cocu()
         {
-          CountryId = request.CountryCurrency.Country.Id,
+          CounId = request.CountryCurrency.Country.Id,
           EndingDate = request.CountryCurrency.EndingDate,
           StartingDate = request.CountryCurrency.StartingDate,
           UnitId = request.CountryCurrency.Unit.Id
@@ -85,6 +86,17 @@ namespace Bm2s.Services.Common.Parameter.CountryCurrency
         Datas.Instance.DataStorage.CountryCurrencies.Add(item);
         request.CountryCurrency.Id = item.Id;
       }
+
+      CountryCurrenciesResponse response = new CountryCurrenciesResponse();
+      response.CountryCurrencies.Add(request.CountryCurrency);
+      return response;
+    }
+
+    public CountryCurrenciesResponse Delete(CountryCurrencies request)
+    {
+      Bm2s.Data.Common.BLL.Parameter.Cocu item = Datas.Instance.DataStorage.CountryCurrencies[request.CountryCurrency.Id];
+      item.EndingDate = DateTime.Now;
+      Datas.Instance.DataStorage.CountryCurrencies[item.Id] = item;
 
       CountryCurrenciesResponse response = new CountryCurrenciesResponse();
       response.CountryCurrencies.Add(request.CountryCurrency);

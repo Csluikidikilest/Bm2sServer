@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Bm2s.Data.Common.Utils;
 using Bm2s.Response.Common.User.Group;
@@ -11,12 +12,14 @@ namespace Bm2s.Services.Common.User.Group
     public GroupsResponse Get(Groups request)
     {
       GroupsResponse response = new GroupsResponse();
-      List<Bm2s.Data.Common.BLL.User.Group> items = new List<Data.Common.BLL.User.Group>();
+      List<Bm2s.Data.Common.BLL.User.Grou> items = new List<Data.Common.BLL.User.Grou>();
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.Groups.Where(item =>
           (string.IsNullOrWhiteSpace(request.Code) || item.Code.ToLower().Contains(request.Code.ToLower())) &&
-          (string.IsNullOrWhiteSpace(request.Name) || item.Name.ToLower().Contains(request.Name.ToLower()))
+          (string.IsNullOrWhiteSpace(request.Name) || item.Name.ToLower().Contains(request.Name.ToLower())) &&
+          (!request.IsSystem || item.IsSystem) &&
+          (!request.Date.HasValue || (request.Date >= item.StartingDate && (!item.EndingDate.HasValue || request.Date < item.EndingDate.Value)))
           ));
       }
       else
@@ -28,9 +31,12 @@ namespace Bm2s.Services.Common.User.Group
                         select new Bm2s.Poco.Common.User.Group()
                         {
                           Code = item.Code,
+                          EndingDate = item.EndingDate,
                           Id = item.Id,
-                          Name = item.Name
-                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+                          IsSystem = item.IsSystem,
+                          Name = item.Name,
+                          StartingDate = item.StartingDate
+                        }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
       response.ItemsCount = collection.Count();
       if (request.PageSize > 0)
@@ -58,22 +64,39 @@ namespace Bm2s.Services.Common.User.Group
     {
       if (request.Group.Id > 0)
       {
-        Bm2s.Data.Common.BLL.User.Group item = Datas.Instance.DataStorage.Groups[request.Group.Id];
+        Bm2s.Data.Common.BLL.User.Grou item = Datas.Instance.DataStorage.Groups[request.Group.Id];
         item.Code = request.Group.Code;
+        item.EndingDate = request.Group.EndingDate;
+        item.IsSystem = request.Group.IsSystem;
         item.Name = request.Group.Name;
+        item.StartingDate = request.Group.StartingDate;
         Datas.Instance.DataStorage.Groups[request.Group.Id] = item;
       }
       else
       {
-        Bm2s.Data.Common.BLL.User.Group item = new Data.Common.BLL.User.Group()
+        Bm2s.Data.Common.BLL.User.Grou item = new Data.Common.BLL.User.Grou()
         {
           Code = request.Group.Code,
-          Name = request.Group.Name
+          EndingDate = request.Group.EndingDate,
+          IsSystem = request.Group.IsSystem,
+          Name = request.Group.Name,
+          StartingDate = request.Group.StartingDate
         };
 
         Datas.Instance.DataStorage.Groups.Add(item);
         request.Group.Id = item.Id;
       }
+
+      GroupsResponse response = new GroupsResponse();
+      response.Groups.Add(request.Group);
+      return response;
+    }
+
+    public GroupsResponse Delete(Groups request)
+    {
+      Bm2s.Data.Common.BLL.User.Grou item = Datas.Instance.DataStorage.Groups[request.Group.Id];
+      item.EndingDate = DateTime.Now;
+      Datas.Instance.DataStorage.Groups[item.Id] = item;
 
       GroupsResponse response = new GroupsResponse();
       response.Groups.Add(request.Group);

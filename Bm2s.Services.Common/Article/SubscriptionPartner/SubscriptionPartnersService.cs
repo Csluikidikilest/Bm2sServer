@@ -15,12 +15,12 @@ namespace Bm2s.Services.Common.Article.SubscriptionPartner
     public SubscriptionPartnersResponse Get(SubscriptionPartners request)
     {
       SubscriptionPartnersResponse response = new SubscriptionPartnersResponse();
-      List<Bm2s.Data.Common.BLL.Article.SubscriptionPartner> items = new List<Data.Common.BLL.Article.SubscriptionPartner>();
+      List<Bm2s.Data.Common.BLL.Article.Supa> items = new List<Data.Common.BLL.Article.Supa>();
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.SubscriptionPartners.Where(item =>
-          (request.PartnerId == 0 || item.PartnerId == request.PartnerId) &&
-          (request.SubscriptionId == 0 || item.SubscriptionId == request.SubscriptionId)
+          (request.PartnerId == 0 || item.PartId == request.PartnerId) &&
+          (request.SubscriptionId == 0 || item.SubsId == request.SubscriptionId)
           ));
       }
       else
@@ -32,9 +32,9 @@ namespace Bm2s.Services.Common.Article.SubscriptionPartner
                         select new Bm2s.Poco.Common.Article.SubscriptionPartner()
                         {
                           Id = item.Id,
-                          Partner = new PartnersService().Get(new Partners() { Ids = new List<int>() { item.PartnerId } }).Partners.FirstOrDefault(),
-                          Subscription = new SubscriptionsService().Get(new Subscriptions() { Ids = new List<int>() { item.SubscriptionId } }).Subscriptions.FirstOrDefault()
-                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+                          Partner = new PartnersService().Get(new Partners() { Ids = new List<int>() { item.PartId } }).Partners.FirstOrDefault(),
+                          Subscription = new SubscriptionsService().Get(new Subscriptions() { Ids = new List<int>() { item.SubsId } }).Subscriptions.FirstOrDefault()
+                        }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
       response.ItemsCount = collection.Count();
       if (request.PageSize > 0)
@@ -62,21 +62,31 @@ namespace Bm2s.Services.Common.Article.SubscriptionPartner
     {
       if (request.SubscriptionPartner.Id > 0)
       {
-        Bm2s.Data.Common.BLL.Article.SubscriptionPartner item = Datas.Instance.DataStorage.SubscriptionPartners[request.SubscriptionPartner.Id];
-        item.PartnerId = request.SubscriptionPartner.Partner.Id;
-        item.SubscriptionId = request.SubscriptionPartner.Subscription.Id;
+        Bm2s.Data.Common.BLL.Article.Supa item = Datas.Instance.DataStorage.SubscriptionPartners[request.SubscriptionPartner.Id];
+        item.PartId = request.SubscriptionPartner.Partner.Id;
+        item.SubsId = request.SubscriptionPartner.Subscription.Id;
       }
       else
       {
-        Bm2s.Data.Common.BLL.Article.SubscriptionPartner item = new Data.Common.BLL.Article.SubscriptionPartner()
+        Bm2s.Data.Common.BLL.Article.Supa item = new Data.Common.BLL.Article.Supa()
         {
-          PartnerId = request.SubscriptionPartner.Partner.Id,
-          SubscriptionId = request.SubscriptionPartner.Subscription.Id
+          PartId = request.SubscriptionPartner.Partner.Id,
+          SubsId = request.SubscriptionPartner.Subscription.Id
         };
 
         Datas.Instance.DataStorage.SubscriptionPartners.Add(item);
         request.SubscriptionPartner.Id = item.Id;
       }
+
+      SubscriptionPartnersResponse response = new SubscriptionPartnersResponse();
+      response.SubscriptionPartners.Add(request.SubscriptionPartner);
+      return response;
+    }
+
+    public SubscriptionPartnersResponse Delete(SubscriptionPartners request)
+    {
+      Bm2s.Data.Common.BLL.Article.Supa item = Datas.Instance.DataStorage.SubscriptionPartners[request.SubscriptionPartner.Id];
+      Datas.Instance.DataStorage.SubscriptionPartners.Remove(item);
 
       SubscriptionPartnersResponse response = new SubscriptionPartnersResponse();
       response.SubscriptionPartners.Add(request.SubscriptionPartner);

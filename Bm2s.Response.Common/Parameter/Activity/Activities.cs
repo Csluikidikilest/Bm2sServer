@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Bm2s.Response.Common.Parameter.Activity
 {
-  [Route("/bm2s/activities", Verbs = "GET, POST")]
+  [Route("/bm2s/activities", Verbs = "GET, POST, DELETE")]
   [Route("/bm2s/activities/{Ids}", Verbs = "GET")]
   public class Activities : Request, IReturn<ActivitiesResponse>
   {

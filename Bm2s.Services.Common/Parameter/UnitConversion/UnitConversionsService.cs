@@ -13,12 +13,12 @@ namespace Bm2s.Services.Common.Parameter.UnitConversion
     public UnitConversionsResponse Get(UnitConversions request)
     {
       UnitConversionsResponse response = new UnitConversionsResponse();
-      List<Bm2s.Data.Common.BLL.Parameter.UnitConversion> items = new List<Data.Common.BLL.Parameter.UnitConversion>();
+      List<Bm2s.Data.Common.BLL.Parameter.Unco> items = new List<Data.Common.BLL.Parameter.Unco>();
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.UnitConversions.Where(item =>
-          (request.ChildId == 0 || item.ChildId == request.ChildId) &&
-          (request.ParentId == 0 || item.ParentId == request.ParentId)
+          (request.ChildId == 0 || item.UnchId == request.ChildId) &&
+          (request.ParentId == 0 || item.UnpaId == request.ParentId)
           ));
       }
       else
@@ -29,12 +29,12 @@ namespace Bm2s.Services.Common.Parameter.UnitConversion
       var collection = (from item in items
                         select new Bm2s.Poco.Common.Parameter.UnitConversion()
                         {
-                          Child = new UnitsService().Get(new Units() { Ids = new List<int>() { item.ChildId } }).Units.FirstOrDefault(),
+                          Child = new UnitsService().Get(new Units() { Ids = new List<int>() { item.UnchId } }).Units.FirstOrDefault(),
                           Id = item.Id,
                           Multiplier = item.Multiplier,
-                          Parent = new UnitsService().Get(new Units() { Ids = new List<int>() { item.ParentId } }).Units.FirstOrDefault(),
+                          Parent = new UnitsService().Get(new Units() { Ids = new List<int>() { item.UnpaId } }).Units.FirstOrDefault(),
                           Quantity = item.Quantity
-                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+                        }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
       response.ItemsCount = collection.Count();
       if (request.PageSize > 0)
@@ -62,26 +62,36 @@ namespace Bm2s.Services.Common.Parameter.UnitConversion
     {
       if (request.UnitConversion.Id > 0)
       {
-        Bm2s.Data.Common.BLL.Parameter.UnitConversion item = Datas.Instance.DataStorage.UnitConversions[request.UnitConversion.Id];
-        item.ChildId = request.UnitConversion.Child.Id;
+        Bm2s.Data.Common.BLL.Parameter.Unco item = Datas.Instance.DataStorage.UnitConversions[request.UnitConversion.Id];
+        item.UnchId = request.UnitConversion.Child.Id;
         item.Multiplier = request.UnitConversion.Multiplier;
-        item.ParentId = request.UnitConversion.Parent.Id;
+        item.UnpaId = request.UnitConversion.Parent.Id;
         item.Quantity = request.UnitConversion.Quantity;
         Datas.Instance.DataStorage.UnitConversions[request.UnitConversion.Id] = item;
       }
       else
       {
-        Bm2s.Data.Common.BLL.Parameter.UnitConversion item = new Data.Common.BLL.Parameter.UnitConversion()
+        Bm2s.Data.Common.BLL.Parameter.Unco item = new Data.Common.BLL.Parameter.Unco()
         {
-          ChildId = request.UnitConversion.Child.Id,
+          UnchId = request.UnitConversion.Child.Id,
           Multiplier = request.UnitConversion.Multiplier,
-          ParentId = request.UnitConversion.Parent.Id,
+          UnpaId = request.UnitConversion.Parent.Id,
           Quantity = request.UnitConversion.Quantity
         };
 
         Datas.Instance.DataStorage.UnitConversions.Add(item);
         request.UnitConversion.Id = item.Id;
       }
+
+      UnitConversionsResponse response = new UnitConversionsResponse();
+      response.UnitConversions.Add(request.UnitConversion);
+      return response;
+    }
+
+    public UnitConversionsResponse Delete(UnitConversions request)
+    {
+      Bm2s.Data.Common.BLL.Parameter.Unco item = Datas.Instance.DataStorage.UnitConversions[request.UnitConversion.Id];
+      Datas.Instance.DataStorage.UnitConversions.Remove(item);
 
       UnitConversionsResponse response = new UnitConversionsResponse();
       response.UnitConversions.Add(request.UnitConversion);

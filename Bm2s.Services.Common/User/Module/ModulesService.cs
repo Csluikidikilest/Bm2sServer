@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Bm2s.Data.Common.Utils;
 using Bm2s.Response.Common.User.Module;
@@ -11,12 +12,13 @@ namespace Bm2s.Services.Common.User.Module
     public ModulesResponse Get(Modules request)
     {
       ModulesResponse response = new ModulesResponse();
-      List<Bm2s.Data.Common.BLL.User.Module> items = new List<Data.Common.BLL.User.Module>();
+      List<Bm2s.Data.Common.BLL.User.Modu> items = new List<Data.Common.BLL.User.Modu>();
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.Modules.Where(item =>
           (string.IsNullOrWhiteSpace(request.Code) || item.Code.ToLower().Contains(request.Code.ToLower())) &&
-          (string.IsNullOrWhiteSpace(request.Name) || item.Name.ToLower().Contains(request.Name.ToLower()))
+          (string.IsNullOrWhiteSpace(request.Name) || item.Name.ToLower().Contains(request.Name.ToLower())) &&
+          (!request.Date.HasValue || (request.Date >= item.StartingDate && (!item.EndingDate.HasValue || request.Date < item.EndingDate.Value)))
           ));
       }
       else
@@ -29,9 +31,11 @@ namespace Bm2s.Services.Common.User.Module
                         {
                           Code = item.Code,
                           Description = item.Description,
+                          EndingDate = item.EndingDate,
                           Id = item.Id,
-                          Name = item.Name
-                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+                          Name = item.Name,
+                          StartingDate = item.StartingDate
+                        }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
       response.ItemsCount = collection.Count();
       if (request.PageSize > 0)
@@ -59,26 +63,41 @@ namespace Bm2s.Services.Common.User.Module
     {
       if (request.Module.Id > 0)
       {
-        Bm2s.Data.Common.BLL.User.Module item = Datas.Instance.DataStorage.Modules[request.Module.Id];
+        Bm2s.Data.Common.BLL.User.Modu item = Datas.Instance.DataStorage.Modules[request.Module.Id];
         item.Code = request.Module.Code;
         item.Description = request.Module.Description;
+        item.EndingDate = request.Module.EndingDate;
         item.Id = request.Module.Id;
         item.Name = request.Module.Name;
+        item.StartingDate = request.Module.StartingDate;
         Datas.Instance.DataStorage.Modules[request.Module.Id] = item;
       }
       else
       {
-        Bm2s.Data.Common.BLL.User.Module item = new Data.Common.BLL.User.Module()
+        Bm2s.Data.Common.BLL.User.Modu item = new Data.Common.BLL.User.Modu()
         {
           Code = request.Module.Code,
           Description = request.Module.Description,
+          EndingDate = request.Module.EndingDate,
           Id = request.Module.Id,
-          Name = request.Module.Name
+          Name = request.Module.Name,
+          StartingDate = request.Module.StartingDate
         };
 
         Datas.Instance.DataStorage.Modules.Add(item);
         request.Module.Id = item.Id;
       }
+
+      ModulesResponse response = new ModulesResponse();
+      response.Modules.Add(request.Module);
+      return response;
+    }
+
+    public ModulesResponse Delete(Modules request)
+    {
+      Bm2s.Data.Common.BLL.User.Modu item = Datas.Instance.DataStorage.Modules[request.Module.Id];
+      item.EndingDate = DateTime.Now;
+      Datas.Instance.DataStorage.Modules[item.Id] = item;
 
       ModulesResponse response = new ModulesResponse();
       response.Modules.Add(request.Module);

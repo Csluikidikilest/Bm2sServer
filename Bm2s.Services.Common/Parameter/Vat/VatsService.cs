@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Bm2s.Data.Common.Utils;
 using Bm2s.Response.Common.Parameter.Vat;
@@ -31,9 +32,9 @@ namespace Bm2s.Services.Common.Parameter.Vat
                           Code = item.Code,
                           EndingDate = item.EndingDate,
                           Id = item.Id,
-                          Rate = item.Rate,
+                          Rate = Convert.ToDecimal(item.Rate),
                           StartingDate = item.StartingDate
-                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+                        }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
       response.ItemsCount = collection.Count();
       if (request.PageSize > 0)
@@ -65,7 +66,7 @@ namespace Bm2s.Services.Common.Parameter.Vat
         item.AccountingEntry = request.Vat.AccountingEntry;
         item.Code = request.Vat.Code;
         item.EndingDate = request.Vat.EndingDate;
-        item.Rate = request.Vat.Rate;
+        item.Rate = Convert.ToDouble(request.Vat.Rate);
         item.StartingDate = request.Vat.StartingDate;
         Datas.Instance.DataStorage.Vats[request.Vat.Id] = item;
       }
@@ -76,13 +77,24 @@ namespace Bm2s.Services.Common.Parameter.Vat
           AccountingEntry = request.Vat.AccountingEntry,
           Code = request.Vat.Code,
           EndingDate = request.Vat.EndingDate,
-          Rate = request.Vat.Rate,
+          Rate = Convert.ToDouble(request.Vat.Rate),
           StartingDate = request.Vat.StartingDate
         };
 
         Datas.Instance.DataStorage.Vats.Add(item);
         request.Vat.Id = item.Id;
       }
+
+      VatsResponse response = new VatsResponse();
+      response.Vats.Add(request.Vat);
+      return response;
+    }
+
+    public VatsResponse Delete(Vats request)
+    {
+      Bm2s.Data.Common.BLL.Parameter.Vat item = Datas.Instance.DataStorage.Vats[request.Vat.Id];
+      item.EndingDate = DateTime.Now;
+      Datas.Instance.DataStorage.Vats[item.Id] = item;
 
       VatsResponse response = new VatsResponse();
       response.Vats.Add(request.Vat);

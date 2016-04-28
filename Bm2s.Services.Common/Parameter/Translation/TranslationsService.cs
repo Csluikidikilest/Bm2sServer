@@ -16,14 +16,14 @@ namespace Bm2s.Services.Common.Parameter.Translation
     public TranslationsResponse Get(Translations request)
     {
       TranslationsResponse response = new TranslationsResponse();
-      List<Bm2s.Data.Common.BLL.Parameter.Translation> items = new List<Data.Common.BLL.Parameter.Translation>();
+      List<Bm2s.Data.Common.BLL.Parameter.Tran> items = new List<Data.Common.BLL.Parameter.Tran>();
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.Translations.Where(item =>
-          (string.IsNullOrWhiteSpace(request.Application) || item.Application.ToLower().Contains(request.Application.ToLower())) &&
-          (string.IsNullOrWhiteSpace(request.Key) || item.Key.ToLower().Contains(request.Key.ToLower())) &&
-          (string.IsNullOrWhiteSpace(request.Screen) || item.Screen.ToLower().Contains(request.Screen.ToLower())) &&
-          (request.LanguageId == 0 || item.LanguageId == request.LanguageId)
+          (string.IsNullOrWhiteSpace(request.Application) || item.Application.ToLower() == request.Application.ToLower()) &&
+          (string.IsNullOrWhiteSpace(request.Key) || item.Key.ToLower() == request.Key.ToLower()) &&
+          (string.IsNullOrWhiteSpace(request.Screen) || item.Screen.ToLower() == request.Screen.ToLower()) &&
+          (request.LanguageId == 0 || item.LangId == request.LanguageId)
           ));
       }
       else
@@ -37,10 +37,10 @@ namespace Bm2s.Services.Common.Parameter.Translation
                        Application = item.Application,
                        Id = item.Id,
                        Key = item.Key,
-                       Language = new LanguagesService().Get(new Languages() { Ids = new List<int>() { item.LanguageId } }).Languages.FirstOrDefault(),
+                       Language = new LanguagesService().Get(new Languages() { Ids = new List<int>() { item.LangId } }).Languages.FirstOrDefault(),
                        Screen = item.Screen,
                        Value = item.Value
-                     }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+                     }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
       response.ItemsCount = collection.Count();
       if (request.PageSize > 0)
@@ -68,21 +68,21 @@ namespace Bm2s.Services.Common.Parameter.Translation
     {
       if (request.Translation.Id > 0)
       {
-        Bm2s.Data.Common.BLL.Parameter.Translation item = Datas.Instance.DataStorage.Translations[request.Translation.Id];
+        Bm2s.Data.Common.BLL.Parameter.Tran item = Datas.Instance.DataStorage.Translations[request.Translation.Id];
         item.Application = request.Translation.Application;
         item.Key = request.Translation.Key;
-        item.LanguageId = request.Translation.Language.Id;
+        item.LangId = request.Translation.Language.Id;
         item.Screen = request.Translation.Screen;
         item.Value = request.Translation.Value;
         Datas.Instance.DataStorage.Translations[request.Translation.Id] = item;
       }
       else
       {
-        Bm2s.Data.Common.BLL.Parameter.Translation item = new Data.Common.BLL.Parameter.Translation()
+        Bm2s.Data.Common.BLL.Parameter.Tran item = new Data.Common.BLL.Parameter.Tran()
         {
           Application = request.Translation.Application,
           Key = request.Translation.Key,
-          LanguageId = request.Translation.Language.Id,
+          LangId = request.Translation.Language.Id,
           Screen = request.Translation.Screen,
           Value = request.Translation.Value
         };
@@ -90,6 +90,16 @@ namespace Bm2s.Services.Common.Parameter.Translation
         Datas.Instance.DataStorage.Translations.Add(item);
         request.Translation.Id = item.Id;
       }
+
+      TranslationsResponse response = new TranslationsResponse();
+      response.Translations.Add(request.Translation);
+      return response;
+    }
+
+    public TranslationsResponse Delete(Translations request)
+    {
+      Bm2s.Data.Common.BLL.Parameter.Tran item = Datas.Instance.DataStorage.Translations[request.Translation.Id];
+      Datas.Instance.DataStorage.Translations.Remove(item);
 
       TranslationsResponse response = new TranslationsResponse();
       response.Translations.Add(request.Translation);

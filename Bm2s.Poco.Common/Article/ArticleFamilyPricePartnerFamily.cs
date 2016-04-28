@@ -7,9 +7,9 @@ namespace Bm2s.Poco.Common.Article
   {
     public int Id { get; set; }
 
-    public double? Price { get; set; }
+    public decimal? Price { get; set; }
 
-    public double? Multiplier { get; set; }
+    public decimal? Multiplier { get; set; }
 
     public DateTime StartingDate { get; set; }
 

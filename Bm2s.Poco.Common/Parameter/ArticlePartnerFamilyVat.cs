@@ -6,9 +6,9 @@ namespace Bm2s.Poco.Common.Parameter
   {
     public int Id { get; set; }
 
-    public double Rate { get; set; }
+    public decimal Rate { get; set; }
 
-    public double? Multiplier { get; set; }
+    public decimal? Multiplier { get; set; }
 
     public string AccountingEntry { get; set; }
 

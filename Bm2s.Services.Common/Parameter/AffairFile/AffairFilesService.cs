@@ -13,11 +13,11 @@ namespace Bm2s.Services.Common.Parameter.AffairFile
     public AffairFilesResponse Get(AffairFiles request)
     {
       AffairFilesResponse response = new AffairFilesResponse();
-      List<Bm2s.Data.Common.BLL.Parameter.AffairFile> items = new List<Data.Common.BLL.Parameter.AffairFile>();
+      List<Bm2s.Data.Common.BLL.Parameter.Affi> items = new List<Data.Common.BLL.Parameter.Affi>();
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.AffairFiles.Where(item =>
-          (request.AffairId == 0 || item.AffairId == request.AffairId) &&
+          (request.AffairId == 0 || item.AffaId == request.AffairId) &&
           (string.IsNullOrWhiteSpace(request.Name) || item.Name.ToLower().Contains(request.Name.ToLower())) &&
           (request.UserId == 0 || item.UserId == request.UserId) &&
           (!request.AddingDate.HasValue || request.AddingDate >= item.AddingDate)
@@ -32,12 +32,12 @@ namespace Bm2s.Services.Common.Parameter.AffairFile
                         select new Bm2s.Poco.Common.Parameter.AffairFile()
                         {
                           AddingDate = item.AddingDate,
-                          Affair = new Affair.AffairsService().Get(new Affairs() { Ids = new List<int>() { item.AffairId } }).Affairs.FirstOrDefault(),
-                          File = item.File,
+                          Affair = new Affair.AffairsService().Get(new Affairs() { Ids = new List<int>() { item.AffaId } }).Affairs.FirstOrDefault(),
+                          Content = item.Content,
                           Id = item.Id,
                           Name = item.Name,
                           User = new User.User.UsersService().Get(new Users() { Ids = new List<int>() { item.UserId } }).Users.FirstOrDefault()
-                        }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+                        }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
       response.ItemsCount = collection.Count();
       if (request.PageSize > 0)
@@ -65,21 +65,21 @@ namespace Bm2s.Services.Common.Parameter.AffairFile
     {
       if (request.AffairFile.Id > 0)
       {
-        Bm2s.Data.Common.BLL.Parameter.AffairFile item = Datas.Instance.DataStorage.AffairFiles[request.AffairFile.Id];
+        Bm2s.Data.Common.BLL.Parameter.Affi item = Datas.Instance.DataStorage.AffairFiles[request.AffairFile.Id];
         item.AddingDate = request.AffairFile.AddingDate;
-        item.AffairId = request.AffairFile.Affair.Id;
-        item.File = request.AffairFile.File;
+        item.AffaId = request.AffairFile.Affair.Id;
+        item.Content = request.AffairFile.Content;
         item.Name = request.AffairFile.Name;
         item.UserId = request.AffairFile.User.Id;
         Datas.Instance.DataStorage.AffairFiles[request.AffairFile.Id] = item;
       }
       else
       {
-        Bm2s.Data.Common.BLL.Parameter.AffairFile item = new Data.Common.BLL.Parameter.AffairFile()
+        Bm2s.Data.Common.BLL.Parameter.Affi item = new Data.Common.BLL.Parameter.Affi()
         {
           AddingDate = request.AffairFile.AddingDate,
-          AffairId = request.AffairFile.Affair.Id,
-          File = request.AffairFile.File,
+          AffaId = request.AffairFile.Affair.Id,
+          Content = request.AffairFile.Content,
           Name = request.AffairFile.Name,
           UserId = request.AffairFile.User.Id
         };
@@ -87,6 +87,16 @@ namespace Bm2s.Services.Common.Parameter.AffairFile
         Datas.Instance.DataStorage.AffairFiles.Add(item);
         request.AffairFile.Id = item.Id;
       }
+
+      AffairFilesResponse response = new AffairFilesResponse();
+      response.AffairFiles.Add(request.AffairFile);
+      return response;
+    }
+
+    public AffairFilesResponse Delete(AffairFiles request)
+    {
+      Bm2s.Data.Common.BLL.Parameter.Affi item = Datas.Instance.DataStorage.AffairFiles[request.AffairFile.Id];
+      Datas.Instance.DataStorage.AffairFiles.Remove(item);
 
       AffairFilesResponse response = new AffairFilesResponse();
       response.AffairFiles.Add(request.AffairFile);

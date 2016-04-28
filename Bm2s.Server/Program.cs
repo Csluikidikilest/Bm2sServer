@@ -22,16 +22,12 @@ namespace Bm2s.Server
       Url = string.Format("http://{0}:{1}/", ConfigurationManager.AppSettings["ListeningIp"], ConfigurationManager.AppSettings["ListeningPort"]);
       try
       {
-        Console.Write("Loading plugins : ");
-
         LoadPlugins(false);
 
         Console.WriteLine("Listening on " + Url);
 
-        while (!Command(Console.ReadLine()))
-        {
-          Console.WriteLine(".");
-        }
+        while (!Command(Console.ReadLine().Split(' ')))
+        { }
 
       }
       catch (Exception e)
@@ -43,25 +39,29 @@ namespace Bm2s.Server
       return 0;
     }
 
-    private static bool Command(string command)
+    private static bool Command(string[] args)
     {
       bool result = false;
+      string command = args[0];
       switch (command.Trim())
       {
         case "c":
         case "clear":
           Console.Clear();
-          Command("h");
+          Command("h".Split(' '));
           break;
         case "h":
         case "help":
           Console.WriteLine();
-          Console.WriteLine("---------------------------------------------------");
+          Console.WriteLine("---------------------------------------------------------------");
           Console.WriteLine("h or help        : this help");
           Console.WriteLine("q or quit        : quit server");
           Console.WriteLine("c or clear       : clear console");
           Console.WriteLine("test             : create some datas to test server");
-          Console.WriteLine("---------------------------------------------------");
+          Console.WriteLine("web              : launch default web client with rest services");
+          Console.WriteLine("reload           : reload datas from the database");
+          Console.WriteLine("show [tablename] : show datas from a table");
+          Console.WriteLine("---------------------------------------------------------------");
           Console.WriteLine();
           break;
         case "q":
@@ -71,9 +71,34 @@ namespace Bm2s.Server
         case "test":
           Test();
           break;
+        case "web":
+          System.Diagnostics.Process.Start(Url);
+          break;
+        case "reload":
+          Bm2s.Data.Common.Utils.Datas.Instance.DataStorage.ReloadDatas();
+          break;
+        case "show":
+          if (args.Count() < 2 || string.IsNullOrWhiteSpace(args[1]))
+          {
+            Console.WriteLine("The name of the table is missing");
+          }
+          else
+          {
+            string tablename = args[1].ToLower();
+            PropertyInfo propertyInfo = Bm2s.Data.Common.Utils.Datas.Instance.DataStorage.GetType().GetProperties().FirstOrDefault(item => item.Name.ToLower() == tablename);
+            if (propertyInfo != null)
+            {
+              System.Diagnostics.Process.Start(string.Format("http://{0}:{1}/bm2s/{2}", ConfigurationManager.AppSettings["ListeningIp"], ConfigurationManager.AppSettings["ListeningPort"], tablename));
+            }
+            else
+            {
+              Console.WriteLine("Unknown table [{0}]", tablename);
+            }
+          }
+          break;
         default:
           Console.WriteLine("Unknown command");
-          Command("h");
+          Command("h".Split(' '));
           break;
       }
 
@@ -89,7 +114,6 @@ namespace Bm2s.Server
       Host = new AppHost(Assemblies.ToArray());
       Host.Init();
       Host.Start(Url);
-      Console.WriteLine("[OK]");
     }
 
     private static void Test()

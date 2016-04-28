@@ -9,6 +9,7 @@ using Bm2s.Services.Common.Article.ArticleSubFamily;
 using Bm2s.Services.Common.Parameter.Vat;
 using Bm2s.Services.Common.Partner.Partner;
 using ServiceStack.ServiceInterface;
+using System;
 
 namespace Bm2s.Services.Common.Parameter.ArticleSubFamilyPartnerVat
 {
@@ -17,12 +18,12 @@ namespace Bm2s.Services.Common.Parameter.ArticleSubFamilyPartnerVat
     public ArticleSubFamilyPartnerVatsResponse Get(ArticleSubFamilyPartnerVats request)
     {
       ArticleSubFamilyPartnerVatsResponse response = new ArticleSubFamilyPartnerVatsResponse();
-      List<Bm2s.Data.Common.BLL.Parameter.ArticleSubFamilyPartnerVat> items = new List<Data.Common.BLL.Parameter.ArticleSubFamilyPartnerVat>();
+      List<Bm2s.Data.Common.BLL.Parameter.Aspv> items = new List<Data.Common.BLL.Parameter.Aspv>();
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.ArticleSubFamilyPartnerVats.Where(item =>
-          (request.ArticleSubFamilyId == 0 || item.ArticleSubFamilyId == request.ArticleSubFamilyId) &&
-          (request.PartnerId == 0 || item.PartnerId == request.PartnerId) &&
+          (request.ArticleSubFamilyId == 0 || item.ArsfId == request.ArticleSubFamilyId) &&
+          (request.PartnerId == 0 || item.PartId == request.PartnerId) &&
           (request.VatId == 0 || item.VatId == request.VatId)
           ));
       }
@@ -35,13 +36,13 @@ namespace Bm2s.Services.Common.Parameter.ArticleSubFamilyPartnerVat
                         select new Bm2s.Poco.Common.Parameter.ArticleSubFamilyPartnerVat()
                               {
                                 AccountingEntry = item.AccountingEntry,
-                                ArticleSubFamily = new ArticleSubFamiliesService().Get(new ArticleSubFamilies() { Ids = new List<int>() { item.ArticleSubFamilyId } }).ArticleSubFamilies.FirstOrDefault(),
+                                ArticleSubFamily = new ArticleSubFamiliesService().Get(new ArticleSubFamilies() { Ids = new List<int>() { item.ArsfId } }).ArticleSubFamilies.FirstOrDefault(),
                                 Id = item.Id,
-                                Multiplier = item.Multiplier,
-                                Partner = new PartnersService().Get(new Partners() { Ids = new List<int>() { item.PartnerId } }).Partners.FirstOrDefault(),
-                                Rate = item.Rate,
+                                Multiplier = Convert.ToDecimal(item.Multiplier),
+                                Partner = new PartnersService().Get(new Partners() { Ids = new List<int>() { item.PartId } }).Partners.FirstOrDefault(),
+                                Rate = Convert.ToDecimal(item.Rate),
                                 Vat = new VatsService().Get(new Vats() { Ids = new List<int>() { item.VatId } }).Vats.FirstOrDefault()
-                              }).AsQueryable().OrderBy(request.Order, request.AscendingOrder);
+                              }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
       response.ItemsCount = collection.Count();
       if (request.PageSize > 0)
@@ -69,30 +70,40 @@ namespace Bm2s.Services.Common.Parameter.ArticleSubFamilyPartnerVat
     {
       if (request.ArticleSubFamilyPartnerVat.Id > 0)
       {
-        Bm2s.Data.Common.BLL.Parameter.ArticleSubFamilyPartnerVat item = Datas.Instance.DataStorage.ArticleSubFamilyPartnerVats[request.ArticleSubFamilyPartnerVat.Id];
+        Bm2s.Data.Common.BLL.Parameter.Aspv item = Datas.Instance.DataStorage.ArticleSubFamilyPartnerVats[request.ArticleSubFamilyPartnerVat.Id];
         item.AccountingEntry = request.ArticleSubFamilyPartnerVat.AccountingEntry;
-        item.ArticleSubFamilyId = request.ArticleSubFamilyPartnerVat.ArticleSubFamily.Id;
-        item.Multiplier = request.ArticleSubFamilyPartnerVat.Multiplier;
-        item.PartnerId = request.ArticleSubFamilyPartnerVat.Partner.Id;
-        item.Rate = request.ArticleSubFamilyPartnerVat.Rate;
+        item.ArsfId = request.ArticleSubFamilyPartnerVat.ArticleSubFamily.Id;
+        item.Multiplier = Convert.ToDouble(request.ArticleSubFamilyPartnerVat.Multiplier);
+        item.PartId = request.ArticleSubFamilyPartnerVat.Partner.Id;
+        item.Rate = Convert.ToDouble(request.ArticleSubFamilyPartnerVat.Rate);
         item.VatId = request.ArticleSubFamilyPartnerVat.Vat.Id;
         Datas.Instance.DataStorage.ArticleSubFamilyPartnerVats[request.ArticleSubFamilyPartnerVat.Id] = item;
       }
       else
       {
-        Bm2s.Data.Common.BLL.Parameter.ArticleSubFamilyPartnerVat item = new Data.Common.BLL.Parameter.ArticleSubFamilyPartnerVat()
+        Bm2s.Data.Common.BLL.Parameter.Aspv item = new Data.Common.BLL.Parameter.Aspv()
         {
           AccountingEntry = request.ArticleSubFamilyPartnerVat.AccountingEntry,
-          ArticleSubFamilyId = request.ArticleSubFamilyPartnerVat.ArticleSubFamily.Id,
-          Multiplier = request.ArticleSubFamilyPartnerVat.Multiplier,
-          PartnerId = request.ArticleSubFamilyPartnerVat.Partner.Id,
-          Rate = request.ArticleSubFamilyPartnerVat.Rate,
+          ArsfId = request.ArticleSubFamilyPartnerVat.ArticleSubFamily.Id,
+          Multiplier = Convert.ToDouble(request.ArticleSubFamilyPartnerVat.Multiplier),
+          PartId = request.ArticleSubFamilyPartnerVat.Partner.Id,
+          Rate = Convert.ToDouble(request.ArticleSubFamilyPartnerVat.Rate),
           VatId = request.ArticleSubFamilyPartnerVat.Vat.Id
         };
 
         Datas.Instance.DataStorage.ArticleSubFamilyPartnerVats.Add(item);
         request.ArticleSubFamilyPartnerVat.Id = item.Id;
       }
+
+      ArticleSubFamilyPartnerVatsResponse response = new ArticleSubFamilyPartnerVatsResponse();
+      response.ArticleSubFamilyPartnerVats.Add(request.ArticleSubFamilyPartnerVat);
+      return response;
+    }
+
+    public ArticleSubFamilyPartnerVatsResponse Delete(ArticleSubFamilyPartnerVats request)
+    {
+      Bm2s.Data.Common.BLL.Parameter.Aspv item = Datas.Instance.DataStorage.ArticleSubFamilyPartnerVats[request.ArticleSubFamilyPartnerVat.Id];
+      Datas.Instance.DataStorage.ArticleSubFamilyPartnerVats.Remove(item);
 
       ArticleSubFamilyPartnerVatsResponse response = new ArticleSubFamilyPartnerVatsResponse();
       response.ArticleSubFamilyPartnerVats.Add(request.ArticleSubFamilyPartnerVat);
