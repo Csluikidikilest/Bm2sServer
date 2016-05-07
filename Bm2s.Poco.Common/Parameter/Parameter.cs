@@ -20,7 +20,7 @@ namespace Bm2s.Poco.Common.Parameter
 
     public bool bValue { get; set; }
 
-    public DateTime dValue { get; set; }
+    public DateTime? dValue { get; set; }
 
     public bool IsSystem { get; set; }
 

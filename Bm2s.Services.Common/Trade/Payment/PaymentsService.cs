@@ -18,13 +18,13 @@ namespace Bm2s.Services.Common.Trade.Payment
     public PaymentsResponse Get(Payments request)
     {
       PaymentsResponse response = new PaymentsResponse();
-      List<Bm2s.Data.Common.BLL.Trade.Paym> items = new List<Data.Common.BLL.Trade.Paym>();
+      List<Bm2s.Data.Common.BLL.Trade.Payment> items = new List<Data.Common.BLL.Trade.Payment>();
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.Payments.Where(item =>
           (!request.Date.HasValue || item.Date >= request.Date) &&
-          (request.PartnerId == 0 || item.PartId == request.PartnerId) &&
-          (request.PaymentModeId == 0 || item.PamoId == request.PaymentModeId) &&
+          (request.PartnerId == 0 || item.PartnerId == request.PartnerId) &&
+          (request.PaymentModeId == 0 || item.PaymentModeId == request.PaymentModeId) &&
           (request.UnitId == 0 || item.UnitId == request.UnitId)
           ));
       }
@@ -40,8 +40,8 @@ namespace Bm2s.Services.Common.Trade.Payment
                           Date = item.Date,
                           Id = item.Id,
                           Reference = item.Reference,
-                          Partner = new PartnersService().Get(new Partners() { Ids = new List<int>() { item.PartId } }).Partners.FirstOrDefault(),
-                          PaymentMode = new PaymentModesService().Get(new PaymentModes() { Ids = new List<int>() { item.PamoId } }).PaymentModes.FirstOrDefault(),
+                          Partner = new PartnersService().Get(new Partners() { Ids = new List<int>() { item.PartnerId } }).Partners.FirstOrDefault(),
+                          PaymentMode = new PaymentModesService().Get(new PaymentModes() { Ids = new List<int>() { item.PaymentModeId } }).PaymentModes.FirstOrDefault(),
                           Unit = new UnitsService().Get(new Units() { Ids = new List<int>() { item.UnitId } }).Units.FirstOrDefault()
                         }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
@@ -71,24 +71,24 @@ namespace Bm2s.Services.Common.Trade.Payment
     {
       if (request.Payment.Id > 0)
       {
-        Bm2s.Data.Common.BLL.Trade.Paym item = Datas.Instance.DataStorage.Payments[request.Payment.Id];
+        Bm2s.Data.Common.BLL.Trade.Payment item = Datas.Instance.DataStorage.Payments[request.Payment.Id];
         item.Amount = Convert.ToDouble(request.Payment.Amount);
         item.Date = request.Payment.Date;
         item.Reference = request.Payment.Reference;
-        item.PartId = request.Payment.Partner.Id;
-        item.PamoId = request.Payment.PaymentMode.Id;
+        item.PartnerId = request.Payment.Partner.Id;
+        item.PaymentModeId = request.Payment.PaymentMode.Id;
         item.UnitId = request.Payment.Unit.Id;
         Datas.Instance.DataStorage.Payments[request.Payment.Id] = item;
       }
       else
       {
-        Bm2s.Data.Common.BLL.Trade.Paym item = new Data.Common.BLL.Trade.Paym()
+        Bm2s.Data.Common.BLL.Trade.Payment item = new Data.Common.BLL.Trade.Payment()
         {
           Amount = Convert.ToDouble(request.Payment.Amount),
           Date = request.Payment.Date,
           Reference = request.Payment.Reference,
-          PartId = request.Payment.Partner.Id,
-          PamoId = request.Payment.PaymentMode.Id,
+          PartnerId = request.Payment.Partner.Id,
+          PaymentModeId = request.Payment.PaymentMode.Id,
           UnitId = request.Payment.Unit.Id
         };
 
@@ -103,7 +103,7 @@ namespace Bm2s.Services.Common.Trade.Payment
 
     public PaymentsResponse Delete(Payments request)
     {
-      Bm2s.Data.Common.BLL.Trade.Paym item = Datas.Instance.DataStorage.Payments[request.Payment.Id];
+      Bm2s.Data.Common.BLL.Trade.Payment item = Datas.Instance.DataStorage.Payments[request.Payment.Id];
       Datas.Instance.DataStorage.Payments.Remove(item);
 
       PaymentsResponse response = new PaymentsResponse();

@@ -47,6 +47,9 @@ namespace Bm2s.Data.Utils.BLL
       {
         Console.WriteLine("Error when trying to insert " + this.GetType().ToString().ToLower() + ": " + this.ToString());
         Console.WriteLine("Reason: " + ex.Message);
+#if DEBUG
+        throw (ex);
+#endif
       }
     }
 
@@ -72,6 +75,9 @@ namespace Bm2s.Data.Utils.BLL
       {
         Console.WriteLine("Error when trying to update " + this.GetType().ToString().ToLower() + ": " + this.ToString());
         Console.WriteLine("Reason: " + ex.Message);
+#if DEBUG
+        throw (ex);
+#endif
       }
     }
 

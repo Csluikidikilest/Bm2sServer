@@ -18,12 +18,12 @@ namespace Bm2s.Services.Common.Article.ArticleFamilyPricePartner
     public ArticleFamilyPricePartnersResponse Get(ArticleFamilyPricePartners request)
     {
       ArticleFamilyPricePartnersResponse response = new ArticleFamilyPricePartnersResponse();
-      List<Bm2s.Data.Common.BLL.Article.Afpp> items = new List<Data.Common.BLL.Article.Afpp>();
+      List<Bm2s.Data.Common.BLL.Article.ArticleFamilyPricePartner> items = new List<Data.Common.BLL.Article.ArticleFamilyPricePartner>();
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.ArticleFamilyPricePartners.Where(item =>
-          (request.PartnerId == 0 || item.PartId == request.PartnerId) &&
-          (request.ArticleFamilyId == 0 || item.ArfaId == request.ArticleFamilyId) &&
+          (request.PartnerId == 0 || item.PartnerId == request.PartnerId) &&
+          (request.ArticleFamilyId == 0 || item.ArticleFamilyId == request.ArticleFamilyId) &&
           (!request.Date.HasValue || (request.Date >= item.StartingDate && (!item.EndingDate.HasValue || request.Date < item.EndingDate.Value)))
           ));
       }
@@ -36,11 +36,11 @@ namespace Bm2s.Services.Common.Article.ArticleFamilyPricePartner
                         select new Bm2s.Poco.Common.Article.ArticleFamilyPricePartner()
                         {
                           AddPrice = item.AddPrice,
-                          ArticleFamily = new ArticleFamiliesService().Get(new ArticleFamilies() { Ids = new List<int>() { item.ArfaId } }).ArticleFamilies.FirstOrDefault(),
+                          ArticleFamily = new ArticleFamiliesService().Get(new ArticleFamilies() { Ids = new List<int>() { item.ArticleFamilyId } }).ArticleFamilies.FirstOrDefault(),
                           EndingDate = item.EndingDate,
                           Id = item.Id,
                           Multiplier = Convert.ToDecimal(item.Multiplier),
-                          Partner = new PartnersService().Get(new Partners() { Ids = new List<int>() { item.PartId } }).Partners.FirstOrDefault(),
+                          Partner = new PartnersService().Get(new Partners() { Ids = new List<int>() { item.PartnerId } }).Partners.FirstOrDefault(),
                           Price = Convert.ToDecimal(item.Price),
                           StartingDate = item.StartingDate
                         }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
@@ -71,25 +71,25 @@ namespace Bm2s.Services.Common.Article.ArticleFamilyPricePartner
     {
       if (request.ArticleFamilyPricePartner.Id > 0)
       {
-        Bm2s.Data.Common.BLL.Article.Afpp item = Datas.Instance.DataStorage.ArticleFamilyPricePartners[request.ArticleFamilyPricePartner.Id];
+        Bm2s.Data.Common.BLL.Article.ArticleFamilyPricePartner item = Datas.Instance.DataStorage.ArticleFamilyPricePartners[request.ArticleFamilyPricePartner.Id];
         item.AddPrice = request.ArticleFamilyPricePartner.AddPrice;
-        item.ArfaId = request.ArticleFamilyPricePartner.ArticleFamily.Id;
+        item.ArticleFamilyId = request.ArticleFamilyPricePartner.ArticleFamily.Id;
         item.EndingDate = request.ArticleFamilyPricePartner.EndingDate;
         item.Multiplier = Convert.ToDouble(request.ArticleFamilyPricePartner.Multiplier);
-        item.PartId = request.ArticleFamilyPricePartner.Partner.Id;
+        item.PartnerId = request.ArticleFamilyPricePartner.Partner.Id;
         item.Price = Convert.ToDouble(request.ArticleFamilyPricePartner.Price);
         item.StartingDate = request.ArticleFamilyPricePartner.StartingDate;
         Datas.Instance.DataStorage.ArticleFamilyPricePartners[request.ArticleFamilyPricePartner.Id] = item;
       }
       else
       {
-        Bm2s.Data.Common.BLL.Article.Afpp item = new Data.Common.BLL.Article.Afpp()
+        Bm2s.Data.Common.BLL.Article.ArticleFamilyPricePartner item = new Data.Common.BLL.Article.ArticleFamilyPricePartner()
           {
             AddPrice = request.ArticleFamilyPricePartner.AddPrice,
-            ArfaId = request.ArticleFamilyPricePartner.ArticleFamily.Id,
+            ArticleFamilyId = request.ArticleFamilyPricePartner.ArticleFamily.Id,
             EndingDate = request.ArticleFamilyPricePartner.EndingDate,
             Multiplier = Convert.ToDouble(request.ArticleFamilyPricePartner.Multiplier),
-            PartId = request.ArticleFamilyPricePartner.Partner.Id,
+            PartnerId = request.ArticleFamilyPricePartner.Partner.Id,
             Price = Convert.ToDouble(request.ArticleFamilyPricePartner.Price),
             StartingDate = request.ArticleFamilyPricePartner.StartingDate
           };
@@ -105,7 +105,7 @@ namespace Bm2s.Services.Common.Article.ArticleFamilyPricePartner
 
     public ArticleFamilyPricePartnersResponse Delete(ArticleFamilyPricePartners request)
     {
-      Bm2s.Data.Common.BLL.Article.Afpp item = Datas.Instance.DataStorage.ArticleFamilyPricePartners[request.ArticleFamilyPricePartner.Id];
+      Bm2s.Data.Common.BLL.Article.ArticleFamilyPricePartner item = Datas.Instance.DataStorage.ArticleFamilyPricePartners[request.ArticleFamilyPricePartner.Id];
       item.EndingDate = DateTime.Now;
       Datas.Instance.DataStorage.ArticleFamilyPricePartners[item.Id] = item;
 

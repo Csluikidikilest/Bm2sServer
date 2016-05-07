@@ -15,11 +15,11 @@ namespace Bm2s.Services.Common.Trade.HeaderFile
     public HeaderFilesResponse Get(HeaderFiles request)
     {
       HeaderFilesResponse response = new HeaderFilesResponse();
-      List<Bm2s.Data.Common.BLL.Trade.Hefi> items = new List<Data.Common.BLL.Trade.Hefi>();
+      List<Bm2s.Data.Common.BLL.Trade.HeaderFile> items = new List<Data.Common.BLL.Trade.HeaderFile>();
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.HeaderFiles.Where(item =>
-          (request.HeaderId == 0 || item.HeadId == request.HeaderId) &&
+          (request.HeaderId == 0 || item.HeaderId == request.HeaderId) &&
           (string.IsNullOrWhiteSpace(request.Name) || item.Name.ToLower().Contains(request.Name.ToLower())) &&
           (request.UserId == 0 || item.UserId == request.UserId) &&
           (!request.AddingDate.HasValue || request.AddingDate >= item.AddingDate)
@@ -35,7 +35,7 @@ namespace Bm2s.Services.Common.Trade.HeaderFile
                         {
                           AddingDate = item.AddingDate,
                           Content = item.Content,
-                          Header = new HeadersService().Get(new Headers() { Ids = new List<int>() { item.HeadId } }).Headers.FirstOrDefault(),
+                          Header = new HeadersService().Get(new Headers() { Ids = new List<int>() { item.HeaderId } }).Headers.FirstOrDefault(),
                           Id = item.Id,
                           Name = item.Name,
                           User = new UsersService().Get(new Users() { Ids = new List<int>() { item.UserId } }).Users.FirstOrDefault()
@@ -67,21 +67,21 @@ namespace Bm2s.Services.Common.Trade.HeaderFile
     {
       if (request.HeaderFile.Id > 0)
       {
-        Bm2s.Data.Common.BLL.Trade.Hefi item = Datas.Instance.DataStorage.HeaderFiles[request.HeaderFile.Id];
+        Bm2s.Data.Common.BLL.Trade.HeaderFile item = Datas.Instance.DataStorage.HeaderFiles[request.HeaderFile.Id];
         item.AddingDate = request.HeaderFile.AddingDate;
         item.Content = request.HeaderFile.Content;
-        item.HeadId = request.HeaderFile.Header.Id;
+        item.HeaderId = request.HeaderFile.Header.Id;
         item.Name = request.HeaderFile.Name;
         item.UserId = request.HeaderFile.User.Id;
         Datas.Instance.DataStorage.HeaderFiles[request.HeaderFile.Id] = item;
       }
       else
       {
-        Bm2s.Data.Common.BLL.Trade.Hefi item = new Data.Common.BLL.Trade.Hefi()
+        Bm2s.Data.Common.BLL.Trade.HeaderFile item = new Data.Common.BLL.Trade.HeaderFile()
         {
           AddingDate = request.HeaderFile.AddingDate,
           Content = request.HeaderFile.Content,
-          HeadId = request.HeaderFile.Header.Id,
+          HeaderId = request.HeaderFile.Header.Id,
           Name = request.HeaderFile.Name,
           UserId = request.HeaderFile.User.Id
         };
@@ -97,7 +97,7 @@ namespace Bm2s.Services.Common.Trade.HeaderFile
 
     public HeaderFilesResponse Delete(HeaderFiles request)
     {
-      Bm2s.Data.Common.BLL.Trade.Hefi item = Datas.Instance.DataStorage.HeaderFiles[request.HeaderFile.Id];
+      Bm2s.Data.Common.BLL.Trade.HeaderFile item = Datas.Instance.DataStorage.HeaderFiles[request.HeaderFile.Id];
       Datas.Instance.DataStorage.HeaderFiles.Remove(item);
 
       HeaderFilesResponse response = new HeaderFilesResponse();

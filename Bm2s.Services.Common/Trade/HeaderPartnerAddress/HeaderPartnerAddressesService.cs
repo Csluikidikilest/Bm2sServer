@@ -19,14 +19,14 @@ namespace Bm2s.Services.Common.Trade.HeaderPartnerAddress
     public HeaderPartnerAddressesResponse Get(HeaderPartnerAddresses request)
     {
       HeaderPartnerAddressesResponse response = new HeaderPartnerAddressesResponse();
-      List<Bm2s.Data.Common.BLL.Trade.Hepa> items = new List<Data.Common.BLL.Trade.Hepa>();
+      List<Bm2s.Data.Common.BLL.Trade.HeaderPartnerAddress> items = new List<Data.Common.BLL.Trade.HeaderPartnerAddress>();
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.HeaderPartnerAddresses.Where(item =>
           (request.AddressId == 0 || item.AddressId == request.AddressId) &&
-          (request.AddressTypeId == 0 || item.AdtyId == request.AddressTypeId) &&
+          (request.AddressTypeId == 0 || item.AddressTypeId == request.AddressTypeId) &&
           (request.HeaderId == 0 || item.HeaderId == request.HeaderId) &&
-          (request.PartnerId == 0 || item.PartId == request.PartnerId)
+          (request.PartnerId == 0 || item.PartnerId == request.PartnerId)
           ));
       }
       else
@@ -38,10 +38,10 @@ namespace Bm2s.Services.Common.Trade.HeaderPartnerAddress
                         select new Bm2s.Poco.Common.Trade.HeaderPartnerAddress()
                         {
                           Address = new AddressesService().Get(new Addresses() { Ids = new List<int>() { item.AddressId } }).Addresses.FirstOrDefault(),
-                          AddressType = new AddressTypesService().Get(new AddressTypes() { Ids = new List<int>() { item.AdtyId } }).AddressTypes.FirstOrDefault(),
+                          AddressType = new AddressTypesService().Get(new AddressTypes() { Ids = new List<int>() { item.AddressTypeId } }).AddressTypes.FirstOrDefault(),
                           Header = new HeadersService().Get(new Headers() { Ids = new List<int>() { item.HeaderId } }).Headers.FirstOrDefault(),
                           Id = item.Id,
-                          Partner = new PartnersService().Get(new Partners() { Ids = new List<int>() { item.PartId } }).Partners.FirstOrDefault()
+                          Partner = new PartnersService().Get(new Partners() { Ids = new List<int>() { item.PartnerId } }).Partners.FirstOrDefault()
                         }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
       response.ItemsCount = collection.Count();
@@ -70,21 +70,21 @@ namespace Bm2s.Services.Common.Trade.HeaderPartnerAddress
     {
       if (request.HeaderPartnerAddress.Id > 0)
       {
-        Bm2s.Data.Common.BLL.Trade.Hepa item = Datas.Instance.DataStorage.HeaderPartnerAddresses[request.HeaderPartnerAddress.Id];
+        Bm2s.Data.Common.BLL.Trade.HeaderPartnerAddress item = Datas.Instance.DataStorage.HeaderPartnerAddresses[request.HeaderPartnerAddress.Id];
         item.AddressId = request.HeaderPartnerAddress.Address.Id;
-        item.AdtyId = request.HeaderPartnerAddress.AddressType.Id;
+        item.AddressTypeId = request.HeaderPartnerAddress.AddressType.Id;
         item.HeaderId = request.HeaderPartnerAddress.Header.Id;
-        item.PartId = request.HeaderPartnerAddress.Partner.Id;
+        item.PartnerId = request.HeaderPartnerAddress.Partner.Id;
         Datas.Instance.DataStorage.HeaderPartnerAddresses[request.HeaderPartnerAddress.Id] = item;
       }
       else
       {
-        Bm2s.Data.Common.BLL.Trade.Hepa item = new Data.Common.BLL.Trade.Hepa()
+        Bm2s.Data.Common.BLL.Trade.HeaderPartnerAddress item = new Data.Common.BLL.Trade.HeaderPartnerAddress()
         {
           AddressId = request.HeaderPartnerAddress.Address.Id,
-          AdtyId = request.HeaderPartnerAddress.AddressType.Id,
+          AddressTypeId = request.HeaderPartnerAddress.AddressType.Id,
           HeaderId = request.HeaderPartnerAddress.Header.Id,
-          PartId = request.HeaderPartnerAddress.Partner.Id
+          PartnerId = request.HeaderPartnerAddress.Partner.Id
         };
 
         Datas.Instance.DataStorage.HeaderPartnerAddresses.Add(item);
@@ -98,7 +98,7 @@ namespace Bm2s.Services.Common.Trade.HeaderPartnerAddress
 
     public HeaderPartnerAddressesResponse Delete(HeaderPartnerAddresses request)
     {
-      Bm2s.Data.Common.BLL.Trade.Hepa item = Datas.Instance.DataStorage.HeaderPartnerAddresses[request.HeaderPartnerAddress.Id];
+      Bm2s.Data.Common.BLL.Trade.HeaderPartnerAddress item = Datas.Instance.DataStorage.HeaderPartnerAddresses[request.HeaderPartnerAddress.Id];
       Datas.Instance.DataStorage.HeaderPartnerAddresses.Remove(item);
 
       HeaderPartnerAddressesResponse response = new HeaderPartnerAddressesResponse();

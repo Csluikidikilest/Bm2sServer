@@ -13,11 +13,11 @@ namespace Bm2s.Services.Common.Trade.HeaderFreeReference
     public HeaderFreeReferencesResponse Get(HeaderFreeReferences request)
     {
       HeaderFreeReferencesResponse response = new HeaderFreeReferencesResponse();
-      List<Bm2s.Data.Common.BLL.Trade.Hefr> items = new List<Data.Common.BLL.Trade.Hefr>();
+      List<Bm2s.Data.Common.BLL.Trade.HeaderFreeReference> items = new List<Data.Common.BLL.Trade.HeaderFreeReference>();
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.HeaderFreeReferences.Where(item =>
-          (request.HeaderStatusId == 0 || item.HestId == request.HeaderStatusId)
+          (request.HeaderStatusId == 0 || item.HeaderStatusId == request.HeaderStatusId)
           ));
       }
       else
@@ -28,7 +28,7 @@ namespace Bm2s.Services.Common.Trade.HeaderFreeReference
       var collection = (from item in items
                         select new Bm2s.Poco.Common.Trade.HeaderFreeReference()
                         {
-                          HeaderStatus = new HeaderStatusesService().Get(new HeaderStatuses() { Ids = new List<int>() { item.HestId } }).HeaderStatuses.FirstOrDefault(),
+                          HeaderStatus = new HeaderStatusesService().Get(new HeaderStatuses() { Ids = new List<int>() { item.HeaderStatusId } }).HeaderStatuses.FirstOrDefault(),
                           Id = item.Id,
                           Reference = item.Reference
                         }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
@@ -59,16 +59,16 @@ namespace Bm2s.Services.Common.Trade.HeaderFreeReference
     {
       if (request.HeaderFreeReference.Id > 0)
       {
-        Bm2s.Data.Common.BLL.Trade.Hefr item = Datas.Instance.DataStorage.HeaderFreeReferences[request.HeaderFreeReference.Id];
-        item.HestId = request.HeaderFreeReference.HeaderStatus.Id;
+        Bm2s.Data.Common.BLL.Trade.HeaderFreeReference item = Datas.Instance.DataStorage.HeaderFreeReferences[request.HeaderFreeReference.Id];
+        item.HeaderStatusId = request.HeaderFreeReference.HeaderStatus.Id;
         item.Reference = request.HeaderFreeReference.Reference;
         Datas.Instance.DataStorage.HeaderFreeReferences[request.HeaderFreeReference.Id] = item;
       }
       else
       {
-        Bm2s.Data.Common.BLL.Trade.Hefr item = new Data.Common.BLL.Trade.Hefr()
+        Bm2s.Data.Common.BLL.Trade.HeaderFreeReference item = new Data.Common.BLL.Trade.HeaderFreeReference()
         {
-          HestId = request.HeaderFreeReference.HeaderStatus.Id,
+          HeaderStatusId = request.HeaderFreeReference.HeaderStatus.Id,
           Reference = request.HeaderFreeReference.Reference
         };
 
@@ -83,7 +83,7 @@ namespace Bm2s.Services.Common.Trade.HeaderFreeReference
 
     public HeaderFreeReferencesResponse Delete(HeaderFreeReferences request)
     {
-      Bm2s.Data.Common.BLL.Trade.Hefr item = Datas.Instance.DataStorage.HeaderFreeReferences[request.HeaderFreeReference.Id];
+      Bm2s.Data.Common.BLL.Trade.HeaderFreeReference item = Datas.Instance.DataStorage.HeaderFreeReferences[request.HeaderFreeReference.Id];
       Datas.Instance.DataStorage.HeaderFreeReferences.Remove(item);
 
       HeaderFreeReferencesResponse response = new HeaderFreeReferencesResponse();

@@ -19,15 +19,15 @@ namespace Bm2s.Services.Common.Article.Article
     public ArticlesResponse Get(Articles request)
     {
       ArticlesResponse response = new ArticlesResponse();
-      List<Bm2s.Data.Common.BLL.Article.Arti> items = new List<Data.Common.BLL.Article.Arti>();
+      List<Bm2s.Data.Common.BLL.Article.Article> items = new List<Data.Common.BLL.Article.Article>();
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.Articles.Where(item =>
           (string.IsNullOrWhiteSpace(request.Code) || item.Code.ToLower().Contains(request.Code.ToLower())) &&
           (string.IsNullOrWhiteSpace(request.Designation) || item.Designation.ToLower().Contains(request.Designation.ToLower())) &&
-          (request.ArticleFamilyId == 0 || item.ArfaId == request.ArticleFamilyId) &&
-          (request.ArticleSubFamilyId == 0 || item.ArsfId == request.ArticleSubFamilyId) &&
-          (request.BrandId == 0 || item.BranId == request.BrandId) &&
+          (request.ArticleFamilyId == 0 || item.ArticleFamilyId == request.ArticleFamilyId) &&
+          (request.ArticleSubFamilyId == 0 || item.ArticleSubFamilyId == request.ArticleSubFamilyId) &&
+          (request.BrandId == 0 || item.BrandId == request.BrandId) &&
           (!request.Date.HasValue || (request.Date >= item.StartingDate && (!item.EndingDate.HasValue || request.Date < item.EndingDate.Value)))
           ));
       }
@@ -40,9 +40,9 @@ namespace Bm2s.Services.Common.Article.Article
       var collection = (from item in items
                         select new Bm2s.Poco.Common.Article.Article()
                         {
-                          ArticleFamily = new ArticleFamily.ArticleFamiliesService().Get(new ArticleFamilies() { Ids = new List<int>() { item.ArfaId } }).ArticleFamilies.FirstOrDefault(),
-                          ArticleSubFamily = new ArticleSubFamily.ArticleSubFamiliesService().Get(new ArticleSubFamilies() { Ids = new List<int>() { item.ArsfId } }).ArticleSubFamilies.FirstOrDefault(),
-                          Brand = new BrandsService().Get(new Brands() { Ids = new List<int>() { item.BranId } }).Brands.FirstOrDefault(),
+                          ArticleFamily = new ArticleFamily.ArticleFamiliesService().Get(new ArticleFamilies() { Ids = new List<int>() { item.ArticleFamilyId } }).ArticleFamilies.FirstOrDefault(),
+                          ArticleSubFamily = new ArticleSubFamily.ArticleSubFamiliesService().Get(new ArticleSubFamilies() { Ids = new List<int>() { item.ArticleSubFamilyId } }).ArticleSubFamilies.FirstOrDefault(),
+                          Brand = new BrandsService().Get(new Brands() { Ids = new List<int>() { item.BrandId } }).Brands.FirstOrDefault(),
                           Code = item.Code,
                           Description = item.Description,
                           Designation = item.Designation,
@@ -79,10 +79,10 @@ namespace Bm2s.Services.Common.Article.Article
     {
       if (request.Article.Id > 0)
       {
-        Bm2s.Data.Common.BLL.Article.Arti item = Datas.Instance.DataStorage.Articles[request.Article.Id];
-        item.ArfaId = request.Article.ArticleFamily.Id;
-        item.ArsfId = request.Article.ArticleSubFamily.Id;
-        item.BranId = request.Article.Brand.Id;
+        Bm2s.Data.Common.BLL.Article.Article item = Datas.Instance.DataStorage.Articles[request.Article.Id];
+        item.ArticleFamilyId = request.Article.ArticleFamily.Id;
+        item.ArticleSubFamilyId = request.Article.ArticleSubFamily.Id;
+        item.BrandId = request.Article.Brand.Id;
         item.Code = request.Article.Code;
         item.Description = request.Article.Description;
         item.Designation = request.Article.Designation;
@@ -94,11 +94,11 @@ namespace Bm2s.Services.Common.Article.Article
       }
       else
       {
-        Bm2s.Data.Common.BLL.Article.Arti item = new Bm2s.Data.Common.BLL.Article.Arti()
+        Bm2s.Data.Common.BLL.Article.Article item = new Bm2s.Data.Common.BLL.Article.Article()
         {
-          ArfaId = request.Article.ArticleFamily.Id,
-          ArsfId = request.Article.ArticleSubFamily.Id,
-          BranId = request.Article.Brand.Id,
+          ArticleFamilyId = request.Article.ArticleFamily.Id,
+          ArticleSubFamilyId = request.Article.ArticleSubFamily.Id,
+          BrandId = request.Article.Brand.Id,
           Code = request.Article.Code,
           Description = request.Article.Description,
           Designation = request.Article.Designation,
@@ -119,7 +119,7 @@ namespace Bm2s.Services.Common.Article.Article
 
     public ArticlesResponse Delete(Articles request)
     {
-      Bm2s.Data.Common.BLL.Article.Arti item = Datas.Instance.DataStorage.Articles[request.Article.Id];
+      Bm2s.Data.Common.BLL.Article.Article item = Datas.Instance.DataStorage.Articles[request.Article.Id];
       item.EndingDate = DateTime.Now;
       Datas.Instance.DataStorage.Articles[item.Id] = item;
 

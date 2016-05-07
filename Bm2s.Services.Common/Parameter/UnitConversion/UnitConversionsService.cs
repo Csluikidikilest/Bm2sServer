@@ -13,12 +13,12 @@ namespace Bm2s.Services.Common.Parameter.UnitConversion
     public UnitConversionsResponse Get(UnitConversions request)
     {
       UnitConversionsResponse response = new UnitConversionsResponse();
-      List<Bm2s.Data.Common.BLL.Parameter.Unco> items = new List<Data.Common.BLL.Parameter.Unco>();
+      List<Bm2s.Data.Common.BLL.Parameter.UnitConversion> items = new List<Data.Common.BLL.Parameter.UnitConversion>();
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.UnitConversions.Where(item =>
-          (request.ChildId == 0 || item.UnchId == request.ChildId) &&
-          (request.ParentId == 0 || item.UnpaId == request.ParentId)
+          (request.ChildId == 0 || item.UnitChildId == request.ChildId) &&
+          (request.ParentId == 0 || item.UnitParentId == request.ParentId)
           ));
       }
       else
@@ -29,10 +29,10 @@ namespace Bm2s.Services.Common.Parameter.UnitConversion
       var collection = (from item in items
                         select new Bm2s.Poco.Common.Parameter.UnitConversion()
                         {
-                          Child = new UnitsService().Get(new Units() { Ids = new List<int>() { item.UnchId } }).Units.FirstOrDefault(),
+                          Child = new UnitsService().Get(new Units() { Ids = new List<int>() { item.UnitChildId } }).Units.FirstOrDefault(),
                           Id = item.Id,
                           Multiplier = item.Multiplier,
-                          Parent = new UnitsService().Get(new Units() { Ids = new List<int>() { item.UnpaId } }).Units.FirstOrDefault(),
+                          Parent = new UnitsService().Get(new Units() { Ids = new List<int>() { item.UnitParentId } }).Units.FirstOrDefault(),
                           Quantity = item.Quantity
                         }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
@@ -62,20 +62,20 @@ namespace Bm2s.Services.Common.Parameter.UnitConversion
     {
       if (request.UnitConversion.Id > 0)
       {
-        Bm2s.Data.Common.BLL.Parameter.Unco item = Datas.Instance.DataStorage.UnitConversions[request.UnitConversion.Id];
-        item.UnchId = request.UnitConversion.Child.Id;
+        Bm2s.Data.Common.BLL.Parameter.UnitConversion item = Datas.Instance.DataStorage.UnitConversions[request.UnitConversion.Id];
+        item.UnitChildId = request.UnitConversion.Child.Id;
         item.Multiplier = request.UnitConversion.Multiplier;
-        item.UnpaId = request.UnitConversion.Parent.Id;
+        item.UnitParentId = request.UnitConversion.Parent.Id;
         item.Quantity = request.UnitConversion.Quantity;
         Datas.Instance.DataStorage.UnitConversions[request.UnitConversion.Id] = item;
       }
       else
       {
-        Bm2s.Data.Common.BLL.Parameter.Unco item = new Data.Common.BLL.Parameter.Unco()
+        Bm2s.Data.Common.BLL.Parameter.UnitConversion item = new Data.Common.BLL.Parameter.UnitConversion()
         {
-          UnchId = request.UnitConversion.Child.Id,
+          UnitChildId = request.UnitConversion.Child.Id,
           Multiplier = request.UnitConversion.Multiplier,
-          UnpaId = request.UnitConversion.Parent.Id,
+          UnitParentId = request.UnitConversion.Parent.Id,
           Quantity = request.UnitConversion.Quantity
         };
 
@@ -90,7 +90,7 @@ namespace Bm2s.Services.Common.Parameter.UnitConversion
 
     public UnitConversionsResponse Delete(UnitConversions request)
     {
-      Bm2s.Data.Common.BLL.Parameter.Unco item = Datas.Instance.DataStorage.UnitConversions[request.UnitConversion.Id];
+      Bm2s.Data.Common.BLL.Parameter.UnitConversion item = Datas.Instance.DataStorage.UnitConversions[request.UnitConversion.Id];
       Datas.Instance.DataStorage.UnitConversions.Remove(item);
 
       UnitConversionsResponse response = new UnitConversionsResponse();

@@ -15,11 +15,11 @@ namespace Bm2s.Services.Common.Parameter.Affair
     public AffairsResponse Get(Affairs request)
     {
       AffairsResponse response = new AffairsResponse();
-      List<Bm2s.Data.Common.BLL.Parameter.Affa> items = new List<Data.Common.BLL.Parameter.Affa>();
+      List<Bm2s.Data.Common.BLL.Parameter.Affair> items = new List<Data.Common.BLL.Parameter.Affair>();
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.Affairs.Where(item =>
-          (request.ActivityId == 0 || item.ActiId == request.ActivityId) &&
+          (request.ActivityId == 0 || item.ActivityId == request.ActivityId) &&
           (string.IsNullOrWhiteSpace(request.Code) || item.Code.ToLower().Contains(request.Code.ToLower())) &&
           (string.IsNullOrWhiteSpace(request.Name) || item.Name.ToLower().Contains(request.Name.ToLower())) &&
           (request.UserId == 0 || item.UserId == request.UserId)
@@ -33,7 +33,7 @@ namespace Bm2s.Services.Common.Parameter.Affair
       var collection = (from item in items
                         select new Bm2s.Poco.Common.Parameter.Affair()
                         {
-                          Activity = new ActivitiesService().Get(new Activities() { Ids = new List<int>() { item.ActiId } }).Activities.FirstOrDefault(),
+                          Activity = new ActivitiesService().Get(new Activities() { Ids = new List<int>() { item.ActivityId } }).Activities.FirstOrDefault(),
                           Code = item.Code,
                           Description = item.Description,
                           Id = item.Id,
@@ -67,8 +67,8 @@ namespace Bm2s.Services.Common.Parameter.Affair
     {
       if (request.Affair.Id > 0)
       {
-        Bm2s.Data.Common.BLL.Parameter.Affa item = Datas.Instance.DataStorage.Affairs[request.Affair.Id];
-        item.ActiId = request.Affair.Activity.Id;
+        Bm2s.Data.Common.BLL.Parameter.Affair item = Datas.Instance.DataStorage.Affairs[request.Affair.Id];
+        item.ActivityId = request.Affair.Activity.Id;
         item.Code = request.Affair.Code;
         item.Description = request.Affair.Description;
         item.Name = request.Affair.Name;
@@ -77,9 +77,9 @@ namespace Bm2s.Services.Common.Parameter.Affair
       }
       else
       {
-        Bm2s.Data.Common.BLL.Parameter.Affa item = new Data.Common.BLL.Parameter.Affa()
+        Bm2s.Data.Common.BLL.Parameter.Affair item = new Data.Common.BLL.Parameter.Affair()
         {
-          ActiId = request.Affair.Activity.Id,
+          ActivityId = request.Affair.Activity.Id,
           Code = request.Affair.Code,
           Description = request.Affair.Description,
           Name = request.Affair.Name,
@@ -97,7 +97,7 @@ namespace Bm2s.Services.Common.Parameter.Affair
 
     public AffairsResponse Delete(Affairs request)
     {
-      Bm2s.Data.Common.BLL.Parameter.Affa item = Datas.Instance.DataStorage.Affairs[request.Affair.Id];
+      Bm2s.Data.Common.BLL.Parameter.Affair item = Datas.Instance.DataStorage.Affairs[request.Affair.Id];
       Datas.Instance.DataStorage.Affairs.Remove(item);
 
       AffairsResponse response = new AffairsResponse();

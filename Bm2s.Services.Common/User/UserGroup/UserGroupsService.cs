@@ -15,11 +15,11 @@ namespace Bm2s.Services.Common.User.UserGroup
     public UserGroupsResponse Get(UserGroups request)
     {
       UserGroupsResponse response = new UserGroupsResponse();
-      List<Bm2s.Data.Common.BLL.User.Usgr> items = new List<Data.Common.BLL.User.Usgr>();
+      List<Bm2s.Data.Common.BLL.User.UserGroup> items = new List<Data.Common.BLL.User.UserGroup>();
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.UserGroups.Where(item =>
-          (request.GroupId == 0 || item.GrouId == request.GroupId) &&
+          (request.GroupId == 0 || item.GroupId == request.GroupId) &&
           (request.UserId == 0 || item.UserId == request.UserId)
           ));
       }
@@ -31,7 +31,7 @@ namespace Bm2s.Services.Common.User.UserGroup
       var collection = (from item in items
                         select new Bm2s.Poco.Common.User.UserGroup()
                         {
-                          Group = new GroupsService().Get(new Groups() { Ids = new List<int>() { item.GrouId } }).Groups.FirstOrDefault(),
+                          Group = new GroupsService().Get(new Groups() { Ids = new List<int>() { item.GroupId } }).Groups.FirstOrDefault(),
                           Id = item.Id,
                           User = new UsersService().Get(new Users() { Ids = new List<int>() { item.UserId } }).Users.FirstOrDefault()
                         }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
@@ -62,16 +62,16 @@ namespace Bm2s.Services.Common.User.UserGroup
     {
       if (request.UserGroup.Id > 0)
       {
-        Bm2s.Data.Common.BLL.User.Usgr item = Datas.Instance.DataStorage.UserGroups[request.UserGroup.Id];
-        item.GrouId = request.UserGroup.Group.Id;
+        Bm2s.Data.Common.BLL.User.UserGroup item = Datas.Instance.DataStorage.UserGroups[request.UserGroup.Id];
+        item.GroupId = request.UserGroup.Group.Id;
         item.UserId = request.UserGroup.User.Id;
         Datas.Instance.DataStorage.UserGroups[request.UserGroup.Id] = item;
       }
       else
       {
-        Bm2s.Data.Common.BLL.User.Usgr item = new Data.Common.BLL.User.Usgr()
+        Bm2s.Data.Common.BLL.User.UserGroup item = new Data.Common.BLL.User.UserGroup()
         {
-          GrouId = request.UserGroup.Group.Id,
+          GroupId = request.UserGroup.Group.Id,
           UserId = request.UserGroup.User.Id
         };
 
@@ -86,7 +86,7 @@ namespace Bm2s.Services.Common.User.UserGroup
 
     public UserGroupsResponse Delete(UserGroups request)
     {
-      Bm2s.Data.Common.BLL.User.Usgr item = Datas.Instance.DataStorage.UserGroups[request.UserGroup.Id];
+      Bm2s.Data.Common.BLL.User.UserGroup item = Datas.Instance.DataStorage.UserGroups[request.UserGroup.Id];
       Datas.Instance.DataStorage.UserGroups.Remove(item);
 
       UserGroupsResponse response = new UserGroupsResponse();

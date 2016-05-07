@@ -15,11 +15,11 @@ namespace Bm2s.Services.Common.User.UserActivity
     public UserActivitiesResponse Get(UserActivities request)
     {
       UserActivitiesResponse response = new UserActivitiesResponse();
-      List<Bm2s.Data.Common.BLL.User.Usac> items = new List<Data.Common.BLL.User.Usac>();
+      List<Bm2s.Data.Common.BLL.User.UserActivity> items = new List<Data.Common.BLL.User.UserActivity>();
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.UserActivities.Where(item =>
-          (request.ActivityId == 0 || item.ActiId == request.ActivityId) &&
+          (request.ActivityId == 0 || item.ActivityId == request.ActivityId) &&
           (request.UserId == 0 || item.UserId == request.UserId)
           ));
       }
@@ -31,7 +31,7 @@ namespace Bm2s.Services.Common.User.UserActivity
       var collection = (from item in items
                         select new Bm2s.Poco.Common.User.UserActivity()
                         {
-                          Activity = new ActivitiesService().Get(new Activities() { Ids = new List<int>() { item.ActiId } }).Activities.FirstOrDefault(),
+                          Activity = new ActivitiesService().Get(new Activities() { Ids = new List<int>() { item.ActivityId } }).Activities.FirstOrDefault(),
                           Id = item.Id,
                           IsDefault = item.IsDefault,
                           User = new UsersService().Get(new Users() { Ids = new List<int>() { item.UserId } }).Users.FirstOrDefault()
@@ -63,17 +63,17 @@ namespace Bm2s.Services.Common.User.UserActivity
     {
       if (request.UserActivity.Id > 0)
       {
-        Bm2s.Data.Common.BLL.User.Usac item = Datas.Instance.DataStorage.UserActivities[request.UserActivity.Id];
-        item.ActiId = request.UserActivity.Activity.Id;
+        Bm2s.Data.Common.BLL.User.UserActivity item = Datas.Instance.DataStorage.UserActivities[request.UserActivity.Id];
+        item.ActivityId = request.UserActivity.Activity.Id;
         item.IsDefault = request.UserActivity.IsDefault;
         item.UserId = request.UserActivity.User.Id;
         Datas.Instance.DataStorage.UserActivities[request.UserActivity.Id] = item;
       }
       else
       {
-        Bm2s.Data.Common.BLL.User.Usac item = new Data.Common.BLL.User.Usac()
+        Bm2s.Data.Common.BLL.User.UserActivity item = new Data.Common.BLL.User.UserActivity()
         {
-          ActiId = request.UserActivity.Activity.Id,
+          ActivityId = request.UserActivity.Activity.Id,
           IsDefault = request.UserActivity.IsDefault,
           UserId = request.UserActivity.User.Id
         };
@@ -89,7 +89,7 @@ namespace Bm2s.Services.Common.User.UserActivity
 
     public UserActivitiesResponse Delete(UserActivities request)
     {
-      Bm2s.Data.Common.BLL.User.Usac item = Datas.Instance.DataStorage.UserActivities[request.UserActivity.Id];
+      Bm2s.Data.Common.BLL.User.UserActivity item = Datas.Instance.DataStorage.UserActivities[request.UserActivity.Id];
       Datas.Instance.DataStorage.UserActivities.Remove(item);
 
       UserActivitiesResponse response = new UserActivitiesResponse();

@@ -11,7 +11,7 @@ namespace Bm2s.Services.Common.Parameter.Language
     public LanguagesResponse Get(Languages request)
     {
       LanguagesResponse response = new LanguagesResponse();
-      List<Bm2s.Data.Common.BLL.Parameter.Lang> items = new List<Data.Common.BLL.Parameter.Lang>();
+      List<Bm2s.Data.Common.BLL.Parameter.Language> items = new List<Data.Common.BLL.Parameter.Language>();
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.Languages.Where(item =>
@@ -58,14 +58,14 @@ namespace Bm2s.Services.Common.Parameter.Language
     {
       if (request.Language.Id > 0)
       {
-        Bm2s.Data.Common.BLL.Parameter.Lang item = Datas.Instance.DataStorage.Languages[request.Language.Id];
+        Bm2s.Data.Common.BLL.Parameter.Language item = Datas.Instance.DataStorage.Languages[request.Language.Id];
         item.Code = request.Language.Code;
         item.Name = request.Language.Name;
         Datas.Instance.DataStorage.Languages[request.Language.Id] = item;
       }
       else
       {
-        Bm2s.Data.Common.BLL.Parameter.Lang item = new Data.Common.BLL.Parameter.Lang()
+        Bm2s.Data.Common.BLL.Parameter.Language item = new Data.Common.BLL.Parameter.Language()
         {
           Code = request.Language.Code,
           Name = request.Language.Name,
@@ -82,7 +82,7 @@ namespace Bm2s.Services.Common.Parameter.Language
 
     public LanguagesResponse Delete(Languages request)
     {
-      Bm2s.Data.Common.BLL.Parameter.Lang item = Datas.Instance.DataStorage.Languages[request.Language.Id];
+      Bm2s.Data.Common.BLL.Parameter.Language item = Datas.Instance.DataStorage.Languages[request.Language.Id];
       Datas.Instance.DataStorage.Languages.Remove(item);
 
       LanguagesResponse response = new LanguagesResponse();

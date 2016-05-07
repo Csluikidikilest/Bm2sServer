@@ -12,7 +12,7 @@ namespace Bm2s.Services.Common.Article.ArticleFamily
     public ArticleFamiliesResponse Get(ArticleFamilies request)
     {
       ArticleFamiliesResponse response = new ArticleFamiliesResponse();
-      List<Bm2s.Data.Common.BLL.Article.Arfa> items = new List<Data.Common.BLL.Article.Arfa>();
+      List<Bm2s.Data.Common.BLL.Article.ArticleFamily> items = new List<Data.Common.BLL.Article.ArticleFamily>();
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.ArticleFamilies.Where(item =>
@@ -65,7 +65,7 @@ namespace Bm2s.Services.Common.Article.ArticleFamily
     {
       if (request.ArticleFamily.Id > 0)
       {
-        Bm2s.Data.Common.BLL.Article.Arfa item = Datas.Instance.DataStorage.ArticleFamilies[request.ArticleFamily.Id];
+        Bm2s.Data.Common.BLL.Article.ArticleFamily item = Datas.Instance.DataStorage.ArticleFamilies[request.ArticleFamily.Id];
         item.AccountingEntry = request.ArticleFamily.AccountingEntry;
         item.Code = request.ArticleFamily.Code;
         item.Description = request.ArticleFamily.Description;
@@ -76,7 +76,7 @@ namespace Bm2s.Services.Common.Article.ArticleFamily
       }
       else
       {
-        Bm2s.Data.Common.BLL.Article.Arfa item = new Bm2s.Data.Common.BLL.Article.Arfa()
+        Bm2s.Data.Common.BLL.Article.ArticleFamily item = new Bm2s.Data.Common.BLL.Article.ArticleFamily()
         {
           AccountingEntry = request.ArticleFamily.AccountingEntry,
           Code = request.ArticleFamily.Code,
@@ -97,7 +97,7 @@ namespace Bm2s.Services.Common.Article.ArticleFamily
 
     public ArticleFamiliesResponse Delete(ArticleFamilies request)
     {
-      Bm2s.Data.Common.BLL.Article.Arfa item = Datas.Instance.DataStorage.ArticleFamilies[request.ArticleFamily.Id];
+      Bm2s.Data.Common.BLL.Article.ArticleFamily item = Datas.Instance.DataStorage.ArticleFamilies[request.ArticleFamily.Id];
       item.EndingDate = DateTime.Now;
       Datas.Instance.DataStorage.ArticleFamilies[item.Id] = item;
 

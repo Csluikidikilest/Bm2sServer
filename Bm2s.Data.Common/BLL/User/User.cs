@@ -5,6 +5,7 @@ using ServiceStack.DataAnnotations;
 
 namespace Bm2s.Data.Common.BLL.User
 {
+  [Alias("User")]
   public class User : DataRow
   {
     [AutoIncrement]
@@ -36,7 +37,8 @@ namespace Bm2s.Data.Common.BLL.User
 
     public DateTime? EndingDate { get; set; }
 
-    [References(typeof(Parameter.Lang))]
-    public int DelaId { get; set; }
+    [Alias("DelaId")]
+    [References(typeof(Parameter.Language))]
+    public int DefaultLanguageId { get; set; }
   }
 }

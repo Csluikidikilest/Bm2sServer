@@ -62,205 +62,205 @@ namespace Bm2s.Data.Common.Utils
       try
       {
         Console.Write("Table creation ArticleFamily: ");
-        this.DbConnection.CreateTableIfNotExists<Arfa>();
+        this.DbConnection.CreateTableIfNotExists<ArticleFamily>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation ArticleSubFamily: ");
-        this.DbConnection.CreateTableIfNotExists<Arsf>();
+        this.DbConnection.CreateTableIfNotExists<ArticleSubFamily>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation Brand: ");
-        this.DbConnection.CreateTableIfNotExists<Bran>();
+        this.DbConnection.CreateTableIfNotExists<Brand>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation Unit: ");
         this.DbConnection.CreateTableIfNotExists<Unit>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation Article: ");
-        this.DbConnection.CreateTableIfNotExists<Arti>();
+        this.DbConnection.CreateTableIfNotExists<Article>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation Language: ");
-        this.DbConnection.CreateTableIfNotExists<Lang>();
+        this.DbConnection.CreateTableIfNotExists<Language>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation User: ");
         this.DbConnection.CreateTableIfNotExists<User>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation Partner: ");
-        this.DbConnection.CreateTableIfNotExists<Part>();
+        this.DbConnection.CreateTableIfNotExists<Partner>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation ArticleFamilyPricePartner: ");
-        this.DbConnection.CreateTableIfNotExists<Afpp>();
+        this.DbConnection.CreateTableIfNotExists<ArticleFamilyPricePartner>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation PartnerFamily: ");
-        this.DbConnection.CreateTableIfNotExists<Pafa>();
+        this.DbConnection.CreateTableIfNotExists<PartnerFamily>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation ArticleFamilyPricePartnerFamily: ");
-        this.DbConnection.CreateTableIfNotExists<Afpf>();
+        this.DbConnection.CreateTableIfNotExists<ArticleFamilyPricePartnerFamily>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation ArticlePricePartner: ");
-        this.DbConnection.CreateTableIfNotExists<Arpp>();
+        this.DbConnection.CreateTableIfNotExists<ArticlePricePartner>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation ArticlePricePartnerFamily: ");
-        this.DbConnection.CreateTableIfNotExists<Appf>();
+        this.DbConnection.CreateTableIfNotExists<ArticlePricePartnerFamily>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation ArticleSubFamilyPricePartner: ");
-        this.DbConnection.CreateTableIfNotExists<Aspp>();
+        this.DbConnection.CreateTableIfNotExists<ArticleSubFamilyPricePartner>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation ArticleSubFamilyPricePartnerFamily: ");
-        this.DbConnection.CreateTableIfNotExists<Aspf>();
+        this.DbConnection.CreateTableIfNotExists<ArticleSubFamilyPricePartnerFamily>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation Nomenclature: ");
-        this.DbConnection.CreateTableIfNotExists<Nome>();
+        this.DbConnection.CreateTableIfNotExists<Nomenclature>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation Price: ");
-        this.DbConnection.CreateTableIfNotExists<Pric>();
+        this.DbConnection.CreateTableIfNotExists<Price>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation Activity: ");
-        this.DbConnection.CreateTableIfNotExists<Acti>();
+        this.DbConnection.CreateTableIfNotExists<Activity>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation Affair: ");
-        this.DbConnection.CreateTableIfNotExists<Affa>();
+        this.DbConnection.CreateTableIfNotExists<Affair>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation AffairFile: ");
-        this.DbConnection.CreateTableIfNotExists<Affi>();
+        this.DbConnection.CreateTableIfNotExists<AffairFile>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation HeaderStatus: ");
-        this.DbConnection.CreateTableIfNotExists<Hest>();
+        this.DbConnection.CreateTableIfNotExists<HeaderStatus>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation Header: ");
-        this.DbConnection.CreateTableIfNotExists<Head>();
+        this.DbConnection.CreateTableIfNotExists<Header>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation AffairHeader: ");
-        this.DbConnection.CreateTableIfNotExists<Afhe>();
+        this.DbConnection.CreateTableIfNotExists<AffairHeader>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation Vat: ");
         this.DbConnection.CreateTableIfNotExists<Vat>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation ArticleFamilyPartnerFamilyVat: ");
-        this.DbConnection.CreateTableIfNotExists<Affv>();
+        this.DbConnection.CreateTableIfNotExists<ArticleFamilyPartnerFamilyVat>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation ArticleFamilyPartnerVat: ");
-        this.DbConnection.CreateTableIfNotExists<Afpv>();
+        this.DbConnection.CreateTableIfNotExists<ArticleFamilyPartnerVat>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation ArticlePartnerFamilyVat: ");
-        this.DbConnection.CreateTableIfNotExists<Apfv>();
+        this.DbConnection.CreateTableIfNotExists<ArticlePartnerFamilyVat>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation ArticlePartnerVat: ");
-        this.DbConnection.CreateTableIfNotExists<Arpv>();
+        this.DbConnection.CreateTableIfNotExists<ArticlePartnerVat>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation ArticleSubFamilyPartnerFamilyVat: ");
-        this.DbConnection.CreateTableIfNotExists<Asfv>();
+        this.DbConnection.CreateTableIfNotExists<ArticleSubFamilyPartnerFamilyVat>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation ArticleSubFamilyPartnerVat: ");
-        this.DbConnection.CreateTableIfNotExists<Aspv>();
+        this.DbConnection.CreateTableIfNotExists<ArticleSubFamilyPartnerVat>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation Country: ");
-        this.DbConnection.CreateTableIfNotExists<Coun>();
+        this.DbConnection.CreateTableIfNotExists<Country>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation CountryCurrency: ");
-        this.DbConnection.CreateTableIfNotExists<Cocu>();
+        this.DbConnection.CreateTableIfNotExists<CountryCurrency>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation InventoryHeader: ");
-        this.DbConnection.CreateTableIfNotExists<Inhe>();
+        this.DbConnection.CreateTableIfNotExists<InventoryHeader>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation InventoryLine: ");
-        this.DbConnection.CreateTableIfNotExists<Inli>();
+        this.DbConnection.CreateTableIfNotExists<InventoryLine>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation Parameter: ");
-        this.DbConnection.CreateTableIfNotExists<Para>();
+        this.DbConnection.CreateTableIfNotExists<Parameter>();
         Console.WriteLine("[OK]");
-        Console.Write("Table creation User Parameter: ");
-        this.DbConnection.CreateTableIfNotExists<Uspa>();
+        Console.Write("Table creation UserParameter: ");
+        this.DbConnection.CreateTableIfNotExists<UserParameter>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation Period: ");
-        this.DbConnection.CreateTableIfNotExists<Peri>();
+        this.DbConnection.CreateTableIfNotExists<Period>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation Subscription: ");
-        this.DbConnection.CreateTableIfNotExists<Subs>();
+        this.DbConnection.CreateTableIfNotExists<Subscription>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation SubscriptionPartner: ");
-        this.DbConnection.CreateTableIfNotExists<Supa>();
+        this.DbConnection.CreateTableIfNotExists<SubscriptionPartner>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation Town: ");
         this.DbConnection.CreateTableIfNotExists<Town>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation UnitConversion: ");
-        this.DbConnection.CreateTableIfNotExists<Unco>();
+        this.DbConnection.CreateTableIfNotExists<UnitConversion>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation Address: ");
-        this.DbConnection.CreateTableIfNotExists<Addr>();
+        this.DbConnection.CreateTableIfNotExists<Address>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation AddressLine: ");
-        this.DbConnection.CreateTableIfNotExists<Adli>();
+        this.DbConnection.CreateTableIfNotExists<AddressLine>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation AddressType: ");
-        this.DbConnection.CreateTableIfNotExists<Adty>();
+        this.DbConnection.CreateTableIfNotExists<AddressType>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation PartnerAddress: ");
-        this.DbConnection.CreateTableIfNotExists<Paad>();
+        this.DbConnection.CreateTableIfNotExists<PartnerAddress>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation PartnerContact: ");
-        this.DbConnection.CreateTableIfNotExists<Paco>();
+        this.DbConnection.CreateTableIfNotExists<PartnerContact>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation PartnerFile: ");
-        this.DbConnection.CreateTableIfNotExists<Pafi>();
+        this.DbConnection.CreateTableIfNotExists<PartnerFile>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation PartnerPartnerFamily: ");
-        this.DbConnection.CreateTableIfNotExists<Papf>();
+        this.DbConnection.CreateTableIfNotExists<PartnerPartnerFamily>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation HeaderFile: ");
-        this.DbConnection.CreateTableIfNotExists<Hefi>();
+        this.DbConnection.CreateTableIfNotExists<HeaderFile>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation HeaderFreeReference: ");
-        this.DbConnection.CreateTableIfNotExists<Hefr>();
+        this.DbConnection.CreateTableIfNotExists<HeaderFreeReference>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation HeaderLineType: ");
-        this.DbConnection.CreateTableIfNotExists<Helt>();
+        this.DbConnection.CreateTableIfNotExists<HeaderLineType>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation HeaderLine: ");
-        this.DbConnection.CreateTableIfNotExists<Heli>();
+        this.DbConnection.CreateTableIfNotExists<HeaderLine>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation HeaderOrigin: ");
-        this.DbConnection.CreateTableIfNotExists<Heor>();
+        this.DbConnection.CreateTableIfNotExists<HeaderOrigin>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation HeaderPartnerAddress: ");
-        this.DbConnection.CreateTableIfNotExists<Hepa>();
+        this.DbConnection.CreateTableIfNotExists<HeaderPartnerAddress>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation HeaderStatusStep: ");
-        this.DbConnection.CreateTableIfNotExists<Hess>();
+        this.DbConnection.CreateTableIfNotExists<HeaderStatusStep>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation PaymentMode: ");
-        this.DbConnection.CreateTableIfNotExists<Pamo>();
+        this.DbConnection.CreateTableIfNotExists<PaymentMode>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation Payment: ");
-        this.DbConnection.CreateTableIfNotExists<Paym>();
+        this.DbConnection.CreateTableIfNotExists<Payment>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation Reconciliation: ");
-        this.DbConnection.CreateTableIfNotExists<Reco>();
+        this.DbConnection.CreateTableIfNotExists<Reconciliation>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation Group: ");
-        this.DbConnection.CreateTableIfNotExists<Grou>();
+        this.DbConnection.CreateTableIfNotExists<Group>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation Module: ");
-        this.DbConnection.CreateTableIfNotExists<Modu>();
+        this.DbConnection.CreateTableIfNotExists<Module>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation GroupModule: ");
-        this.DbConnection.CreateTableIfNotExists<Grmo>();
+        this.DbConnection.CreateTableIfNotExists<GroupModule>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation UserActivity: ");
-        this.DbConnection.CreateTableIfNotExists<Usac>();
+        this.DbConnection.CreateTableIfNotExists<UserActivity>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation UserGroup: ");
-        this.DbConnection.CreateTableIfNotExists<Usgr>();
+        this.DbConnection.CreateTableIfNotExists<UserGroup>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation UserModule: ");
-        this.DbConnection.CreateTableIfNotExists<Usmo>();
+        this.DbConnection.CreateTableIfNotExists<UserModule>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation Translation: ");
-        this.DbConnection.CreateTableIfNotExists<Tran>();
+        this.DbConnection.CreateTableIfNotExists<Translation>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation Message: ");
-        this.DbConnection.CreateTableIfNotExists<Mess>();
+        this.DbConnection.CreateTableIfNotExists<Message>();
         Console.WriteLine("[OK]");
         Console.Write("Table creation MessageRecipient: ");
-        this.DbConnection.CreateTableIfNotExists<Mere>();
+        this.DbConnection.CreateTableIfNotExists<MessageRecipient>();
         Console.WriteLine("[OK]");
       }
       catch (Exception)
@@ -279,17 +279,17 @@ namespace Bm2s.Data.Common.Utils
       Console.Write("Initial datas english language: ");
 
       // Languages: ISO CODE 639-3: https://en.wikipedia.org/wiki/ISO_639
-      BLL.Parameter.Lang english = this.DataStorage.Languages.FirstOrDefault(item => item.Code.ToLower() == "en-gb");
+      BLL.Parameter.Language english = this.DataStorage.Languages.FirstOrDefault(item => item.Code.ToLower() == "en-gb");
       if (english == null)
       {
-        english = new Lang() { Code = "en-gb", Name = "English (Great Britain)" };
+        english = new Language() { Code = "en-gb", Name = "English (Great Britain)" };
         this.DataStorage.Languages.Add(english);
       }
 
-      BLL.Parameter.Lang french = this.DataStorage.Languages.FirstOrDefault(item => item.Code.ToLower() == "fr-fr");
+      BLL.Parameter.Language french = this.DataStorage.Languages.FirstOrDefault(item => item.Code.ToLower() == "fr-fr");
       if (french == null)
       {
-        french = new Lang() { Code = "fr-fr", Name = "Français (France)" };
+        french = new Language() { Code = "fr-fr", Name = "Français (France)" };
         this.DataStorage.Languages.Add(french);
       }
 
@@ -297,10 +297,10 @@ namespace Bm2s.Data.Common.Utils
       Console.Write("Initial datas administrators group: ");
 
       // Group: administrators
-      BLL.User.Grou administrators = this.DataStorage.Groups.FirstOrDefault(item => item.Code == "Administrators");
+      BLL.User.Group administrators = this.DataStorage.Groups.FirstOrDefault(item => item.Code == "Administrators");
       if (administrators == null)
       {
-        administrators = new Grou() { Code = "Administrators", Name = "System Administrators", IsSystem = true, StartingDate = new DateTime(2015, 1, 1) };
+        administrators = new Group() { Code = "Administrators", Name = "System Administrators", IsSystem = true, StartingDate = new DateTime(2015, 1, 1) };
         this.DataStorage.Groups.Add(administrators);
       }
 
@@ -320,9 +320,9 @@ namespace Bm2s.Data.Common.Utils
           password.Append(passwordByte.ToString("X2"));
         }
 
-        administrator = new User() { DelaId = english.Id, LastName = "Administrator", IsAdministrator = true, IsAnonymous = false, IsSystem = true, FirstName = string.Empty, Login = "Administrator", Password = password.ToString(), StartingDate = new DateTime(2015, 1, 1) };
+        administrator = new User() { DefaultLanguageId = english.Id, LastName = "Administrator", IsAdministrator = true, IsAnonymous = false, IsSystem = true, FirstName = string.Empty, Login = "Administrator", Password = password.ToString(), StartingDate = new DateTime(2015, 1, 1) };
         this.DataStorage.Users.Add(administrator);
-        BLL.User.Usgr administratorGroups = new Usgr() { GrouId = administrators.Id, UserId = administrator.Id };
+        BLL.User.UserGroup administratorGroups = new UserGroup() { GroupId = administrators.Id, UserId = administrator.Id };
         this.DataStorage.UserGroups.Add(administratorGroups);
       }
 
@@ -330,10 +330,10 @@ namespace Bm2s.Data.Common.Utils
       Console.Write("Initial datas visitors group: ");
 
       // Group: visitors
-      BLL.User.Grou visitors = this.DataStorage.Groups.FirstOrDefault(item => item.Code == "Visitors");
+      BLL.User.Group visitors = this.DataStorage.Groups.FirstOrDefault(item => item.Code == "Visitors");
       if (visitors == null)
       {
-        visitors = new Grou() { Code = "Visitors", Name = "Visitors", IsSystem = true, StartingDate = new DateTime(2015, 1, 1) };
+        visitors = new Group() { Code = "Visitors", Name = "Visitors", IsSystem = true, StartingDate = new DateTime(2015, 1, 1) };
         this.DataStorage.Groups.Add(visitors);
       }
 
@@ -353,10 +353,10 @@ namespace Bm2s.Data.Common.Utils
           password.Append(passwordByte.ToString("X2"));
         }
 
-        visitor = new User() { DelaId = english.Id, LastName = "Visitor", IsAdministrator = false, IsAnonymous = true, IsSystem = true, FirstName = string.Empty, Login = "Visitor", Password = password.ToString(), StartingDate = new DateTime(2015, 1, 1) };
+        visitor = new User() { DefaultLanguageId = english.Id, LastName = "Visitor", IsAdministrator = false, IsAnonymous = true, IsSystem = true, FirstName = string.Empty, Login = "Visitor", Password = password.ToString(), StartingDate = new DateTime(2015, 1, 1) };
         this.DataStorage.Users.Add(visitor);
 
-        BLL.User.Usgr visitorGroups = new Usgr() { GrouId = visitors.Id, UserId = visitor.Id };
+        BLL.User.UserGroup visitorGroups = new UserGroup() { GroupId = visitors.Id, UserId = visitor.Id };
         this.DataStorage.UserGroups.Add(visitorGroups);
       }
 
@@ -364,10 +364,10 @@ namespace Bm2s.Data.Common.Utils
       Console.Write("Initial datas classic group: ");
 
       // Group: classic users
-      BLL.User.Grou users = this.DataStorage.Groups.FirstOrDefault(item => item.Code == "Users");
+      BLL.User.Group users = this.DataStorage.Groups.FirstOrDefault(item => item.Code == "Users");
       if (users == null)
       {
-        users = new Grou() { Code = "Users", Name = "Classic Users", IsSystem = false, StartingDate = new DateTime(2015, 1, 1) };
+        users = new Group() { Code = "Users", Name = "Classic Users", IsSystem = false, StartingDate = new DateTime(2015, 1, 1) };
         this.DataStorage.Groups.Add(users);
       }
 
@@ -387,9 +387,9 @@ namespace Bm2s.Data.Common.Utils
           password.Append(passwordByte.ToString("X2"));
         }
 
-        user = new User() { DelaId = english.Id, LastName = "User", IsAdministrator = false, IsAnonymous = false, IsSystem = false, FirstName = string.Empty, Login = "User", Password = password.ToString(), StartingDate = new DateTime(2015, 1, 1) };
+        user = new User() { DefaultLanguageId = english.Id, LastName = "User", IsAdministrator = false, IsAnonymous = false, IsSystem = false, FirstName = string.Empty, Login = "User", Password = password.ToString(), StartingDate = new DateTime(2015, 1, 1) };
         this.DataStorage.Users.Add(user);
-        BLL.User.Usgr userGroups = new Usgr() { GrouId = users.Id, UserId = user.Id };
+        BLL.User.UserGroup userGroups = new UserGroup() { GroupId = users.Id, UserId = user.Id };
         this.DataStorage.UserGroups.Add(userGroups);
       }
 

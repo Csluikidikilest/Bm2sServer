@@ -14,7 +14,7 @@ namespace Bm2s.Services.Common.Partner.Partner
     public PartnersResponse Get(Partners request)
     {
       PartnersResponse response = new PartnersResponse();
-      List<Bm2s.Data.Common.BLL.Partner.Part> items = new List<Data.Common.BLL.Partner.Part>();
+      List<Bm2s.Data.Common.BLL.Partner.Partner> items = new List<Data.Common.BLL.Partner.Partner>();
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.Partners.Where(item =>
@@ -77,7 +77,7 @@ namespace Bm2s.Services.Common.Partner.Partner
     {
       if (request.Partner.Id > 0)
       {
-        Bm2s.Data.Common.BLL.Partner.Part item = Datas.Instance.DataStorage.Partners[request.Partner.Id];
+        Bm2s.Data.Common.BLL.Partner.Partner item = Datas.Instance.DataStorage.Partners[request.Partner.Id];
         item.Code = request.Partner.Code;
         item.CompanyIdentifier = request.Partner.CompanyIdentifier;
         item.CompanyName = request.Partner.CompanyName;
@@ -96,7 +96,7 @@ namespace Bm2s.Services.Common.Partner.Partner
       }
       else
       {
-        Bm2s.Data.Common.BLL.Partner.Part item = new Data.Common.BLL.Partner.Part()
+        Bm2s.Data.Common.BLL.Partner.Partner item = new Data.Common.BLL.Partner.Partner()
         {
           Code = request.Partner.Code,
           CompanyIdentifier = request.Partner.CompanyIdentifier,
@@ -125,7 +125,7 @@ namespace Bm2s.Services.Common.Partner.Partner
 
     public PartnersResponse Delete(Partners request)
     {
-      Bm2s.Data.Common.BLL.Partner.Part item = Datas.Instance.DataStorage.Partners[request.Partner.Id];
+      Bm2s.Data.Common.BLL.Partner.Partner item = Datas.Instance.DataStorage.Partners[request.Partner.Id];
       item.EndingDate = DateTime.Now;
       Datas.Instance.DataStorage.Partners[item.Id] = item;
 

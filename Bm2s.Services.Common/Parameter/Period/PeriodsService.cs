@@ -14,7 +14,7 @@ namespace Bm2s.Services.Common.Parameter.Period
     public PeriodsResponse Get(Periods request)
     {
       PeriodsResponse response = new PeriodsResponse();
-      List<Bm2s.Data.Common.BLL.Parameter.Peri> items = new List<Data.Common.BLL.Parameter.Peri>();
+      List<Bm2s.Data.Common.BLL.Parameter.Period> items = new List<Data.Common.BLL.Parameter.Period>();
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.Periods.Where(item =>
@@ -67,7 +67,7 @@ namespace Bm2s.Services.Common.Parameter.Period
     {
       if (request.Period.Id > 0)
       {
-        Bm2s.Data.Common.BLL.Parameter.Peri item = Datas.Instance.DataStorage.Periods[request.Period.Id];
+        Bm2s.Data.Common.BLL.Parameter.Period item = Datas.Instance.DataStorage.Periods[request.Period.Id];
         item.Code = request.Period.Code;
         item.EndingDate = request.Period.EndingDate;
         item.Interval = request.Period.Interval;
@@ -78,7 +78,7 @@ namespace Bm2s.Services.Common.Parameter.Period
       }
       else
       {
-        Bm2s.Data.Common.BLL.Parameter.Peri item = new Data.Common.BLL.Parameter.Peri()
+        Bm2s.Data.Common.BLL.Parameter.Period item = new Data.Common.BLL.Parameter.Period()
         {
           Code = request.Period.Code,
           EndingDate = request.Period.EndingDate,
@@ -99,7 +99,7 @@ namespace Bm2s.Services.Common.Parameter.Period
 
     public PeriodsResponse Delete(Periods request)
     {
-      Bm2s.Data.Common.BLL.Parameter.Peri item = Datas.Instance.DataStorage.Periods[request.Period.Id];
+      Bm2s.Data.Common.BLL.Parameter.Period item = Datas.Instance.DataStorage.Periods[request.Period.Id];
       item.EndingDate = DateTime.Now;
       Datas.Instance.DataStorage.Periods[item.Id] = item;
 

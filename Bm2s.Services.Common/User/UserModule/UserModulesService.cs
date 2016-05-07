@@ -15,12 +15,12 @@ namespace Bm2s.Services.Common.User.UserModule
     public UserModulesResponse Get(UserModules request)
     {
       UserModulesResponse response = new UserModulesResponse();
-      List<Bm2s.Data.Common.BLL.User.Usmo> items = new List<Data.Common.BLL.User.Usmo>();
+      List<Bm2s.Data.Common.BLL.User.UserModule> items = new List<Data.Common.BLL.User.UserModule>();
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.UserModules.Where(item =>
-          (request.GrantorId == 0 || item.GranId == request.GrantorId) &&
-          (request.ModuleId == 0 || item.ModuId == request.ModuleId) &&
+          (request.GrantorId == 0 || item.GrantorId == request.GrantorId) &&
+          (request.ModuleId == 0 || item.ModuleId == request.ModuleId) &&
           (request.UserId == 0 || item.UserId == request.UserId)
           ));
       }
@@ -33,9 +33,9 @@ namespace Bm2s.Services.Common.User.UserModule
                         select new Bm2s.Poco.Common.User.UserModule()
                         {
                           Granted = item.Granted,
-                          Grantor = new UsersService().Get(new Users() { Ids = new List<int>() { item.GranId } }).Users.FirstOrDefault(),
+                          Grantor = new UsersService().Get(new Users() { Ids = new List<int>() { item.GrantorId } }).Users.FirstOrDefault(),
                           Id = item.Id,
-                          Module = new ModulesService().Get(new Modules() { Ids = new List<int>() { item.ModuId } }).Modules.FirstOrDefault(),
+                          Module = new ModulesService().Get(new Modules() { Ids = new List<int>() { item.ModuleId } }).Modules.FirstOrDefault(),
                           User = new UsersService().Get(new Users() { Ids = new List<int>() { item.UserId } }).Users.FirstOrDefault()
                         }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
 
@@ -65,20 +65,20 @@ namespace Bm2s.Services.Common.User.UserModule
     {
       if (request.UserModule.Id > 0)
       {
-        Bm2s.Data.Common.BLL.User.Usmo item = Datas.Instance.DataStorage.UserModules[request.UserModule.Id];
+        Bm2s.Data.Common.BLL.User.UserModule item = Datas.Instance.DataStorage.UserModules[request.UserModule.Id];
         item.Granted = request.UserModule.Granted;
-        item.GranId = request.UserModule.Grantor.Id;
-        item.ModuId = request.UserModule.Module.Id;
+        item.GrantorId = request.UserModule.Grantor.Id;
+        item.ModuleId = request.UserModule.Module.Id;
         item.UserId = request.UserModule.User.Id;
         Datas.Instance.DataStorage.UserModules[request.UserModule.Id] = item;
       }
       else
       {
-        Bm2s.Data.Common.BLL.User.Usmo item = new Data.Common.BLL.User.Usmo()
+        Bm2s.Data.Common.BLL.User.UserModule item = new Data.Common.BLL.User.UserModule()
         {
           Granted = request.UserModule.Granted,
-          GranId = request.UserModule.Grantor.Id,
-          ModuId = request.UserModule.Module.Id,
+          GrantorId = request.UserModule.Grantor.Id,
+          ModuleId = request.UserModule.Module.Id,
           UserId = request.UserModule.User.Id
         };
 
@@ -93,7 +93,7 @@ namespace Bm2s.Services.Common.User.UserModule
 
     public UserModulesResponse Delete(UserModules request)
     {
-      Bm2s.Data.Common.BLL.User.Usmo item = Datas.Instance.DataStorage.UserModules[request.UserModule.Id];
+      Bm2s.Data.Common.BLL.User.UserModule item = Datas.Instance.DataStorage.UserModules[request.UserModule.Id];
       Datas.Instance.DataStorage.UserModules.Remove(item);
 
       UserModulesResponse response = new UserModulesResponse();

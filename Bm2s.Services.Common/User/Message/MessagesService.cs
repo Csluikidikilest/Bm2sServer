@@ -14,7 +14,7 @@ namespace Bm2s.Services.Common.User.Message
     public MessagesResponse Get(Messages request)
     {
       MessagesResponse response = new MessagesResponse();
-      List<Bm2s.Data.Common.BLL.User.Mess> items = new List<Data.Common.BLL.User.Mess>();
+      List<Bm2s.Data.Common.BLL.User.Message> items = new List<Data.Common.BLL.User.Message>();
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.Messages.Where(item =>
@@ -23,7 +23,7 @@ namespace Bm2s.Services.Common.User.Message
           (request.SendDate.HasValue || item.SendDate >= request.SendDate) &&
           (string.IsNullOrWhiteSpace(request.Subject) || item.Subject.ToLower().Contains(request.Subject.ToLower())) &&
           (request.UserId == 0 || item.UserId == request.UserId) &&
-          (!request.Date.HasValue || (request.Date >= item.StartingDate && (!item.EndingDate.HasValue || request.Date < item.EndingDate.Value)))
+          (!request.Date.HasValue || (request.Date >= item.SendDate && (!item.DeletionDate.HasValue || request.Date < item.DeletionDate.Value)))
           ));
       }
       else
@@ -58,7 +58,7 @@ namespace Bm2s.Services.Common.User.Message
     {
       if (request.Message.Id > 0)
       {
-        Bm2s.Data.Common.BLL.User.Mess item = Datas.Instance.DataStorage.Messages[request.Message.Id];
+        Bm2s.Data.Common.BLL.User.Message item = Datas.Instance.DataStorage.Messages[request.Message.Id];
         item.Body = request.Message.Body;
         item.IsShortMessage = request.Message.IsShortMessage;
         item.SendDate = request.Message.SendDate;
@@ -67,7 +67,7 @@ namespace Bm2s.Services.Common.User.Message
       }
       else
       {
-        Bm2s.Data.Common.BLL.User.Mess item = new Data.Common.BLL.User.Mess()
+        Bm2s.Data.Common.BLL.User.Message item = new Data.Common.BLL.User.Message()
         {
           Body = request.Message.Body,
           IsShortMessage = request.Message.IsShortMessage,
@@ -87,8 +87,8 @@ namespace Bm2s.Services.Common.User.Message
 
     public MessagesResponse Delete(Messages request)
     {
-      Bm2s.Data.Common.BLL.User.Mess item = Datas.Instance.DataStorage.Messages[request.Message.Id];
-      item.EndingDate = DateTime.Now;
+      Bm2s.Data.Common.BLL.User.Message item = Datas.Instance.DataStorage.Messages[request.Message.Id];
+      item.DeletionDate = DateTime.Now;
       Datas.Instance.DataStorage.Messages[item.Id] = item;
 
       MessagesResponse response = new MessagesResponse();

@@ -12,7 +12,7 @@ namespace Bm2s.Services.Common.Partner.PartnerFamily
     public PartnerFamiliesResponse Get(PartnerFamilies request)
     {
       PartnerFamiliesResponse response = new PartnerFamiliesResponse();
-      List<Bm2s.Data.Common.BLL.Partner.Pafa> items = new List<Data.Common.BLL.Partner.Pafa>();
+      List<Bm2s.Data.Common.BLL.Partner.PartnerFamily> items = new List<Data.Common.BLL.Partner.PartnerFamily>();
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.PartnerFamilies.Where(item =>
@@ -63,7 +63,7 @@ namespace Bm2s.Services.Common.Partner.PartnerFamily
     {
       if (request.PartnerFamily.Id > 0)
       {
-        Bm2s.Data.Common.BLL.Partner.Pafa item = Datas.Instance.DataStorage.PartnerFamilies[request.PartnerFamily.Id];
+        Bm2s.Data.Common.BLL.Partner.PartnerFamily item = Datas.Instance.DataStorage.PartnerFamilies[request.PartnerFamily.Id];
         item.Code = request.PartnerFamily.Code;
         item.Description = request.PartnerFamily.Description;
         item.Designation = request.PartnerFamily.Designation;
@@ -73,7 +73,7 @@ namespace Bm2s.Services.Common.Partner.PartnerFamily
       }
       else
       {
-        Bm2s.Data.Common.BLL.Partner.Pafa item = new Data.Common.BLL.Partner.Pafa()
+        Bm2s.Data.Common.BLL.Partner.PartnerFamily item = new Data.Common.BLL.Partner.PartnerFamily()
         {
           Code = request.PartnerFamily.Code,
           Description = request.PartnerFamily.Description,
@@ -93,7 +93,7 @@ namespace Bm2s.Services.Common.Partner.PartnerFamily
 
     public PartnerFamiliesResponse Delete(PartnerFamilies request)
     {
-      Bm2s.Data.Common.BLL.Partner.Pafa item = Datas.Instance.DataStorage.PartnerFamilies[request.PartnerFamily.Id];
+      Bm2s.Data.Common.BLL.Partner.PartnerFamily item = Datas.Instance.DataStorage.PartnerFamilies[request.PartnerFamily.Id];
       item.EndingDate = DateTime.Now;
       Datas.Instance.DataStorage.PartnerFamilies[item.Id] = item;
 

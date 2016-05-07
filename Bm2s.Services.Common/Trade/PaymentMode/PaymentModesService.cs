@@ -12,7 +12,7 @@ namespace Bm2s.Services.Common.Trade.PaymentMode
     public PaymentModesResponse Get(PaymentModes request)
     {
       PaymentModesResponse response = new PaymentModesResponse();
-      List<Bm2s.Data.Common.BLL.Trade.Pamo> items = new List<Data.Common.BLL.Trade.Pamo>();
+      List<Bm2s.Data.Common.BLL.Trade.PaymentMode> items = new List<Data.Common.BLL.Trade.PaymentMode>();
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.PaymentModes.Where(item =>
@@ -62,7 +62,7 @@ namespace Bm2s.Services.Common.Trade.PaymentMode
     {
       if (request.PaymentMode.Id > 0)
       {
-        Bm2s.Data.Common.BLL.Trade.Pamo item = Datas.Instance.DataStorage.PaymentModes[request.PaymentMode.Id];
+        Bm2s.Data.Common.BLL.Trade.PaymentMode item = Datas.Instance.DataStorage.PaymentModes[request.PaymentMode.Id];
         item.Code = request.PaymentMode.Code;
         item.EndingDate = request.PaymentMode.EndingDate;
         item.Name = request.PaymentMode.Name;
@@ -71,7 +71,7 @@ namespace Bm2s.Services.Common.Trade.PaymentMode
       }
       else
       {
-        Bm2s.Data.Common.BLL.Trade.Pamo item = new Data.Common.BLL.Trade.Pamo()
+        Bm2s.Data.Common.BLL.Trade.PaymentMode item = new Data.Common.BLL.Trade.PaymentMode()
         {
           Code = request.PaymentMode.Code,
           EndingDate = request.PaymentMode.EndingDate,
@@ -90,7 +90,7 @@ namespace Bm2s.Services.Common.Trade.PaymentMode
 
     public PaymentModesResponse Delete(PaymentModes request)
     {
-      Bm2s.Data.Common.BLL.Trade.Pamo item = Datas.Instance.DataStorage.PaymentModes[request.PaymentMode.Id];
+      Bm2s.Data.Common.BLL.Trade.PaymentMode item = Datas.Instance.DataStorage.PaymentModes[request.PaymentMode.Id];
       item.EndingDate = DateTime.Now;
       Datas.Instance.DataStorage.PaymentModes[item.Id] = item;
 

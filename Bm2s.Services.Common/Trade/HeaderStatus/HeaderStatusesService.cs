@@ -12,7 +12,7 @@ namespace Bm2s.Services.Common.Trade.HeaderStatus
     public HeaderStatusesResponse Get(HeaderStatuses request)
     {
       HeaderStatusesResponse response = new HeaderStatusesResponse();
-      List<Bm2s.Data.Common.BLL.Trade.Hest> items = new List<Data.Common.BLL.Trade.Hest>();
+      List<Bm2s.Data.Common.BLL.Trade.HeaderStatus> items = new List<Data.Common.BLL.Trade.HeaderStatus>();
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.HeaderStatuses.Where(item =>
@@ -62,7 +62,7 @@ namespace Bm2s.Services.Common.Trade.HeaderStatus
     {
       if (request.HeaderStatus.Id > 0)
       {
-        Bm2s.Data.Common.BLL.Trade.Hest item = Datas.Instance.DataStorage.HeaderStatuses[request.HeaderStatus.Id];
+        Bm2s.Data.Common.BLL.Trade.HeaderStatus item = Datas.Instance.DataStorage.HeaderStatuses[request.HeaderStatus.Id];
         item.EndingDate = request.HeaderStatus.EndingDate;
         item.InterveneOnStock = request.HeaderStatus.InterveneOnStock;
         item.Name = request.HeaderStatus.Name;
@@ -71,7 +71,7 @@ namespace Bm2s.Services.Common.Trade.HeaderStatus
       }
       else
       {
-        Bm2s.Data.Common.BLL.Trade.Hest item = new Data.Common.BLL.Trade.Hest()
+        Bm2s.Data.Common.BLL.Trade.HeaderStatus item = new Data.Common.BLL.Trade.HeaderStatus()
         {
           EndingDate = request.HeaderStatus.EndingDate,
           InterveneOnStock = request.HeaderStatus.InterveneOnStock,
@@ -90,7 +90,7 @@ namespace Bm2s.Services.Common.Trade.HeaderStatus
 
     public HeaderStatusesResponse Delete(HeaderStatuses request)
     {
-      Bm2s.Data.Common.BLL.Trade.Hest item = Datas.Instance.DataStorage.HeaderStatuses[request.HeaderStatus.Id];
+      Bm2s.Data.Common.BLL.Trade.HeaderStatus item = Datas.Instance.DataStorage.HeaderStatuses[request.HeaderStatus.Id];
       item.EndingDate = DateTime.Now;
       Datas.Instance.DataStorage.HeaderStatuses[item.Id] = item;
 

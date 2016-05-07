@@ -7,6 +7,7 @@ using ServiceStack.DataAnnotations;
 
 namespace Bm2s.Data.Common.BLL.Parameter
 {
+  [Alias("Town")]
   public class Town : DataRow
   {
     [AutoIncrement]
@@ -24,7 +25,8 @@ namespace Bm2s.Data.Common.BLL.Parameter
 
     public DateTime? EndingDate { get; set; }
 
-    [References(typeof(Coun))]
-    public int CounId { get; set; }
+    [Alias("CounId")]
+    [References(typeof(Country))]
+    public int CountryId { get; set; }
   }
 }

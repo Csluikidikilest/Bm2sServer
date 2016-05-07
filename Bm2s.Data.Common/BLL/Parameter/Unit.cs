@@ -5,6 +5,7 @@ using ServiceStack.DataAnnotations;
 
 namespace Bm2s.Data.Common.BLL.Parameter
 {
+  [Alias("Unit")]
   public class Unit : DataRow
   {
     [AutoIncrement]

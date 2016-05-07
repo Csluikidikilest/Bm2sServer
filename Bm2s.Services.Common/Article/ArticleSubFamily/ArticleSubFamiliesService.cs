@@ -14,14 +14,14 @@ namespace Bm2s.Services.Common.Article.ArticleSubFamily
     public ArticleSubFamiliesResponse Get(ArticleSubFamilies request)
     {
       ArticleSubFamiliesResponse response = new ArticleSubFamiliesResponse();
-      List<Bm2s.Data.Common.BLL.Article.Arsf> items = new List<Data.Common.BLL.Article.Arsf>();
+      List<Bm2s.Data.Common.BLL.Article.ArticleSubFamily> items = new List<Data.Common.BLL.Article.ArticleSubFamily>();
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.ArticleSubFamilies.Where(item =>
           (string.IsNullOrWhiteSpace(request.AccountingEntry) || item.AccountingEntry.ToLower().Contains(request.AccountingEntry.ToLower())) &&
           (string.IsNullOrWhiteSpace(request.Code) || item.Code.ToLower().Contains(request.Code.ToLower())) &&
           (string.IsNullOrWhiteSpace(request.Designation) || item.Designation.ToLower().Contains(request.Designation.ToLower())) &&
-          (request.ArticleFamilyId == 0 || item.ArfaId == request.ArticleFamilyId) &&
+          (request.ArticleFamilyId == 0 || item.ArticleFamilyId == request.ArticleFamilyId) &&
           (!request.Date.HasValue || (request.Date >= item.StartingDate && (!item.EndingDate.HasValue || request.Date < item.EndingDate.Value)))
           ));
       }
@@ -34,7 +34,7 @@ namespace Bm2s.Services.Common.Article.ArticleSubFamily
                         select new Bm2s.Poco.Common.Article.ArticleSubFamily()
                         {
                           AccountingEntry = item.AccountingEntry,
-                          ArticleFamily = new ArticleFamiliesService().Get(new ArticleFamilies() { Ids = new List<int>() { item.ArfaId } }).ArticleFamilies.FirstOrDefault(),
+                          ArticleFamily = new ArticleFamiliesService().Get(new ArticleFamilies() { Ids = new List<int>() { item.ArticleFamilyId } }).ArticleFamilies.FirstOrDefault(),
                           Code = item.Code,
                           Description = item.Description,
                           Designation = item.Designation,
@@ -69,9 +69,9 @@ namespace Bm2s.Services.Common.Article.ArticleSubFamily
     {
       if (request.ArticleSubFamily.Id > 0)
       {
-        Bm2s.Data.Common.BLL.Article.Arsf item = Datas.Instance.DataStorage.ArticleSubFamilies[request.ArticleSubFamily.Id];
+        Bm2s.Data.Common.BLL.Article.ArticleSubFamily item = Datas.Instance.DataStorage.ArticleSubFamilies[request.ArticleSubFamily.Id];
         item.AccountingEntry = request.ArticleSubFamily.AccountingEntry;
-        item.ArfaId = request.ArticleSubFamily.ArticleFamily.Id;
+        item.ArticleFamilyId = request.ArticleSubFamily.ArticleFamily.Id;
         item.Code = request.ArticleSubFamily.Code;
         item.Description = request.ArticleSubFamily.Description;
         item.Designation = request.ArticleSubFamily.Designation;
@@ -81,10 +81,10 @@ namespace Bm2s.Services.Common.Article.ArticleSubFamily
       }
       else
       {
-        Bm2s.Data.Common.BLL.Article.Arsf item = new Data.Common.BLL.Article.Arsf()
+        Bm2s.Data.Common.BLL.Article.ArticleSubFamily item = new Data.Common.BLL.Article.ArticleSubFamily()
         {
           AccountingEntry = request.ArticleSubFamily.AccountingEntry,
-          ArfaId = request.ArticleSubFamily.ArticleFamily.Id,
+          ArticleFamilyId = request.ArticleSubFamily.ArticleFamily.Id,
           Code = request.ArticleSubFamily.Code,
           Description = request.ArticleSubFamily.Description,
           Designation = request.ArticleSubFamily.Designation,
@@ -103,7 +103,7 @@ namespace Bm2s.Services.Common.Article.ArticleSubFamily
 
     public ArticleSubFamiliesResponse Delete(ArticleSubFamilies request)
     {
-      Bm2s.Data.Common.BLL.Article.Arsf item = Datas.Instance.DataStorage.ArticleSubFamilies[request.ArticleSubFamily.Id];
+      Bm2s.Data.Common.BLL.Article.ArticleSubFamily item = Datas.Instance.DataStorage.ArticleSubFamilies[request.ArticleSubFamily.Id];
       item.EndingDate = DateTime.Now;
       Datas.Instance.DataStorage.ArticleSubFamilies[item.Id] = item;
 

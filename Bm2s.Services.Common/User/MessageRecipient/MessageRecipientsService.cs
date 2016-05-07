@@ -15,11 +15,11 @@ namespace Bm2s.Services.Common.User.MessageRecipient
     public MessageRecipientsResponse Get(MessageRecipients request)
     {
       MessageRecipientsResponse response = new MessageRecipientsResponse();
-      List<Bm2s.Data.Common.BLL.User.Mere> items = new List<Data.Common.BLL.User.Mere>();
+      List<Bm2s.Data.Common.BLL.User.MessageRecipient> items = new List<Data.Common.BLL.User.MessageRecipient>();
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.MessageRecipients.Where(item =>
-          (request.MessageId == 0 || item.MessId == request.MessageId) &&
+          (request.MessageId == 0 || item.MessageId == request.MessageId) &&
           (request.UserId == 0 || item.UserId == request.UserId)
           ));
       }
@@ -32,7 +32,7 @@ namespace Bm2s.Services.Common.User.MessageRecipient
                         select new Bm2s.Poco.Common.User.MessageRecipient()
                         {
                           Id = item.Id,
-                          Message = new MessagesService().Get(new Messages() { Ids = new List<int>() { item.MessId } }).Messages.FirstOrDefault(),
+                          Message = new MessagesService().Get(new Messages() { Ids = new List<int>() { item.MessageId } }).Messages.FirstOrDefault(),
                           ReadingDate = item.ReadingDate,
                           User = new UsersService().Get(new Users() { Ids = new List<int>() { item.UserId } }).Users.FirstOrDefault()
                         }).AsQueryable().OrderBy(request.Order, !request.DescendingOrder);
@@ -63,16 +63,16 @@ namespace Bm2s.Services.Common.User.MessageRecipient
     {
       if (request.MessageRecipient.Id > 0)
       {
-        Bm2s.Data.Common.BLL.User.Mere item = Datas.Instance.DataStorage.MessageRecipients[request.MessageRecipient.Id];
-        item.MessId = request.MessageRecipient.Message.Id;
+        Bm2s.Data.Common.BLL.User.MessageRecipient item = Datas.Instance.DataStorage.MessageRecipients[request.MessageRecipient.Id];
+        item.MessageId = request.MessageRecipient.Message.Id;
         item.ReadingDate = request.MessageRecipient.ReadingDate;
         item.UserId = request.MessageRecipient.User.Id;
       }
       else
       {
-        Bm2s.Data.Common.BLL.User.Mere item = new Data.Common.BLL.User.Mere()
+        Bm2s.Data.Common.BLL.User.MessageRecipient item = new Data.Common.BLL.User.MessageRecipient()
         {
-          MessId = request.MessageRecipient.Message.Id,
+          MessageId = request.MessageRecipient.Message.Id,
           ReadingDate = request.MessageRecipient.ReadingDate,
           UserId = request.MessageRecipient.User.Id
         };
@@ -88,7 +88,7 @@ namespace Bm2s.Services.Common.User.MessageRecipient
 
     public MessageRecipientsResponse Delete(MessageRecipients request)
     {
-      Bm2s.Data.Common.BLL.User.Mere item = Datas.Instance.DataStorage.MessageRecipients[request.MessageRecipient.Id];
+      Bm2s.Data.Common.BLL.User.MessageRecipient item = Datas.Instance.DataStorage.MessageRecipients[request.MessageRecipient.Id];
       Datas.Instance.DataStorage.MessageRecipients.Remove(item);
 
       MessageRecipientsResponse response = new MessageRecipientsResponse();

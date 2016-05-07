@@ -13,11 +13,11 @@ namespace Bm2s.Services.Common.Parameter.AffairFile
     public AffairFilesResponse Get(AffairFiles request)
     {
       AffairFilesResponse response = new AffairFilesResponse();
-      List<Bm2s.Data.Common.BLL.Parameter.Affi> items = new List<Data.Common.BLL.Parameter.Affi>();
+      List<Bm2s.Data.Common.BLL.Parameter.AffairFile> items = new List<Data.Common.BLL.Parameter.AffairFile>();
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.AffairFiles.Where(item =>
-          (request.AffairId == 0 || item.AffaId == request.AffairId) &&
+          (request.AffairId == 0 || item.AffairId == request.AffairId) &&
           (string.IsNullOrWhiteSpace(request.Name) || item.Name.ToLower().Contains(request.Name.ToLower())) &&
           (request.UserId == 0 || item.UserId == request.UserId) &&
           (!request.AddingDate.HasValue || request.AddingDate >= item.AddingDate)
@@ -32,7 +32,7 @@ namespace Bm2s.Services.Common.Parameter.AffairFile
                         select new Bm2s.Poco.Common.Parameter.AffairFile()
                         {
                           AddingDate = item.AddingDate,
-                          Affair = new Affair.AffairsService().Get(new Affairs() { Ids = new List<int>() { item.AffaId } }).Affairs.FirstOrDefault(),
+                          Affair = new Affair.AffairsService().Get(new Affairs() { Ids = new List<int>() { item.AffairId } }).Affairs.FirstOrDefault(),
                           Content = item.Content,
                           Id = item.Id,
                           Name = item.Name,
@@ -65,9 +65,9 @@ namespace Bm2s.Services.Common.Parameter.AffairFile
     {
       if (request.AffairFile.Id > 0)
       {
-        Bm2s.Data.Common.BLL.Parameter.Affi item = Datas.Instance.DataStorage.AffairFiles[request.AffairFile.Id];
+        Bm2s.Data.Common.BLL.Parameter.AffairFile item = Datas.Instance.DataStorage.AffairFiles[request.AffairFile.Id];
         item.AddingDate = request.AffairFile.AddingDate;
-        item.AffaId = request.AffairFile.Affair.Id;
+        item.AffairId = request.AffairFile.Affair.Id;
         item.Content = request.AffairFile.Content;
         item.Name = request.AffairFile.Name;
         item.UserId = request.AffairFile.User.Id;
@@ -75,10 +75,10 @@ namespace Bm2s.Services.Common.Parameter.AffairFile
       }
       else
       {
-        Bm2s.Data.Common.BLL.Parameter.Affi item = new Data.Common.BLL.Parameter.Affi()
+        Bm2s.Data.Common.BLL.Parameter.AffairFile item = new Data.Common.BLL.Parameter.AffairFile()
         {
           AddingDate = request.AffairFile.AddingDate,
-          AffaId = request.AffairFile.Affair.Id,
+          AffairId = request.AffairFile.Affair.Id,
           Content = request.AffairFile.Content,
           Name = request.AffairFile.Name,
           UserId = request.AffairFile.User.Id
@@ -95,7 +95,7 @@ namespace Bm2s.Services.Common.Parameter.AffairFile
 
     public AffairFilesResponse Delete(AffairFiles request)
     {
-      Bm2s.Data.Common.BLL.Parameter.Affi item = Datas.Instance.DataStorage.AffairFiles[request.AffairFile.Id];
+      Bm2s.Data.Common.BLL.Parameter.AffairFile item = Datas.Instance.DataStorage.AffairFiles[request.AffairFile.Id];
       Datas.Instance.DataStorage.AffairFiles.Remove(item);
 
       AffairFilesResponse response = new AffairFilesResponse();

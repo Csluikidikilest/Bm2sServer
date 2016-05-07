@@ -13,11 +13,11 @@ namespace Bm2s.Services.Common.Partner.AddressLine
     public AddressLinesResponse Get(AddressLines request)
     {
       AddressLinesResponse response = new AddressLinesResponse();
-      List<Bm2s.Data.Common.BLL.Partner.Adli> items = new List<Data.Common.BLL.Partner.Adli>();
+      List<Bm2s.Data.Common.BLL.Partner.AddressLine> items = new List<Data.Common.BLL.Partner.AddressLine>();
       if (!request.Ids.Any())
       {
         items.AddRange(Datas.Instance.DataStorage.AddressLines.Where(item =>
-          (request.AddressId == 0 || item.AddrId == request.AddressId)
+          (request.AddressId == 0 || item.AddressId == request.AddressId)
           ));
       }
       else
@@ -28,7 +28,7 @@ namespace Bm2s.Services.Common.Partner.AddressLine
       var collection = (from item in items
                         select new Bm2s.Poco.Common.Partner.AddressLine()
                         {
-                          Address = new AddressesService().Get(new Addresses() { Ids = new List<int>() { item.AddrId } }).Addresses.FirstOrDefault(),
+                          Address = new AddressesService().Get(new Addresses() { Ids = new List<int>() { item.AddressId } }).Addresses.FirstOrDefault(),
                           Id = item.Id,
                           Line = item.Line,
                           Order = item.Order
@@ -60,17 +60,17 @@ namespace Bm2s.Services.Common.Partner.AddressLine
     {
       if (request.AddressLine.Id > 0)
       {
-        Bm2s.Data.Common.BLL.Partner.Adli item = Datas.Instance.DataStorage.AddressLines[request.AddressLine.Id];
-        item.AddrId = request.AddressLine.Address.Id;
+        Bm2s.Data.Common.BLL.Partner.AddressLine item = Datas.Instance.DataStorage.AddressLines[request.AddressLine.Id];
+        item.AddressId = request.AddressLine.Address.Id;
         item.Line = request.AddressLine.Line;
         item.Order = request.AddressLine.Order;
         Datas.Instance.DataStorage.AddressLines[request.AddressLine.Id] = item;
       }
       else
       {
-        Bm2s.Data.Common.BLL.Partner.Adli item = new Data.Common.BLL.Partner.Adli()
+        Bm2s.Data.Common.BLL.Partner.AddressLine item = new Data.Common.BLL.Partner.AddressLine()
         {
-          AddrId = request.AddressLine.Address.Id,
+          AddressId = request.AddressLine.Address.Id,
           Line = request.AddressLine.Line,
           Order = request.AddressLine.Order
         };
@@ -86,7 +86,7 @@ namespace Bm2s.Services.Common.Partner.AddressLine
 
     public AddressLinesResponse Delete(AddressLines request)
     {
-      Bm2s.Data.Common.BLL.Partner.Adli item = Datas.Instance.DataStorage.AddressLines[request.AddressLine.Id];
+      Bm2s.Data.Common.BLL.Partner.AddressLine item = Datas.Instance.DataStorage.AddressLines[request.AddressLine.Id];
       Datas.Instance.DataStorage.AddressLines.Remove(item);
 
       AddressLinesResponse response = new AddressLinesResponse();
