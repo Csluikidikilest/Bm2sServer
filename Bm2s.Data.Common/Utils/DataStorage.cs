@@ -186,12 +186,23 @@ namespace Bm2s.Data.Common.Utils
       Article article3 = new Article() { ArticleFamilyId = subFamily3.ArticleFamilyId, ArticleSubFamilyId = subFamily3.Id, BrandId = brand.Id, Code = "ARTICLE3", Description = "Article 3", Designation = "Article 3", EndingDate = null, Observation = string.Empty, StartingDate = new System.DateTime(2015, 1, 1), UnitId = unit.Id };
       this.Articles.Add(article3);
 
+      Price price1 = new Price() { ArticleId = article1.Id, BasePrice = 8.6, EndingDate = new System.DateTime(2013, 12, 31), StartingDate = new System.DateTime(2013, 1, 1) };
+      this.Prices.Add(price1);
+      Price price2 = new Price() { ArticleId = article1.Id, BasePrice = 9.6, EndingDate = new System.DateTime(2014, 12, 31), StartingDate = new System.DateTime(2014, 1, 1) };
+      this.Prices.Add(price2);
+      Price price3 = new Price() { ArticleId = article1.Id, BasePrice = 10.6, EndingDate = null, StartingDate = new System.DateTime(2015, 1, 1) };
+      this.Prices.Add(price3);
+      Price price4 = new Price() { ArticleId = article2.Id, BasePrice = 11.6, EndingDate = null, StartingDate = new System.DateTime(2015, 1, 1) };
+      this.Prices.Add(price4);
+      Price price5 = new Price() { ArticleId = article3.Id, BasePrice = 12.6, EndingDate = null, StartingDate = new System.DateTime(2015, 1, 1) };
+      this.Prices.Add(price5);
+
       User user = this.Users.FirstOrDefault(item => item.IsAdministrator);
 
       Partner partner = new Partner() { Code = "UNKOWN PARTNER", CompanyIdentifier = string.Empty, CompanyName = string.Empty, Email = string.Empty, EndingDate = null, FaxNumber = string.Empty, IsCustomer = true, IsSupplier = true, Observation = string.Empty, PhoneNumber = string.Empty, PriceMultiplier = 1, StartingDate = new System.DateTime(2015, 1, 1), UserId = user.Id };
       this.Partners.Add(partner);
 
-      Activity activity = new Activity() { CompanyName = "Bm2s", CountryName = "FRANCE", TownName = "Toulon", TownZipCode = "83000", Address1 = "301 Litorral F MISTRAL", Address2 = string.Empty, Address3 = string.Empty };
+      Activity activity = new Activity() { CompanyName = "Bm2s", CountryName = "FRANCE", TownName = "Toulon", TownZipCode = "83000", Address1 = "301 Littoral F MISTRAL", Address2 = string.Empty, Address3 = string.Empty };
       this.Activities.Add(activity);
 
       Nomenclature nomenclature = new Nomenclature() { ArticleChildId = article2.Id, ArticleParentId = article1.Id, BuyPrice = 100, QuantityChild = 3, EndingDate = null, StartingDate = new System.DateTime(2015, 1, 1) };
