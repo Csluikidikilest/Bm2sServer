@@ -255,3 +255,4 @@ D:\Dev\Sources\Csharp\Bm2sServer\Bm2s.Server\bin\Debug\zh-CN\Npgsql.resources.dl
 D:\Dev\Sources\Csharp\Bm2sServer\Bm2s.Server\obj\Debug\Bm2s.Server.csprojResolveAssemblyReference.cache
 D:\Dev\Sources\Csharp\Bm2sServer\Bm2s.Server\obj\Debug\Bm2s.Server.exe
 D:\Dev\Sources\Csharp\Bm2sServer\Bm2s.Server\obj\Debug\Bm2s.Server.pdb
+D:\Dev\Sources\Csharp\Bm2sServer\Bm2s.Server\bin\Debug\Oracle.ManagedDataAccess.dll
